@@ -39,7 +39,7 @@ const PHASES: Phase[] = [
     label: 'Phase 5',
     status: 'next',
     title: 'プロダクト化',
-    desc: '配布パッケージ(3 OS)、Free/Pro/Enterprise の3層ライセンスと管理ポリシー、秘密情報の暗号化、デフォルトキャラ同梱、Live2Dシェル、文脈アニメーション(動作タグ+VRMA)、音声クローン(代替TTS)、5言語対応、システムチェック、OSSライセンス表記。DLした瞬間から完成品。',
+    desc: '配布パッケージ(3 OS)、Free/Pro/Enterprise の3層ライセンスと管理ポリシー、秘密情報の暗号化、デフォルトキャラ同梱、Live2Dシェル、文脈アニメーション(動作タグ+VRMA)、多言語ローカル音声(日=VOICEVOX・英中=内蔵Piper)と OpenAI 互換 TTS API、5言語対応、システムチェック、OSSライセンス表記。DLした瞬間から完成品。',
   },
   {
     label: 'Phase 6',

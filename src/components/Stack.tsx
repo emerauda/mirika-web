@@ -8,7 +8,7 @@ const STACK: StackItem[] = [
   { name: '@pixiv/three-vrm', desc: 'VRMシェル: 表情・視線・SpringBone(揺れもの)' },
   { name: 'Cubism SDK for Web', desc: 'Live2Dシェル(実装済み)+クラシックシェル(Phase 6 予定)' },
   { name: 'llama.cpp / Ollama', desc: '同梱エンジン+外部ランタイム自動検出(LM Studio 対応)' },
-  { name: 'VOICEVOX + Whisper', desc: '全ローカル音声対話・音素リップシンク' },
+  { name: 'VOICEVOX / Piper + Whisper', desc: '全ローカル音声対話(日=VOICEVOX・英中=内蔵Piper)・音素リップシンク' },
   { name: 'SQLite(node:sqlite)', desc: '数年単位の長期記憶・想起検索・就寝時整理' },
   { name: 'MCP', desc: '秘書ツール連携(SAORI文化の現代版)' },
 ];
