@@ -1,0 +1,110 @@
+import { Kicker } from './ui';
+import { Reveal, StaggerGroup, StaggerItem } from './primitives';
+
+type Status = 'done' | 'next' | 'none';
+type Phase = { label: string; status: Status; title: string; desc: string };
+
+const PHASES: Phase[] = [
+  {
+    label: 'Phase 0',
+    status: 'done',
+    title: '技術検証',
+    desc: '透過ウィンドウ+VRM表示+クリックスルー+ドラッグ移動——Windows ネイティブで確認済み。',
+  },
+  {
+    label: 'Phase 1',
+    status: 'done',
+    title: 'MVP: 会話',
+    desc: 'バルーン、テキスト入力、ローカルLLM会話、まばたき・視線追従。接続は3段構え(内蔵エンジン/自動検出/手動URL)——話しかけたら人格が返事する。',
+  },
+  {
+    label: 'Phase 2',
+    status: 'done',
+    title: 'キャラが生きる',
+    desc: '感情と気分(ムード)、記憶、ランダムトーク、時報、撫で判定、ウィンドウに座る、季節の演出、出会いの演出。さらにコンビの掛け合い、配信者モード、スラッシュコマンド設定、ペルソナ編集も。放っておいても勝手に生きてる。',
+  },
+  {
+    label: 'Phase 3',
+    status: 'done',
+    title: '声が出る',
+    desc: 'VOICEVOX TTS+モーラリップシンク(声と表示の実尺同期)、Whisperマイク入力(呼びかけ起動)、クレジット自動表示。声で会話できる。',
+  },
+  {
+    label: 'Phase 4',
+    status: 'done',
+    title: 'AI 秘書',
+    desc: '秘書は実運用に到達: Gmail・カレンダー・Drive(Google純正MCPに直結)、タスク預かり、定期チェックと「きょうのブリーフィング」、Claude Desktop・VS Code からの伝言(SSTP伝統の9801番)。スクリーン理解と画面の見守り、クリップボード反応、ローカルRAG(端末内全文検索)、ブラウザ拡張、BGM・Spotify まで動作済み。仕事を任せられる。',
+  },
+  {
+    label: 'Phase 5',
+    status: 'next',
+    title: 'プロダクト化',
+    desc: '配布パッケージ(3 OS)、Free/Pro/Enterprise の3層ライセンスと管理ポリシー、秘密情報の暗号化、デフォルトキャラ同梱、Live2Dシェル、文脈アニメーション(動作タグ+VRMA)、音声クローン(代替TTS)、5言語対応、システムチェック、OSSライセンス表記。DLした瞬間から完成品。',
+  },
+  {
+    label: 'Phase 6',
+    status: 'none',
+    title: 'エコシステム',
+    desc: '.mirikaパッケージ、ゴーストマネージャ、SDK+ドキュメント+人格回帰テスト、クラシックシェル、キャラクターカード(V2/V3)インポート、マルチデバイス同期(E2E暗号化)、完全なSSTP互換。第三者がゴーストを作って配れる。',
+  },
+  {
+    label: 'Phase 7',
+    status: 'none',
+    title: '社会と身体',
+    desc: 'マルチゴースト、コミュニケート(AI同士の会話)、歌とお絵かき、スマートホーム/IoT連携、デスクトップ操作(提案型・確認必須)、ロボットシェル実験。デスクトップに社会ができ、身体の選択肢が増える。',
+  },
+];
+
+function PhaseLabel({ label, status }: { label: string; status: Status }) {
+  if (status === 'next') {
+    return (
+      <span className="font-mono text-sm text-sakura font-semibold">
+        {label}
+        <br className="hidden md:block" />
+        <span className="text-[10px] tracking-widest uppercase">● Next</span>
+      </span>
+    );
+  }
+  if (status === 'done') {
+    return (
+      <span className="font-mono text-sm text-mist">
+        {label}
+        <br className="hidden md:block" />
+        <span className="text-[10px] tracking-widest uppercase text-sakura">✓ done</span>
+      </span>
+    );
+  }
+  return <span className="font-mono text-sm text-mist">{label}</span>;
+}
+
+export function Roadmap() {
+  return (
+    <section id="roadmap" className="border-t border-cream/10 bg-black/20 scroll-mt-20">
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        <Reveal className="mb-14">
+          <Kicker index="06" label="Roadmap" />
+          <h2 className="font-mincho font-bold text-3xl md:text-4xl">7つのフェーズで、順に価値を。</h2>
+        </Reveal>
+
+        <StaggerGroup className="border-t-2 border-cream/30 divide-y divide-cream/10">
+          {PHASES.map((p) => (
+            <StaggerItem
+              key={p.label}
+              className={`grid md:grid-cols-[110px_230px_1fr] gap-2 md:gap-8 py-6 px-3 ${
+                p.status === 'next'
+                  ? 'bg-sakura/10 border-l-4 border-sakura'
+                  : p.status === 'none'
+                    ? 'border-b border-cream/10'
+                    : ''
+              }`}
+            >
+              <PhaseLabel label={p.label} status={p.status} />
+              <h3 className="font-mincho font-bold text-lg">{p.title}</h3>
+              <p className="text-mist text-sm leading-relaxed">{p.desc}</p>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </div>
+    </section>
+  );
+}
