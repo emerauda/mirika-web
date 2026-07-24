@@ -6,7 +6,7 @@ import {
   useMotionValueEvent,
   useReducedMotion,
 } from 'motion/react';
-import { Ghost, Menu, X } from 'lucide-react';
+import { Ghost, Menu, X, Crown } from 'lucide-react';
 import { GitHubMark, NAV_ITEMS } from './ui';
 import { MagneticLink } from './primitives';
 import { useActiveSection } from '../hooks/useActiveSection';
@@ -61,6 +61,14 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <MagneticLink
+            href="https://pro.mirika.dev/"
+            target="_blank"
+            rel="noopener"
+            className="hidden sm:inline-flex btn-hard items-center gap-1.5 bg-gradient-to-r from-[#ff8fab] to-[#c9a2ff] text-white px-4 py-2 font-mono text-xs font-semibold"
+          >
+            <Crown className="w-3.5 h-3.5" /> Pro
+          </MagneticLink>
+          <MagneticLink
             href="https://github.com/emerauda/mirika"
             target="_blank"
             rel="noopener"
@@ -102,6 +110,15 @@ export function Nav() {
                   {item.label}
                 </a>
               ))}
+              <a
+                href="https://pro.mirika.dev/"
+                target="_blank"
+                rel="noopener"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center gap-1.5 text-sakura hover:text-cream transition-colors py-1"
+              >
+                <Crown className="w-3.5 h-3.5" /> Pro
+              </a>
             </div>
           </motion.nav>
         )}

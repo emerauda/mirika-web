@@ -56,4 +56,5 @@ export const NAV_ITEMS = [
   { id: 'roadmap', label: 'Roadmap' },
   { id: 'vision', label: 'Vision' },
   { id: 'faq', label: 'FAQ' },
+  { id: 'download', label: 'Download' },
 ] as const;

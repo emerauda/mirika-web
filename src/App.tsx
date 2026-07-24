@@ -12,6 +12,7 @@ import { Roadmap } from './components/Roadmap';
 import { ForYou } from './components/ForYou';
 import { Vision } from './components/Vision';
 import { Faq } from './components/Faq';
+import { Download } from './components/Download';
 import { Cta } from './components/Cta';
 import { Footer } from './components/Footer';
 
@@ -33,6 +34,7 @@ export default function App() {
         <ForYou />
         <Vision />
         <Faq />
+        <Download />
         <Cta />
       </main>
       <Footer />
