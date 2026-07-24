@@ -37,7 +37,7 @@ const FEATURES: Feature[] = [
     Icon: Mic,
     num: '05',
     title: '全ローカル音声対話',
-    desc: '日本語は VOICEVOX / AivisSpeech、英語・中国語は内蔵 Piper で完全ローカルに発話——モーラ(母音)リップシンク付き。Whisper(transformers.js)のマイク入力は呼びかけ起動の常時待機つき。どの言語も OpenAI 互換 TTS API で好きな声に差し替えられます。文単位のパイプライン合成で、話しかけてから3秒以内に声が返る。音声も会話もあなたのマシンから出ていきません。',
+    desc: '日本語は VOICEVOX / AivisSpeech、英語・中国語は内蔵 Piper で完全ローカルに発話——モーラ(母音)リップシンク付き。Whisper(transformers.js)のマイク入力は呼びかけ起動の常時待機つき。音声ファイルをドロップすれば同じ Whisper で文字起こしして要約・感想も返す(精度はモデル次第)。どの言語も OpenAI 互換 TTS API で好きな声に差し替えられます。文単位のパイプライン合成で、話しかけてから3秒以内に声が返る。音声も会話もあなたのマシンから出ていきません。',
   },
   {
     Icon: Feather,
