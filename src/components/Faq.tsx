@@ -23,7 +23,7 @@ const ITEMS: Item[] = [
     a: (
       <>
         個人利用は Free で、ほとんどの機能がそのまま使えます。買い切りの <strong>Pro</strong> は、秘書以外の外部連携や高度な自律機能——現状は
-        <strong>配信者モード(AI Vtuber)</strong>と <strong>Spotify 連携</strong>——を解錠します。オフライン署名のライセンスキーを{' '}
+        <strong>配信者モード(AI Vtuber)</strong>と <strong>Spotify 連携</strong>——をアンロックします。オフライン署名のライセンスキーを{' '}
         <code>/pro &lt;キー&gt;</code> と入力するだけで、サーバー無しで検証されます。組織導入は Enterprise(管理ポリシー+監査ログ)。UI
         は日本語・英語・簡体字・繁体字・韓国語の 5 言語に対応しています。
       </>
