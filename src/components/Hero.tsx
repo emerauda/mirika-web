@@ -5,7 +5,7 @@ import {
   useReducedMotion,
   type Variants,
 } from 'motion/react';
-import { BookOpen, ArrowDown, ChevronDown } from 'lucide-react';
+import { Download, ArrowDown, ChevronDown } from 'lucide-react';
 import { TitleBar } from './ui';
 import { MagneticLink } from './primitives';
 
@@ -79,12 +79,10 @@ export function Hero() {
           </motion.p>
           <motion.div className="flex flex-wrap gap-4" {...itemProps}>
             <MagneticLink
-              href="https://github.com/emerauda/mirika"
-              target="_blank"
-              rel="noopener"
+              href="#download"
               className="btn-hard inline-flex items-center gap-2 bg-sakura text-white px-6 py-3.5 font-bold text-sm"
             >
-              <BookOpen className="w-4 h-4" /> 企画書を読む(Ver 0.3)
+              <Download className="w-4 h-4" /> ダウンロード
             </MagneticLink>
             <MagneticLink
               href="#roadmap"

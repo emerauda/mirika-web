@@ -1,4 +1,4 @@
-import { BookOpen } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { GitHubMark } from './ui';
 import { Reveal, MagneticLink } from './primitives';
 
@@ -19,15 +19,13 @@ export function Cta() {
         </Reveal>
         <Reveal className="flex flex-wrap justify-center gap-4">
           <MagneticLink
-            href="https://github.com/emerauda/mirika"
-            target="_blank"
-            rel="noopener"
+            href="#download"
             className="btn-hard inline-flex items-center gap-2 bg-sakura text-white px-6 py-3.5 font-bold text-sm"
           >
-            <BookOpen className="w-4 h-4" /> 企画書を読む
+            <Download className="w-4 h-4" /> ダウンロード
           </MagneticLink>
           <MagneticLink
-            href="https://github.com/emerauda/mirika"
+            href="https://github.com/emerauda/mirika-releases"
             target="_blank"
             rel="noopener"
             className="btn-hard inline-flex items-center gap-2 bg-paper text-ink px-6 py-3.5 font-bold text-sm"

@@ -69,7 +69,7 @@ export function Nav() {
             <Crown className="w-3.5 h-3.5" /> Pro
           </MagneticLink>
           <MagneticLink
-            href="https://github.com/emerauda/mirika"
+            href="https://github.com/emerauda/mirika-releases"
             target="_blank"
             rel="noopener"
             className="btn-hard inline-flex items-center gap-2 bg-paper text-ink px-4 py-2 font-mono text-xs font-medium"
