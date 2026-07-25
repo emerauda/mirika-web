@@ -128,6 +128,17 @@ export function Download() {
           </span>
         </Reveal>
 
+        <Reveal>
+          <p className="mt-6 font-mono text-[11px] text-mist leading-relaxed">
+            <span className="text-cream">未署名アプリについて</span> — コード署名はまだ取得していないため、初回に警告が出ます(破損ではありません)。
+            <br />
+            <span className="text-cream">macOS</span> で「壊れているため開けません」と出たら、アプリを「アプリケーション」へ移してからターミナルで{' '}
+            <code className="text-sakura">xattr -cr /Applications/Mirika.app</code>{' '}
+(または右クリック→「開く」)。
+            <span className="text-cream"> Windows</span> は SmartScreen の「詳細情報 → 実行」で起動できます。
+          </p>
+        </Reveal>
+
         {beta ? (
           <Reveal>
             <div className="mt-10 rounded-xl border border-cream/10 bg-night/40 p-5">
