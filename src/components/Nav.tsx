@@ -60,6 +60,12 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <a
+            href="/docs"
+            className="hidden sm:inline-flex items-center font-mono text-xs text-mist hover:text-sakura transition-colors"
+          >
+            使い方
+          </a>
           <MagneticLink
             href="https://pro.mirika.dev/"
             target="_blank"
@@ -110,6 +116,13 @@ export function Nav() {
                   {item.label}
                 </a>
               ))}
+              <a
+                href="/docs"
+                onClick={() => setOpen(false)}
+                className="hover:text-sakura transition-colors py-1"
+              >
+                使い方
+              </a>
               <a
                 href="https://pro.mirika.dev/"
                 target="_blank"

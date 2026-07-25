@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
-import { Smile, Brain, Database, Mail, Mic, Feather } from 'lucide-react';
+import { Smile, Brain, Database, Mail, Mic, Feather, IdCard, Users } from 'lucide-react';
 import { Kicker } from './ui';
 import { Reveal, StaggerGroup, StaggerItem } from './primitives';
 
@@ -50,6 +50,18 @@ const FEATURES: Feature[] = [
         辞書の「話し方の見本」取り込みとサーフェスPNGシェル(クラシック)は Phase 6。
       </>
     ),
+  },
+  {
+    Icon: IdCard,
+    num: '07',
+    title: 'キャラクターカード対応',
+    desc: 'SillyTavern などで配られているキャラクターカード(V2/V3)を、PNG のままドラッグ&ドロップするだけで人格として取り込む。名前・性格・場面・会話例はそのまま性格設定に、同梱のロアブックは設定メモへ。PNG のカードは絵がそのまま身体になり(カードシェル)、取り込んだ直後にカードの第一声で挨拶する。気に入らなければ何段でも巻き戻せる。',
+  },
+  {
+    Icon: Users,
+    num: '08',
+    title: 'デスクトップに社会を',
+    desc: 'SSTP コミュニケートで、同じデスクトップにいる他のゴースト(SSP など)と直接会話する。Pro では別プロファイルの子をもう一体立てられ、記憶も性格も別々のまま隣に並んで話し合う。歌(VOICEVOX 歌唱)と、お絵かき(ローカル画像生成があれば使い、無ければ手描き)も——配信中は描いた絵が OBS のイーゼルに載る。',
   },
 ];
 

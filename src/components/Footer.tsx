@@ -2,10 +2,11 @@ import { Ghost } from 'lucide-react';
 import { GitHubMark, XMark } from './ui';
 
 const FOOTER_LINKS = [
-  { href: '#concept', label: 'Concept' },
-  { href: '#features', label: 'Features' },
-  { href: '#roadmap', label: 'Roadmap' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/#concept', label: 'Concept' },
+  { href: '/#features', label: 'Features' },
+  { href: '/#roadmap', label: 'Roadmap' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/docs', label: 'Docs' },
 ];
 
 export function Footer() {
