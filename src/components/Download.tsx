@@ -12,9 +12,10 @@ type Asset = { name: string; browser_download_url: string };
 type Release = { tag_name: string; prerelease: boolean; draft: boolean; assets: Asset[] };
 
 const PLATFORMS = [
-  { key: 'win', label: 'Windows', Icon: Monitor, note: '.exe インストーラ', match: (n: string) => n.endsWith('.exe') },
-  { key: 'mac', label: 'macOS', Icon: Command, note: '.dmg', match: (n: string) => n.endsWith('.dmg') },
-  { key: 'linux', label: 'Linux', Icon: HardDrive, note: '.AppImage', match: (n: string) => n.endsWith('.AppImage') },
+  { key: 'win', label: 'Windows', Icon: Monitor, note: '.exe インストーラ', match: (n: string) => n.endsWith('.exe'), comingSoon: false },
+  // macOS は署名/公証が済むまで配布を保留(未署名 dmg は Gatekeeper が「壊れています」と表示するため)
+  { key: 'mac', label: 'macOS', Icon: Command, note: '.dmg(署名対応中)', match: (n: string) => n.endsWith('.dmg'), comingSoon: true },
+  { key: 'linux', label: 'Linux', Icon: HardDrive, note: '.AppImage', match: (n: string) => n.endsWith('.AppImage'), comingSoon: false },
 ] as const;
 
 function detectOS(): 'win' | 'mac' | 'linux' {
@@ -33,6 +34,7 @@ export function Download() {
   const [beta, setBeta] = useState<Release | null>(null);
   const [failed, setFailed] = useState(false);
   const os = detectOS();
+  const detected = PLATFORMS.find((p) => p.key === os);
 
   useEffect(() => {
     fetch(LIST, { headers: { Accept: 'application/vnd.github+json' } })
@@ -68,14 +70,16 @@ export function Download() {
                 最新版は <span className="font-mono text-sakura">{version}</span>。
               </>
             ) : null}{' '}
-            お使いの OS を選んでください(既定は <span className="text-cream">{PLATFORMS.find((p) => p.key === os)?.label}</span>)。
+            お使いの OS を選んでください(既定は <span className="text-cream">{detected?.label}</span>
+            {detected?.comingSoon ? '・準備中' : ''})。
           </p>
         </Reveal>
 
         <div className="grid sm:grid-cols-3 gap-4 mb-8">
           {PLATFORMS.map((pf) => {
             const asset = assetIn(stable, pf.match);
-            const primary = pf.key === os;
+            const showAsset = asset && !pf.comingSoon;
+            const primary = pf.key === os && !pf.comingSoon;
             return (
               <Reveal key={pf.key}>
                 <div
@@ -87,7 +91,7 @@ export function Download() {
                   <div className="font-mincho font-bold text-lg">{pf.label}</div>
                   <div className="font-mono text-xs text-mist">{pf.note}</div>
                   <div className="mt-auto pt-2">
-                    {asset ? (
+                    {showAsset ? (
                       <MagneticLink
                         href={asset.browser_download_url}
                         className={`btn-hard inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm ${
@@ -97,7 +101,9 @@ export function Download() {
                         <DownloadIcon className="w-4 h-4" /> ダウンロード
                       </MagneticLink>
                     ) : (
-                      <span className="font-mono text-xs text-mist/70">準備中</span>
+                      <span className="font-mono text-xs text-mist/70">
+                        {pf.comingSoon ? 'Coming soon' : '準備中'}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -130,12 +136,7 @@ export function Download() {
 
         <Reveal>
           <p className="mt-6 font-mono text-[11px] text-mist leading-relaxed">
-            <span className="text-cream">未署名アプリについて</span> — コード署名はまだ取得していないため、初回に警告が出ます(破損ではありません)。
-            <br />
-            <span className="text-cream">macOS</span> で「壊れているため開けません」と出たら、アプリを「アプリケーション」へ移してからターミナルで{' '}
-            <code className="text-sakura">xattr -cr /Applications/Mirika.app</code>{' '}
-(または右クリック→「開く」)。
-            <span className="text-cream"> Windows</span> は SmartScreen の「詳細情報 → 実行」で起動できます。
+            <span className="text-cream">署名について</span> — 現在のビルドはコード署名なしのため、<span className="text-cream">Windows</span> は初回に SmartScreen が出ます(「詳細情報 → 実行」で起動)。<span className="text-cream">macOS 版は署名・公証対応まで準備中</span>です。
           </p>
         </Reveal>
 
