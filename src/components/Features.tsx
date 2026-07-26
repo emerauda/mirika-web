@@ -119,7 +119,7 @@ const EXT_ROWS: ExtRow[] = [
   { label: '人格回帰テスト', desc: 'mirika test で「この子らしさ」をCI検証', phase: 'P6', done: false },
   { label: 'クラシックシェル', desc: '旧伺かのサーフェスPNGシェルも、見た目ごとそのまま動く', phase: 'P6', done: true },
   { label: '歌とお絵かき', desc: '歌唱合成で誕生日に歌い、ローカル画像生成で絵を見せてくれる', phase: 'P7', done: true },
-  { label: 'デスクトップ操作', desc: '提案→確認→実行の提案型に限定して、慎重に導入', phase: 'P7', done: false },
+  { label: 'デスクトップ操作', desc: '提案→確認→実行の提案型に限定して、0.8 で慎重に導入', phase: 'P7', done: false },
 ];
 
 export function Features() {
