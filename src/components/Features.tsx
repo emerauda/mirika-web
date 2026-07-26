@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
-import { Smile, Brain, Database, Mail, Mic, Feather, IdCard, Users } from 'lucide-react';
+import { Smile, Brain, Database, Mail, Mic, Feather, IdCard, Package, RefreshCw, Users } from 'lucide-react';
 import { Kicker } from './ui';
 import { Reveal, StaggerGroup, StaggerItem } from './primitives';
 
@@ -46,8 +46,9 @@ const FEATURES: Feature[] = [
     desc: (
       <>
         旧作者の台本は書き直しゼロ——<span className="font-mono text-xs">\0\s[0]こんにちは。\e</span> を
-        SSTP(port 9801)や /sakura に渡すと、話者切替と\s[n]相当の表情つきで3Dキャラがそのまま演じる(実装済み)。
-        辞書の「話し方の見本」取り込みとサーフェスPNGシェル(クラシック)は Phase 6。
+        SSTP(port 9801)や /sakura に渡すと、話者切替と\s[n]相当の表情つきでキャラがそのまま演じる。
+        文字コードは送り主に合わせるので、当時のツールが送る Shift_JIS も化けない。EXECUTE の
+        GetName / GetVersion にも応答する。辞書の「話し方の見本」取り込みは引き続き対応予定。
       </>
     ),
   },
@@ -58,8 +59,20 @@ const FEATURES: Feature[] = [
     desc: 'SillyTavern などで配られているキャラクターカード(V2/V3)を、PNG のままドラッグ&ドロップするだけで人格として取り込む。名前・性格・場面・会話例はそのまま性格設定に、同梱のロアブックは設定メモへ。PNG のカードは絵がそのまま身体になり(カードシェル)、取り込んだ直後にカードの第一声で挨拶する。気に入らなければ何段でも巻き戻せる。',
   },
   {
-    Icon: Users,
+    Icon: Package,
     num: '08',
+    title: '伺かの資産と、1ファイルの受け渡し',
+    desc: '2000年から配られてきた伺かのシェルを、そのまま身体にできる——本体と相方がコンビで立ち、surfaces.txt の定義どおりに瞬き、声に合わせて口が動く(透明が .pna や「左上の色」で表された古い作りも読む)。作った子は .mirika ひとつにまとまり、名前・性格・相方・設定メモ・身体ごと相手に渡せる。受け取った子は手持ちの棚に残り、いつでも着替えられる。配る側には雛形作成から検証までの道具が付く。',
+  },
+  {
+    Icon: RefreshCw,
+    num: '09',
+    title: 'どのマシンにも、同じ子(Pro)',
+    desc: 'PC を替えても同じ子・同じ記憶。記憶と人格を暗号化した1ファイルで持ち出せて、置き場に Dropbox・OneDrive・Google Drive・iCloud などの同期フォルダを指定すれば、そのクラウド経由で15分ごとに自動で合わせる(こちらのサーバーは経由せず、クラウドに置かれるのは暗号文だけ)。鍵は合言葉から作ってその端末から出さないので、置き場が漏れても中身は読めない。取り込みは上書きではなく突き合わせ——どちらの端末にしかない会話も残り、片方で消したタスクが復活することもない。',
+  },
+  {
+    Icon: Users,
+    num: '10',
     title: 'デスクトップに社会を',
     desc: 'SSTP コミュニケートで、同じデスクトップにいる他のゴースト(SSP など)と直接会話する。Pro では別プロファイルの子をもう一体立てられ、記憶も性格も別々のまま隣に並んで話し合う。歌(VOICEVOX 歌唱)と、お絵かき(ローカル画像生成があれば使い、無ければ手描き)も——配信中は描いた絵が OBS のイーゼルに載る。',
   },
