@@ -292,11 +292,29 @@ export function Docs() {
             </P>
             <H3>POP メールの見張り(Free)</H3>
             <P>
-              Google 連携を使わなくても、<C>/mail pop &lt;ホスト[:ポート]&gt; &lt;ユーザー&gt; &lt;アプリパスワード&gt;</C>{' '}
+              Google 連携を使わなくても、<C>/mail pop &lt;ホスト[:ポート]&gt; &lt;ユーザー&gt; &lt;パスワード&gt;</C>{' '}
               で「メールが来たら教えて」が成立します。POP over SSL(既定 995)のあるプロバイダなら
               どこでも使えて、読むのは<strong className="text-cream">ヘッダ(差出人と件名)だけ</strong> —
               本文は取らず、受信箱の状態も変えません。新着は定期チェックの巡回で知らせます。
             </P>
+            <P>
+              <strong className="text-cream">Yahoo! メール(日本)の例</strong>:
+            </P>
+            <Steps
+              items={[
+                <>Yahoo! メールの設定で <C>IMAP/POP/SMTP アクセス</C> を有効にしておく(既定では切れています)</>,
+                <>2段階認証を使っているなら、ログイン用のパスワードではなく<strong className="text-cream">アプリパスワード</strong>を発行する</>,
+                <><C>/mail pop pop.mail.yahoo.co.jp あなたのYahoo!JAPAN_ID パスワード</C> —— ポートは既定の 995(SSL)のままで大丈夫です</>,
+              ]}
+            />
+            <Note>
+              他社の例: Gmail は <C>pop.gmail.com</C>、Outlook.com は{' '}
+              <C>outlook.office365.com</C>(いずれも 995)。
+              <strong className="text-cream">ふだんのログインパスワードではなくアプリパスワードを使ってください</strong> —
+              多くのプロバイダは2段階認証を有効にしていると通常のパスワードでは弾きます。
+              つながるかどうかは保存する前に確かめるので、打ち間違えても設定は残りません。
+              パスワードは端末内で暗号化して保存します(OS の鍵輪が無い環境ではその旨をお伝えします)。
+            </Note>
             <H3>webhook の受け口(Free)</H3>
             <P>
               <C>/webhook on</C> でトークンを発行すると、スクリプト・cron・他のアプリから{' '}
