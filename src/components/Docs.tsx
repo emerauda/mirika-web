@@ -511,12 +511,16 @@ export function Docs() {
               <div key={group.group} className="mb-8">
                 <h3 className="font-mono text-xs text-sakura tracking-wider mb-3">{group.group}</h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm border-collapse">
+                  {/* 幅を固定する。auto のままだと、長い引数を持つ行が表を横に押し広げ、
+                      説明の列が1文字ぶんまで潰れる(実際に配信の行で起きた) */}
+                  <table className="w-full table-fixed text-sm border-collapse">
                     <tbody>
                       {group.items.map((cmd) => (
                         <tr key={cmd.name} className="border-b border-cream/5 align-top">
-                          <td className="py-2 pr-4 whitespace-nowrap font-mono text-cream">
-                            /{cmd.name}
+                          {/* コマンド名は折らない。引数は折る —— 折り返しを止めると、
+                              引数の長いコマンドが表を横に押し広げて説明の列を潰す */}
+                          <td className="py-2 pr-4 font-mono text-cream w-[46%] break-words">
+                            <span className="whitespace-nowrap">/{cmd.name}</span>
                             {cmd.arg ? <span className="text-mist/70"> {cmd.arg}</span> : null}
                           </td>
                           <td className="py-2 text-mist">{cmd.help}</td>

@@ -26,7 +26,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
       { name: "package", arg: "export|import|list|use <名前>", help: "この子ひとりぶんを1ファイルに(.mirika)。手持ちの一覧と着替えも" },
       { name: "card", arg: "[ファイル|undo|reset]", help: "キャラクターカード(V2/V3)を取り込む(undo で1段戻す・reset で読む前に戻す)" },
       { name: "vrm", arg: "", help: "この子の VRM を開いて着替える" },
-      { name: "partner", arg: "name <名前>|shell …|persona …|first <一人称>|voice <ID>|tts <URL>", help: "相方まわりを全部ここで(名前・身体・性格・一人称・声)" },
+      { name: "partner", arg: "name|shell|persona|first|voice|tts", help: "相方まわりを全部ここで(名前・身体・性格・一人称・声)" },
       { name: "summon", arg: "", help: "相方の VRM を開いて呼ぶ" },
       { name: "dismiss", arg: "", help: "相方を帰す" },
       { name: "draw", arg: "[お題|api <URL>|cloud on|off]", help: "絵を描く(ローカルの画像生成APIか、つないでいるクラウド。無ければ手描き)" },
@@ -85,7 +85,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
     group: "配信",
     items: [
       { name: "announce", arg: "<配信の内容>|post|tags <タグ…>", help: "告知文をこの子に書かせて投稿画面を開く" },
-      { name: "stream", arg: "host|assist|off|go <内容>|start|end|chat <URL>|comments|chatty <0〜100>|caller <呼び名>", help: "配信まわりを全部ここで(役割・開始一連・番組・コメント・手加減)" },
+      { name: "stream", arg: "host|assist|off|go|start|end|chat|comments|chatty|caller", help: "配信まわりを全部ここで(役割・開始一連・番組・コメント・手加減)" },
       { name: "obs", arg: "connect <URL> <パスワード>|start|stop|off", help: "OBS の遠隔操作(配信の開始・停止)" },
       { name: "radio", arg: "otaku|general|title <局名>|sub <英字>|freq <76-90>", help: "番組の味付けと、OBS 背景の局名・周波数(HTML を編集せず本体から送る)" },
       { name: "stage", arg: "on|off", help: "ステージ窓(Discord画面共有向け・OBS不要)" },
