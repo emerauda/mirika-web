@@ -204,7 +204,7 @@ export function Docs() {
                 AivisSpeech
               </a>{' '}
               を入れておくだけ。Mirika がエンジンを裏で起動・終了します。
-              声の一覧は <C>/voice list</C>、変更は <C>/voice &lt;ID&gt;</C>(相方は <C>/voice2</C>)。
+              声の一覧は <C>/voice list</C>、変更は <C>/voice &lt;ID&gt;</C>(相方は <C>/partner voice</C>)。
               誤読は <C>/read 早急 さっきゅう</C> のように直せます。
             </P>
             <P>
@@ -262,7 +262,7 @@ export function Docs() {
             <P>
               名前は <C>/name</C>、一人称は <C>/first</C>、性格は <C>/persona &lt;説明&gt;</C> で書き換えます。
               サンプルから選ぶなら <C>/persona sample</C>(元気な幼なじみ・ツンデレ・執事風など)。
-              相方側はそれぞれ <C>/partner</C> <C>/first2</C> <C>/partner persona</C>。
+              相方側はそれぞれ <C>/partner</C> <C>/partner first</C> <C>/partner persona</C>。
             </P>
             <P>
               <strong className="text-cream">設定メモ</strong>(<C>/lore add &lt;キー&gt; &lt;内容&gt;</C>)に入れた言葉は、
