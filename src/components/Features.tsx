@@ -109,7 +109,7 @@ const EXT_ROWS: ExtRow[] = [
   { label: 'Live2Dシェル', desc: 'Cubism対応。本体・相方でVRMと混在でき、桃瀬ひより/Mao同梱', phase: 'P5', done: true },
   { label: 'OBS配信モード', desc: 'グリーンバック表示でゴーストをそのまま配信画面へ(Pro)', phase: 'P5', done: true },
   { label: 'デバイス間同期', desc: '記憶も名前・性格もE2E暗号化で同期——どのマシンにも同じ子がいる(無料。置き場を預かるぶんが Pro)', phase: 'P6', done: true },
-  { label: '人格回帰テスト', desc: 'mirika test で「この子らしさ」をCI検証', phase: 'P6', done: false },
+  { label: '人格回帰テスト', desc: 'ゴールデン対話集で「この子らしさ」をCI検証(mirika-test。SDK zip に同梱)', phase: 'P6', done: true },
   { label: 'クラシックシェル', desc: '旧伺かのサーフェスPNGシェルも、見た目ごとそのまま動く', phase: 'P6', done: true },
   { label: '歌とお絵かき', desc: '歌唱合成で誕生日に歌い、ローカル画像生成で絵を見せてくれる', phase: 'P7', done: true },
   { label: 'デスクトップ操作', desc: '提案→確認→実行の提案型に限定して、0.8 で慎重に導入', phase: 'P7', done: false },

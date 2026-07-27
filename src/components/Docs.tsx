@@ -494,6 +494,25 @@ export function Docs() {
               未知項目の破棄をしたうえで取り込み、取り込み前の状態はいつでも巻き戻せます。
             </Note>
 
+            <H3>人格回帰テスト(mirika test)</H3>
+            <P>
+              プロンプトや頭脳(モデル)を替えたとき、「この子らしさ」が崩れていないかを
+              ゴールデン対話集で機械的に確かめます。返事は毎回ゆらぐので、文面の一致ではなく
+              <C>must</C>(必ず出る言い回し)/<C>mustNot</C>(出てはいけない言い回し)の
+              正規表現で判定します。失敗があれば終了コード 1 — そのまま CI に置けます。
+            </P>
+            <Steps
+              items={[
+                <><C>node scripts/mirika-test.mjs --init golden.json</C> — 対話集の雛形を作る(口調・一人称・でっち上げ抑止のサンプル入り)</>,
+                <>persona と cases を自分の子に合わせて書く</>,
+                <><C>node scripts/mirika-test.mjs golden.json</C> — LM Studio / Ollama を自動検出して判定(<C>--runs 3</C> でゆらぎ込みの検査)</>,
+              ]}
+            />
+            <Note>
+              スクリプトはリリース添付の <C>mirika-sdk.zip</C> にも入っています(雛形作成・検証の
+              mirika-package.mjs と一緒に)。
+            </Note>
+
             <H3>SSTP で話しかける(伺か互換)</H3>
             <P>
               TCP <C>9801</C>(使用中なら 9821 → 8801 に譲る)で <C>SEND / NOTIFY / COMMUNICATE / EXECUTE</C> を受けます。
