@@ -98,7 +98,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
       { name: "help", arg: "", help: "コマンド一覧を表示" },
       { name: "status", arg: "", help: "いまの設定を表示" },
       { name: "check", arg: "", help: "システムチェック(アプリとPCの健康状態)" },
-      { name: "sync", arg: "export|import|cloud <合言葉>", help: "記憶と人格を暗号化して持ち出す・別のPCで取り込む(置き場は自分のクラウドなら無料、預けるなら Pro)" },
+      { name: "sync", arg: "export|import|cloud <合言葉>|identity on|off", help: "記憶と人格を暗号化して持ち出す・別のPCで取り込む(置き場は自分のクラウドなら無料、預けるなら Pro)" },
       { name: "pro", arg: "[キー|off]", help: "Pro をアンロック(ライセンスキー)" },
       { name: "credits", arg: "[open]", help: "クレジットとライセンス表記" },
       { name: "log", arg: "", help: "会話ログを別窓で読み返す(バックログ)" },
