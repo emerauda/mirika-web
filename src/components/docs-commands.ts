@@ -88,7 +88,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
     items: [
       { name: "streamer", arg: "on|off", help: "配信者モード(番組は /live start 〜 /live end のキュー式)" },
       { name: "live", arg: "start [URL]|end|reset|chat <URL|off>", help: "ライブ配信の制御(開始・締め・仕切り直し・コメント連携。いまはYouTube対応)" },
-      { name: "radio", arg: "otaku|general", help: "番組の味付け(既定は汎用。otaku でオタク特化のお題と解像度)" },
+      { name: "radio", arg: "otaku|general|title <局名>|sub <英字>|freq <76-90>", help: "番組の味付けと、OBS 背景の局名・周波数(HTML を編集せず本体から送る)" },
       { name: "stage", arg: "on|off", help: "ステージ窓(Discord画面共有向け・OBS不要)" },
     ],
   },
