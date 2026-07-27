@@ -31,7 +31,7 @@ const FEATURES: Feature[] = [
     Icon: Mail,
     num: '04',
     title: 'AI Secretary(MCP)',
-    desc: 'Model Context Protocol で外部ツールと接続——もう動いています。Gmail・カレンダー・Drive(Google純正MCP)が載り、「メール来てるよ、1件は急ぎっぽい」と人格を通して届く。タスク預かり・定期チェック・きょうのブリーフィングまで、秘書として実運用中です。',
+    desc: 'Model Context Protocol で外部ツールと接続——もう動いています。Gmail・カレンダー・Drive(Google純正MCP)が載り、「メール来てるよ、1件は急ぎっぽい」と人格を通して届く。Google を使わない道もあって、POP 対応のメールなら見張れるし、自作スクリプトからの知らせも受け取れます(どちらも無料)。タスク預かり・定期チェック・きょうのブリーフィングまで、秘書として実運用中。',
   },
   {
     Icon: Mic,
@@ -67,7 +67,7 @@ const FEATURES: Feature[] = [
     Icon: Users,
     num: '09',
     title: 'デスクトップに社会を',
-    desc: 'SSTP コミュニケートで、同じデスクトップの他のゴースト(SSP など)と直接会話。Pro では別プロファイルの子をもう一体立てて、隣に並んで話し合う。歌(VOICEVOX 歌唱)とお絵かきも——配信中は描いた絵が OBS のイーゼルに載る。',
+    desc: 'SSTP コミュニケートで、同じデスクトップの他のゴースト(SSP など)と直接会話。Pro では別プロファイルの子をもう一体立てて、隣に並んで話し合う。歌(VOICEVOX 歌唱)とお絵かきも。配信では二つの立ち方があって、この子が番組を持つことも、あなたの配信の隣でコメントを読む相棒になることもできます(Pro)。',
   },
 ];
 
@@ -108,6 +108,13 @@ const EXT_ROWS: ExtRow[] = [
   { label: '自発的な興味', desc: '話題を覚えて後日調べ、自分から話を振ってくる', phase: 'P4', done: true },
   { label: 'Live2Dシェル', desc: 'Cubism対応。本体・相方でVRMと混在でき、桃瀬ひより/Mao同梱', phase: 'P5', done: true },
   { label: 'OBS配信モード', desc: 'グリーンバック表示でゴーストをそのまま配信画面へ(Pro)', phase: 'P5', done: true },
+  { label: '配信を手伝う', desc: 'あなたが主役の配信で、コメントを読み、呼ばれたときだけ返す相棒に(Pro)', phase: 'P7', done: true },
+  { label: 'コメントビューア連携', desc: 'わんコメ等の「棒読みちゃん連携」を向けるだけ。配信サイトは問わない(Pro)', phase: 'P7', done: true },
+  { label: 'OBS の遠隔操作', desc: '「配信の準備して」で配信を開始し、告知文の下書きまで(投稿はご自分で・Pro)', phase: 'P7', done: true },
+  { label: 'メールの見張り(POP)', desc: 'Google 連携なしでも新着に気づく。読むのは差出人と件名だけ', phase: 'P4', done: true },
+  { label: '外からの知らせ', desc: '自作スクリプトや他のアプリの通知を、この子の口から', phase: 'P4', done: true },
+  { label: '別の画面に住む', desc: '余ったタブレットをこの子の身体に(合言葉つきで受け入れ)', phase: 'P7', done: false },
+  { label: '動作ログ', desc: '不具合の報告に添えられる記録。秘密は伏せ字・7日分', phase: 'P5', done: true },
   { label: 'デバイス間同期', desc: '記憶も名前・性格もE2E暗号化で同期——どのマシンにも同じ子がいる(無料。置き場を預かるぶんが Pro)', phase: 'P6', done: true },
   { label: '人格回帰テスト', desc: 'ゴールデン対話集で「この子らしさ」をCI検証(mirika-test。SDK zip に同梱)', phase: 'P6', done: true },
   { label: 'クラシックシェル', desc: '旧伺かのサーフェスPNGシェルも、見た目ごとそのまま動く', phase: 'P6', done: true },
