@@ -6,7 +6,7 @@ type StackItem = { name: string; desc: string };
 const STACK: StackItem[] = [
   { name: 'Electron', desc: '透過ウィンドウ・クリックスルー・トレイ常駐' },
   { name: '@pixiv/three-vrm', desc: 'VRMシェル: 表情・視線・SpringBone(揺れもの)' },
-  { name: 'Cubism SDK for Web', desc: 'Live2Dシェル(実装済み)+クラシックシェル(Phase 6 予定)' },
+  { name: 'Cubism SDK for Web', desc: 'Live2Dシェル+伺かクラシックシェル(ともに実装済み)' },
   { name: 'llama.cpp / Ollama', desc: '同梱エンジン+外部ランタイム自動検出(LM Studio 対応)' },
   { name: 'VOICEVOX / Piper + Whisper', desc: '全ローカル音声対話(日=VOICEVOX・英中=内蔵Piper)・音素リップシンク' },
   { name: 'SQLite(node:sqlite)', desc: '数年単位の長期記憶・想起検索・就寝時整理' },

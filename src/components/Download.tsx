@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Download as DownloadIcon, Monitor, Command, HardDrive, Puzzle, Crown, FlaskConical } from 'lucide-react';
+import { Download as DownloadIcon, Monitor, Command, HardDrive, Puzzle, Crown, FlaskConical, Clapperboard, Wrench } from 'lucide-react';
 import { Kicker } from './ui';
 import { Reveal, MagneticLink } from './primitives';
 
@@ -48,7 +48,12 @@ export function Download() {
   }, []);
 
   const version = stable?.tag_name ?? '';
-  const extension = stable?.assets.find((a) => a.name.toLowerCase().endsWith('.zip'));
+  // リリースには zip が3種ある(chrome-extension / obs-overlays / sdk)。名前で選ぶ
+  const zipAsset = (part: string) =>
+    stable?.assets.find((a) => a.name.toLowerCase().includes(part) && a.name.toLowerCase().endsWith('.zip'));
+  const extension = zipAsset('extension');
+  const overlays = zipAsset('overlays');
+  const sdk = zipAsset('sdk');
 
   return (
     <section id="download" className="border-t border-cream/10 bg-black/20">
@@ -122,6 +127,22 @@ export function Download() {
             <Puzzle className="w-4 h-4" /> Chrome 拡張
           </MagneticLink>
           <MagneticLink
+            href={overlays?.browser_download_url ?? `${RELEASES}/latest`}
+            target={overlays ? undefined : '_blank'}
+            rel="noopener"
+            className="btn-hard inline-flex items-center gap-2 bg-paper text-ink px-5 py-3 font-bold text-sm"
+          >
+            <Clapperboard className="w-4 h-4" /> OBS オーバーレイ
+          </MagneticLink>
+          <MagneticLink
+            href={sdk?.browser_download_url ?? `${RELEASES}/latest`}
+            target={sdk ? undefined : '_blank'}
+            rel="noopener"
+            className="btn-hard inline-flex items-center gap-2 bg-paper text-ink px-5 py-3 font-bold text-sm"
+          >
+            <Wrench className="w-4 h-4" /> ゴースト SDK
+          </MagneticLink>
+          <MagneticLink
             href="https://pro.mirika.dev/"
             target="_blank"
             rel="noopener"
@@ -132,6 +153,12 @@ export function Download() {
           <span className="font-mono text-xs text-mist">
             個人利用は無償 / 高度な連携は Pro
           </span>
+        </Reveal>
+
+        <Reveal>
+          <p className="mt-4 font-mono text-[11px] text-mist leading-relaxed">
+            zip はどれも本体と同じリリースページの添付です — <span className="text-cream">OBS オーバーレイ</span>は配信画面用のブラウザソース(スタジオ背景・机)、<span className="text-cream">ゴースト SDK</span> はゴーストを作って配る人向けのスクリプト(雛形作成・検証・人格回帰テスト)。
+          </p>
         </Reveal>
 
         <Reveal>

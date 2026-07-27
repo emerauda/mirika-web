@@ -395,8 +395,12 @@ export function Docs() {
             </P>
             <H3>OBS に載せる</H3>
             <P>
-              <C>obs/radio-bg.html</C> をブラウザソースに指定すると、スタジオ風の背景に
-              ON AIR ランプ・いまのコーナー・テロップ・音声クレジットが自動で出ます。
+              オーバーレイはダウンロードと同じリリースページに添付の
+              <C>mirika-obs-overlays.zip</C> に入っています。展開して
+              <C>radio-bg.html</C> をブラウザソースに指定すると、スタジオ風の背景に
+              ON AIR ランプ・いまのコーナー・テロップ・音声クレジットが自動で出ます
+              (机側のオーバーレイは <C>radio-desk.html</C>)。局名やテロップは
+              アプリから <C>/radio title</C> で差し替えられます。
               <strong className="text-cream">お絵かきで描いた絵は右下のイーゼルに表示されます</strong>。
               キャラのウィンドウキャプチャをその上に重ねてください。
             </P>
