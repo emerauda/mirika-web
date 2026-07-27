@@ -23,6 +23,7 @@ const SECTIONS: Section[] = [
   { id: 'stream', title: '配信者モード' },
   { id: 'pro', title: 'Pro とライセンス' },
   { id: 'commands', title: 'コマンド一覧' },
+  { id: 'dev', title: '開発者向け' },
   { id: 'trouble', title: '困ったとき' },
 ];
 
@@ -465,6 +466,74 @@ export function Docs() {
                 </div>
               </div>
             ))}
+          </section>
+
+          {/* --- 開発者向け --- */}
+          <section className="mb-16">
+            <H2 id="dev">開発者向け</H2>
+            <P>
+              ゴーストを作って配る人・周辺ツールから Mirika に話しかけたい人のための入口です。
+              仕様の詳細はリポジトリの README にもあります。
+            </P>
+
+            <H3>ゴーストを作って配る(.mirika)</H3>
+            <P>
+              配布形式 <C>.mirika</C> は素の zip(<C>mirika.json</C> + <C>shell/</C>)で、
+              名前・性格・一人称・相方・設定メモ・身体をひとつにまとめます。
+              アプリを起動しなくても、同梱スクリプトで雛形作成から検証までできます:
+            </P>
+            <Steps
+              items={[
+                <><C>node scripts/mirika-package.mjs init {'<フォルダ>'}</C> — 雛形(mirika.json と shell/)を作る</>,
+                <>絵や性格を書き込んだら <C>pack</C> で 1 ファイルに固める</>,
+                <><C>check</C> が「受け取る側と同じ目」で中身を検める(性格が空・素立ちが無い等を配る前に知らせる)</>,
+              ]}
+            />
+            <Note>
+              受け取る側は他人のファイルとして扱います — 書庫の外へ出るパスの拒否・長さ制限つきの正規化・
+              未知項目の破棄をしたうえで取り込み、取り込み前の状態はいつでも巻き戻せます。
+            </Note>
+
+            <H3>SSTP で話しかける(伺か互換)</H3>
+            <P>
+              TCP <C>9801</C>(使用中なら 9821 → 8801 に譲る)で <C>SEND / NOTIFY / COMMUNICATE / EXECUTE</C> を受けます。
+              文字コードは送り主に合わせます — <C>Charset</C> を先に読み、無ければ化けたときに
+              Shift_JIS で読み直し、応答も同じ文字コードで返します。<C>EXECUTE</C> は
+              GetName / GetVersion / GetFQName に答え、受け持たない命令には正直に 204 を返します。
+              手元での試し打ちは <C>/sakura {'\\0\\s[0]こんにちは。\\e'}</C> が手軽です。
+            </P>
+
+            <H3>HTTP ブリッジ(他のアプリとの連携)</H3>
+            <P>
+              SSTP と同じポートで HTTP も受けます。<C>MCP ブリッジ</C>として Claude Desktop・VS Code・
+              Claude CLI に公開すれば、外から伝言(speak)とタスクを使えます。ブラウザ拡張は
+              <C>POST /browser</C> で見ているページを共有します。どちらも 127.0.0.1 バインド+
+              Host/Origin 検査つきで、閲覧中のサイトの JavaScript からは叩けません。
+            </P>
+
+            <H3>OBS 連携 API(SSE)</H3>
+            <P>
+              ポート <C>8763</C>(<C>MIRIKA_OBS_PORT</C> で変更可)の <C>/events</C> が、
+              時計・実況天気・話者・コーナー・テロップ・BGM クレジット・描いた絵を Server-Sent Events で流します。
+              スタジオ背景と机のオーバーレイはリリース添付の <C>mirika-obs-overlays.zip</C> にあり、
+              局名・周波数はアプリから <C>/radio title・sub・freq</C> で送れます(HTML の編集不要)。
+            </P>
+
+            <H3>取り込み形式の対応範囲</H3>
+            <P>
+              キャラクターカードは V2/V3 — PNG 埋め込み(tEXt / zTXt / 圧縮 iTXt)と素の JSON を読みます
+              (<C>.charx</C> は未対応)。クラシックシェルは <C>surfaces.txt</C> の
+              <C>interval,random / always / talk</C> と overlay 系・collision・着せ替えの主要仕様に対応し、
+              透明はアルファ / <C>.pna</C> / 左上色の 3 方式を自動判別します。
+            </P>
+
+            <H3>環境変数と Enterprise ポリシー</H3>
+            <P>
+              <C>MIRIKA_RES_PORT</C>(アセット配信・既定 8764)/ <C>MIRIKA_OBS_PORT</C>(OBS 連携・既定 8763)/
+              <C>MIRIKA_POLICY</C>(ポリシーファイルの場所の上書き)。組織導入では管理者配布の読み取り専用
+              <C>policy.json</C>(Windows: <C>%ProgramData%\Mirika\</C>、macOS: <C>/Library/Application Support/Mirika/</C>、
+              Linux: <C>/etc/mirika/</C>)がユーザー設定より優先され、クラウド禁止・接続先固定・監査ログなどを統制できます。
+            </P>
           </section>
 
           {/* --- 困ったとき --- */}
