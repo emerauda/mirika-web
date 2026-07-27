@@ -76,6 +76,8 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
       { name: "pomo", arg: "start [作業分] [休憩分]|stop", help: "ポモドーロ(作業と休憩の切替をキャラが声かけ。既定25分+5分)" },
       { name: "rag", arg: "<フォルダ>|find <ことば>|reindex|off", help: "資料フォルダを索引(ローカル全文検索。「メモどこだっけ」に答える)" },
       { name: "secretary", arg: "on|off|interval <分>|now|brief", help: "定期チェックときょうのブリーフィング(メール・予定・タスク・天気)" },
+      { name: "mail", arg: "pop <ホスト[:ポート]> <ユーザー> <パスワード>|off", help: "POP3 の新着見張り(どのプロバイダでも。読むのはヘッダだけ)" },
+      { name: "webhook", arg: "on|new|off", help: "外部スクリプト・他アプリからの知らせの受け口(POST /webhook)" },
       { name: "todo", arg: "add <内容> [@期限]|done <番号>|remove <番号>", help: "タスクを預ける(期限が近いと知らせる。会話でも追加できる)" },
       { name: "screen", arg: "watch on|off", help: "いまの画面を見てもらう(「画面を見て」でも可)。watch で見守り(オプトイン)" },
       { name: "snip", arg: "", help: "範囲を切り取って見せる(📷ボタン/Alt+Shift+M。クリップボード+保存)" },

@@ -22,8 +22,8 @@ const ITEMS: Item[] = [
     q: 'Pro 版とは? 何が違いますか?',
     a: (
       <>
-        個人利用は Free で、ほとんどの機能がそのまま使えます。買い切りの <strong>Pro</strong> は、秘書以外の外部連携や高度な自律機能——現状は
-        <strong>配信者モード(AI Vtuber)</strong>と <strong>Spotify 連携</strong>——をアンロックします。オフライン署名のライセンスキーを{' '}
+        個人利用は Free で、ほとんどの機能がそのまま使えます(メールの見張りも POP・webhook の汎用連携で Free のまま)。買い切りの <strong>Pro</strong> は、秘書以外の外部連携や高度な自律機能——現状は
+        <strong>配信者モード(AI Vtuber)</strong>と <strong>Spotify 連携</strong>、今後は Discord / Slack 連携やこちらでお世話する方式の OAuth 連携——をアンロックします。オフライン署名のライセンスキーを{' '}
         <code>/pro &lt;キー&gt;</code> と入力するだけで、サーバー無しで検証されます。組織導入は Enterprise(管理ポリシー+監査ログ)。UI
         は日本語・英語・簡体字・繁体字・韓国語の 5 言語に対応しています。
       </>
