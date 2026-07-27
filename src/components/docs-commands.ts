@@ -77,6 +77,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
       { name: "rag", arg: "<フォルダ>|find <ことば>|reindex|off", help: "資料フォルダを索引(ローカル全文検索。「メモどこだっけ」に答える)" },
       { name: "secretary", arg: "on|off|interval <分>|now|brief", help: "定期チェックときょうのブリーフィング(メール・予定・タスク・天気)" },
       { name: "mail", arg: "pop <ホスト[:ポート]> <ユーザー> <パスワード>|off", help: "POP3 の新着見張り(どのプロバイダでも。読むのはヘッダだけ)" },
+      { name: "log", arg: "", help: "動作ログの場所を開く(不具合報告に添える。秘密は伏せ字・7日分)" },
       { name: "webhook", arg: "on|new|off", help: "外部スクリプト・他アプリからの知らせの受け口(POST /webhook)" },
       { name: "todo", arg: "add <内容> [@期限]|done <番号>|remove <番号>", help: "タスクを預ける(期限が近いと知らせる。会話でも追加できる)" },
       { name: "screen", arg: "watch on|off", help: "いまの画面を見てもらう(「画面を見て」でも可)。watch で見守り(オプトイン)" },
@@ -89,6 +90,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
     group: "配信",
     items: [
       { name: "streamer", arg: "on|off", help: "配信者モード(番組は /live start 〜 /live end のキュー式)" },
+      { name: "bouyomi", arg: "on|off|port <番号>", help: "棒読みちゃん互換の受け口(コメビュの読み上げをこの子の声で)" },
       { name: "live", arg: "start [URL]|end|reset|chat <URL|off>", help: "ライブ配信の制御(開始・締め・仕切り直し・コメント連携。いまはYouTube対応)" },
       { name: "radio", arg: "otaku|general|title <局名>|sub <英字>|freq <76-90>", help: "番組の味付けと、OBS 背景の局名・周波数(HTML を編集せず本体から送る)" },
       { name: "stage", arg: "on|off", help: "ステージ窓(Discord画面共有向け・OBS不要)" },
