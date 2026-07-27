@@ -70,7 +70,7 @@ export function Nav() {
             href="https://pro.mirika.dev/"
             target="_blank"
             rel="noopener"
-            className="hidden sm:inline-flex btn-hard items-center gap-1.5 bg-gradient-to-r from-[#ff8fab] to-[#c9a2ff] text-white px-4 py-2 font-mono text-xs font-semibold"
+            className="hidden sm:inline-flex btn-hard items-center gap-1.5 bg-gradient-to-r from-[#ff8fab] to-[#c9a2ff] text-[#1a1420] px-4 py-2 font-mono text-xs font-bold"
           >
             <Crown className="w-3.5 h-3.5" /> Pro
           </MagneticLink>
