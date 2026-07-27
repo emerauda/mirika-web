@@ -29,6 +29,17 @@ function detectOS(): 'win' | 'mac' | 'linux' {
 const assetIn = (rel: Release | null, match: (n: string) => boolean) =>
   rel?.assets.find((a) => match(a.name));
 
+// "v0.6.2-beta.0" の基底(0.6.2)が "v0.6.1" より新しいか。同じ版の rc は正式化で用済み
+function newerBase(preTag: string, stableTag: string): boolean {
+  const nums = (tag: string) => tag.replace(/^v/, '').split('-')[0].split('.').map(Number);
+  const a = nums(preTag);
+  const b = nums(stableTag);
+  for (let i = 0; i < 3; i++) {
+    if ((a[i] ?? 0) !== (b[i] ?? 0)) return (a[i] ?? 0) > (b[i] ?? 0);
+  }
+  return false;
+}
+
 export function Download() {
   const [stable, setStable] = useState<Release | null>(null);
   const [beta, setBeta] = useState<Release | null>(null);
@@ -41,8 +52,10 @@ export function Download() {
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((list: Release[]) => {
         const live = Array.isArray(list) ? list.filter((r) => !r.draft) : [];
-        setStable(live.find((r) => !r.prerelease) ?? null);
-        setBeta(live.find((r) => r.prerelease) ?? null);
+        const st = live.find((r) => !r.prerelease) ?? null;
+        const pre = live.find((r) => r.prerelease) ?? null;
+        setStable(st);
+        setBeta(pre && (!st || newerBase(pre.tag_name, st.tag_name)) ? pre : null);
       })
       .catch(() => setFailed(true));
   }, []);
@@ -146,7 +159,7 @@ export function Download() {
             href="https://pro.mirika.dev/"
             target="_blank"
             rel="noopener"
-            className="btn-hard inline-flex items-center gap-2 bg-gradient-to-r from-[#ff8fab] to-[#c9a2ff] text-white px-5 py-3 font-bold text-sm"
+            className="btn-hard inline-flex items-center gap-2 bg-gradient-to-r from-[#ff8fab] to-[#c9a2ff] text-[#1a1420] px-5 py-3 font-bold text-sm"
           >
             <Crown className="w-4 h-4" /> Pro を見る
           </MagneticLink>
