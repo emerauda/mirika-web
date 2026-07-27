@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
-import { Smile, Brain, Database, Mail, Mic, Feather, IdCard, Package, RefreshCw, Users } from 'lucide-react';
+import { Smile, Brain, Database, Mail, Mic, Feather, Package, RefreshCw, Users } from 'lucide-react';
 import { Kicker } from './ui';
 import { Reveal, StaggerGroup, StaggerItem } from './primitives';
 
@@ -37,7 +37,7 @@ const FEATURES: Feature[] = [
     Icon: Mic,
     num: '05',
     title: '全ローカル音声対話',
-    desc: '日本語は VOICEVOX / AivisSpeech、英語・中国語は内蔵 Piper で完全ローカルに発話——モーラ(母音)リップシンク付き。Whisper(transformers.js)のマイク入力は呼びかけ起動の常時待機つき。音声ファイルをドロップすれば同じ Whisper で文字起こしして要約・感想も返す(精度はモデル次第)。どの言語も OpenAI 互換 TTS API で好きな声に差し替えられます。文単位のパイプライン合成で、話しかけてから3秒以内に声が返る。音声も会話もあなたのマシンから出ていきません。',
+    desc: '日本語は VOICEVOX / AivisSpeech、英語・中国語は内蔵 Piper で完全ローカルに発話、モーラのリップシンク付き。マイクは呼びかけ起動の常時待機で、話の途中でも名前で呼べば声を止めて聞く。文単位の合成で3秒以内に声が返り、音声も会話も端末の外に出ません。',
   },
   {
     Icon: Feather,
@@ -46,35 +46,28 @@ const FEATURES: Feature[] = [
     desc: (
       <>
         旧作者の台本は書き直しゼロ——<span className="font-mono text-xs">\0\s[0]こんにちは。\e</span> を
-        SSTP(port 9801)や /sakura に渡すと、話者切替と\s[n]相当の表情つきでキャラがそのまま演じる。
-        文字コードは送り主に合わせるので、当時のツールが送る Shift_JIS も化けない。EXECUTE の
-        GetName / GetVersion にも応答する。辞書の「話し方の見本」取り込みは引き続き対応予定。
+        SSTP(port 9801)や /sakura に渡すと、話者切替と表情つきでそのまま演じる。文字コードは
+        送り主に合わせるので当時の Shift_JIS も化けず、EXECUTE の GetName / GetVersion にも応答する。
       </>
     ),
   },
   {
-    Icon: IdCard,
-    num: '07',
-    title: 'キャラクターカード対応',
-    desc: 'SillyTavern などで配られているキャラクターカード(V2/V3)を、PNG のままドラッグ&ドロップするだけで人格として取り込む。名前・性格・場面・会話例はそのまま性格設定に、同梱のロアブックは設定メモへ。PNG のカードは絵がそのまま身体になり(カードシェル)、取り込んだ直後にカードの第一声で挨拶する。気に入らなければ何段でも巻き戻せる。',
-  },
-  {
     Icon: Package,
-    num: '08',
-    title: '伺かの資産と、1ファイルの受け渡し',
-    desc: '2000年から配られてきた伺かのシェルを、そのまま身体にできる——本体と相方がコンビで立ち、surfaces.txt の定義どおりに瞬き、声に合わせて口が動く(透明が .pna や「左上の色」で表された古い作りも読む)。作った子は .mirika ひとつにまとまり、名前・性格・相方・設定メモ・身体ごと相手に渡せる。受け取った子は手持ちの棚に残り、いつでも着替えられる。配る側には雛形作成から検証までの道具が付く。',
+    num: '07',
+    title: 'キャラ資産の持ち込みと受け渡し',
+    desc: 'SillyTavern のキャラクターカード(V2/V3)は PNG のままドロップで人格になり、絵はそのまま身体になる。2000年から続く伺かのシェルも surfaces.txt どおりに瞬いて口が動く。作った子は .mirika ひとつで受け渡せて、配る側には雛形から検証までの道具が付く。',
   },
   {
     Icon: RefreshCw,
-    num: '09',
+    num: '08',
     title: 'どのマシンにも、同じ子',
-    desc: 'PC を替えても同じ子・同じ記憶。記憶と人格を暗号化した1ファイルで持ち出せて、置き場に Dropbox・OneDrive・Google Drive・iCloud などの同期フォルダを指定すれば、そのクラウド経由で15分ごとに自動で合わせる(こちらのサーバーは経由せず、クラウドに置かれるのは暗号文だけ)。クラウドドライブが無くても、置き場そのものをこちらで預かる選択肢もある(Pro)——それでも暗号化は端末で終わるので、預かる側にも中身は読めない。鍵は合言葉から作ってその端末から出さないので、置き場が漏れても中身は読めない。取り込みは上書きではなく突き合わせ——どちらの端末にしかない会話も残り、片方で消したタスクが復活することもない。同期そのものは無料で、有料なのは置き場を用意するぶんだけ。',
+    desc: '記憶も名前・性格も、暗号化した1ファイルで端末間を同期。置き場は自分のクラウドの同期フォルダ(無料)でも、こちらが預かる棚(Pro)でも。鍵は端末から出ず、取り込みは突き合わせ——どちらかにしかない会話も消えない。同期そのものは無料で、有料なのは置き場を用意するぶんだけ。',
   },
   {
     Icon: Users,
-    num: '10',
+    num: '09',
     title: 'デスクトップに社会を',
-    desc: 'SSTP コミュニケートで、同じデスクトップにいる他のゴースト(SSP など)と直接会話する。Pro では別プロファイルの子をもう一体立てられ、記憶も性格も別々のまま隣に並んで話し合う。歌(VOICEVOX 歌唱)と、お絵かき(ローカル画像生成があれば使い、無ければ手描き)も——配信中は描いた絵が OBS のイーゼルに載る。',
+    desc: 'SSTP コミュニケートで、同じデスクトップの他のゴースト(SSP など)と直接会話。Pro では別プロファイルの子をもう一体立てて、隣に並んで話し合う。歌(VOICEVOX 歌唱)とお絵かきも——配信中は描いた絵が OBS のイーゼルに載る。',
   },
 ];
 
