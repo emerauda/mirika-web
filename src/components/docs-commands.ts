@@ -89,7 +89,11 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
   {
     group: "配信",
     items: [
-      { name: "streamer", arg: "on|off", help: "配信者モード(番組は /live start 〜 /live end のキュー式)" },
+            { name: "streamer", arg: "host|assist|off", help: "配信: host=この子が番組を持つ / assist=配信者を支える(コメント読み)" },
+      { name: "golive", arg: "<配信の内容>", help: "配信開始の一連(配信モード→OBS 開始→告知の下書き)" },
+      { name: "announce", arg: "<配信の内容>|post|tags <タグ…>", help: "告知文をこの子に書かせて投稿画面を開く" },
+      { name: "assist", arg: "chatty <0〜100>|name <呼び名>", help: "支援モードの手加減(おしゃべり度)と配信者の呼び名" },
+      { name: "obs", arg: "connect <URL> <パスワード>|start|stop|off", help: "OBS の遠隔操作(配信の開始・停止)" },
       { name: "bouyomi", arg: "on|off|port <番号>", help: "棒読みちゃん互換の受け口(コメビュの読み上げをこの子の声で)" },
       { name: "live", arg: "start [URL]|end|reset|chat <URL|off>", help: "ライブ配信の制御(開始・締め・仕切り直し・コメント連携。いまはYouTube対応)" },
       { name: "radio", arg: "otaku|general|title <局名>|sub <英字>|freq <76-90>", help: "番組の味付けと、OBS 背景の局名・周波数(HTML を編集せず本体から送る)" },
