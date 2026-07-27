@@ -26,9 +26,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
       { name: "package", arg: "export|import|list|use <名前>", help: "この子ひとりぶんを1ファイルに(.mirika)。手持ちの一覧と着替えも" },
       { name: "card", arg: "[ファイル|undo|reset]", help: "キャラクターカード(V2/V3)を取り込む(undo で1段戻す・reset で読む前に戻す)" },
       { name: "vrm", arg: "", help: "この子の VRM を開いて着替える" },
-      { name: "partner", arg: "[名前]", help: "相方の名前を変える(空で既定に戻す)" },
-      { name: "first2", arg: "<一人称>", help: "相方の一人称を変える" },
-      { name: "persona2", arg: "[説明|reset|sample <名前>]", help: "相方の性格を見る・書き換える" },
+      { name: "partner", arg: "name <名前>|shell …|persona …|first <一人称>|voice <ID>|tts <URL>", help: "相方まわりを全部ここで(名前・身体・性格・一人称・声)" },
       { name: "summon", arg: "", help: "相方の VRM を開いて呼ぶ" },
       { name: "dismiss", arg: "", help: "相方を帰す" },
       { name: "draw", arg: "[お題|api <URL>|cloud on|off]", help: "絵を描く(ローカルの画像生成APIか、つないでいるクラウド。無ければ手描き)" },
@@ -38,11 +36,8 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
   {
     group: "声とマイク",
     items: [
-      { name: "voice", arg: "ID|on|off", help: "本体の声(VOICEVOX/AivisSpeech)" },
-      { name: "voice2", arg: "ID|off", help: "相方の声" },
-      { name: "voices", arg: "", help: "使える声の一覧" },
+      { name: "voice", arg: "list|ID|on|off", help: "本体の声(VOICEVOX/AivisSpeech)" },
       { name: "tts", arg: "URL|off [モデル] [声]", help: "OpenAI互換TTS(kokoro・GPT-SoVITS等の音声クローン)に切替" },
-      { name: "tts2", arg: "声|off", help: "相方のTTSの声" },
       { name: "piper", arg: "", help: "内蔵音声(Piper)をDLして有効化(英語・中国語等・完全ローカル)" },
       { name: "read", arg: "<語> <よみ>", help: "読み上げの誤読を登録(一覧は /read)" },
       { name: "audio", arg: "番号|名前|default", help: "声の出力先(仮想ケーブル等)" },
@@ -55,8 +50,8 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
     group: "見た目と動作",
     items: [
       { name: "quickreply", arg: "on|off", help: "返事の候補ボタン" },
+      { name: "display", arg: "on|off|new|port <番号>", help: "余ったタブレットをこの子の身体にする(合言葉つきで受け入れ)" },
       { name: "shell", arg: "vrm|live2d|card [ファイル|default|hiyori|mao]", help: "本体の身体を切替(VRM/Live2D/カードの立ち絵)" },
-      { name: "shell2", arg: "vrm [ファイル] | off", help: "相方の身体(VRM 着替え・帰す)" },
       { name: "effects", arg: "on|off", help: "季節の演出(桜・紅葉・雪、実際の雨・雪を優先)" },
       { name: "season", arg: "spring|summer|autumn|winter|auto", help: "季節を固定 / 自動" },
       { name: "sit", arg: "", help: "手前の窓のふちに座る/降りる(Windows)" },
@@ -89,13 +84,9 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
   {
     group: "配信",
     items: [
-            { name: "streamer", arg: "host|assist|off", help: "配信: host=この子が番組を持つ / assist=配信者を支える(コメント読み)" },
-      { name: "golive", arg: "<配信の内容>", help: "配信開始の一連(配信モード→OBS 開始→告知の下書き)" },
       { name: "announce", arg: "<配信の内容>|post|tags <タグ…>", help: "告知文をこの子に書かせて投稿画面を開く" },
-      { name: "assist", arg: "chatty <0〜100>|name <呼び名>", help: "支援モードの手加減(おしゃべり度)と配信者の呼び名" },
+      { name: "stream", arg: "host|assist|off|go <内容>|start|end|chat <URL>|comments|chatty <0〜100>|caller <呼び名>", help: "配信まわりを全部ここで(役割・開始一連・番組・コメント・手加減)" },
       { name: "obs", arg: "connect <URL> <パスワード>|start|stop|off", help: "OBS の遠隔操作(配信の開始・停止)" },
-      { name: "bouyomi", arg: "on|off|port <番号>", help: "棒読みちゃん互換の受け口(コメビュの読み上げをこの子の声で)" },
-      { name: "live", arg: "start [URL]|end|reset|chat <URL|off>", help: "ライブ配信の制御(開始・締め・仕切り直し・コメント連携。いまはYouTube対応)" },
       { name: "radio", arg: "otaku|general|title <局名>|sub <英字>|freq <76-90>", help: "番組の味付けと、OBS 背景の局名・周波数(HTML を編集せず本体から送る)" },
       { name: "stage", arg: "on|off", help: "ステージ窓(Discord画面共有向け・OBS不要)" },
     ],

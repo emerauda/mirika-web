@@ -204,7 +204,7 @@ export function Docs() {
                 AivisSpeech
               </a>{' '}
               を入れておくだけ。Mirika がエンジンを裏で起動・終了します。
-              声の一覧は <C>/voices</C>、変更は <C>/voice &lt;ID&gt;</C>(相方は <C>/voice2</C>)。
+              声の一覧は <C>/voice list</C>、変更は <C>/voice &lt;ID&gt;</C>(相方は <C>/voice2</C>)。
               誤読は <C>/read 早急 さっきゅう</C> のように直せます。
             </P>
             <P>
@@ -252,7 +252,7 @@ export function Docs() {
             <H3>相方を呼ぶ</H3>
             <P>
               <C>/summon</C> で相方が並び、二人の掛け合いになります。帰すのは <C>/dismiss</C>。
-              相方の身体は <C>/shell2</C> で別に選べます。
+              相方の身体は <C>/partner shell</C> で別に選べます。
             </P>
           </section>
 
@@ -262,7 +262,7 @@ export function Docs() {
             <P>
               名前は <C>/name</C>、一人称は <C>/first</C>、性格は <C>/persona &lt;説明&gt;</C> で書き換えます。
               サンプルから選ぶなら <C>/persona sample</C>(元気な幼なじみ・ツンデレ・執事風など)。
-              相方側はそれぞれ <C>/partner</C> <C>/first2</C> <C>/persona2</C>。
+              相方側はそれぞれ <C>/partner</C> <C>/first2</C> <C>/partner persona</C>。
             </P>
             <P>
               <strong className="text-cream">設定メモ</strong>(<C>/lore add &lt;キー&gt; &lt;内容&gt;</C>)に入れた言葉は、
@@ -395,8 +395,8 @@ export function Docs() {
               <Pro />
             </H2>
             <P>
-              <C>/streamer on</C> で任意ラヂヲ風のラジオ番組モードに入り、<C>/live start</C> で番組が開きます。
-              締めは <C>/live end</C>(合言葉「えんいー」で終わってスタンバイへ)。
+              <C>/stream on</C> で任意ラヂヲ風のラジオ番組モードに入り、<C>/stream start</C> で番組が開きます。
+              締めは <C>/stream end</C>(合言葉「えんいー」で終わってスタンバイへ)。
             </P>
             <P>
               コーナーはお便り・大喜利・豆知識・架空CM・お悩み相談・脳内ランキング・三択クイズ・即興ドラマに加えて、
@@ -404,27 +404,27 @@ export function Docs() {
               前振りの掛け合いのあとに実際に歌い、描きます。
             </P>
             <P>
-              <C>/live start &lt;ライブURL&gt;</C> で YouTube ライブのコメントを拾って読み上げます
+              <C>/stream start &lt;ライブURL&gt;</C> で YouTube ライブのコメントを拾って読み上げます
               (スーパーチャットは最優先)。番組の味付けは <C>/radio otaku</C> でオタク特化パックに切り替えられます。
             </P>
             <H3>ふたつの配信のかたち</H3>
             <P>
-              <C>/streamer host</C> は<strong className="text-cream">この子が番組を持つ</strong>形です
-              (コーナー進行・歌・お絵かき・締めの「えんいー」。開始は <C>/live start</C>)。
-              <C>/streamer assist</C> は<strong className="text-cream">あなたが主役で、この子が相棒席に座る</strong>形 —
+              <C>/stream host</C> は<strong className="text-cream">この子が番組を持つ</strong>形です
+              (コーナー進行・歌・お絵かき・締めの「えんいー」。開始は <C>/stream start</C>)。
+              <C>/stream assist</C> は<strong className="text-cream">あなたが主役で、この子が相棒席に座る</strong>形 —
               番組の台本は回さず、コメントを読み、呼ばれたときと質問のときだけ拾って返します。
               喋りすぎないことがこのモードの品質なので、配信者の声に被せないための間合いが入っています
-              (手加減は <C>/assist chatty 0〜100</C>。0 は読むことに徹します)。
+              (手加減は <C>/stream chatty 0〜100</C>。0 は読むことに徹します)。
             </P>
             <P>
-              配信開始の一連は <C>/golive &lt;配信の内容&gt;</C> のひと言で —
+              配信開始の一連は <C>/stream go &lt;配信の内容&gt;</C> のひと言で —
               配信モードに入り、OBS の配信を開始し(<C>/obs connect</C> 済みなら)、
               告知文の下書きまで作ります。<strong className="text-cream">投稿だけは自分で押します</strong>
               (取り返しがつかないものを勝手に撃たないため。<C>/announce post</C> で投稿画面が開きます)。
             </P>
             <H3>コメントビューアと繋ぐ(棒読みちゃん互換)</H3>
             <P>
-              <C>/bouyomi on</C> で、棒読みちゃんと同じ受け口(TCP・既定 50001)が開きます。
+              <C>/stream comments on</C> で、棒読みちゃんと同じ受け口(TCP・既定 50001)が開きます。
               わんコメ(OneComme)やマルチコメントビューアなど、お使いのツールの
               「棒読みちゃん連携」をそのまま向けるだけで、コメントがこの子の声で流れます
               (本家と同じポートなので、同時には使えません)。
@@ -573,6 +573,20 @@ export function Docs() {
               Host/Origin 検査つきで、閲覧中のサイトの JavaScript からは叩けません。
             </P>
 
+            <H3>遠くの身体(Display Shell)</H3>
+            <P>
+              <C>/display on</C> で、別の機械をこの子の身体として受け入れる口が開きます
+              (合言葉つき。既定ポート 8770)。タブレット側は
+              <C>GET /shell/stream</C> で繋いで、最初に配られる id で
+              <C>POST /shell/say</C> に返事する — ブラウザだけで身体が書けます。
+            </P>
+            <P>
+              約束は <strong className="text-cream">繋がっただけでは使えない</strong>形になっています。
+              版の突き合わせ・合言葉・自己紹介(できることの申告)が済んで初めて指令が届き、
+              まだ準備できていない相手や、その身体にできない指令は
+              <strong className="text-cream">黙って捨てずに送信失敗として返します</strong>
+              (「たまに喋らない身体」を作らないため)。申告しなかった能力は「できない」扱いです。
+            </P>
             <H3>OBS 連携 API(SSE)</H3>
             <P>
               ポート <C>8763</C>(<C>MIRIKA_OBS_PORT</C> で変更可)の <C>/events</C> が、
