@@ -85,7 +85,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
     group: "配信",
     items: [
       { name: "announce", arg: "<配信の内容>|post|tags <タグ…>", help: "告知文をこの子に書かせて投稿画面を開く" },
-      { name: "stream", arg: "host|assist|off|go|start|end|chat|comments|chatty|caller", help: "配信まわりを全部ここで(役割・開始一連・番組・コメント・手加減)" },
+      { name: "stream", arg: "host|assist|off|go|begin|start|end|chat|comments|chatty|caller", help: "配信まわりを全部ここで(かたち・支度 go・本番 begin・番組・コメント・手加減)" },
       { name: "obs", arg: "connect <URL> <パスワード>|start|stop|off", help: "OBS の遠隔操作(配信の開始・停止)" },
       { name: "radio", arg: "otaku|general|title <局名>|sub <英字>|freq <76-90>", help: "番組の味付けと、OBS 背景の局名・周波数(HTML を編集せず本体から送る)" },
       { name: "stage", arg: "on|off", help: "ステージ窓(Discord画面共有向け・OBS不要)" },

@@ -175,6 +175,7 @@ export function Docs() {
               <C>/brain embedded</C> か右クリックメニューから。アプリの中だけで動きます。
               モデルは<strong className="text-cream">お使いの PC に載る大きさが自動で選ばれます</strong> —— VRAM
               8GB 級なら Gemma 4 12B(4bit・約6.7GB)、そこまで無ければ E4B(約5GB)、E2B(約3GB)と下がります。
+              16GB・24GB 級の GPU をお持ちなら、<strong className="text-cream">もっと大きいものを落とすかどうかお尋ねします</strong>(26B-A4B / 31B)。
               選んだ理由は動作ログに残ります。GGUF をお持ちなら「GGUF を開く…」でそれを使えます。
             </P>
             <H3>ローカルランタイム(推奨)</H3>
