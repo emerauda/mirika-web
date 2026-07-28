@@ -115,9 +115,9 @@ export function Privacy() {
       </P>
       <Note>
         <strong className="text-cream">IP アドレスは保存しません。</strong>
-        国は Cloudflare が通信に付ける情報から読み取っており、住所にあたるものは残していません。例外はキーの受取ページで、総当たりを防ぐために
-        <strong className="text-cream">10分間だけ</strong>
-        アクセス回数を数えています(その後は自動で消えます)。
+        国は Cloudflare が通信に付ける情報から読み取るだけで、住所にあたるものは私たちのサーバーに残りません。不正なアクセスの遮断は
+        <strong className="text-cream">Cloudflare の手前の層</strong>
+        で行っています。
       </Note>
 
       <H3>外部サービスの連携(任意)</H3>
