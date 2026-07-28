@@ -8,7 +8,8 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
   {
     group: "頭脳",
     items: [
-      { name: "brain", arg: "embedded|external|local|chatgpt|claude|gemini|grok [APIキー]", help: "頭脳の切替(ローカル/クラウド。/brain claude はサブスクでも可)" },
+      { name: "brain", arg: "embedded|external|local|model|chatgpt|claude|gemini|grok [APIキー]", help: "頭脳の切替(ローカル/クラウド。/brain claude はサブスクでも可)" },
+      { name: "brain model", arg: "[auto|e2b|e4b|12b|26b|31b]", help: "内蔵エンジンのモデルを選ぶ(既定は PC に合わせて自動)" },
       { name: "model", arg: "<名前>", help: "外部ランタイムのモデルを選ぶ" },
       { name: "endpoint", arg: "[URL]", help: "外部ランタイムの接続先(空で自動)" },
       { name: "rescan", arg: "", help: "ローカル LLM を再検索" },
