@@ -487,7 +487,7 @@ export function Docs() {
                   <a href="https://pro.mirika.dev/" className="text-sakura hover:underline">
                     pro.mirika.dev
                   </a>{' '}
-                  に注文番号を入れてライセンスキーを受け取る
+                  に注文番号と注文日を入れてライセンスキーを受け取る
                 </>,
                 <>
                   アプリのチャット欄で <C>/pro &lt;キー&gt;</C> と入力する
