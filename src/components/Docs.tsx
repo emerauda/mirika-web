@@ -172,8 +172,10 @@ export function Docs() {
             <P>接続は3段構えです。どれもチャット欄から切り替えられます。</P>
             <H3>内蔵エンジン(いちばん手軽)</H3>
             <P>
-              <C>/brain embedded</C> か右クリックメニューから。node-llama-cpp のモデルを落として、
-              アプリの中だけで動きます。GGUF を持っているなら「GGUF を開く…」でそれを使えます。
+              <C>/brain embedded</C> か右クリックメニューから。アプリの中だけで動きます。
+              モデルは<strong className="text-cream">お使いの PC に載る大きさが自動で選ばれます</strong> —— VRAM
+              8GB 級なら Gemma 4 12B(4bit・約6.7GB)、そこまで無ければ E4B(約5GB)、E2B(約3GB)と下がります。
+              選んだ理由は動作ログに残ります。GGUF をお持ちなら「GGUF を開く…」でそれを使えます。
             </P>
             <H3>ローカルランタイム(推奨)</H3>
             <P>
