@@ -122,6 +122,7 @@ const EXT_ROWS: ExtRow[] = [
   { label: 'クラシックシェル', desc: '旧伺かのサーフェスPNGシェルも、見た目ごとそのまま動く', phase: 'P6', done: true },
   { label: '歌とお絵かき', desc: '歌唱合成で誕生日に歌い、ローカル画像生成で絵を見せてくれる', phase: 'P7', done: true },
   { label: 'デスクトップ操作', desc: '提案→確認→実行の提案型に限定して、0.8 で慎重に導入', phase: 'P7', done: false },
+  { label: '組織で使う', desc: '管理者が席と方針をまとめて決められる。結ぶのはライセンスと方針だけで、会話は端末から出ない', phase: 'P8', done: false },
 ];
 
 export function Features() {
