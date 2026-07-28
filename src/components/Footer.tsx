@@ -7,6 +7,8 @@ const FOOTER_LINKS = [
   { href: '/#roadmap', label: 'Roadmap' },
   { href: '/#faq', label: 'FAQ' },
   { href: '/docs', label: 'Docs' },
+  { href: '/privacy', label: 'プライバシー' },
+  { href: '/terms', label: '利用規約' },
 ];
 
 export function Footer() {
