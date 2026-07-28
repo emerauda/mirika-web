@@ -621,7 +621,8 @@ export function Docs() {
             <H3>OBS 連携 API(SSE)</H3>
             <P>
               ポート <C>8763</C>(<C>MIRIKA_OBS_PORT</C> で変更可)の <C>/events</C> が、
-              時計・実況天気・話者・コーナー・テロップ・BGM クレジット・描いた絵を Server-Sent Events で流します。
+              実況天気・話者・コーナー・テロップ・局名・音声と BGM のクレジット・描いた絵を Server-Sent Events
+              で流します(時計はオーバーレイ側で描いています)。
               スタジオ背景と机のオーバーレイはリリース添付の <C>mirika-obs-overlays.zip</C> にあり、
               局名・周波数はアプリから <C>/radio title・sub・freq</C> で送れます(HTML の編集不要)。
             </P>

@@ -99,6 +99,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
       { name: "check", arg: "", help: "システムチェック(アプリとPCの健康状態)" },
       { name: "sync", arg: "export|import|cloud <合言葉>|identity on|off", help: "記憶と人格を暗号化して持ち出す・別のPCで取り込む(置き場は自分のクラウドなら無料、預けるなら Pro。cloud は off と言うまで15分ごとに自動で合わせる)" },
       { name: "pro", arg: "[キー|off]", help: "Pro をアンロック(ライセンスキー)" },
+      { name: "org", arg: "join <組織キー> [利用者ID]|leave", help: "組織に登録する(エンタープライズ。方針は毎日こちらで受け取る)" },
       { name: "credits", arg: "[open]", help: "クレジットとライセンス表記" },
       { name: "log", arg: "file", help: "会話ログを別窓で読み返す。file で動作ログの場所(不具合報告用・秘密は伏せ字・7日分)" },
       { name: "folder", arg: "", help: "設定フォルダを開く(settings.json / memory.db)" },
