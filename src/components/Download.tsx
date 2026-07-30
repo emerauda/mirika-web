@@ -5,7 +5,11 @@ import { Reveal, MagneticLink } from './primitives';
 
 // 公開ダウンロードミラー(本体ソースは非公開、成果物だけをここへ)。リリース一覧を1回読み、
 // 正式版(最新の非プレリリース)と先行版(最新のプレリリース=ベータ)に振り分ける
-const LIST = 'https://api.github.com/repos/emerauda/mirika-releases/releases?per_page=10';
+// 先行版を探すための一覧。**正式版はここから探さない** —— 先行版を10本ほど続けて出すと
+// 正式版が一覧の外へ押し出され、サイトが「準備中」に戻ってしまう(実際に起きた)
+const LIST = 'https://api.github.com/repos/emerauda/mirika-releases/releases?per_page=30';
+/** 正式版は専用の入口から取る。下書きと先行版を除いた最新を返してくれる */
+const LATEST = 'https://api.github.com/repos/emerauda/mirika-releases/releases/latest';
 const RELEASES = 'https://github.com/emerauda/mirika-releases/releases';
 
 type Asset = { name: string; browser_download_url: string };
@@ -48,11 +52,13 @@ export function Download() {
   const detected = PLATFORMS.find((p) => p.key === os);
 
   useEffect(() => {
-    fetch(LIST, { headers: { Accept: 'application/vnd.github+json' } })
-      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-      .then((list: Release[]) => {
+    const headers = { Accept: 'application/vnd.github+json' };
+    const ask = (url: string) =>
+      fetch(url, { headers }).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
+    Promise.all([ask(LATEST), ask(LIST).catch(() => [])])
+      .then(([latest, list]: [Release, Release[]]) => {
+        const st = latest && !latest.draft ? latest : null;
         const live = Array.isArray(list) ? list.filter((r) => !r.draft) : [];
-        const st = live.find((r) => !r.prerelease) ?? null;
         const pre = live.find((r) => r.prerelease) ?? null;
         setStable(st);
         setBeta(pre && (!st || newerBase(pre.tag_name, st.tag_name)) ? pre : null);
