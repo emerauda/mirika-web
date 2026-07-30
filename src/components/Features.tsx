@@ -31,7 +31,7 @@ const FEATURES: Feature[] = [
     Icon: Mail,
     num: '04',
     title: 'AI Secretary(MCP)',
-    desc: 'Model Context Protocol で外部ツールと接続——もう動いています。Gmail・カレンダー・Drive(Google純正MCP)が載り、「メール来てるよ、1件は急ぎっぽい」と人格を通して届く。Google を使わない道もあって、POP 対応のメールなら見張れるし、自作スクリプトからの知らせも受け取れます(どちらも無料)。タスク預かり・定期チェック・きょうのブリーフィングまで、秘書として実運用中。',
+    desc: 'Model Context Protocol で外部ツールと接続——もう動いています。Gmail・カレンダー・Drive(Google純正MCP)が載り、「メール来てるよ、1件は急ぎっぽい」と人格を通して届く。Google を使わない道もあって、POP 対応のメールなら見張れるし、自作スクリプトからの知らせも受け取れます(どちらも無料)。タスク預かり・定期チェック・きょうのブリーフィングまで、秘書として実運用中。**PDF・Word・Excel・PowerPoint はそのまま読める**ので、契約書の条文や見積の品目を聞くだけで答える。**書き物は会話の外へ** —— 仕様書を渡して頼めば、台本や脚本を Markdown に書き出す(Pro)。',
   },
   {
     Icon: Mic,
