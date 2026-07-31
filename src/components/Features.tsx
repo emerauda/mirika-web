@@ -1,8 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
-import {
-  Smile, Brain, Database, Mail, Mic, Feather, Package, RefreshCw, Users, PenLine, FileText, Building2,
-} from 'lucide-react';
+import { Smile, Brain, Database, Mail, Mic, Feather, Package, RefreshCw, Users, FileText } from 'lucide-react';
 import { Kicker } from './ui';
 import { Reveal, StaggerGroup, StaggerItem } from './primitives';
 
@@ -32,8 +30,8 @@ const FEATURES: Feature[] = [
   {
     Icon: Mail,
     num: '04',
-    title: 'AI Secretary(MCP)',
-    desc: 'Model Context Protocol で外部ツールと接続——もう動いています。Gmail・カレンダー・Drive(Google純正MCP)が載り、「メール来てるよ、1件は急ぎっぽい」と人格を通して届く。Google を使わない道もあって、POP 対応のメールなら見張れるし、自作スクリプトからの知らせも受け取れます(どちらも無料)。タスク預かり・定期チェック・きょうのブリーフィングまで、秘書として実運用中。**PDF・Word・Excel・PowerPoint はそのまま読める**ので、契約書の条文や見積の品目を聞くだけで答える。',
+    title: 'AI秘書(MCP)',
+    desc: 'Model Context Protocol で外部ツールと接続——もう動いています。Gmail・カレンダー・Drive(Google純正MCP)が載り、「メール来てるよ、1件は急ぎっぽい」と人格を通して届く。Google を使わない道もあって、POP 対応のメールなら見張れるし、自作スクリプトからの知らせも受け取れます(どちらも無料)。タスク預かり・定期チェック・きょうのブリーフィングまで、秘書として実運用中。',
   },
   {
     Icon: Mic,
@@ -72,22 +70,10 @@ const FEATURES: Feature[] = [
     desc: 'SSTP コミュニケートで、同じデスクトップの他のゴースト(SSP など)と直接会話。Pro では別プロファイルの子をもう一体立てて、隣に並んで話し合う。歌(VOICEVOX 歌唱)とお絵かきも。配信では二つの立ち方があって、この子が番組を持つことも、あなたの配信の隣でコメントを読む相棒になることもできます(Pro)。',
   },
   {
-    Icon: PenLine,
-    num: '10',
-    title: 'シナリオライター(Pro)',
-    desc: '台本や脚本は、会話とは違う仕事。**原稿は吹き出しにも声にも流さず、Markdown のファイルへ書き出す**——3,000字を吹き出しに流せば読む前に消えるからです。いきなり本編を書かせず、**互いに違うプロット案を3つ出して選ぶ**。振り直しも、章立てを挟むのも自由で、決めた案は以降の依頼すべてに効く。続きも通しの書き直しもでき、仕様書を渡せばそれが指示書になる。**仕事は閉じても消えず**、次の起動から続けられます。',
-  },
-  {
     Icon: FileText,
-    num: '11',
+    num: '10',
     title: '渡した書類を、そのまま読む',
     desc: 'PDF・Word・Excel・PowerPoint・画像を窓に落とすだけ。**変換も貼り付けもいりません**。契約書の条文も、見積の品目も、スライドの流れも、そのまま話の前提になる。画面をそのまま見せることもできて(既定オフ)、エラーの画面を撮って「これ何?」と聞ける。文字コードは中身から見分けるので、**Shift_JIS のままの古いテキストも化けません**。読んだものは端末から出ません。',
-  },
-  {
-    Icon: Building2,
-    num: '12',
-    title: '組織で使う(Enterprise)',
-    desc: '会社に配るときだけ必要になるものを、まとめて。**鍵は組織にひとつ**で、席は実際に使った端末だけを数える。使ってよい機能・置いてよい場所は管理者が決めて配れ(署名つきの方針ファイル)、監査には残るべきものが残る。**それでも会話は端末から出ません**——結ぶのはライセンスと方針だけ。管理画面はブラウザから、明暗どちらの見た目でも。',
   },
 ];
 
@@ -96,14 +82,22 @@ const cardVariants: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
 };
 
-function FeatureCard({ Icon, num, title, desc }: Feature) {
+/* 3列に割り切れないとき、最後の1枚を残りの幅いっぱいに伸ばす。
+   枚数が増減しても空きマスが L 字に残らない */
+const SPAN_CLASS = ['', 'md:col-span-2', 'md:col-span-3'] as const;
+
+function lastSpan(count: number): string {
+  return SPAN_CLASS[(3 - (count % 3)) % 3] ?? '';
+}
+
+function FeatureCard({ Icon, num, title, desc, span }: Feature & { span?: string }) {
   const reduce = useReducedMotion();
   return (
     <motion.div
       variants={cardVariants}
       whileHover={reduce ? undefined : { scale: 1.015 }}
       transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-      className="relative border-r-2 border-b-2 border-white/10 p-8 bg-paper text-ink transition-colors hover:z-10 hover:bg-white/[0.05] hover:shadow-[0_0_40px_rgba(255,107,143,0.12)]"
+      className={`relative border-r-2 border-b-2 border-white/10 p-8 bg-paper text-ink transition-colors hover:z-10 hover:bg-white/[0.05] hover:shadow-[0_0_40px_rgba(255,107,143,0.12)] ${span ?? ''}`}
     >
       <div className="flex items-center justify-between mb-6">
         <Icon className="w-6 h-6 text-sakura" />
@@ -142,7 +136,6 @@ const EXT_ROWS: ExtRow[] = [
   { label: 'クラシックシェル', desc: '旧伺かのサーフェスPNGシェルも、見た目ごとそのまま動く', phase: 'P6', done: true },
   { label: '歌とお絵かき', desc: '歌唱合成で誕生日に歌い、ローカル画像生成で絵を見せてくれる', phase: 'P7', done: true },
   { label: 'デスクトップ操作', desc: '提案→確認→実行の提案型に限定して、0.8 で慎重に導入', phase: 'P7', done: false },
-  { label: 'シナリオライター', desc: '台本や脚本はファイルへ。プロット案を選んでから書き、続きも書き直しもできる(Pro)', phase: 'P8', done: true },
   { label: '組織で使う', desc: '管理者が席と方針をまとめて決められる。結ぶのはライセンスと方針だけで、会話は端末から出ない', phase: 'P8', done: true },
 ];
 
@@ -156,8 +149,12 @@ export function Features() {
         </Reveal>
 
         <StaggerGroup className="grid md:grid-cols-3 border-t-2 border-l-2 border-white/10 shadow-[0_0_48px_rgba(255,107,143,0.08)]">
-          {FEATURES.map((f) => (
-            <FeatureCard key={f.num} {...f} />
+          {FEATURES.map((f, i) => (
+            <FeatureCard
+              key={f.num}
+              {...f}
+              span={i === FEATURES.length - 1 ? lastSpan(FEATURES.length) : ''}
+            />
           ))}
         </StaggerGroup>
 

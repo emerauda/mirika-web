@@ -24,7 +24,7 @@ const ITEMS: Item[] = [
       <>
         個人利用は Free です。会話も記憶も、秘書としての仕事も、ほとんどそのまま使えます(メールの見張りも、外からの知らせを受け取るのも Free)。買い切りの{' '}
         <strong>Pro</strong> がアンロックするのは、手のかかる外部連携と配信まわり——
-        <strong>配信</strong>(この子が番組を持つ / あなたの配信を手伝う)、<strong>シナリオライター</strong>(台本をファイルに書き出す)、<strong>ネットラジオと Spotify</strong>、
+        <strong>配信</strong>(この子が番組を持つ / あなたの配信を手伝う)、<strong>シナリオライター</strong>、<strong>ネットラジオと Spotify</strong>、
         <strong>マルチゴースト</strong>、<strong>スマートホーム</strong>、画面の常時見守り、そして
         <strong>記憶の置き場をこちらで預かる</strong>選択肢です。ライセンスキーは{' '}
         <code>/pro &lt;キー&gt;</code> と入れるだけ——確認のためにサーバーへ問い合わせることはありません。組織で配るなら

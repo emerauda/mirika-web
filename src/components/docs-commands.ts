@@ -88,7 +88,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
       {
         name: "write",
         arg: "on|off|plot <題材>|plot 1-3|plot more|outline|<依頼>|next|fix <直し>|open|folder|status|note|brief|list",
-        help: "シナリオライター(Pro)。仕様のファイルを渡せば指示書になる。プロット案を3つ出して選び、章立てを作ってから本編を書く。原稿は Markdown に書き出し、吹き出しのリンクから開ける",
+        help: "シナリオライター(Pro)。台本や脚本を Markdown に書き出す(使い方は pro.mirika.dev)",
       },
       { name: "stream", arg: "host|assist|off|go|begin|start|end|chat|comments|chatty|caller", help: "配信まわりを全部ここで(かたち・支度 go・本番 begin・番組・コメント・手加減)" },
       { name: "obs", arg: "connect <URL> <パスワード>|start|stop|off", help: "OBS の遠隔操作(配信の開始・停止)" },
