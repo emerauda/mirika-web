@@ -63,7 +63,7 @@ export function Footer() {
             <GitHubMark className="w-5 h-5" />
           </a>
           <a
-            href="https://x.com/Aoi_Emerauda"
+            href="https://x.com/mirika_dev"
             target="_blank"
             rel="noopener"
             className="text-mist hover:text-sakura transition-colors"
