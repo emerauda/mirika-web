@@ -1,5 +1,5 @@
 import { Download } from 'lucide-react';
-import { GitHubMark } from './ui';
+import { DiscordMark, GitHubMark } from './ui';
 import { Reveal, MagneticLink } from './primitives';
 
 export function Cta() {
@@ -33,6 +33,14 @@ export function Cta() {
             className="btn-hard inline-flex items-center gap-2 bg-sakura text-white px-6 py-3.5 font-bold text-sm"
           >
             <Download className="w-4 h-4" /> ダウンロード
+          </MagneticLink>
+          <MagneticLink
+            href="https://discord.gg/fnmUau5qzB"
+            target="_blank"
+            rel="noopener"
+            className="btn-hard inline-flex items-center gap-2 bg-paper text-ink px-6 py-3.5 font-bold text-sm"
+          >
+            <DiscordMark className="w-4 h-4" /> Discord に参加
           </MagneticLink>
           <MagneticLink
             href="https://github.com/emerauda/mirika-releases"

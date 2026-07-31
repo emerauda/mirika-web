@@ -704,6 +704,19 @@ export function Docs() {
           {/* --- 困ったとき --- */}
           <section className="mb-8">
             <H2 id="trouble">困ったとき</H2>
+            <P>
+              ここに無い症状は{' '}
+              <a
+                href="https://discord.gg/fnmUau5qzB"
+                target="_blank"
+                rel="noopener"
+                className="text-sakura hover:underline"
+              >
+                公式 Discord
+              </a>{' '}
+              で聞いてください。その日の動作ログ(右クリックメニュー →
+              「動作ログを開く(不具合の報告用)」)を添えていただけると、原因がすぐ分かります。
+            </P>
             <H3>起動時に警告が出る</H3>
             <P>
               コード署名をまだ取得していないため、Windows では初回に SmartScreen が出ます
