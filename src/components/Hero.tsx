@@ -66,16 +66,17 @@ export function Hero() {
       <div className="relative max-w-6xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-14 items-center">
         <motion.div className="space-y-8" {...motionProps}>
           <motion.p className="font-mono text-xs text-mist tracking-widest uppercase" {...itemProps}>
-            <span className="text-sakura">●</span> Phase 5 プロダクト化 — Local-First AI Ghost
+            <span className="text-sakura">●</span> 本体無料 — 完全ローカル — Windows / Linux(macOS 準備中)
           </motion.p>
           <motion.h1 className="glow-text font-mincho font-bold text-4xl md:text-6xl leading-snug md:leading-snug" {...itemProps}>
             デスクトップに、<br />
             <span className="kenten">魂</span>と<span className="kenten">知能</span>を。
           </motion.h1>
           <motion.p className="text-mist leading-loose max-w-md" {...itemProps}>
-            VRMやLive2Dの身体に、ローカルLLMの頭脳と、数年単位の記憶を。
-            API費ゼロで24時間デスクトップに常駐して、あなたと共に成長する——
-            新しいデスクトップゴーストをつくります。
+            VRM・Live2D・MMDの身体に、ローカルLLMの頭脳と、数年単位の記憶を。
+            <strong className="text-cream">本体は無料。</strong>頭脳はあなたのPCで動くから、
+            24時間そばにいても利用料はゼロで、会話は端末の外に出ない——
+            秘書として働いて、あなたと共に成長する、新しいデスクトップゴーストです。
           </motion.p>
           <motion.div className="flex flex-wrap gap-4" {...itemProps}>
             <MagneticLink
@@ -120,7 +121,7 @@ export function Hero() {
             </div>
           </div>
           <motion.div
-            className="balloon absolute -left-3 md:-left-8 top-6 w-56 md:w-64 p-5 z-10"
+            className="balloon absolute left-3 md:left-5 bottom-4 md:bottom-6 w-56 md:w-64 p-5 z-10"
             initial={reduce ? undefined : { opacity: 0, y: 14, x: -8 }}
             animate={reduce ? undefined : { opacity: 1, y: 0, x: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: 0.7 }}

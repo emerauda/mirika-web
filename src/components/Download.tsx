@@ -136,6 +136,40 @@ export function Download() {
           })}
         </div>
 
+        {/* 立つまでの実際の手数。ライセンス入力も必須の外部ツールも無い —— ここがいちばんの近道 */}
+        <Reveal className="mb-10">
+          <div className="os-window overflow-hidden">
+            <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-cream/10">
+              {[
+                {
+                  step: '01',
+                  title: 'インストールして起動',
+                  desc: 'それだけで同梱の子が机に立ちます。ライセンス入力はありません(本体は無料です)',
+                },
+                {
+                  step: '02',
+                  title: '頭脳をつなぐ',
+                  desc: '右クリック→「頭脳をダウンロード」。この PC に載る大きさを自動で選びます。Ollama / LM Studio があれば検出して繋がります',
+                },
+                {
+                  step: '03',
+                  title: '話しかける',
+                  desc: '下の一行に打つだけ。声がほしければ VOICEVOX を入れておくと、起動も終了もこの子が面倒を見ます',
+                },
+              ].map((s) => (
+                <div key={s.step} className="p-6">
+                  <div className="font-mono text-xs text-sakura mb-2">STEP {s.step}</div>
+                  <h3 className="font-mincho font-bold text-lg mb-2">{s.title}</h3>
+                  <p className="text-sub text-sm leading-relaxed">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="px-6 py-3 border-t border-cream/10 font-mono text-xs text-mist">
+              &gt; 設定ゼロで、立つ。細かいことは全部あとから —— <a href="/docs" className="text-sakura hover:underline">使い方</a>
+            </div>
+          </div>
+        </Reveal>
+
         <Reveal className="flex flex-wrap items-center gap-4">
           <MagneticLink
             href={extension?.browser_download_url ?? `${RELEASES}/latest`}

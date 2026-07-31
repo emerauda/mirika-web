@@ -4,8 +4,18 @@ import { Reveal, MagneticLink } from './primitives';
 
 export function Cta() {
   return (
-    <section className="border-t border-cream/10 bg-black/20">
-      <div className="max-w-3xl mx-auto px-6 py-24 text-center">
+    <section className="relative border-t border-cream/10 bg-black/20 overflow-hidden">
+      {/* 締めの一枚(夜景と桜)。文字が主役なので、絵は暗幕の向こうに敷く */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <img
+          src="/kv/night.webp"
+          alt=""
+          loading="lazy"
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b0912] via-[#0b0912]/60 to-[#0b0912]" />
+      </div>
+      <div className="relative max-w-3xl mx-auto px-6 py-24 text-center">
         <Reveal>
           <p className="font-mincho font-bold text-2xl md:text-3xl leading-relaxed mb-5">
             新しいゴーストを、<br className="md:hidden" />いっしょに。

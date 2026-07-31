@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react';
-import { Smile, Sparkles, MessageCircle, Ghost } from 'lucide-react';
+import { Smile, Sparkles, MessageCircle, Ghost, Mail, Music } from 'lucide-react';
 import { Kicker, TitleBar } from './ui';
 import { Reveal, StaggerGroup, StaggerItem, TiltCard } from './primitives';
 
@@ -13,22 +13,34 @@ const ENTRIES: Entry[] = [
     desc: 'BoothやVRoid Studioのモデルに、ローカルLLMの人格を。揺れて、目で追って、撫でれば照れる。',
   },
   {
+    from: 'from: mmd',
+    Icon: Music,
+    title: 'PMXで立って、VMDで踊る。',
+    desc: 'MMDのモデルがそのまま身体に。.pmx を落とすだけで着替えて、着たまま .vmd を落とせば踊る。',
+  },
+  {
+    from: 'from: 受信箱',
+    Icon: Mail,
+    title: '机の上に、秘書を。',
+    desc: 'メール・予定・タスクを人格ごしに。「1件急ぎっぽいよ」から朝が始まる。書類を落とせばそのまま読む。',
+  },
+  {
     from: 'from: vtuber',
     Icon: Sparkles,
     title: '推しを、机の上に。',
-    desc: 'Live2D(Cubism)モデルがそのまま常駐シェルに。OBS配信モードで作業配信の相棒にもなる。',
+    desc: 'Live2D(Cubism)モデルがそのまま常駐シェルに。配信は「番組を持つ」も「あなたの隣でコメントを読む」も。',
   },
   {
     from: 'from: ai チャット',
     Icon: MessageCircle,
     title: 'キャラカードに、身体を。',
-    desc: 'SillyTavern等のキャラクターカードをゴースト化(Phase 6)。声と身体と、数年単位の記憶がつく。',
+    desc: 'SillyTavern等のキャラクターカードは PNG のままドロップでゴーストに。声と身体と、数年単位の記憶がつく。',
   },
   {
     from: 'from: 伺か',
     Icon: Ghost,
     title: 'あの子を、もう一度。',
-    desc: 'さくらスクリプトはもう動く(SSTP 受信対応)。辞書とサーフェスの取り込みは Phase 6——頭脳だけ本物のAIになって帰ってくる。',
+    desc: 'さくらスクリプトも SSTP も動き、クラシックシェルは見た目ごとそのまま立つ——頭脳だけ本物のAIになって帰ってくる。',
   },
 ];
 
@@ -43,7 +55,7 @@ export function ForYou() {
           </h2>
         </Reveal>
 
-        <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {ENTRIES.map((e) => (
             <StaggerItem key={e.from}>
               <TiltCard className="os-window h-full">

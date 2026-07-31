@@ -13,7 +13,7 @@ type Row = {
 const ROWS: Row[] = [
   { l: 'ベースウェア(SSP / materia)', r: 'Mirika 本体(Electron・3OS常駐)' },
   { l: 'SHIORI(里々・YAYA・華和梨)', r: 'ローカルLLM(Qwen / Gemma)+クラウド任意' },
-  { l: 'シェル(サーフェス画像・\\s[n])', r: 'VRM / Live2D(表情・視線・撫で判定)+クラシック互換' },
+  { l: 'シェル(サーフェス画像・\\s[n])', r: 'VRM / Live2D / MMD(表情・視線・撫で判定)+クラシック互換' },
   {
     l: '「AIトーク」(スクリプト再生)',
     r: '「AIトーク」(本物のAI)',
