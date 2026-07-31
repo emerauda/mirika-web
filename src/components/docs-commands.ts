@@ -85,6 +85,11 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
     group: "配信",
     items: [
       { name: "announce", arg: "<配信の内容>|post|tags <タグ…>", help: "告知文をこの子に書かせて投稿画面を開く" },
+      {
+        name: "write",
+        arg: "on|off|plot <題材>|plot 1-3|plot more|outline|<依頼>|next|fix <直し>|open|folder|status|note|brief|list",
+        help: "シナリオライター(Pro)。仕様のファイルを渡せば指示書になる。プロット案を3つ出して選び、章立てを作ってから本編を書く。原稿は Markdown に書き出し、吹き出しのリンクから開ける",
+      },
       { name: "stream", arg: "host|assist|off|go|begin|start|end|chat|comments|chatty|caller", help: "配信まわりを全部ここで(かたち・支度 go・本番 begin・番組・コメント・手加減)" },
       { name: "obs", arg: "connect <URL> <パスワード>|start|stop|off", help: "OBS の遠隔操作(配信の開始・停止)" },
       { name: "radio", arg: "otaku|general|title <局名>|sub <英字>|freq <76-90>", help: "番組の味付けと、OBS 背景の局名・周波数(HTML を編集せず本体から送る)" },
