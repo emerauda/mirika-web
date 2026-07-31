@@ -285,6 +285,26 @@ export function Docs() {
               会話は SQLite に長期記憶として残り、夜のあいだに整理されます。
               関係の深さは <C>/bond</C> で見られます。2日以上前の話も、聞けば思い出して答えます。
             </P>
+            <H3>記憶ごと、別の端末へ(同期)</H3>
+            <P>
+              <C>/sync export</C> で記憶も名前・性格も、合言葉で暗号化した1ファイルになり、
+              別の PC の <C>/sync import</C> で取り込めます。取り込みは突き合わせなので、
+              どちらかにしかない会話も消えません。<C>/sync cloud &lt;合言葉&gt;</C> にすると
+              15分ごとに自動で合います(置き場は自分のクラウドの同期フォルダなら無料、
+              こちらの預かり棚は Pro)。<strong className="text-cream">合言葉はどこにも保存されません</strong> —
+              忘れると開けなくなります。
+            </P>
+            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
+              <img
+                src="/shots/settings-sync.webp"
+                alt="詳細設定の記憶の同期。合言葉、書き出しと取り込み、記憶の置き場"
+                className="block w-full h-auto"
+                loading="lazy"
+              />
+              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
+                詳細設定の「記憶の同期」。書き出し・取り込み・置き場の選択は、ここからも操作できます
+              </figcaption>
+            </figure>
           </section>
 
           {/* --- AI秘書 --- */}
@@ -299,6 +319,17 @@ export function Docs() {
               端末内の全文検索(ローカル RAG)は <C>/rag &lt;フォルダ&gt;</C>。
               画面を見せるなら <C>/see</C>、見守りは <C>/watch</C>。
             </P>
+            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
+              <img
+                src="/shots/settings-secretary.webp"
+                alt="詳細設定の AI 秘書。定期チェック、ブリーフィング、画面の見守り、メールの見張り"
+                className="block w-full h-auto"
+                loading="lazy"
+              />
+              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
+                詳細設定の「AI 秘書」。定期チェックの間隔も、見守りの入り切りも、ここからそのまま決められます
+              </figcaption>
+            </figure>
             <P>
               Claude Desktop や VS Code から Mirika 経由でツールを使う「伝言」も可能です
               (ブリッジは <C>127.0.0.1:9801</C>。使用中なら 9821 → 8801 に自動で譲ります)。

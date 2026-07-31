@@ -92,7 +92,7 @@ export function Hero() {
             </MagneticLink>
           </motion.div>
           <motion.p className="font-mono text-[11px] text-mist/80 pt-2" {...itemProps}>
-            &gt; brain: qwen3:8b (local) ・ shell: vrm / live2d / classic ・ memory: day 397 ・ api cost: ¥0
+            &gt; brain: qwen3:8b (local) ・ shell: vrm / live2d / mmd / classic ・ memory: day 397 ・ api cost: ¥0
           </motion.p>
         </motion.div>
 
@@ -106,16 +106,16 @@ export function Hero() {
         >
           <div className="os-window">
             <TitleBar>
-              <span>ghost/first — shell.vrm</span>
+              <span>mirika — 秘書と暮らす机</span>
               <span className="text-sub tracking-widest">— □ ×</span>
             </TitleBar>
-            <div className="grid-paper h-[440px] md:h-[500px] flex items-end justify-end pr-3 md:pr-6 overflow-hidden">
+            <div className="h-[440px] md:h-[500px] overflow-hidden">
               <motion.img
-                src="/mirika.png"
-                className="h-[88%] w-auto object-contain object-bottom rounded-xl drop-shadow-[0_0_26px_rgba(255,107,143,0.28)]"
-                alt="Mirika のキャラクター"
-                animate={reduce ? undefined : { y: [0, -8, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                src="/kv/hero.webp"
+                className="block w-full h-full object-cover"
+                alt="Mirika のキービジュアル。カレンダーやメールのパネルに囲まれて手を差し伸べる"
+                animate={reduce ? undefined : { scale: [1, 1.04, 1] }}
+                transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
               />
             </div>
           </div>
