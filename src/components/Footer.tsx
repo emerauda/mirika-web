@@ -1,5 +1,5 @@
 import { Ghost } from 'lucide-react';
-import { GitHubMark, XMark } from './ui';
+import { DiscordMark, GitHubMark, XMark } from './ui';
 
 const FOOTER_LINKS = [
   { href: '/#concept', label: 'Concept' },
@@ -44,6 +44,15 @@ export function Footer() {
           かつて「AIトーク」と呼ばれたものを、本物のAIに。
         </p>
         <div className="flex justify-center gap-6">
+          <a
+            href="https://discord.gg/fnmUau5qzB"
+            target="_blank"
+            rel="noopener"
+            className="text-mist hover:text-sakura transition-colors"
+            aria-label="Discord"
+          >
+            <DiscordMark className="w-5 h-5" />
+          </a>
           <a
             href="https://github.com/emerauda/mirika-web"
             target="_blank"
