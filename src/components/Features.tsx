@@ -1,7 +1,7 @@
 import type { ComponentType, ReactNode } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { Smile, Brain, Database, Mail, Mic, Feather, Package, RefreshCw, Users, FileText } from 'lucide-react';
-import { Kicker } from './ui';
+import { Kicker, TitleBar } from './ui';
 import { Reveal, StaggerGroup, StaggerItem } from './primitives';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -146,6 +146,40 @@ export function Features() {
         <Reveal className="mb-14">
           <Kicker index="02" label="Features" />
           <h2 className="font-mincho font-bold text-3xl md:text-4xl">「生きている」を、つくる。</h2>
+        </Reveal>
+
+        {/* 実際の画面。説明より先に、何が机の上に来るのかを見せる */}
+        <Reveal className="mb-16 grid lg:grid-cols-[1.35fr_1fr] gap-6 items-start">
+          <figure className="os-window overflow-hidden">
+            <TitleBar>
+              <span>desktop — 本体と相方</span>
+              <span className="text-sub tracking-widest">— □ ×</span>
+            </TitleBar>
+            <img
+              src="/shots/desktop.png"
+              alt="デスクトップに並んで立つ本体と相方。下に入力欄"
+              className="block w-full h-auto bg-[#0b0912]"
+              loading="lazy"
+            />
+            <figcaption className="px-5 py-3 text-xs text-sub border-t border-cream/10">
+              背景は透過。窓の縁に座り、掴んで動かせます。下の一行がそのまま話しかける口です
+            </figcaption>
+          </figure>
+          <figure className="os-window overflow-hidden">
+            <TitleBar>
+              <span>settings — 詳細設定</span>
+              <span className="text-sub tracking-widest">— □ ×</span>
+            </TitleBar>
+            <img
+              src="/shots/settings.png"
+              alt="詳細設定の画面。頭脳・表示とふるまい・声の設定"
+              className="block w-full h-auto bg-[#0b0912]"
+              loading="lazy"
+            />
+            <figcaption className="px-5 py-3 text-xs text-sub border-t border-cream/10">
+              コマンドを覚えなくても、ひととおりここで決められます
+            </figcaption>
+          </figure>
         </Reveal>
 
         <StaggerGroup className="grid md:grid-cols-3 border-t-2 border-l-2 border-white/10 shadow-[0_0_48px_rgba(255,107,143,0.08)]">

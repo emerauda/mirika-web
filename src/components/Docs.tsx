@@ -438,6 +438,17 @@ export function Docs() {
               <C>/stream start &lt;ライブURL&gt;</C> で YouTube ライブのコメントを拾って読み上げます
               (スーパーチャットは最優先)。番組の味付けは <C>/radio otaku</C> でオタク特化パックに切り替えられます。
             </P>
+            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
+              <img
+                src="/shots/settings-stream.png"
+                alt="詳細設定の配信まわり。配信のかたち、コメントの受け口、おしゃべり度"
+                className="block w-full h-auto"
+                loading="lazy"
+              />
+              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
+                詳細設定の「配信」。かたち・コメントの受け口・おしゃべり度は、ここからも決められます
+              </figcaption>
+            </figure>
             <H3>ふたつの配信のかたち</H3>
             <P>
               <C>/stream host</C> は<strong className="text-cream">この子が番組を持つ</strong>形です
