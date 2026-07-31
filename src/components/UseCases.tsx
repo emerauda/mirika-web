@@ -1,6 +1,6 @@
 import { useMemo, useRef, type ReactNode } from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
-import { Terminal, Calendar, Heart, Moon, Check } from 'lucide-react';
+import { Terminal, Calendar, Heart, Moon, Check, PenLine } from 'lucide-react';
 import { Kicker, TitleBar } from './ui';
 import { Reveal } from './primitives';
 import { useTypewriter } from '../hooks/useTypewriter';
@@ -225,6 +225,66 @@ export function UseCases() {
                 '数年単位の長期記憶と関係性パラメータ',
                 '気分(ムード)モデルと夢——朝の顔が毎日違う',
                 '記念日・時報・起動挨拶(ルールで即応)',
+              ]}
+            />
+          </div>
+        </Reveal>
+
+        {/* Scenario Writer */}
+        <Reveal className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="md:order-2">
+            <div className="os-window">
+              <TitleBar>
+                <span>scenario — /write plot 学園もの</span>
+                <span className="text-sub tracking-widest">— □ ×</span>
+              </TitleBar>
+              <div className="p-6 space-y-2 text-sm">
+                <p className="text-sub text-xs mb-3">こんな方向はどう?</p>
+                <div className="flex gap-3 border-l-4 border-ink/30 bg-ink/5 px-3 py-2">
+                  <span className="font-mono text-xs text-sub pt-0.5">1</span>
+                  <span>
+                    <strong>屋上の約束</strong>
+                    <span className="text-sub"> — 卒業までに一度だけ、と決めた賭け</span>
+                  </span>
+                </div>
+                <div className="flex gap-3 border-l-4 border-sakura bg-sakura/10 px-3 py-2">
+                  <span className="font-mono text-xs text-[#ff8fab] pt-0.5">2</span>
+                  <span>
+                    <strong className="text-[#ff8fab]">雨の日の部室</strong>
+                    <span className="text-sub"> — 帰れない二人と、鳴りやまない部屋</span>
+                  </span>
+                </div>
+                <div className="flex gap-3 border-l-4 border-ink/30 bg-ink/5 px-3 py-2">
+                  <span className="font-mono text-xs text-sub pt-0.5">3</span>
+                  <span>
+                    <strong>転校生の嘘</strong>
+                    <span className="text-sub"> — 誰も指摘しないまま、三学期が終わる</span>
+                  </span>
+                </div>
+                <p className="text-sub/70 text-xs border-t border-ink/10 mt-3 pt-3">
+                  「雨の日の部室」を書いたよ(3.4千字)。
+                  <span className="text-sakura underline underline-offset-2">原稿を開く</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="md:order-1">
+            <p className="font-mono text-xs text-sakura tracking-widest uppercase mb-4 flex items-center gap-2">
+              <PenLine className="w-4 h-4" /> Scenario Writer
+            </p>
+            <h3 className="font-mincho font-bold text-2xl md:text-3xl mb-5 leading-relaxed">
+              書く仕事は、<br />会話の外へ。
+            </h3>
+            <p className="text-mist leading-loose mb-6">
+              いきなり本編を書かせると、方向が違ったときに丸ごと捨てることになります。
+              まず互いに違うプロット案を3つ。番号で選び、気に入らなければ振り直して、
+              章立てを挟んでから本編へ。原稿は吹き出しにも声にも流さず、Markdown のファイルに残ります。
+            </p>
+            <CheckList
+              items={[
+                'プロット案を出して選ぶ——振り直しも章立ても',
+                '続きを書く・通しで書き直す(Pro)',
+                '仕事は閉じても消えず、次の起動から続けられる',
               ]}
             />
           </div>

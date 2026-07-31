@@ -21,6 +21,7 @@ const SECTIONS: Section[] = [
   { id: 'play', title: '歌とお絵かき' },
   { id: 'ghosts', title: 'マルチゴースト' },
   { id: 'stream', title: '配信者モード' },
+  { id: 'writer', title: 'シナリオライター' },
   { id: 'pro', title: 'Pro とライセンス' },
   { id: 'commands', title: 'コマンド一覧' },
   { id: 'dev', title: '開発者向け' },
@@ -478,12 +479,56 @@ export function Docs() {
             </Note>
           </section>
 
+          {/* --- シナリオライター --- */}
+          <section className="mb-16">
+            <H2 id="writer">
+              シナリオライター
+              <Pro />
+            </H2>
+            <P>
+              台本や脚本を書かせるモードです。<C>/write on</C> で仕事に入ります
+              (右クリックメニューの<strong className="text-cream">「シナリオライター」</strong>からも)。
+              ふだんの返事は1〜3文で声に乗りますが、
+              <strong className="text-cream">原稿は吹き出しにも声にも流さず、Markdown のファイルに書き出します</strong> —
+              3,000字を吹き出しに流せば読み終わる前に消え、全文を読み上げれば数分かかるからです。
+              口では題名と長さだけ言い、開くためのリンクを添えます。
+            </P>
+            <H3>プロットを決めてから書く</H3>
+            <P>
+              いきなり本編を書かせると、方向が違ったときに丸ごと捨てることになります。
+              <C>/write plot &lt;題材&gt;</C> で<strong className="text-cream">互いに違う3案</strong>を出し、
+              番号(<C>/write plot 2</C>)か吹き出しのボタンで選びます。別の方向が見たければ
+              <C>/write plot more</C> で振り直し、決まったら <C>/write outline</C> で章立てを作ってから
+              <C>/write &lt;依頼&gt;</C> で本編に入ります。採用した案と章立ては、以降の依頼すべてに効きます。
+            </P>
+            <H3>続きを書く・書き直す</H3>
+            <P>
+              <C>/write next</C> で続き、<C>/write fix &lt;直し&gt;</C> で通しの書き直しです。
+              指示書は<strong className="text-cream">渡した資料そのもの</strong> —
+              仕様書(PDF・Word・テキスト)をドロップして <C>/write on</C> と言えば、それが下敷きになります。
+              会話で足す決めごとは <C>/write note &lt;決めごと&gt;</C> でその上に重なります。
+            </P>
+            <H3>仕事は閉じても消えない</H3>
+            <P>
+              指示書・決めごと・採用したプロット・書いた原稿の一覧は原稿と同じ場所に保存され、
+              <strong className="text-cream">アプリを閉じても次の起動から続けられます</strong>。
+              台本は何日もかけて詰めるものだからです。いまどこまで決まっているかは <C>/write status</C>、
+              書いたものは <C>/write open</C>(直近)・<C>/write open 2</C>(2本前)・
+              <C>/write folder</C>(置き場)・<C>/write list</C>(一覧)で開けます。
+            </P>
+            <Note>
+              原稿の置き場は設定フォルダの下の <C>scenarios</C> です。
+              書いたものを読むだけの操作(<C>open</C>・<C>folder</C>・<C>list</C>)は、
+              モードを出たあとでも使えます。
+            </Note>
+          </section>
+
           {/* --- Pro --- */}
           <section className="mb-16">
             <H2 id="pro">Pro とライセンス</H2>
             <P>
               本体は無料で使えます(専用ライセンスのフリーウェア)。
-              Pro は買い切りで、<strong className="text-cream">配信者モード・ネットラジオ・Spotify 連携・マルチゴースト</strong>がアンロックされます。
+              Pro は買い切りで、<strong className="text-cream">配信者モード・シナリオライター・ネットラジオ・Spotify 連携・マルチゴースト</strong>がアンロックされます。
             </P>
             <Steps
               items={[
