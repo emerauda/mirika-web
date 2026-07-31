@@ -12,8 +12,8 @@ const FEATURES: Feature[] = [
   {
     Icon: Smile,
     num: '01',
-    title: 'VRM & Live2D',
-    desc: 'VRM も Live2D も身体にでき、本体と相方で混在も可能。許諾をいただいたキャラ2人を同梱し、DLした瞬間から動く。マウスを目で追い、まばたきし、髪が揺れ、撫でれば照れて、ウィンドウの縁に座る。**台詞に合う仕草が無ければ、AI がその場で動きを書き起こす**。手が空いているあいだも数十秒おきに小さく動くので、立ち尽くさない。',
+    title: 'VRM / Live2D / MMD',
+    desc: 'VRM も Live2D も MMD(PMX)も身体にでき、本体と相方で混在も可能。許諾をいただいたキャラ2人を同梱し、DLした瞬間から動く。マウスを目で追い、まばたきし、髪が揺れ、撫でれば照れて、ウィンドウの縁に座る。MMD は .pmx を落とすだけで着替え、着たまま .vmd を落とすと踊る。**台詞に合う仕草が無ければ、AI がその場で動きを書き起こす**。手が空いているあいだも数十秒おきに小さく動くので、立ち尽くさない。',
   },
   {
     Icon: Brain,
@@ -152,17 +152,17 @@ export function Features() {
         <Reveal className="mb-16 grid lg:grid-cols-[1.35fr_1fr] gap-6 items-start">
           <figure className="os-window overflow-hidden">
             <TitleBar>
-              <span>desktop — 本体と相方</span>
+              <span>desktop — 本体と相方の掛け合い</span>
               <span className="text-sub tracking-widest">— □ ×</span>
             </TitleBar>
             <img
-              src="/shots/desktop.png"
-              alt="デスクトップに並んで立つ本体と相方。下に入力欄"
+              src="/shots/duo-talk.webp"
+              alt="デスクトップで掛け合う二人。吹き出しに返事の選択肢が並ぶ"
               className="block w-full h-auto bg-[#0b0912]"
               loading="lazy"
             />
             <figcaption className="px-5 py-3 text-xs text-sub border-t border-cream/10">
-              背景は透過。窓の縁に座り、掴んで動かせます。下の一行がそのまま話しかける口です
+              二人が実際に掛け合っている画面。返事は選択肢からも選べます(伺かの流儀)。背景は透過で、窓の縁に座り、掴んで動かせます
             </figcaption>
           </figure>
           <figure className="os-window overflow-hidden">

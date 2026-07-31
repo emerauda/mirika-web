@@ -52,7 +52,7 @@ export const COMMAND_GROUPS: Array<{ group: string; items: Cmd[] }> = [
     items: [
       { name: "quickreply", arg: "on|off", help: "返事の候補ボタン" },
       { name: "display", arg: "on|off|new|port <番号>", help: "余ったタブレットをこの子の身体にする(合言葉つきで受け入れ)" },
-      { name: "shell", arg: "vrm|live2d|card [ファイル|default|hiyori|mao]", help: "本体の身体を切替(VRM/Live2D/カードの立ち絵)" },
+      { name: "shell", arg: "vrm|live2d|mmd|card [ファイル|default|hiyori|mao]", help: "本体の身体を切替(VRM/Live2D/MMD/カードの立ち絵)" },
       { name: "effects", arg: "on|off", help: "季節の演出(桜・紅葉・雪、実際の雨・雪を優先)" },
       { name: "season", arg: "spring|summer|autumn|winter|auto", help: "季節を固定 / 自動" },
       { name: "sit", arg: "", help: "手前の窓のふちに座る/降りる(Windows)" },
