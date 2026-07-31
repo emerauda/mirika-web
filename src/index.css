@@ -64,9 +64,9 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* バルーン(ゴーストの声=光る吹き出し) */
+/* バルーン(ゴーストの声=光る吹き出し)。position は使う側が決める
+   (Hero はキャラ窓に absolute で重ねる —— relative をここに書くと勝ってしまう) */
 .balloon {
-  position: relative;
   background: rgba(26, 22, 42, 0.92);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);

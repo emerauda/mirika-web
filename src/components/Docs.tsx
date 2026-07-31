@@ -174,6 +174,10 @@ export function Docs() {
               入力欄で <C>/</C> を打つとコマンド候補が出ます(↑↓ で選択、Tab / Enter で補完)。
               候補が出ていないときの ↑↓ は入力履歴です。
             </Note>
+            <P>
+              詰まったら<a href="#trouble" className="text-sakura hover:underline">「困ったとき」</a>へ。
+              いまの状態は <C>/check</C> がまとめて教えてくれます(頭脳・声・マイク・秘書・記憶)。
+            </P>
           </section>
 
           {/* --- 頭脳 --- */}
