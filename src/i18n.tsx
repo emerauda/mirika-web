@@ -24,13 +24,21 @@ function detectLang(): Lang {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved && LANGS.some((l) => l.code === saved)) return saved as Lang;
   } catch {
-    /* プライベートモード等。既定へ */
+    /* プライベートモード等。ブラウザ検出へ */
   }
-  const nav = (navigator.language || 'ja').toLowerCase();
-  if (nav.startsWith('ja')) return 'ja';
-  if (nav === 'zh-tw' || nav === 'zh-hk' || nav === 'zh-hant') return 'zh-TW';
-  if (nav.startsWith('zh')) return 'zh-CN';
-  if (nav.startsWith('ko')) return 'ko';
+  // 第1候補だけだと、非対応言語(fr 等)を先頭に置く人の第2候補を捨ててしまう。
+  // ブラウザの言語リストを上から順に、最初に対応できたものを採る
+  const prefs = [...(navigator.languages ?? []), navigator.language].filter(Boolean);
+  for (const raw of prefs) {
+    const tag = raw.toLowerCase();
+    if (tag.startsWith('ja')) return 'ja';
+    if (tag.startsWith('ko')) return 'ko';
+    if (tag.startsWith('en')) return 'en';
+    if (tag.startsWith('zh')) {
+      // 繁体は指定(Hant)か地域(台湾・香港・マカオ)で判る。それ以外の zh は簡体
+      return /hant|tw|hk|mo/.test(tag) ? 'zh-TW' : 'zh-CN';
+    }
+  }
   return 'en';
 }
 
