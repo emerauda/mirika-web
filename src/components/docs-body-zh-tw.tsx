@@ -446,7 +446,7 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
             <H2 id="commands">指令一覽</H2>
             <P>
               與應用程式的 <C>/help</C> 相同,共 {commandCount} 條。
-              在輸入欄打 <C>/</C> 就會出現候選,所以不必背下來。表格中的說明目前僅有日文。
+              在輸入欄打 <C>/</C> 就會出現候選,所以不必背下來。
             </P>
             {commands}
           </section>

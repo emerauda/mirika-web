@@ -445,7 +445,6 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               All {commandCount} commands, the same as <C>/help</C> in the app.
               Type <C>/</C> in the input box and suggestions appear, so there is no need to memorize them.
-              The descriptions in this table are currently Japanese-only.
             </P>
             {commands}
           </section>

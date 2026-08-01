@@ -183,7 +183,7 @@ function buildExtRows(t: ReturnType<typeof useT>): ExtRow[] {
     { label: R('MMDシェル', 'MMD shell', 'MMD 外壳', 'MMD 外殼', 'MMD 셸'), desc: R('PMX がそのまま身体に(本体・相方とも)。VMD を落とすと踊り、トゥーンと照りも出る', 'PMX becomes her body (main and partner). Drop a VMD and she dances, toon shading and sheen included', 'PMX 直接成为身体(本体、搭档均可)。丢入 VMD 就跳舞,还有卡通着色与光泽', 'PMX 直接成為身體(本體、搭檔均可)。丟入 VMD 就跳舞,還有卡通著色與光澤', 'PMX가 그대로 몸으로(본체·파트너 모두). VMD를 떨어뜨리면 춤추고, 툰과 광택도 나옴'), phase: 'P7', done: true },
     { label: R('歌とお絵かき', 'Singing & drawing', '唱歌与画画', '唱歌與畫畫', '노래와 그림'), desc: R('歌唱合成で誕生日に歌い、ローカル画像生成で絵を見せてくれる', 'Song synthesis for your birthday, local image generation for little drawings', '用歌唱合成在生日唱歌,用本地图像生成给你看画', '用歌唱合成在生日唱歌,用本地圖像生成給你看畫', '가창 합성으로 생일에 노래하고, 로컬 이미지 생성으로 그림을 보여 줌'), phase: 'P7', done: true },
     { label: R('デスクトップ操作', 'Desktop control', '桌面操作', '桌面操作', '데스크톱 조작'), desc: R('提案→確認→実行の提案型に限定して、0.8 で慎重に導入', 'Propose → confirm → act only; arriving carefully in 0.8', '仅限「提议→确认→执行」,0.8 谨慎引入', '僅限「提議→確認→執行」,0.8 謹慎引入', '제안→확인→실행의 제안형에 한정, 0.8에서 신중히 도입'), phase: 'P7', done: false },
-    { label: R('組織で使う', 'For organisations', '组织使用', '組織使用', '조직에서 사용'), desc: R('管理者が席と方針をまとめて決められる。結ぶのはライセンスと方針だけで、会話は端末から出ない', 'Admins set seats and policy centrally; only licence and policy connect — conversations never leave the device', '管理员统一决定席位与方针。只连接许可与方针,对话不出设备', '管理員統一決定席位與方針。只連接授權與方針,對話不出裝置', '관리자가 좌석과 방침을 한꺼번에 정함. 연결은 라이선스와 방침뿐, 대화는 기기에서 안 나감'), phase: 'P8', done: true },
+    { label: R('組織で使う', 'For organizations', '组织使用', '組織使用', '조직에서 사용'), desc: R('管理者が席と方針をまとめて決められる。結ぶのはライセンスと方針だけで、会話は端末から出ない', 'Admins set seats and policy centrally; only license and policy connect — conversations never leave the device', '管理员统一决定席位与方针。只连接许可与方针,对话不出设备', '管理員統一決定席位與方針。只連接授權與方針,對話不出裝置', '관리자가 좌석과 방침을 한꺼번에 정함. 연결은 라이선스와 방침뿐, 대화는 기기에서 안 나감'), phase: 'P8', done: true },
   ];
 }
 
@@ -227,7 +227,7 @@ export function Features() {
             </TitleBar>
             <img
               src="/shots/settings.png"
-              alt={t('詳細設定の画面。頭脳・表示とふるまい・声の設定', 'Advanced settings: brain, appearance & behaviour, voice', { 'zh-CN': '详细设置画面:头脑、显示与行为、声音', 'zh-TW': '詳細設定畫面:頭腦、顯示與行為、聲音', ko: '상세 설정 화면: 두뇌·표시와 행동·목소리' })}
+              alt={t('詳細設定の画面。頭脳・表示とふるまい・声の設定', 'Advanced settings: brain, appearance & behavior, voice', { 'zh-CN': '详细设置画面:头脑、显示与行为、声音', 'zh-TW': '詳細設定畫面:頭腦、顯示與行為、聲音', ko: '상세 설정 화면: 두뇌·표시와 행동·목소리' })}
               className="block w-full h-auto bg-[#0b0912]"
               loading="lazy"
             />

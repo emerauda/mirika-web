@@ -446,7 +446,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H2 id="commands">命令一览</H2>
             <P>
               与应用内 <C>/help</C> 相同的全部 {commandCount} 条。
-              在输入栏键入 <C>/</C> 就会出现候选,不必特意去记。表格中的说明目前仅有日文。
+              在输入栏键入 <C>/</C> 就会出现候选,不必特意去记。
             </P>
             {commands}
           </section>

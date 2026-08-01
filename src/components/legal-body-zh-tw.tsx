@@ -1,0 +1,225 @@
+import { H2, H3, Note, P, Ul } from './legal-ui';
+
+/** 法務文書の本文(繁体字中国語)。日本語正文は legal-body-ja.tsx —— 構成はそちらに揃える。 */
+
+export function PrivacyBodyZhTw() {
+  return (
+    <>
+      <P>
+        Mirika 是在你的電腦中執行的軟體。這份文件將依照軟體實際的構造,說明資訊在什麼時候會離開你的裝置。
+      </P>
+
+      <H2 id="not-collected">首先,我們不收集的內容</H2>
+      <P>
+        在預設組態下,下列內容<strong className="text-cream">一律不會離開你的裝置</strong>
+        。它們不會被傳送到我們的伺服器,也不會被保存在那裡。
+      </P>
+      <Ul>
+        <li>你與 Mirika 的對話</li>
+        <li>Mirika 記住的記憶(memory.db),以及名字、性格的設定</li>
+        <li>畫面上的內容、開啟的應用程式、正在瀏覽的頁面</li>
+        <li>輸入的文字、讀音辭典、任務、行程、郵件的內容</li>
+        <li>麥克風的聲音(語音轉文字也在裝置內完成)</li>
+      </Ul>
+      <Note>
+        我們不做使用狀況的統計(分析),不投放廣告,
+        <strong className="text-cream">也不會自動傳送當機報告</strong>
+        。運作記錄只保留在裝置內,是你在回報問題時自己附上的內容。
+      </Note>
+
+      <H2 id="leaves">資訊會離開裝置的場合</H2>
+      <P>只有在使用下列功能時,必要的部分才會離開裝置。每一項要不要使用,都由你來決定。</P>
+
+      <H3>雲端的頭腦(可選)</H3>
+      <P>
+        如果選擇 ChatGPT・Claude・Gemini 等作為頭腦,
+        <strong className="text-cream">你的發言和上下文會被傳送給該提供者</strong>
+        。相關處理遵循該提供者的條款。預設是本地的頭腦,這項功能只在你明確選擇時才會運作。
+      </P>
+
+      <H3>記憶的同步(可選)</H3>
+      <P>
+        在多台裝置上培養同一個孩子時,記憶會
+        <strong className="text-cream">先在你的裝置上加密</strong>
+        ,然後才送往存放處。口令只存在於你的裝置上,所以即使是提供存放處的我們,也讀不到其中的內容。
+      </P>
+      <P>
+        如果存放處選擇你自己雲端硬碟中的資料夾,我們的伺服器完全不參與。由我們代為保管時(Pro),保存的只有加密後的檔案,以及它的大小・存放的時刻。
+      </P>
+
+      <H3>授權的驗證</H3>
+      <P>
+        使用 Pro 或組織用的授權時,為了驗證金鑰和接收政策,應用程式會與我們的伺服器通訊。此時涉及的是授權的識別碼、裝置名稱、應用程式版本、最後一次驗證的日期與時間,以及
+        <strong className="text-cream">連線來源的國家</strong>。
+        <strong className="text-cream">其中不包含對話的內容。</strong>
+      </P>
+      <P>
+        記錄國家,是<strong className="text-cream">為了查看金鑰有沒有被散布出去</strong>
+        。Pro 金鑰採用只需在裝置內就能完成驗證的機制,所以我們能看到的,只有你使用同步存放處的時候。留下的只有
+        <strong className="text-cream">最近出現過的國家(最多 5 個)和最後一次驗證的日期與時間</strong>
+        ,不會形成移動的歷史記錄。
+      </P>
+      <Note>
+        <strong className="text-cream">我們不保存 IP 位址。</strong>
+        國家只是從 Cloudflare 附加在通訊上的資訊中讀取,相當於住址的內容不會留在我們的伺服器上。對非法存取的攔截,在
+        <strong className="text-cream">位於我們前面的 Cloudflare 這一層</strong>
+        進行。
+      </Note>
+
+      <H3>外部服務的連動(可選)</H3>
+      <P>
+        連接 Gmail・日曆・Drive 等服務後,會從你的裝置直接存取該提供者。認證資訊在裝置內加密保存,不會經過我們的伺服器。
+      </P>
+
+      <H2 id="org">在組織中使用時</H2>
+      <P>
+        使用組織的授權時,管理員可以看到
+        <strong className="text-cream">
+          誰在使用多少台裝置、最後一次是什麼時候使用、從哪個國家使用
+        </strong>
+        。<strong className="text-cream">對話的內容連管理員也看不到。</strong>
+        畫面上的內容、開啟的應用程式、輸入的文字,也都不會傳過去。
+      </P>
+      <P>
+        依組織的政策,輸入紀錄有時會被設定為在裝置之間共享。這種情況下,應用程式的詳細設定中會顯示這一點,並處於你無法變更的狀態。
+      </P>
+
+      <H2 id="rights">你的權利</H2>
+      <Ul>
+        <li>
+          記憶是裝置內的一個檔案(memory.db)。查看其中的內容、將它刪除、或是移到別的裝置,隨時都可以
+        </li>
+        <li>
+          由我們保管的同步檔案,可以用 <code className="text-sakura">/sync cloud off</code>{' '}
+          取回
+        </li>
+        <li>
+          即使解約授權,
+          <strong className="text-cream">裝置上的記憶也不會消失</strong>。同步也可以用免費的方式繼續
+        </li>
+      </Ul>
+
+      <H2 id="children">兒童的使用</H2>
+      <P>
+        本軟體不會刻意蒐集兒童的個人資訊。未成年人請在監護人同意後使用。
+      </P>
+
+      <H2 id="changes">本文件的變更</H2>
+      <P>
+        更改內容時,我們會更新此頁面的最後更新日期。如果變更會擴大離開裝置的資訊範圍,我們也會在應用程式內告知。
+      </P>
+
+      <H2 id="contact">聯絡我們</H2>
+      <P>
+        請透過{' '}
+        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+          GitHub 的 Issue
+        </a>{' '}
+        與我們聯絡。
+      </P>
+    </>
+  );
+}
+
+export function TermsBodyZhTw() {
+  return (
+    <>
+      <P>
+        本條款規定 Mirika(以下簡稱「本軟體」)的使用條件。一經下載或使用,即視為你已同意本條款。
+      </P>
+
+      <H2 id="license">1. 使用範圍</H2>
+      <P>
+        無論個人或法人,都可以使用本軟體。其中有可以免費使用的範圍,也有需要授權金鑰的範圍(Pro・組織用)。
+      </P>
+      <Ul>
+        <li>授權金鑰是供購買者本人或簽約的組織使用的</li>
+        <li>
+          <strong className="text-cream">請不要向第三方散布・轉售金鑰。</strong>
+          如果多個人使用同一個金鑰,就會共享記憶的存放處,彼此的記憶會混在一起
+        </li>
+        <li>組織用的授權,請在簽約的座席數範圍內使用</li>
+      </Ul>
+
+      <H2 id="content">2. 關於生成的內容</H2>
+      <P>
+        本軟體使用大型語言模型生成回應。
+        <strong className="text-cream">
+          我們無法保證其內容準確、恰當。
+        </strong>
+        重要的判斷,請務必自行查證。
+      </P>
+      <Note>
+        醫療・法律・金融等需要專業判斷的事項,請不要把本軟體的回應當作建議來使用。
+      </Note>
+
+      <H2 id="prohibited">3. 禁止事項</H2>
+      <Ul>
+        <li>以違反法令為目的的使用</li>
+        <li>生成・散布侵害他人權利的內容</li>
+        <li>繞過授權驗證的行為,以及對金鑰的解析・竄改</li>
+        <li>將我們提供的存放處用於記憶同步以外的目的</li>
+      </Ul>
+
+      <H2 id="assets">4. 關於你帶入的素材</H2>
+      <P>
+        VRM・Live2D 模型、角色卡、語音、樂曲等你帶入的素材,其使用條件請遵循各自提供者的規定。
+        <strong className="text-cream">
+          能在本軟體中使用,並不代表可以自由使用該素材。
+        </strong>
+        在直播等場合公開時,請格外注意。
+      </P>
+
+      <H2 id="warranty">5. 免責</H2>
+      <P>
+        本軟體以現狀原樣提供。對於因使用而產生的損害,我們恕不承擔責任。但是,
+        <strong className="text-cream">
+          對於付費簽約的範圍,我們會以你所支付的對價為上限進行處理。
+        </strong>
+      </P>
+      <P>
+        記憶保存在裝置內的檔案中。
+        <strong className="text-cream">請自行做好備份。</strong>
+        對於因機器故障或操作失誤造成的遺失,我們無法承諾復原。
+      </P>
+
+      <H2 id="availability">6. 服務的持續</H2>
+      <P>
+        授權的驗證、同步的存放處等由我們提供的伺服器功能,可能不經預告而停止或變更。要停止時,我們會
+        <strong className="text-cream">
+          先預留一段可以取走你的記憶的期間
+        </strong>
+        ,再發出通知。
+      </P>
+      <P>
+        本軟體本身,即使伺服器停止,
+        <strong className="text-cream">本地功能也會照常運作</strong>
+        。如果持續一段時間無法完成授權驗證,軟體會回到免費的範圍,但不會觸碰你的記憶與設定。
+      </P>
+
+      <H2 id="refund">7. 退款</H2>
+      <P>
+        由於下載販售的性質,原則上恕不退款。但是,
+        <strong className="text-cream">如果因本軟體的瑕疵而無法按照購買時的說明運作</strong>
+        ,請與我們商量。
+      </P>
+
+      <H2 id="changes">8. 條款的變更</H2>
+      <P>
+        我們可能視需要變更本條款。重要的變更,會在應用程式內或本網站上告知。
+      </P>
+
+      <H2 id="law">9. 準據法</H2>
+      <P>本條款以日本法律為準據法。</P>
+
+      <H2 id="contact">聯絡我們</H2>
+      <P>
+        請透過{' '}
+        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+          GitHub 的 Issue
+        </a>{' '}
+        與我們聯絡。
+      </P>
+    </>
+  );
+}
