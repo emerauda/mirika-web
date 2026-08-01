@@ -1,0 +1,81 @@
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+
+/**
+ * サイトの多言語対応(アプリ本体と同じ5言語・同じ書き方)。
+ *
+ * 文言はコンポーネントの中に `t('日本語', 'English', {...})` で置く —— アプリの
+ * i18n と同じ形なので、両方を直すときに頭を切り替えなくて済む。
+ * 訳が無い言語は 繁体→簡体→英語、韓国語→英語 の順で落ちる(空欄で出さない)。
+ */
+export type Lang = 'ja' | 'en' | 'zh-CN' | 'zh-TW' | 'ko';
+
+export const LANGS: Array<{ code: Lang; label: string }> = [
+  { code: 'ja', label: '日本語' },
+  { code: 'en', label: 'English' },
+  { code: 'zh-CN', label: '简体中文' },
+  { code: 'zh-TW', label: '繁體中文' },
+  { code: 'ko', label: '한국어' },
+];
+
+const STORAGE_KEY = 'mirika.lang';
+
+function detectLang(): Lang {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved && LANGS.some((l) => l.code === saved)) return saved as Lang;
+  } catch {
+    /* プライベートモード等。既定へ */
+  }
+  const nav = (navigator.language || 'ja').toLowerCase();
+  if (nav.startsWith('ja')) return 'ja';
+  if (nav === 'zh-tw' || nav === 'zh-hk' || nav === 'zh-hant') return 'zh-TW';
+  if (nav.startsWith('zh')) return 'zh-CN';
+  if (nav.startsWith('ko')) return 'ko';
+  return 'en';
+}
+
+const LangContext = createContext<{ lang: Lang; setLang: (lang: Lang) => void }>({
+  lang: 'ja',
+  setLang: () => {},
+});
+
+export function LangProvider({ children }: { children: ReactNode }) {
+  const [lang, setLangState] = useState<Lang>(detectLang);
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+  const setLang = (next: Lang) => {
+    setLangState(next);
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      /* 保存できなくてもセッション内は切り替わる */
+    }
+  };
+  return <LangContext.Provider value={{ lang, setLang }}>{children}</LangContext.Provider>;
+}
+
+export function useLang() {
+  return useContext(LangContext);
+}
+
+type Extra = Partial<Record<'zh-CN' | 'zh-TW' | 'ko', string>>;
+
+/** 現在の言語で文言を返すフック。書き方はアプリの t() と同じ */
+export function useT() {
+  const { lang } = useLang();
+  return (ja: string, en: string, extra?: Extra): string => {
+    switch (lang) {
+      case 'ja':
+        return ja;
+      case 'en':
+        return en;
+      case 'zh-CN':
+        return extra?.['zh-CN'] ?? en;
+      case 'zh-TW':
+        return extra?.['zh-TW'] ?? extra?.['zh-CN'] ?? en;
+      case 'ko':
+        return extra?.ko ?? en;
+    }
+  };
+}

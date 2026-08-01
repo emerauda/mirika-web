@@ -6,14 +6,38 @@ import {
   useMotionValueEvent,
   useReducedMotion,
 } from 'motion/react';
-import { Ghost, Menu, X, Crown } from 'lucide-react';
+import { Ghost, Menu, X, Crown, Globe } from 'lucide-react';
 import { GitHubMark, NAV_ITEMS } from './ui';
 import { MagneticLink } from './primitives';
 import { useActiveSection } from '../hooks/useActiveSection';
+import { LANGS, useLang, useT, type Lang } from '../i18n';
+
+/** 言語の切替。select が一番小さくて確実(5言語) */
+function LangSwitch({ className }: { className?: string }) {
+  const { lang, setLang } = useLang();
+  return (
+    <label className={`inline-flex items-center gap-1.5 text-mist ${className ?? ''}`}>
+      <Globe className="w-3.5 h-3.5" aria-hidden="true" />
+      <select
+        value={lang}
+        onChange={(e) => setLang(e.target.value as Lang)}
+        aria-label="Language"
+        className="bg-transparent font-mono text-xs text-mist hover:text-sakura focus:text-sakura outline-none cursor-pointer [&>option]:bg-night [&>option]:text-cream"
+      >
+        {LANGS.map((l) => (
+          <option key={l.code} value={l.code}>
+            {l.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
 
 const SECTION_IDS = NAV_ITEMS.map((i) => i.id);
 
 export function Nav() {
+  const t = useT();
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -60,11 +84,12 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <LangSwitch className="hidden md:inline-flex" />
           <a
             href="/docs"
             className="hidden sm:inline-flex items-center font-mono text-xs text-mist hover:text-sakura transition-colors"
           >
-            使い方
+            {t('使い方', 'Docs', { 'zh-CN': '使用指南', 'zh-TW': '使用指南', ko: '사용법' })}
           </a>
           <MagneticLink
             href="https://pro.mirika.dev/"
@@ -121,8 +146,9 @@ export function Nav() {
                 onClick={() => setOpen(false)}
                 className="hover:text-sakura transition-colors py-1"
               >
-                使い方
+                {t('使い方', 'Docs', { 'zh-CN': '使用指南', 'zh-TW': '使用指南', ko: '사용법' })}
               </a>
+              <LangSwitch className="py-1" />
               <a
                 href="https://pro.mirika.dev/"
                 target="_blank"
