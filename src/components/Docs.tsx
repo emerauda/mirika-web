@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { COMMAND_GROUPS } from './docs-commands';
 import { Reveal } from './primitives';
+import { useLang, useT } from '../i18n';
 
 /**
  * 使い方ドキュメント。トップページとは別の読み物として、導入から
@@ -82,6 +83,8 @@ function Steps({ items }: { items: React.ReactNode[] }) {
 }
 
 export function Docs() {
+  const { lang } = useLang();
+  const t = useT();
   const [active, setActive] = useState(SECTIONS[0].id);
 
   // 読んでいる位置に合わせて目次をハイライトする
@@ -112,6 +115,15 @@ export function Docs() {
           インストールしてからできることを、ひととおり。
           迷ったらアプリのチャット欄で <C>/help</C> と打てば、同じ一覧がその場に出ます。
         </p>
+        {lang !== 'ja' && (
+          <p className="mt-4 max-w-2xl rounded-lg border border-sakura/30 bg-paper/40 px-4 py-3 text-sm text-mist leading-relaxed">
+            {t('', 'This guide is currently Japanese-only (translation underway). The app itself already speaks your language — UI, menus, replies and the built-in guide are available in English, Chinese (Simplified / Traditional) and Korean.', {
+              'zh-CN': '本指南目前仅有日文(翻译进行中)。应用本身已支持你的语言——界面、菜单、回复和内置指南均提供简体/繁体中文、英文和韩文。',
+              'zh-TW': '本指南目前僅有日文(翻譯進行中)。應用本身已支援你的語言——介面、選單、回覆和內建指南均提供簡體/繁體中文、英文和韓文。',
+              ko: '이 가이드는 현재 일본어만 제공됩니다(번역 진행 중). 앱 자체는 이미 당신의 언어를 지원합니다 — UI, 메뉴, 응답, 내장 가이드가 영어·중국어(간체/번체)·한국어로 제공됩니다.',
+            })}
+          </p>
+        )}
       </Reveal>
 
       <div className="mt-14 grid lg:grid-cols-[200px_1fr] gap-10">

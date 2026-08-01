@@ -1,17 +1,18 @@
 import { Ghost } from 'lucide-react';
 import { DiscordMark, GitHubMark, XMark } from './ui';
-
-const FOOTER_LINKS = [
-  { href: '/#concept', label: 'Concept' },
-  { href: '/#features', label: 'Features' },
-  { href: '/#roadmap', label: 'Roadmap' },
-  { href: '/#faq', label: 'FAQ' },
-  { href: '/docs', label: 'Docs' },
-  { href: '/privacy', label: 'プライバシー' },
-  { href: '/terms', label: '利用規約' },
-];
+import { useT } from '../i18n';
 
 export function Footer() {
+  const t = useT();
+  const FOOTER_LINKS = [
+    { href: '/#concept', label: 'Concept' },
+    { href: '/#features', label: 'Features' },
+    { href: '/#roadmap', label: 'Roadmap' },
+    { href: '/#faq', label: 'FAQ' },
+    { href: '/docs', label: t('使い方', 'Docs', { 'zh-CN': '使用指南', 'zh-TW': '使用指南', ko: '사용법' }) },
+    { href: '/privacy', label: t('プライバシー', 'Privacy', { 'zh-CN': '隐私政策', 'zh-TW': '隱私政策', ko: '개인정보' }) },
+    { href: '/terms', label: t('利用規約', 'Terms', { 'zh-CN': '使用条款', 'zh-TW': '使用條款', ko: '이용약관' }) },
+  ];
   return (
     <footer className="relative z-10 border-t border-cream/15 bg-black/30">
       <div className="max-w-6xl mx-auto px-6 py-14 text-center space-y-7">
@@ -36,12 +37,16 @@ export function Footer() {
             rel="noopener"
             className="hover:text-sakura transition-colors"
           >
-            サイトのソース(GitHub)
+            {t('サイトのソース(GitHub)', 'Site source (GitHub)', { 'zh-CN': '网站源码(GitHub)', 'zh-TW': '網站原始碼(GitHub)', ko: '사이트 소스(GitHub)' })}
           </a>
         </nav>
         <p className="text-mist text-sm leading-loose">
           A new local-first AI desktop ghost — with respect for "Ukagaka" (2000).<br />
-          かつて「AIトーク」と呼ばれたものを、本物のAIに。
+          {t('かつて「AIトーク」と呼ばれたものを、本物のAIに。', 'What was once called "AI talk" — now with a real AI inside.', {
+            'zh-CN': '曾经被称作「AI 对话」的东西,如今装上了真正的 AI。',
+            'zh-TW': '曾經被稱作「AI 對話」的東西,如今裝上了真正的 AI。',
+            ko: '한때 "AI 토크"라 불리던 것을, 진짜 AI로.',
+          })}
         </p>
         <div className="flex justify-center gap-6">
           <a
