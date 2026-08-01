@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { COMMAND_GROUPS } from './docs-commands';
+import { buildCommandGroups } from './docs-commands';
 import { Reveal } from './primitives';
 import { useLang, useT } from '../i18n';
 import { C } from './docs-ui';
@@ -60,6 +60,7 @@ export function Docs() {
   const { lang } = useLang();
   const t = useT();
   const SECTIONS = buildSections(t);
+  const COMMAND_GROUPS = buildCommandGroups(t);
   const [active, setActive] = useState<string>(SECTION_IDS[0]);
 
   // 読んでいる位置に合わせて目次をハイライトする

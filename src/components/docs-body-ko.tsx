@@ -441,7 +441,6 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             <P>
               앱의 <C>/help</C>와 같은 전체 {commandCount}건입니다.
               입력창에서 <C>/</C>를 치면 후보가 나오므로, 외울 필요는 없습니다.
-              표의 설명은 현재 일본어만 제공됩니다.
             </P>
             {commands}
           </section>

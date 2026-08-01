@@ -72,7 +72,7 @@ export function Faq() {
       }),
       a: t(
         'それを最優先に設計しています。さくらスクリプトは書き直しゼロで動き、サーフェスPNGシェルは /shell classic <フォルダ> で見た目ごと取り込めます——本体と相方がコンビで立ち、surfaces.txt の定義どおりに瞬き、声に合わせて口が動きます(透明が .pna や「左上の色」で表された古い作りも読みます)。辞書の取り込みは引き続き対応予定です。SillyTavern などのキャラクターカード(V2/V3)は、いまドラッグ&ドロップだけで取り込めます。',
-        'That is the first design goal. Sakura Script runs with zero rewrites, and surface-PNG shells import whole with /shell classic <folder> — the pair stands together, blinks per surfaces.txt, and lip-syncs to the voice (old transparency via .pna or the top-left colour is read too). Dictionary import is still planned. Character cards (SillyTavern V2/V3) already import by drag & drop.',
+        'That is the first design goal. Sakura Script runs with zero rewrites, and surface-PNG shells import whole with /shell classic <folder> — the pair stands together, blinks per surfaces.txt, and lip-syncs to the voice (old transparency via .pna or the top-left color is read too). Dictionary import is still planned. Character cards (SillyTavern V2/V3) already import by drag & drop.',
         {
           'zh-CN': '这是最优先的设计目标。Sakura Script 零改写即可运行,surface PNG 外壳用 /shell classic <文件夹> 连同外观一起导入——本体和搭档成对站立,按 surfaces.txt 的定义眨眼,随声音对口型(.pna 或「左上角颜色」表示透明的老做法也能读)。词典导入仍在计划中。SillyTavern 等角色卡(V2/V3)现在拖入即可导入。',
           'zh-TW': '這是最優先的設計目標。Sakura Script 零改寫即可運行,surface PNG 外殼用 /shell classic <資料夾> 連同外觀一起匯入——本體和搭檔成對站立,按 surfaces.txt 的定義眨眼,隨聲音對口型(.pna 或「左上角顏色」表示透明的老做法也能讀)。詞典匯入仍在計畫中。SillyTavern 等角色卡(V2/V3)現在拖入即可匯入。',
@@ -88,7 +88,7 @@ export function Faq() {
       }),
       a: t(
         '本体は無料で使えます(専用ライセンスのフリーウェア)。既定構成はローカルLLMなので API 費もゼロ。Claude 等のクラウドAIを繋ぐ場合のみ、その API 費が自己負担になります(オプトイン)。',
-        'The app is free (proprietary-licence freeware). The default setup runs a local LLM, so API cost is zero too. Only if you opt in to a cloud AI such as Claude do you pay that API bill yourself.',
+        'The app is free (proprietary-license freeware). The default setup runs a local LLM, so API cost is zero too. Only if you opt in to a cloud AI such as Claude do you pay that API bill yourself.',
         {
           'zh-CN': '本体免费(专用许可的免费软件)。默认配置用本地 LLM,API 费也是零。只有当你主动接入 Claude 等云端 AI 时,才自行承担那部分 API 费(可选)。',
           'zh-TW': '本體免費(專用授權的免費軟體)。預設配置用本地 LLM,API 費也是零。只有當你主動接入 Claude 等雲端 AI 時,才自行承擔那部分 API 費(可選)。',
@@ -123,9 +123,9 @@ export function Faq() {
           <strong>
             {t('記憶の置き場をこちらで預かる', 'a hosted home for memory sync', { 'zh-CN': '由我们托管的记忆存放处', 'zh-TW': '由我們託管的記憶存放處', ko: '기억 보관소를 맡아 두는 것' })}
           </strong>
-          {t('選択肢です。ライセンスキーは ', '. The licence key is just ', { 'zh-CN': '。许可证密钥只需输入 ', 'zh-TW': '。授權金鑰只需輸入 ', ko: '입니다. 라이선스 키는 ' })}
+          {t('選択肢です。ライセンスキーは ', '. The license key is just ', { 'zh-CN': '。许可证密钥只需输入 ', 'zh-TW': '。授權金鑰只需輸入 ', ko: '입니다. 라이선스 키는 ' })}
           <code>/pro &lt;key&gt;</code>
-          {t(' と入れるだけ——確認のためにサーバーへ問い合わせることはありません。組織で配るなら Enterprise(管理ポリシーと監査ログ)。UI は日本語・英語・簡体字・繁体字・韓国語の 5 言語です。', ' — it never phones a server to verify. For organisations there is Enterprise (managed policy and audit log). The UI speaks Japanese, English, Simplified and Traditional Chinese, and Korean.', {
+          {t(' と入れるだけ——確認のためにサーバーへ問い合わせることはありません。組織で配るなら Enterprise(管理ポリシーと監査ログ)。UI は日本語・英語・簡体字・繁体字・韓国語の 5 言語です。', ' — it never phones a server to verify. For organizations there is Enterprise (managed policy and audit log). The UI speaks Japanese, English, Simplified and Traditional Chinese, and Korean.', {
             'zh-CN': ' ——验证不会连服务器。组织部署用 Enterprise(管理策略与审计日志)。UI 支持日、英、简中、繁中、韩 5 种语言。',
             'zh-TW': ' ——驗證不會連伺服器。組織部署用 Enterprise(管理策略與稽核日誌)。UI 支援日、英、簡中、繁中、韓 5 種語言。',
             ko: ' 라고 넣기만 하면 됩니다 — 확인을 위해 서버에 접속하지 않습니다. 조직 배포는 Enterprise(관리 정책과 감사 로그). UI는 일·영·간체·번체·한국어 5개 언어입니다.',
@@ -229,7 +229,7 @@ export function Faq() {
       }),
       a: t(
         'もう使えます。正式版 0.6.4 を mirika.dev と公開ミラーから配布中で、0.6.5(MMD の身体)も rc として試せます。Windows と Linux はすぐ入手できます(macOS は署名と公証の対応まで準備中です)。秘書の仕事——Gmail・カレンダー・Drive、タスク預かり、朝のブリーフィング、画面の見守り、端末内の文書検索——は実データで動いています。身体は VRM・Live2D・MMD・カード・クラシックシェルから選べ、配信は「この子が番組を持つ」と「あなたの配信を手伝う」の2つ。開発への参加も歓迎で、公式 Discord でのフィードバックや Issue、Booth の開発支援版での後押しができます。',
-        'Right now. Stable 0.6.4 ships from mirika.dev and the public mirror, and 0.6.5 (the MMD body) is available as an rc. Windows and Linux are ready today (macOS waits for signing and notarisation). The secretary work — Gmail, calendar, Drive, task keeping, morning briefings, screen watch, on-device document search — runs on real data. Bodies come in VRM, Live2D, MMD, card and classic-shell form, and streaming has two shapes: she hosts, or she helps yours. Involvement is welcome — feedback on the official Discord, issues, or the supporter edition on Booth.',
+        'Right now. Stable 0.6.4 ships from mirika.dev and the public mirror, and 0.6.5 (the MMD body) is available as an rc. Windows and Linux are ready today (macOS waits for signing and notarization). The secretary work — Gmail, calendar, Drive, task keeping, morning briefings, screen watch, on-device document search — runs on real data. Bodies come in VRM, Live2D, MMD, card and classic-shell form, and streaming has two shapes: she hosts, or she helps yours. Involvement is welcome — feedback on the official Discord, issues, or the supporter edition on Booth.',
         {
           'zh-CN': '现在就能用。正式版 0.6.4 通过 mirika.dev 与公开镜像分发,0.6.5(MMD 身体)也已提供 rc 版。Windows 和 Linux 立即可得(macOS 等签名与公证完成)。秘书工作——Gmail、日历、Drive、任务托管、晨间简报、屏幕看护、本机文档检索——都在真实数据上运行。身体可选 VRM、Live2D、MMD、卡片、经典外壳;直播有「她开节目」和「帮你的直播」两种。欢迎参与:官方 Discord 反馈、提 Issue,或在 Booth 购买开发支援版。',
           'zh-TW': '現在就能用。正式版 0.6.4 透過 mirika.dev 與公開鏡像發佈,0.6.5(MMD 身體)也已提供 rc 版。Windows 和 Linux 立即可得(macOS 等簽名與公證完成)。秘書工作——Gmail、日曆、Drive、任務託管、晨間簡報、螢幕看護、本機文件檢索——都在真實資料上運行。身體可選 VRM、Live2D、MMD、卡片、經典外殼;直播有「她開節目」和「幫你的直播」兩種。歡迎參與:官方 Discord 回饋、提 Issue,或在 Booth 購買開發支援版。',

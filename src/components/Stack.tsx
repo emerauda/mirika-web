@@ -13,7 +13,7 @@ function buildStack(t: ReturnType<typeof useT>): StackItem[] {
     { name: 'llama.cpp / Ollama', desc: t('同梱エンジン+外部ランタイム自動検出(LM Studio 対応)', 'Bundled engine + auto-detected external runtimes (LM Studio too)', { 'zh-CN': '内置引擎+自动检测外部运行时(支持 LM Studio)', 'zh-TW': '內建引擎+自動偵測外部執行時(支援 LM Studio)', ko: '동봉 엔진+외부 런타임 자동 감지(LM Studio 대응)' }) },
     { name: 'VOICEVOX / Piper + Whisper', desc: t('全ローカル音声対話(日=VOICEVOX・英中=内蔵Piper)・音素リップシンク', 'Fully local voice (ja=VOICEVOX, en/zh=built-in Piper), phoneme lip sync', { 'zh-CN': '全本地语音对话(日=VOICEVOX・英中=内置 Piper)・音素口型同步', 'zh-TW': '全本地語音對話(日=VOICEVOX・英中=內建 Piper)・音素口型同步', ko: '완전 로컬 음성 대화(일=VOICEVOX·영중=내장 Piper)·음소 립싱크' }) },
     { name: 'SQLite(node:sqlite)', desc: t('数年単位の長期記憶・想起検索・就寝時整理', 'Years-long memory, recall search, bedtime consolidation', { 'zh-CN': '以年计的长期记忆・唤起检索・睡前整理', 'zh-TW': '以年計的長期記憶・喚起檢索・睡前整理', ko: '몇 년 단위 장기 기억·상기 검색·취침 시 정리' }) },
-    { name: 'MCP', desc: t('秘書ツール連携(SAORI文化の現代版)', 'Secretary tool integration (SAORI culture, modernised)', { 'zh-CN': '秘书工具联动(SAORI 文化的现代版)', 'zh-TW': '秘書工具連動(SAORI 文化的現代版)', ko: '비서 도구 연동(SAORI 문화의 현대판)' }) },
+    { name: 'MCP', desc: t('秘書ツール連携(SAORI文化の現代版)', 'Secretary tool integration (SAORI culture, modernized)', { 'zh-CN': '秘书工具联动(SAORI 文化的现代版)', 'zh-TW': '秘書工具連動(SAORI 文化的現代版)', ko: '비서 도구 연동(SAORI 문화의 현대판)' }) },
   ];
 }
 

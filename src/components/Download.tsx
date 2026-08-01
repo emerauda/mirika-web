@@ -156,7 +156,7 @@ export function Download() {
                 {
                   step: '01',
                   title: t('インストールして起動', 'Install and launch', { 'zh-CN': '安装并启动', 'zh-TW': '安裝並啟動', ko: '설치하고 실행' }),
-                  desc: t('それだけで同梱の子が机に立ちます。ライセンス入力はありません(本体は無料です)', 'That alone puts the bundled character on your desk. No licence entry — the app is free.', {
+                  desc: t('それだけで同梱の子が机に立ちます。ライセンス入力はありません(本体は無料です)', 'That alone puts the bundled character on your desk. No license entry — the app is free.', {
                     'zh-CN': '仅此一步,附带的角色就站上了桌面。无需输入许可证(本体免费)。',
                     'zh-TW': '僅此一步,附帶的角色就站上了桌面。無需輸入授權(本體免費)。',
                     ko: '이것만으로 동봉된 아이가 책상에 섭니다. 라이선스 입력은 없습니다(본체 무료).',
@@ -209,7 +209,8 @@ export function Download() {
             rel="noopener"
             className="btn-hard inline-flex items-center gap-2 bg-paper text-ink px-5 py-3 font-bold text-sm"
           >
-            <Puzzle className="w-4 h-4" /> Chrome 拡張
+            <Puzzle className="w-4 h-4" />{' '}
+            {t('Chrome 拡張', 'Chrome extension', { 'zh-CN': 'Chrome 扩展', 'zh-TW': 'Chrome 擴充', ko: 'Chrome 확장' })}
           </MagneticLink>
           <MagneticLink
             href={overlays?.browser_download_url ?? `${RELEASES}/latest`}
@@ -217,7 +218,8 @@ export function Download() {
             rel="noopener"
             className="btn-hard inline-flex items-center gap-2 bg-paper text-ink px-5 py-3 font-bold text-sm"
           >
-            <Clapperboard className="w-4 h-4" /> OBS オーバーレイ
+            <Clapperboard className="w-4 h-4" />{' '}
+            {t('OBS オーバーレイ', 'OBS overlays', { 'zh-CN': 'OBS 叠加层', 'zh-TW': 'OBS 疊加層', ko: 'OBS 오버레이' })}
           </MagneticLink>
           <MagneticLink
             href={sdk?.browser_download_url ?? `${RELEASES}/latest`}
@@ -225,7 +227,8 @@ export function Download() {
             rel="noopener"
             className="btn-hard inline-flex items-center gap-2 bg-paper text-ink px-5 py-3 font-bold text-sm"
           >
-            <Wrench className="w-4 h-4" /> ゴースト SDK
+            <Wrench className="w-4 h-4" />{' '}
+            {t('ゴースト SDK', 'Ghost SDK', { 'zh-CN': '幽灵 SDK', 'zh-TW': '幽靈 SDK', ko: '고스트 SDK' })}
           </MagneticLink>
           <MagneticLink
             href="https://pro.mirika.dev/"
@@ -270,7 +273,7 @@ export function Download() {
         <Reveal>
           <p className="mt-6 font-mono text-[11px] text-mist leading-relaxed">
             <span className="text-cream">{t('署名について', 'About signing', { 'zh-CN': '关于签名', 'zh-TW': '關於簽名', ko: '서명에 대해' })}</span>
-            {t(' — 現在のビルドはコード署名なしのため、Windows は初回に SmartScreen が出ます(「詳細情報 → 実行」で起動)。macOS 版は署名・公証対応まで準備中です。', ' — current builds are unsigned, so Windows shows SmartScreen on first run ("More info → Run anyway"). The macOS build waits for signing and notarisation.', {
+            {t(' — 現在のビルドはコード署名なしのため、Windows は初回に SmartScreen が出ます(「詳細情報 → 実行」で起動)。macOS 版は署名・公証対応まで準備中です。', ' — current builds are unsigned, so Windows shows SmartScreen on first run ("More info → Run anyway"). The macOS build waits for signing and notarization.', {
               'zh-CN': ' — 当前构建未签名,Windows 首次运行会出现 SmartScreen(点「更多信息 → 仍要运行」)。macOS 版本待签名与公证完成后提供。',
               'zh-TW': ' — 目前組建未簽名,Windows 首次執行會出現 SmartScreen(點「其他資訊 → 仍要執行」)。macOS 版本待簽名與公證完成後提供。',
               ko: ' — 현재 빌드는 서명이 없어 Windows 첫 실행 시 SmartScreen이 뜹니다("추가 정보 → 실행"). macOS 판은 서명·공증 대응까지 준비 중입니다.',
@@ -315,11 +318,11 @@ export function Download() {
 
         {failed ? (
           <p className="font-mono text-xs text-mist mt-8">
-            ダウンロード情報を取得できませんでした。{' '}
+            {t('ダウンロード情報を取得できませんでした。', 'Could not fetch download info. Please get it from the ', { 'zh-CN': '未能获取下载信息。请从 ', 'zh-TW': '未能取得下載資訊。請從 ', ko: '다운로드 정보를 가져오지 못했습니다. ' })}{' '}
             <a href={`${RELEASES}/latest`} target="_blank" rel="noopener" className="text-sakura underline">
-              リリース一覧
-            </a>{' '}
-            から取得してください。
+              {t('リリース一覧', 'releases page', { 'zh-CN': '发布列表', 'zh-TW': '發佈列表', ko: '릴리스 목록' })}
+            </a>
+            {t(' から取得してください。', '.', { 'zh-CN': ' 获取。', 'zh-TW': ' 取得。', ko: '에서 받아 주세요.' })}
           </p>
         ) : null}
       </div>
