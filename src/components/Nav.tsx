@@ -12,17 +12,29 @@ import { MagneticLink } from './primitives';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { LANGS, useLang, useT, type Lang } from '../i18n';
 
-/** 言語の切替。select が一番小さくて確実(5言語) */
+/** 閉じているときの言語表示。フル名だとヘッダー幅が溢れる(実際に折り返しが出た)ので短く */
+const LANG_SHORT: Record<Lang, string> = {
+  ja: 'JA',
+  en: 'EN',
+  'zh-CN': '简',
+  'zh-TW': '繁',
+  ko: 'KO',
+};
+
+/** 言語の切替。見た目は短い表示、実体は上に重ねた透明の select(開けばフル名の5言語) */
 function LangSwitch({ className }: { className?: string }) {
   const { lang, setLang } = useLang();
   return (
-    <label className={`inline-flex items-center gap-1.5 text-mist ${className ?? ''}`}>
+    <label
+      className={`relative inline-flex items-center gap-1.5 text-mist hover:text-sakura focus-within:text-sakura transition-colors cursor-pointer ${className ?? ''}`}
+    >
       <Globe className="w-3.5 h-3.5" aria-hidden="true" />
+      <span className="font-mono text-xs whitespace-nowrap">{LANG_SHORT[lang]}</span>
       <select
         value={lang}
         onChange={(e) => setLang(e.target.value as Lang)}
         aria-label="Language"
-        className="bg-transparent font-mono text-xs text-mist hover:text-sakura focus:text-sakura outline-none cursor-pointer [&>option]:bg-night [&>option]:text-cream"
+        className="absolute inset-0 w-full opacity-0 cursor-pointer [&>option]:bg-night [&>option]:text-cream"
       >
         {LANGS.map((l) => (
           <option key={l.code} value={l.code}>
@@ -61,12 +73,12 @@ export function Nav() {
           </span>
         </a>
 
-        <nav className="hidden lg:flex items-center gap-6 font-mono text-xs text-mist" aria-label="メインナビゲーション">
+        <nav className="hidden xl:flex items-center gap-5 font-mono text-xs text-mist" aria-label="メインナビゲーション">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className={`relative py-1 transition-colors hover:text-sakura ${active === item.id ? 'text-sakura' : ''}`}
+              className={`relative py-1 whitespace-nowrap transition-colors hover:text-sakura ${active === item.id ? 'text-sakura' : ''}`}
             >
               {item.label}
               {active === item.id &&
@@ -83,11 +95,11 @@ export function Nav() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <LangSwitch className="hidden md:inline-flex" />
           <a
             href="/docs"
-            className="hidden sm:inline-flex items-center font-mono text-xs text-mist hover:text-sakura transition-colors"
+            className="hidden sm:inline-flex items-center font-mono text-xs text-mist hover:text-sakura transition-colors whitespace-nowrap"
           >
             {t('使い方', 'Docs', { 'zh-CN': '使用指南', 'zh-TW': '使用指南', ko: '사용법' })}
           </a>
@@ -109,7 +121,7 @@ export function Nav() {
           </MagneticLink>
           <button
             onClick={() => setOpen((o) => !o)}
-            className="lg:hidden p-2 text-mist hover:text-sakura transition-colors"
+            className="xl:hidden p-2 text-mist hover:text-sakura transition-colors"
             aria-label="メニューを開く"
             aria-expanded={open}
             aria-controls="mobile-menu"
@@ -123,7 +135,7 @@ export function Nav() {
         {open && (
           <motion.nav
             id="mobile-menu"
-            className="lg:hidden overflow-hidden border-t border-cream/10 bg-night/98"
+            className="xl:hidden overflow-hidden border-t border-cream/10 bg-night/98"
             aria-label="モバイルナビゲーション"
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={reduce ? { height: 'auto', opacity: 1 } : { height: 'auto', opacity: 1 }}
