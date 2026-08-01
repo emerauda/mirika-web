@@ -37,7 +37,7 @@ const CARDS: Card[] = [
     name: 'Shell',
     desc: (
       <>
-        今日はVRMやLive2D、いつかはロボット。ShellProtocol を実装すれば
+        今日はVRM・Live2D・MMD、いつかはロボット。ShellProtocol を実装すれば
         何でも身体になれる。\s[10]の感覚は mapping.json が翻訳。
       </>
     ),
