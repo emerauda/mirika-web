@@ -435,6 +435,46 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             </P>
           </section>
 
+          {/* --- Discord --- */}
+          <section className="mb-16">
+            <H2 id="discord">Discord에서도 사용할 수 있습니다</H2>
+            <P>
+              Mirika는 Discord에도 있습니다.{' '}
+              <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">공식 서버</a>
+              에서 동작할 뿐 아니라, 앱을 "내 계정에 추가"(개인 설치)하면 DM에서도, 봇이 없는 서버에서도
+              비서를 데리고 다닐 수 있습니다. 낭독 등 서버 기능은 Pro의 일부입니다.
+            </P>
+            <Steps
+              items={[
+                <>공식 Discord에 참여(또는 앱을 내 계정에 추가)</>,
+                <>
+                  Booth에서 구매하셨다면 <C>/order</C>에 주문번호와 주문일을 입력 — 그 자리에서 라이선스 키를 받을 수 있습니다
+                </>,
+                <>
+                  <C>/verify</C>로 키를 제시합니다. 본인 연결·공식 롤·(서버 관리자라면) 서버 개방까지 한 번에 끝납니다
+                </>,
+              ]}
+            />
+            <P>
+              <C>/talk</C>은 미리카와의 대화입니다. 사용법 질문에는 공식 문서를 근거로 출처 링크와 함께 답합니다.
+              답장 아래 버튼으로 <strong className="text-cream">기억</strong>을 켜면 대화를 기억합니다
+              (본인 것만·언제든 전부 삭제 가능). <C>/todo</C>는{' '}
+              <strong className="text-cream">데스크톱 TODO와 양방향 동기화</strong>되며, 마감이 다가오면
+              DM으로도 3단계(24시간 전 → 1시간 전 → 초과)로 알립니다.
+            </P>
+            <P>
+              낭독은 <C>/voice bind</C>한 음성 채널을 VOICEVOX(+ Nemo, 총 136 보이스)로 읽습니다.
+              내 목소리는 <C>/voice speaker</C>에서(검색으로도, 목록에서도) 고를 수 있습니다.
+              <C>/voice listen</C>을 켠 서버에서는 "<strong className="text-cream">미리카</strong>"라고 부르면
+              듣고 목소리로 답합니다 — 음성은 텍스트가 되는 순간 폐기되며, 부르지 않은 발화는 텍스트도 남기지 않습니다.
+            </P>
+            <Note>
+              키 하나로 최대 3개 서버를 열 수 있습니다. 개인 데이터(TODO·기억·목소리 설정)는 키 유래의
+              단방향 지문 단위로 분리되며, 키 자체는 Discord에 저장되지 않습니다.
+              문제가 있으면 <C>/ticket</C>(스크린샷 첨부 가능)으로 알려주세요.
+            </Note>
+          </section>
+
           {/* --- コマンド一覧 --- */}
           <section className="mb-16">
             <H2 id="commands">명령어 목록</H2>

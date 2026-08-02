@@ -441,6 +441,45 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             </P>
           </section>
 
+          {/* --- Discord --- */}
+          <section className="mb-16">
+            <H2 id="discord">在 Discord 上也能使用</H2>
+            <P>
+              Mirika 也在 Discord 上。她不仅在
+              <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">官方服务器</a>
+              工作,如果把应用"添加到我的账户"(个人安装),在私信里、甚至没有机器人的服务器里,
+              也能带着秘书随行。朗读等服务器功能属于 Pro。
+            </P>
+            <Steps
+              items={[
+                <>加入官方 Discord(或将应用添加到自己的账户)</>,
+                <>
+                  在 Booth 购买过?在 <C>/order</C> 输入订单号和下单日期 — 当场领取许可证密钥
+                </>,
+                <>
+                  用 <C>/verify</C> 出示密钥。本人绑定、官方身份组、(服务器管理员的话)服务器开通,一次完成
+                </>,
+              ]}
+            />
+            <P>
+              <C>/talk</C> 是与 Mirika 的对话。关于用法的提问,她会以官方文档为依据、附来源链接作答。
+              用回复下方的按钮打开<strong className="text-cream">记忆</strong>后,她会记住对话
+              (只属于你,随时可全部删除)。<C>/todo</C> 与
+              <strong className="text-cream">桌面版 TODO 双向同步</strong>,临近期限时也会在私信里
+              分三档提醒(24 小时前 → 1 小时前 → 已超期)。
+            </P>
+            <P>
+              朗读会用 VOICEVOX(+ Nemo,共 136 种声音)读出 <C>/voice bind</C> 绑定的语音频道。
+              自己的声音用 <C>/voice speaker</C> 挑选(可搜索,也可从完整列表里浏览)。
+              在开启 <C>/voice listen</C> 的服务器里,喊一声"<strong className="text-cream">Mirika</strong>",
+              她会听到并用声音回答 — 音频在转成文字的那一刻即被丢弃,没有呼唤她的发言连文字也不保留。
+            </P>
+            <Note>
+              一把密钥最多开通三个服务器。个人数据(TODO・记忆・声音偏好)按密钥派生的单向指纹分开保存,
+              密钥本身不会存放在 Discord。遇到问题请走 <C>/ticket</C>(可附截图)。
+            </Note>
+          </section>
+
           {/* --- コマンド一覧 --- */}
           <section className="mb-16">
             <H2 id="commands">命令一览</H2>

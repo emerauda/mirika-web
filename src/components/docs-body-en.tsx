@@ -439,6 +439,47 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             </P>
           </section>
 
+          {/* --- Discord --- */}
+          <section className="mb-16">
+            <H2 id="discord">Mirika on Discord</H2>
+            <P>
+              Mirika lives on Discord too. She works in the{' '}
+              <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">official server</a>,
+              and if you install the app to your own account (user install), she follows you into DMs and
+              servers that do not even have the bot. Server-side features like reading aloud are part of Pro.
+            </P>
+            <Steps
+              items={[
+                <>Join the official Discord (or add the app to your account)</>,
+                <>
+                  Bought on Booth? <C>/order</C> with your order number and date hands you the license key on the spot
+                </>,
+                <>
+                  Show the key with <C>/verify</C> — it links you, grants the official role, and (for server admins) opens the server, all in one go
+                </>,
+              ]}
+            />
+            <P>
+              <C>/talk</C> is a conversation with Mirika. How-to questions are answered from the official docs
+              with source links. The button under her replies turns on <strong className="text-cream">memory</strong>{' '}
+              (yours only, wipeable anytime). <C>/todo</C> stays in{' '}
+              <strong className="text-cream">two-way sync with the desktop app</strong>, and deadlines ping your
+              DMs in three stages (24 h → 1 h → overdue).
+            </P>
+            <P>
+              Reading aloud covers the voice channels you <C>/voice bind</C>, spoken through VOICEVOX
+              (+ Nemo, 136 voices in total). Pick yours with <C>/voice speaker</C> — search or browse the full list.
+              On servers with <C>/voice listen</C> on, say "<strong className="text-cream">Mirika</strong>" and she
+              hears you and answers aloud — audio is discarded the instant it becomes text, and utterances without
+              her name are dropped entirely.
+            </P>
+            <Note>
+              One key opens up to three servers. Personal data (TODO, memory, voice preference) is kept per
+              one-way key fingerprint, and the key itself is never stored on Discord.
+              If anything breaks, <C>/ticket</C> (screenshots welcome) is the way in.
+            </Note>
+          </section>
+
           {/* --- コマンド一覧 --- */}
           <section className="mb-16">
             <H2 id="commands">Command list</H2>
