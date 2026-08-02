@@ -1,6 +1,6 @@
 import { useMemo, useRef, type ReactNode } from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
-import { Terminal, Calendar, Heart, Moon, Check } from 'lucide-react';
+import { Terminal, Calendar, Heart, Moon, Check, MessageCircle } from 'lucide-react';
 import { Kicker, TitleBar } from './ui';
 import { Reveal } from './primitives';
 import { useTypewriter } from '../hooks/useTypewriter';
@@ -195,6 +195,54 @@ export function UseCases() {
                 t('Gmail・カレンダー・Drive連携(MCP)', 'Gmail, Calendar & Drive over MCP', { 'zh-CN': 'Gmail・日历・Drive 联动(MCP)', 'zh-TW': 'Gmail・日曆・Drive 連動(MCP)', ko: 'Gmail·캘린더·Drive 연동(MCP)' }),
                 t('タスク・案件管理と締切前の催促', 'Task keeping and pre-deadline nudges', { 'zh-CN': '任务管理与截止前催促', 'zh-TW': '任務管理與截止前催促', ko: '태스크 관리와 마감 전 재촉' }),
                 t('定期チェックはローカルLLMでコストゼロ', 'Periodic checks run on the local LLM at zero cost', { 'zh-CN': '定期检查由本地 LLM 完成,零成本', 'zh-TW': '定期檢查由本地 LLM 完成,零成本', ko: '정기 확인은 로컬 LLM이라 비용 제로' }),
+              ]}
+            />
+          </div>
+        </Reveal>
+
+
+        {/* Everywhere Companion */}
+        <Reveal className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="os-window">
+            <TitleBar>
+              <span>Discord — #dm</span>
+              <span className="text-sub tracking-widest">— □ ×</span>
+            </TitleBar>
+            <div className="p-6 font-mono text-xs md:text-sm leading-loose space-y-1.5">
+              <p>
+                <span className="text-sub">{t('あなた', 'you', { 'zh-CN': '你', 'zh-TW': '你', ko: '나' })}:</span>{' '}
+                /todo add {t('見積書を送る @明日', 'send the quote @tomorrow', { 'zh-CN': '发报价单 @明天', 'zh-TW': '寄報價單 @明天', ko: '견적서 보내기 @내일' })}
+              </p>
+              <p>
+                <span className="text-[#ff8fab] font-semibold">Mirika:</span>{' '}
+                {t('あずかった!デスクトップの子にも伝えておくね。', 'Got it! I will tell the one on your desktop too.', { 'zh-CN': '收到!我也会告诉桌面上的那个她。', 'zh-TW': '收到!我也會告訴桌面上的那個她。', ko: '맡았어! 데스크톱의 아이에게도 전해 둘게.' })}
+              </p>
+              <p className="text-sub/60">{t('…(翌日、期限1時間前の DM)…', '… (next day, one hour before the deadline) …', { 'zh-CN': '……(次日,截止前 1 小时的私信)……', 'zh-TW': '……(次日,截止前 1 小時的私訊)……', ko: '…(다음 날, 마감 1시간 전의 DM)…' })}</p>
+              <p>
+                <span className="text-[#ff8fab] font-semibold">Mirika:</span> 🚨{' '}
+                {t('「見積書を送る」、あと1時間だよ!', '"Send the quote" — one hour left!', { 'zh-CN': '「发报价单」,还剩 1 小时!', 'zh-TW': '「寄報價單」,還剩 1 小時!', ko: '"견적서 보내기", 1시간 남았어!' })}
+              </p>
+            </div>
+          </div>
+          <div>
+            <p className="font-mono text-xs text-sakura tracking-widest uppercase mb-4 flex items-center gap-2">
+              <MessageCircle className="w-4 h-4" /> Everywhere Companion
+            </p>
+            <h3 className="font-mincho font-bold text-2xl md:text-3xl mb-5 leading-relaxed">
+              {t('デスクを離れても、同じ子と続く。', 'Step away from the desk — she follows.', { 'zh-CN': '离开桌面,也是同一个她。', 'zh-TW': '離開桌面,也是同一個她。', ko: '책상을 떠나도, 같은 아이와 이어진다.' })}
+            </h3>
+            <p className="text-mist leading-loose mb-6">
+              {t('Discord にも同じ秘書がいます。外出先でタスクを頼めばデスクトップと双方向で同期し、期限は DM に3段階で届く。サーバーのボイスチャンネルでは VOICEVOX 全136声で読み上げ、「ミリカ」と呼びかければ声で返します(音声は文字にした瞬間に捨てる)。記憶と人格の複数端末同期(無料)と合わせて、どこにいても同じ子です。', 'The same secretary lives on Discord. Hand her a task while out and it syncs both ways with the desktop; deadlines reach your DMs in three stages. In voice channels she reads aloud in 136 VOICEVOX voices, and calling "Mirika" gets a spoken answer (audio is discarded the moment it becomes text). Together with free multi-device sync of memory and persona, she is the same ghost wherever you are.', {
+                'zh-CN': 'Discord 上也有同一位秘书。在外面交给她任务,会与桌面双向同步;截止日期分三档提醒到私信。在服务器语音频道用 VOICEVOX 全 136 种声音朗读,喊一声「Mirika」就用声音回答(音频在转成文字的那一刻即被丢弃)。加上记忆与人格的多设备同步(免费),无论在哪都是同一个她。',
+                'zh-TW': 'Discord 上也有同一位秘書。在外面交給她任務,會與桌面雙向同步;截止日期分三階段提醒到私訊。在伺服器語音頻道用 VOICEVOX 全 136 種聲音朗讀,喊一聲「Mirika」就用聲音回答(音訊在轉成文字的那一刻即被丟棄)。加上記憶與人格的多裝置同步(免費),無論在哪都是同一個她。',
+                ko: 'Discord에도 같은 비서가 있습니다. 밖에서 태스크를 맡기면 데스크톱과 양방향 동기화되고, 마감은 DM으로 3단계 알림. 서버 음성 채널에서는 VOICEVOX 전 136 보이스로 낭독하고, "미리카"라고 부르면 목소리로 답합니다(음성은 텍스트가 되는 순간 폐기). 기억과 인격의 멀티 디바이스 동기화(무료)와 함께, 어디에 있어도 같은 아이입니다.',
+              })}
+            </p>
+            <CheckList
+              items={[
+                t('Discord Bot — 会話・TODO 双方向同期・キー受け取りまで(Pro)', 'The Discord bot — talk, two-way TODO sync, key claiming (Pro)', { 'zh-CN': 'Discord Bot——对话・TODO 双向同步・领取密钥(Pro)', 'zh-TW': 'Discord Bot——對話・TODO 雙向同步・領取金鑰(Pro)', ko: 'Discord 봇 — 대화·TODO 양방향 동기화·키 수령(Pro)' }),
+                t('ボイスチャンネル読み上げ+「ミリカ」と呼ぶ音声会話(音声は残さない)', 'Voice-channel reading + spoken answers to "Mirika" (audio never stored)', { 'zh-CN': '语音频道朗读+喊「Mirika」的语音对话(不保存音频)', 'zh-TW': '語音頻道朗讀+喊「Mirika」的語音對話(不保存音訊)', ko: '음성 채널 낭독+"미리카" 음성 대화(음성은 저장하지 않음)' }),
+                t('記憶と人格の複数端末同期は無料(E2E 暗号化)', 'Multi-device sync of memory and persona is free (E2E-encrypted)', { 'zh-CN': '记忆与人格的多设备同步免费(E2E 加密)', 'zh-TW': '記憶與人格的多裝置同步免費(E2E 加密)', ko: '기억과 인격의 멀티 디바이스 동기화는 무료(E2E 암호화)' }),
               ]}
             />
           </div>
