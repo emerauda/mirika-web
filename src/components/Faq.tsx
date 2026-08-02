@@ -118,7 +118,9 @@ export function Faq() {
           <strong>{t('シナリオライター', 'the scenario writer', { 'zh-CN': '脚本写手', 'zh-TW': '腳本寫手', ko: '시나리오 라이터' })}</strong>、
           <strong>{t('ネットラジオと Spotify', 'net radio and Spotify', { 'zh-CN': '网络电台与 Spotify', 'zh-TW': '網路電台與 Spotify', ko: '넷 라디오와 Spotify' })}</strong>、
           <strong>{t('マルチゴースト', 'multi-ghost', { 'zh-CN': '多幽灵', 'zh-TW': '多幽靈', ko: '멀티 고스트' })}</strong>、
-          <strong>{t('スマートホーム', 'smart home', { 'zh-CN': '智能家居', 'zh-TW': '智慧家庭', ko: '스마트홈' })}</strong>
+          <strong>{t('スマートホーム', 'smart home', { 'zh-CN': '智能家居', 'zh-TW': '智慧家庭', ko: '스마트홈' })}</strong>、
+          <strong>{t('Discord 連携', 'the Discord link', { 'zh-CN': 'Discord 联动', 'zh-TW': 'Discord 連動', ko: 'Discord 연동' })}</strong>
+          {t('(自分のサーバーに呼ぶ・読み上げ・音声会話)', ' (invite her to your server, reading aloud, voice chat)', { 'zh-CN': '(叫到自己的服务器・朗读・语音对话)', 'zh-TW': '(叫到自己的伺服器・朗讀・語音對話)', ko: '(내 서버로 부르기·낭독·음성 대화)' })}
           {t('、画面の常時見守り、そして', ', always-on screen watch, and ', { 'zh-CN': ',常时屏幕看护,以及', 'zh-TW': ',常時螢幕看護,以及', ko: ', 상시 화면 지켜보기, 그리고 ' })}
           <strong>
             {t('記憶の置き場をこちらで預かる', 'a hosted home for memory sync', { 'zh-CN': '由我们托管的记忆存放处', 'zh-TW': '由我們託管的記憶存放處', ko: '기억 보관소를 맡아 두는 것' })}
@@ -152,12 +154,12 @@ export function Faq() {
         ko: '대화나 화면 내용이 어딘가로 전송되나요?',
       }),
       a: t(
-        '既定では一切送信されません。スクリーン理解もローカルVLMで完結し、しかも既定オフです。クラウドAIを有効にした場合のみ、会話に必要な断片が送られます。テレメトリはありません。',
-        'By default, nothing. Screen understanding runs on a local VLM and is off by default anyway. Only if you enable a cloud AI are the fragments needed for the conversation sent. There is no telemetry.',
+        '既定では一切送信されません。スクリーン理解もローカルVLMで完結し、しかも既定オフです。クラウドAIを有効にした場合のみ、会話に必要な断片が送られます。テレメトリはありません。Discord 連携も同じ考え方で、既定はオフ——オンにしても外に出るのはタスクだけで、会話や記憶は端末に残ります(Discord 側の音声会話も、聞いた声は文字にした瞬間に捨てます)。',
+        'By default, nothing. Screen understanding runs on a local VLM and is off by default anyway. Only if you enable a cloud AI are the fragments needed for the conversation sent. There is no telemetry. The Discord link follows the same rule — off by default, and even when on, only tasks leave the machine; conversations and memory stay put (and on the Discord side, audio is discarded the moment it becomes text).',
         {
-          'zh-CN': '默认一概不发送。屏幕理解也由本地 VLM 完成,而且默认关闭。只有启用云端 AI 时,才会发送对话所需的片段。没有遥测。',
-          'zh-TW': '預設一概不傳送。螢幕理解也由本地 VLM 完成,而且預設關閉。只有啟用雲端 AI 時,才會傳送對話所需的片段。沒有遙測。',
-          ko: '기본값으로는 일절 전송되지 않습니다. 화면 이해도 로컬 VLM으로 끝나고, 게다가 기본 꺼짐입니다. 클라우드 AI를 켰을 때만 대화에 필요한 조각이 전송됩니다. 텔레메트리는 없습니다.',
+          'zh-CN': '默认一概不发送。屏幕理解也由本地 VLM 完成,而且默认关闭。只有启用云端 AI 时,才会发送对话所需的片段。没有遥测。Discord 联动也是同样的思路——默认关闭,即使打开,出去的也只有任务,对话与记忆留在本机(Discord 侧的语音对话,听到的声音在转成文字的那一刻即被丢弃)。',
+          'zh-TW': '預設一概不傳送。螢幕理解也由本地 VLM 完成,而且預設關閉。只有啟用雲端 AI 時,才會傳送對話所需的片段。沒有遙測。Discord 連動也是同樣的思路——預設關閉,即使打開,出去的也只有任務,對話與記憶留在本機(Discord 側的語音對話,聽到的聲音在轉成文字的那一刻即被丟棄)。',
+          ko: '기본값으로는 일절 전송되지 않습니다. 화면 이해도 로컬 VLM으로 끝나고, 게다가 기본 꺼짐입니다. 클라우드 AI를 켰을 때만 대화에 필요한 조각이 전송됩니다. 텔레메트리는 없습니다. Discord 연동도 같은 사고방식으로 기본은 꺼짐 — 켜도 밖으로 나가는 것은 태스크뿐이고 대화와 기억은 기기에 남습니다(Discord 쪽 음성 대화도 들은 목소리는 텍스트가 되는 순간 버립니다).',
         },
       ),
     },
@@ -228,12 +230,12 @@ export function Faq() {
         ko: '언제 쓸 수 있나요? 개발에 참여할 수 있나요?',
       }),
       a: t(
-        'もう使えます。正式版 0.6.4 を mirika.dev と公開ミラーから配布中で、0.6.5(MMD の身体)も rc として試せます。Windows と Linux はすぐ入手できます(macOS は署名と公証の対応まで準備中です)。秘書の仕事——Gmail・カレンダー・Drive、タスク預かり、朝のブリーフィング、画面の見守り、端末内の文書検索——は実データで動いています。身体は VRM・Live2D・MMD・カード・クラシックシェルから選べ、配信は「この子が番組を持つ」と「あなたの配信を手伝う」の2つ。開発への参加も歓迎で、公式 Discord でのフィードバックや Issue、Booth の開発支援版での後押しができます。',
-        'Right now. Stable 0.6.4 ships from mirika.dev and the public mirror, and 0.6.5 (the MMD body) is available as an rc. Windows and Linux are ready today (macOS waits for signing and notarization). The secretary work — Gmail, calendar, Drive, task keeping, morning briefings, screen watch, on-device document search — runs on real data. Bodies come in VRM, Live2D, MMD, card and classic-shell form, and streaming has two shapes: she hosts, or she helps yours. Involvement is welcome — feedback on the official Discord, issues, or the supporter edition on Booth.',
+        'もう使えます。正式版 0.6.6 を mirika.dev と公開ミラーから配布中です(Windows と Linux はすぐ入手できます。macOS は署名と公証の対応まで準備中)。秘書の仕事——Gmail・カレンダー・Drive、タスク預かり、朝のブリーフィング、画面の見守り、端末内の文書検索——は実データで動いています。身体は VRM・Live2D・MMD・カード・クラシックシェルから選べ、配信は「この子が番組を持つ」と「あなたの配信を手伝う」の2つ。0.6.5 で MMD の身体、0.6.6 でなかよし度を絆と気分の2層に作り直しました。Discord にも同じ子がいて、タスクはデスクトップと双方向で同期します。開発への参加も歓迎で、公式 Discord でのフィードバックや Issue、Booth の開発支援版での後押しができます。',
+        'Right now. Stable 0.6.6 ships from mirika.dev and the public mirror (Windows and Linux are ready today; macOS waits for signing and notarization). The secretary work — Gmail, calendar, Drive, task keeping, morning briefings, screen watch, on-device document search — runs on real data. Bodies come in VRM, Live2D, MMD, card and classic-shell form, and streaming has two shapes: she hosts, or she helps yours. 0.6.5 brought the MMD body; 0.6.6 rebuilt affection into two layers, bond and mood. The same ghost lives on Discord too, with tasks syncing both ways with the desktop. Involvement is welcome — feedback on the official Discord, issues, or the supporter edition on Booth.',
         {
-          'zh-CN': '现在就能用。正式版 0.6.4 通过 mirika.dev 与公开镜像分发,0.6.5(MMD 身体)也已提供 rc 版。Windows 和 Linux 立即可得(macOS 等签名与公证完成)。秘书工作——Gmail、日历、Drive、任务托管、晨间简报、屏幕看护、本机文档检索——都在真实数据上运行。身体可选 VRM、Live2D、MMD、卡片、经典外壳;直播有「她开节目」和「帮你的直播」两种。欢迎参与:官方 Discord 反馈、提 Issue,或在 Booth 购买开发支援版。',
-          'zh-TW': '現在就能用。正式版 0.6.4 透過 mirika.dev 與公開鏡像發佈,0.6.5(MMD 身體)也已提供 rc 版。Windows 和 Linux 立即可得(macOS 等簽名與公證完成)。秘書工作——Gmail、日曆、Drive、任務託管、晨間簡報、螢幕看護、本機文件檢索——都在真實資料上運行。身體可選 VRM、Live2D、MMD、卡片、經典外殼;直播有「她開節目」和「幫你的直播」兩種。歡迎參與:官方 Discord 回饋、提 Issue,或在 Booth 購買開發支援版。',
-          ko: '지금 바로 쓸 수 있습니다. 정식판 0.6.4를 mirika.dev와 공개 미러에서 배포 중이고, 0.6.5(MMD 몸)도 rc로 써 볼 수 있습니다. Windows와 Linux는 바로 받을 수 있습니다(macOS는 서명·공증 대응까지 준비 중). 비서 일 — Gmail·캘린더·Drive, 태스크 보관, 아침 브리핑, 화면 지켜보기, 기기 내 문서 검색 — 은 실제 데이터로 돌아갑니다. 몸은 VRM·Live2D·MMD·카드·클래식 셸에서 고를 수 있고, 방송은 "직접 진행"과 "당신의 방송을 도움" 두 가지. 참여도 환영합니다 — 공식 Discord 피드백, Issue, Booth의 개발 지원판으로 응원할 수 있습니다.',
+          'zh-CN': '现在就能用。正式版 0.6.6 通过 mirika.dev 与公开镜像分发(Windows 和 Linux 立即可得;macOS 等签名与公证完成)。秘书工作——Gmail、日历、Drive、任务托管、晨间简报、屏幕看护、本机文档检索——都在真实数据上运行。身体可选 VRM、Live2D、MMD、卡片、经典外壳;直播有「她开节目」和「帮你的直播」两种。0.6.5 带来 MMD 身体,0.6.6 把好感度重造为羁绊与心情两层。Discord 上也有同一个她,任务与桌面双向同步。欢迎参与:官方 Discord 反馈、提 Issue,或在 Booth 购买开发支援版。',
+          'zh-TW': '現在就能用。正式版 0.6.6 透過 mirika.dev 與公開鏡像發佈(Windows 和 Linux 立即可得;macOS 等簽名與公證完成)。秘書工作——Gmail、日曆、Drive、任務託管、晨間簡報、螢幕看護、本機文件檢索——都在真實資料上運行。身體可選 VRM、Live2D、MMD、卡片、經典外殼;直播有「她開節目」和「幫你的直播」兩種。0.6.5 帶來 MMD 身體,0.6.6 把好感度重造為羈絆與心情兩層。Discord 上也有同一個她,任務與桌面雙向同步。歡迎參與:官方 Discord 回饋、提 Issue,或在 Booth 購買開發支援版。',
+          ko: '지금 바로 쓸 수 있습니다. 정식판 0.6.6을 mirika.dev와 공개 미러에서 배포 중입니다(Windows와 Linux는 바로 받을 수 있습니다. macOS는 서명·공증 대응까지 준비 중). 비서 일 — Gmail·캘린더·Drive, 태스크 보관, 아침 브리핑, 화면 지켜보기, 기기 내 문서 검색 — 은 실제 데이터로 돌아갑니다. 몸은 VRM·Live2D·MMD·카드·클래식 셸에서 고를 수 있고, 방송은 "직접 진행"과 "당신의 방송을 도움" 두 가지. 0.6.5에서 MMD 몸, 0.6.6에서 친밀도를 유대와 기분의 2층으로 다시 만들었습니다. Discord에도 같은 아이가 있고, 태스크는 데스크톱과 양방향으로 동기화됩니다. 참여도 환영합니다 — 공식 Discord 피드백, Issue, Booth의 개발 지원판으로 응원할 수 있습니다.',
         },
       ),
     },
