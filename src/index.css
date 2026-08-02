@@ -114,10 +114,18 @@ body {
 .marquee-track {
   display: flex;
   width: max-content;
+  /* 合成レイヤーに載せる。メインスレッドが混むと帯が途中で固まって見えるため、
+     translate3d と will-change で GPU 側に預ける */
+  will-change: transform;
+  backface-visibility: hidden;
   animation: marquee 45s linear infinite;
 }
 .marquee-track > span { flex-shrink: 0; padding-right: 3rem; }
-@keyframes marquee { to { transform: translateX(-50%); } }
+/* from を明示する(暗黙の from はスタイル再計算のたびに読み直され、途中で止まって見える) */
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
 
 /* ゴーストのゆらぎ(reduced-motion 時のフォールバック) */
 @keyframes gentle-hover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }

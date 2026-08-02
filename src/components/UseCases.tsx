@@ -138,16 +138,17 @@ export function UseCases() {
               {t('孤独な夜のデバッグも、もう一人じゃない。', 'Late-night debugging, no longer alone.', { 'zh-CN': '深夜孤独的调试,不再是一个人。', 'zh-TW': '深夜孤獨的除錯,不再是一個人。', ko: '외로운 밤의 디버깅도, 이제 혼자가 아니야.' })}
             </h3>
             <p className="text-mist leading-loose mb-6">
-              {t('画面のエラーに自分で気づいて(ローカルVLM)解決策を提案してくれたり、長時間作業していると「そろそろ休憩したら?」と声をかけてくれます。画面もコードも、あなたのマシンから出ていきません。', 'She notices errors on screen herself (local VLM) and suggests fixes, and after long stretches she offers "time for a break?". Neither your screen nor your code leaves the machine.', {
-                'zh-CN': '她会自己注意到屏幕上的报错(本地 VLM)并提出解决方案;工作久了还会说「差不多休息一下?」。屏幕和代码都不出你的机器。',
-                'zh-TW': '她會自己注意到螢幕上的報錯(本地 VLM)並提出解決方案;工作久了還會說「差不多休息一下?」。螢幕和程式碼都不出你的機器。',
-                ko: '화면의 에러를 스스로 알아채고(로컬 VLM) 해결책을 제안하고, 오래 작업하면 "슬슬 쉬는 게 어때?"라고 말을 겁니다. 화면도 코드도 당신의 머신에서 나가지 않습니다.',
+              {t('画面のエラーに自分で気づいて(ローカルVLM)解決策を提案してくれたり、長時間作業していると「そろそろ休憩したら?」と声をかけてくれます。ログもスタックトレースも設計書も、窓に落とせばそのまま読む。気づいたことはテキストで残るので、翌日「昨日見てたエラー何だっけ」にも答えます。画面もコードも、あなたのマシンから出ていきません。', 'She notices errors on screen herself (local VLM) and suggests fixes, and after long stretches she offers "time for a break?". Logs, stack traces and specs are read as-is — just drop them on her window. What she noticed is kept as text, so the next day she can answer "what was that error I was looking at?". Neither your screen nor your code leaves the machine.', {
+                'zh-CN': '她会自己注意到屏幕上的报错(本地 VLM)并提出解决方案;工作久了还会说「差不多休息一下?」。日志、堆栈跟踪、设计文档,丢到窗口上就直接读。注意到的事以文本留存,第二天问「昨天看的那个报错是啥来着」也答得上来。屏幕和代码都不出你的机器。',
+                'zh-TW': '她會自己注意到螢幕上的報錯(本地 VLM)並提出解決方案;工作久了還會說「差不多休息一下?」。日誌、堆疊追蹤、設計文件,丟到視窗上就直接讀。注意到的事以文字留存,第二天問「昨天看的那個報錯是啥來著」也答得上來。螢幕和程式碼都不出你的機器。',
+                ko: '화면의 에러를 스스로 알아채고(로컬 VLM) 해결책을 제안하고, 오래 작업하면 "슬슬 쉬는 게 어때?"라고 말을 겁니다. 로그도 스택 트레이스도 설계서도 창에 떨어뜨리면 그대로 읽습니다. 알아챈 것은 텍스트로 남으므로 다음 날 "어제 보던 그 에러 뭐였지?"에도 답합니다. 화면도 코드도 당신의 머신에서 나가지 않습니다.',
               })}
             </p>
             <CheckList
               items={[
                 t('スクリーン理解でエラーに自分で気づく(オプトイン)', 'Notices errors via screen understanding (opt-in)', { 'zh-CN': '通过屏幕理解自己发现报错(可选)', 'zh-TW': '透過螢幕理解自己發現報錯(可選)', ko: '스크린 이해로 에러를 스스로 알아챔(옵트인)' }),
-                t('ポモドーロ・休憩のうながし', 'Pomodoro and break nudges', { 'zh-CN': '番茄钟与休息提醒', 'zh-TW': '番茄鐘與休息提醒', ko: '포모도로·휴식 권유' }),
+                t('ログも書類も、窓に落とすだけ(PDF・Word・Excel・テキスト)', 'Logs and documents read on drop (PDF, Word, Excel, text)', { 'zh-CN': '日志和文档丢到窗口就读(PDF・Word・Excel・文本)', 'zh-TW': '日誌和文件丟到視窗就讀(PDF・Word・Excel・文字)', ko: '로그도 서류도 창에 떨어뜨리기만(PDF·Word·Excel·텍스트)' }),
+                t('端末内の全文検索(/rag)——自分のメモから探してくる', 'On-device full-text search (/rag) — she digs through your own notes', { 'zh-CN': '本机全文检索(/rag)——从你自己的笔记里找', 'zh-TW': '本機全文檢索(/rag)——從你自己的筆記裡找', ko: '기기 내 전문 검색(/rag) — 내 메모에서 찾아옴' }),
                 t('難問だけクラウドAIへ昇格(オプトイン)', 'Escalate only the hard ones to a cloud AI (opt-in)', { 'zh-CN': '只把难题升级给云端 AI(可选)', 'zh-TW': '只把難題升級給雲端 AI(可選)', ko: '어려운 문제만 클라우드 AI로 승격(옵트인)' }),
               ]}
             />
@@ -159,7 +160,7 @@ export function UseCases() {
           <div className="md:order-2">
             <div className="os-window">
               <TitleBar>
-                <span>schedule — today (jul 16)</span>
+                <span>schedule — today</span>
                 <span className="text-sub tracking-widest">— □ ×</span>
               </TitleBar>
               <div className="p-6 space-y-2.5 text-sm">
@@ -184,16 +185,17 @@ export function UseCases() {
               {t('秘書として、あなたの時間を管理する。', 'As a secretary, she keeps your hours.', { 'zh-CN': '作为秘书,替你打理时间。', 'zh-TW': '作為秘書,替你打理時間。', ko: '비서로서, 당신의 시간을 관리한다.' })}
             </h3>
             <p className="text-mist leading-loose mb-6">
-              {t('MCPでGoogleカレンダーやGmailと連携し、予定を把握。朝の挨拶で今日の予定を教えてくれて、会議の10分前には声をかけてくれます。全画面作業中や会議中は黙って待つ——空気を読むのも人格のうち。', "Linked to Google Calendar and Gmail over MCP, she knows the schedule: today's plan comes with the morning greeting, and she pings you ten minutes before a meeting. During full-screen work or meetings she waits in silence — reading the room is part of the persona.", {
-                'zh-CN': '通过 MCP 连接 Google 日历和 Gmail,掌握日程。早晨问候时告诉你今天的安排,会议前 10 分钟出声提醒。全屏工作或开会时安静等待——会看气氛也是人格的一部分。',
-                'zh-TW': '透過 MCP 連接 Google 日曆和 Gmail,掌握日程。早晨問候時告訴你今天的安排,會議前 10 分鐘出聲提醒。全螢幕工作或開會時安靜等待——會看氣氛也是人格的一部分。',
-                ko: 'MCP로 Google 캘린더·Gmail과 연동해 일정을 파악. 아침 인사로 오늘 일정을 알려 주고, 회의 10분 전에 말을 겁니다. 전체 화면 작업이나 회의 중엔 조용히 기다리기 — 분위기를 읽는 것도 인격의 일부.',
+              {t('MCPでGoogleカレンダーやGmailと連携し、予定を把握。朝の「きょうのブリーフィング」で予定・タスク・未読・天気をまとめて渡し、会議の10分前には声をかけてくれます。Googleを使わない道もあって、POP対応のメールボックスなら見張れます(こちらは無料)。契約書や見積のPDFは、渡せばそのまま話の前提になります。全画面作業中や会議中は黙って待つ——空気を読むのも人格のうち。', "Linked to Google Calendar and Gmail over MCP, she knows the schedule: the morning briefing hands you the day's plan, tasks, unread mail and weather at once, and she pings you ten minutes before a meeting. There is a non-Google road too — any POP mailbox can be watched, and that one is free. Hand her a contract or a quote as a PDF and it becomes part of the conversation. During full-screen work or meetings she waits in silence — reading the room is part of the persona.", {
+                'zh-CN': '通过 MCP 连接 Google 日历和 Gmail,掌握日程。早晨的「今日简报」一次交给你日程、任务、未读和天气,会议前 10 分钟出声提醒。也有不用 Google 的路——支持 POP 的邮箱就能盯着(这条是免费的)。合同和报价的 PDF,递过去就成为谈话前提。全屏工作或开会时安静等待——会看气氛也是人格的一部分。',
+                'zh-TW': '透過 MCP 連接 Google 日曆和 Gmail,掌握日程。早晨的「今日簡報」一次交給你日程、任務、未讀和天氣,會議前 10 分鐘出聲提醒。也有不用 Google 的路——支援 POP 的信箱就能盯著(這條是免費的)。合約和報價的 PDF,遞過去就成為談話前提。全螢幕工作或開會時安靜等待——會看氣氛也是人格的一部分。',
+                ko: 'MCP로 Google 캘린더·Gmail과 연동해 일정을 파악. 아침의 "오늘의 브리핑"으로 일정·태스크·안 읽은 메일·날씨를 한 번에 건네고, 회의 10분 전에 말을 겁니다. Google을 쓰지 않는 길도 있어서, POP 지원 메일함이라면 지켜볼 수 있습니다(이쪽은 무료). 계약서나 견적 PDF는 건네면 그대로 이야기의 전제가 됩니다. 전체 화면 작업이나 회의 중엔 조용히 기다리기 — 분위기를 읽는 것도 인격의 일부.',
               })}
             </p>
             <CheckList
               items={[
                 t('Gmail・カレンダー・Drive連携(MCP)', 'Gmail, Calendar & Drive over MCP', { 'zh-CN': 'Gmail・日历・Drive 联动(MCP)', 'zh-TW': 'Gmail・日曆・Drive 連動(MCP)', ko: 'Gmail·캘린더·Drive 연동(MCP)' }),
-                t('タスク・案件管理と締切前の催促', 'Task keeping and pre-deadline nudges', { 'zh-CN': '任务管理与截止前催促', 'zh-TW': '任務管理與截止前催促', ko: '태스크 관리와 마감 전 재촉' }),
+                t('きょうのブリーフィング(予定・タスク・未読・天気)', 'The morning briefing (plan, tasks, unread mail, weather)', { 'zh-CN': '今日简报(日程・任务・未读・天气)', 'zh-TW': '今日簡報(日程・任務・未讀・天氣)', ko: '오늘의 브리핑(일정·태스크·안 읽은 메일·날씨)' }),
+                t('POP メールの見張りは Google なしで無料', 'Watching a POP mailbox needs no Google, and is free', { 'zh-CN': '盯 POP 邮箱不需要 Google,且免费', 'zh-TW': '盯 POP 信箱不需要 Google,且免費', ko: 'POP 메일 감시는 Google 없이 무료' }),
                 t('定期チェックはローカルLLMでコストゼロ', 'Periodic checks run on the local LLM at zero cost', { 'zh-CN': '定期检查由本地 LLM 完成,零成本', 'zh-TW': '定期檢查由本地 LLM 完成,零成本', ko: '정기 확인은 로컬 LLM이라 비용 제로' }),
               ]}
             />
