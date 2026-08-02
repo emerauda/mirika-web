@@ -1,4 +1,4 @@
-import { useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
   motion,
   useMotionValue,
@@ -9,6 +9,48 @@ import {
 } from 'motion/react';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+/**
+ * スクロールで現れる要素の見え始めを決める。
+ *
+ * **内容がアニメーションに依存して消えたままにならないこと**が第一。
+ * 背の高い要素に「何割見えたら」という条件を課すと、画面より高い塊は条件を
+ * 満たせずに沈黙する(実際、拡張機能の一覧が opacity:0 のまま出てこなかった)。
+ * ここでは threshold 0 ——**1px でも入ったら出す**。さらに保険として、
+ * 観測がどこかで途切れても、画面の近くにある塊は少し待って必ず出す。
+ */
+function useAppear() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      setShown(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setShown(true);
+            io.disconnect();
+          }
+        }
+      },
+      { threshold: 0, rootMargin: '0px 0px -8% 0px' },
+    );
+    io.observe(el);
+    const safety = setTimeout(() => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 1.4) setShown(true);
+    }, 1200);
+    return () => {
+      io.disconnect();
+      clearTimeout(safety);
+    };
+  }, []);
+  return { ref, shown };
+}
 
 /* ---------- Reveal: 単一要素のスクロール出現 ---------- */
 export function Reveal({
@@ -23,13 +65,14 @@ export function Reveal({
   y?: number;
 }) {
   const reduce = useReducedMotion();
+  const { ref, shown } = useAppear();
   if (reduce) return <div className={className}>{children}</div>;
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
+      animate={shown ? { opacity: 1, y: 0 } : { opacity: 0, y }}
       transition={{ duration: 0.7, ease: EASE, delay }}
     >
       {children}
@@ -40,7 +83,9 @@ export function Reveal({
 /* ---------- Stagger: 子要素を順に出現 ---------- */
 const groupVariants: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.04 } },
+  // 一覧が30行を超えることがある。0.08 刻みだと最後の行が出るまで2秒以上かかり、
+  // 読もうとした人には「出てこない」に見える
+  show: { transition: { staggerChildren: 0.03, delayChildren: 0.02 } },
 };
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 22 },
@@ -50,21 +95,22 @@ const itemVariants: Variants = {
 export function StaggerGroup({
   children,
   className,
-  amount = 0.15,
 }: {
   children: ReactNode;
   className?: string;
+  /** 旧: 何割見えたら出すか。いまは 1px でも入れば出すので受け取るだけ */
   amount?: number;
 }) {
   const reduce = useReducedMotion();
+  const { ref, shown } = useAppear();
   if (reduce) return <div className={className}>{children}</div>;
   return (
     <motion.div
+      ref={ref}
       className={className}
       variants={groupVariants}
       initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount }}
+      animate={shown ? 'show' : 'hidden'}
     >
       {children}
     </motion.div>
