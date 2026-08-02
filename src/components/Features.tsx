@@ -1,6 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
-import { Smile, Brain, Database, Mail, Mic, Feather, Package, RefreshCw, Users, FileText } from 'lucide-react';
+import { Smile, Brain, Database, Mail, Mic, Feather, Package, RefreshCw, Users, FileText, MessageCircle } from 'lucide-react';
 import { Kicker, TitleBar } from './ui';
 import { Reveal, StaggerGroup, StaggerItem } from './primitives';
 import { useT } from '../i18n';
@@ -115,6 +115,16 @@ function buildFeatures(t: ReturnType<typeof useT>): Feature[] {
         'zh-CN': '文本、Markdown、PDF、Word、Excel、PowerPoint、图片,丢到窗口上就行。不用转换,不用粘贴。合同条款、报价品目、幻灯片脉络,原样成为谈话前提。也能直接给她看屏幕(默认关),抓个报错问「这是啥?」。编码从内容判断,老的 Shift_JIS 文本也不乱码。读过的东西不出设备。',
         'zh-TW': '文字、Markdown、PDF、Word、Excel、PowerPoint、圖片,丟到視窗上就行。不用轉換,不用貼上。合約條款、報價品目、簡報脈絡,原樣成為談話前提。也能直接給她看螢幕(預設關),抓個報錯問「這是啥?」。編碼從內容判斷,老的 Shift_JIS 文字也不亂碼。讀過的東西不出裝置。',
         ko: '텍스트·Markdown·PDF·Word·Excel·PowerPoint·이미지를 창에 떨어뜨리기만. 변환도 붙여넣기도 필요 없습니다. 계약서 조문도, 견적 품목도, 슬라이드 흐름도 그대로 이야기의 전제가 됩니다. 화면을 그대로 보여 줄 수도 있고(기본 꺼짐), 에러 화면을 찍어 "이거 뭐야?"라고 물을 수 있습니다. 문자 코드는 내용으로 가려내므로 Shift_JIS 그대로인 옛 텍스트도 깨지지 않습니다. 읽은 것은 기기 밖으로 나가지 않습니다.',
+      }),
+    },
+    {
+      Icon: MessageCircle,
+      num: '11',
+      title: t('Discord でも使える', 'Mirika on Discord', { 'zh-CN': '在 Discord 上也能用', 'zh-TW': '在 Discord 上也能用', ko: 'Discord에서도 사용' }),
+      desc: t('Discord にもいます。公式サーバーでも、自分のサーバーでも(Pro)、個人インストールなら DM でも。/talk は使い方の質問に公式ドキュメントを根拠に出典付きで答え、/todo はデスクトップと双方向同期して期限を DM に3段階で知らせる。ボイスチャンネルの読み上げは VOICEVOX 全136声、「ミリカ」と呼びかければ声で返す(音声は文字にした瞬間に捨てる)。キーを /verify で見せれば、ロールもサーバー解放も1回で済む。', 'She lives on Discord too — the official server, your own server (Pro), even DMs with a user install. /talk answers how-to questions from the official docs with sources, /todo stays in two-way sync with the desktop and pings deadlines to your DMs in three stages. Voice channels are read aloud in 136 VOICEVOX voices, and calling "Mirika" gets a spoken answer (audio is discarded the moment it becomes text). Show your key once with /verify — role and server unlock in one go.', {
+        'zh-CN': '她也在 Discord 上——官方服务器、你自己的服务器(Pro)、个人安装的话连私信里也行。/talk 会以官方文档为依据、附来源回答用法问题;/todo 与桌面版双向同步,期限分三档提醒到私信。语音频道用 VOICEVOX 全 136 种声音朗读,喊一声「Mirika」就会用声音回答(音频在转成文字的那一刻即被丢弃)。用 /verify 出示一次密钥,身份组和服务器开通一次完成。',
+        'zh-TW': '她也在 Discord 上——官方伺服器、你自己的伺服器(Pro)、個人安裝的話連私訊裡也行。/talk 會以官方文件為依據、附來源回答用法問題;/todo 與桌面版雙向同步,期限分三階段提醒到私訊。語音頻道用 VOICEVOX 全 136 種聲音朗讀,喊一聲「Mirika」就會用聲音回答(音訊在轉成文字的那一刻即被丟棄)。用 /verify 出示一次金鑰,身分組和伺服器開通一次完成。',
+        ko: 'Discord에도 있습니다 — 공식 서버에서도, 내 서버에서도(Pro), 개인 설치라면 DM에서도. /talk은 사용법 질문에 공식 문서를 근거로 출처와 함께 답하고, /todo는 데스크톱과 양방향 동기화되어 마감을 DM으로 3단계 알림. 음성 채널은 VOICEVOX 전 136 보이스로 낭독하고, "미리카"라고 부르면 목소리로 답합니다(음성은 텍스트가 되는 순간 폐기). /verify로 키를 한 번 보여 주면 롤도 서버 개방도 한 번에 끝.',
       }),
     },
   ];

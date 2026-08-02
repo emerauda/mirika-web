@@ -439,6 +439,46 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             </P>
           </section>
 
+          {/* --- Discord --- */}
+          <section className="mb-16">
+            <H2 id="discord">Discord でも使える</H2>
+            <P>
+              Mirika は Discord にもいます。
+              <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">公式サーバー</a>
+              で動くほか、アプリを「自分に追加」(個人インストール)すれば、DM でも Bot のいない
+              サーバーでも秘書を連れ歩けます。読み上げなどのサーバー機能は Pro の一機能です。
+            </P>
+            <Steps
+              items={[
+                <>公式 Discord に入る(またはアプリを自分のアカウントに追加する)</>,
+                <>
+                  Booth で購入済みなら <C>/order</C> に注文番号と注文日 — その場でライセンスキーを受け取れます
+                </>,
+                <>
+                  <C>/verify</C> でキーを見せる。本人の紐づけ・公式ロール・(サーバー管理者なら)サーバーの解放まで1回で済みます
+                </>,
+              ]}
+            />
+            <P>
+              <C>/talk</C> はミリカとの会話です。使い方の質問には公式ドキュメントを根拠に、出典リンク付きで答えます。
+              返事の下のボタンで<strong className="text-cream">記憶</strong>をオンにすると会話を覚えます
+              (あなたの分だけ・いつでも全部消せます)。<C>/todo</C> は
+              <strong className="text-cream">デスクトップの TODO と双方向同期</strong>で、
+              期限が近づくと DM にも3段階(24時間前 → 1時間前 → 超過)で知らせます。
+            </P>
+            <P>
+              読み上げは <C>/voice bind</C> したボイスチャンネルを VOICEVOX(+ Nemo、全136声)で読みます。
+              自分の声は <C>/voice speaker</C>(検索でも、一覧からでも選べます)。
+              <C>/voice listen</C> をオンにしたサーバーでは「<strong className="text-cream">ミリカ</strong>」と
+              呼びかけると聞き取り、声で返します — 音声は文字にした瞬間に捨て、呼びかけ以外の発話は文字も残しません。
+            </P>
+            <Note>
+              サーバーの解放は1キー3サーバーまで。個人のデータ(TODO・記憶・声の好み)はキー由来の
+              一方向指紋の単位で分かれ、キーそのものは Discord 側に保存されません。
+              困ったら <C>/ticket</C>(スクショ添付可)からどうぞ。
+            </Note>
+          </section>
+
           {/* --- コマンド一覧 --- */}
           <section className="mb-16">
             <H2 id="commands">コマンド一覧</H2>
