@@ -290,19 +290,19 @@ export function UseCases() {
               <Heart className="w-4 h-4" /> Everyday Partner
             </p>
             <h3 className="font-mincho font-bold text-2xl md:text-3xl mb-5 leading-relaxed">
-              {t('昨日の話を、覚えていてくれる。', 'She remembers what you said yesterday.', { 'zh-CN': '昨天说过的话,她都记得。', 'zh-TW': '昨天說過的話,她都記得。', ko: '어제 한 이야기를, 기억해 준다.' })}
+              {t('関係は、数年かけて育つ。', 'A relationship that takes years to grow.', { 'zh-CN': '关系,要花上数年才长成。', 'zh-TW': '關係,要花上數年才長成。', ko: '관계는, 몇 년에 걸쳐 자란다.' })}
             </h3>
             <p className="text-mist leading-loose mb-6">
-              {t('ランダムトークは、もう擬似じゃない本物のAIトーク。夜のあいだに会話を整理して夢を見て、翌朝「変な夢見た……」と教えてくれる。雨の日は静かで、褒めた日は上機嫌——気分は移ろい、関係は数年単位で育つ。', 'Random talk is no longer scripted — it is real AI talk. Overnight she tidies the day and dreams, and next morning tells you "I had a weird dream…". Quiet on rainy days, cheerful the day you praised her — moods drift, and the relationship grows over years.', {
-                'zh-CN': '随机闲聊不再是脚本,而是真正的 AI 对话。夜里整理当天的对话、做梦,第二天早上告诉你「做了个怪梦……」。雨天安静,被夸的那天心情好——情绪流转,关系以年为单位成长。',
-                'zh-TW': '隨機閒聊不再是腳本,而是真正的 AI 對話。夜裡整理當天的對話、做夢,第二天早上告訴你「做了個怪夢……」。雨天安靜,被誇的那天心情好——情緒流轉,關係以年為單位成長。',
-                ko: '랜덤 토크는 이제 유사품이 아닌 진짜 AI 토크. 밤사이 대화를 정리하고 꿈을 꾸고, 다음 날 아침 "이상한 꿈 꿨어…"라고 알려 줍니다. 비 오는 날은 조용하고, 칭찬한 날은 기분이 좋고 — 기분은 흐르고, 관계는 몇 년 단위로 자랍니다.',
+              {t('なかよし度は、話しかけた回数の合計ではありません。一日に育つぶんには上限があり、深くなるほど一歩は重くなる——「家族みたいな存在」は数年先です。しばらく会わなければ距離ができ(それでも他人には戻らず、再会すると早く戻る)、出会った日から続くバイオリズムで「なんとなく調子の出ない週」があり、雨が続けば沈み、撫ですぎれば疲れ、同じ話ばかりでは動かない。数字は見せません——見えるのは段と、「ここ最近、ぐんぐん近づいている気がする」という気配だけ。', 'Affection is not a running total of messages. Only so much can grow in a day, and each step gets heavier as you get closer — "family" is years away. Stay away a while and distance forms (never back to strangers, and it returns faster when you meet again); a biorhythm running from the day you met gives her off weeks; rain wears her down, too much petting tires her, and the same story twice moves nothing. No numbers are shown — only the stage, and a feeling: "we have been growing closer lately".', {
+                'zh-CN': '好感度不是说话次数的累计。一天能长的量有上限,越亲近每一步越重——「家人一般的存在」在数年之后。久不见面就会生疏(但不会退回陌生人,再见面时恢复得更快);从相遇那天延续的生理节律会带来「不知怎么就没状态的一周」;雨天会低落,抚摸过头会疲惫,老说同样的话则毫无波澜。不显示数字——能看到的只有阶段,和「最近好像越来越近了」这样的气息。',
+                'zh-TW': '好感度不是說話次數的累計。一天能長的量有上限,越親近每一步越重——「家人一般的存在」在數年之後。久不見面就會生疏(但不會退回陌生人,再見面時恢復得更快);從相遇那天延續的生理節律會帶來「不知怎麼就沒狀態的一週」;雨天會低落,撫摸過頭會疲憊,老說同樣的話則毫無波瀾。不顯示數字——能看到的只有階段,和「最近好像越來越近了」這樣的氣息。',
+                ko: '친밀도는 말을 건 횟수의 합계가 아닙니다. 하루에 자랄 수 있는 양에는 상한이 있고, 깊어질수록 한 걸음이 무거워집니다 — "가족 같은 존재"는 몇 년 뒤입니다. 한동안 만나지 않으면 거리가 생기고(그래도 남으로 돌아가지는 않으며, 다시 만나면 빨리 돌아옵니다), 만난 날부터 이어지는 바이오리듬으로 "왠지 컨디션이 안 나는 주"가 있고, 비가 이어지면 가라앉고, 너무 쓰다듬으면 지치고, 같은 이야기만으로는 움직이지 않습니다. 숫자는 보여 주지 않습니다 — 보이는 것은 단계와, "요즘 부쩍 가까워지고 있는 것 같아"라는 기색뿐.',
               })}
             </p>
             <CheckList
               items={[
-                t('数年単位の長期記憶と関係性パラメータ', 'Years-long memory and relationship parameters', { 'zh-CN': '以年计的长期记忆与关系参数', 'zh-TW': '以年計的長期記憶與關係參數', ko: '몇 년 단위의 장기 기억과 관계 파라미터' }),
-                t('気分(ムード)モデルと夢——朝の顔が毎日違う', 'A mood model and dreams — a different face each morning', { 'zh-CN': '情绪模型与梦——每天早上的表情都不一样', 'zh-TW': '情緒模型與夢——每天早上的表情都不一樣', ko: '기분(무드) 모델과 꿈 — 아침 얼굴이 매일 다름' }),
+                t('絆(数年)と気分(日々)の2層——すぐには MAX にならない', 'Two layers — bond (years) and mood (days). It never maxes out quickly', { 'zh-CN': '羁绊(数年)与心情(每日)双层——不会很快满值', 'zh-TW': '羈絆(數年)與心情(每日)雙層——不會很快滿值', ko: '유대(몇 년)와 기분(나날)의 2층 — 금방 MAX가 되지 않음' }),
+                t('数年単位の長期記憶と、夜のあいだの整理と夢', 'Years-long memory, tidied overnight, with dreams', { 'zh-CN': '以年计的长期记忆,以及夜里的整理与梦', 'zh-TW': '以年計的長期記憶,以及夜裡的整理與夢', ko: '몇 년 단위의 장기 기억과 밤사이의 정리와 꿈' }),
                 t('記念日・時報・起動挨拶(ルールで即応)', 'Anniversaries, hourly chimes, boot greetings (instant, rule-based)', { 'zh-CN': '纪念日・报时・启动问候(规则即时响应)', 'zh-TW': '紀念日・報時・啟動問候(規則即時響應)', ko: '기념일·시보·기동 인사(룰로 즉응)' }),
               ]}
             />
