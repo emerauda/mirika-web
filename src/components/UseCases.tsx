@@ -250,7 +250,7 @@ export function UseCases() {
 
         {/* Everyday Partner */}
         <Reveal className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="os-window">
+          <div className="os-window md:order-2">
             <TitleBar>
               <span>{t('memory.db — 就寝時整理', 'memory.db — bedtime consolidation', { 'zh-CN': 'memory.db — 睡前整理', 'zh-TW': 'memory.db — 睡前整理', ko: 'memory.db — 취침 시 정리' })}</span>
               <span className="flex items-center gap-1 text-sub">
@@ -285,7 +285,7 @@ export function UseCases() {
               <p className="text-sub/60 border-t border-ink/10 mt-3 pt-3">consolidating today's memories…</p>
             </div>
           </div>
-          <div>
+          <div className="md:order-1">
             <p className="font-mono text-xs text-sakura tracking-widest uppercase mb-4 flex items-center gap-2">
               <Heart className="w-4 h-4" /> Everyday Partner
             </p>
