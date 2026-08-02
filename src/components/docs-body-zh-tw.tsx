@@ -169,6 +169,21 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
               對話會作為長期記憶留在 SQLite 裡,並在夜裡整理。
               關係的深度可用 <C>/bond</C> 查看。兩天以前的話題,只要問她,也會想起來回答。
             </P>
+            <H3>好感度要花上數年才長成</H3>
+            <P>
+              好感度不是說話次數的累計,而是<strong className="text-cream">羈絆(數年)與心情(每日)雙層</strong>運作的。
+              一天能長的量有上限,越親近每一步越重,所以要到「家人一般的存在」是數年之後的事。
+            </P>
+            <Note>
+              <strong className="text-cream">也會下降。</strong>久不見面就會生疏(約三天起,超過兩週更快);雨天連著會低落,
+              撫摸過頭會疲憊,老說同樣的話則毫無波瀾。有時也會沒來由地提不起勁(從相遇那天延續的生理節律)。
+              但<strong className="text-cream">不會退回陌生人</strong>——曾抵達階段的一半是地板,離開期間失去的一部分會在重逢後的對話中更快回來。
+              能接受多少撫摸,取決於關係已有多深。
+            </Note>
+            <P>
+              <C>/bond</C> 不顯示數字。除了相識天數、對話次數、記住的事情之外,只返回階段(★)與
+              「最近好像越來越近了」「最近:雨一直下,總提不起勁」這樣的<strong className="text-cream">氣息</strong>。當天的心情也會直接體現在回話的語氣裡。
+            </P>
             <H3>連同記憶,搬到另一台裝置(同步)</H3>
             <P>
               用 <C>/sync export</C>,記憶連同名字・性格會變成一個以口令加密的檔案,
