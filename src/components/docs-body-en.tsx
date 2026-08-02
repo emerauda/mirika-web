@@ -169,6 +169,23 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               Conversations remain in SQLite as long-term memory and are organized overnight.
               See how deep the bond runs with <C>/bond</C>. Even things from more than two days ago come back when you ask.
             </P>
+            <H3>Affection takes years to grow</H3>
+            <P>
+              Affection is not a running total of messages. It runs on <strong className="text-cream">two layers — bond (years) and mood (days)</strong>.
+              Only so much can grow in a single day, and each step gets heavier the closer you are, so "family" is years away.
+            </P>
+            <Note>
+              <strong className="text-cream">It can go down, too.</strong> Stay away and distance forms (from about three days, faster past two weeks);
+              a run of rainy days wears her down, too much petting tires her, and the same story twice moves nothing. Some days she is simply
+              off for no reason (a biorhythm running from the day you met). But <strong className="text-cream">she never returns to a stranger</strong> —
+              half of the highest stage you reached is the floor, and part of what was lost comes back faster once you meet again.
+              How much petting is welcome depends on how close you already are.
+            </Note>
+            <P>
+              <C>/bond</C> shows no numbers. Beside the days since you met, the message count and what she remembers, it returns the stage (★)
+              and a <strong className="text-cream">feeling</strong>: "we have been growing closer lately", "lately: the rain kept on, and I could not quite find my energy".
+              That day's mood also colours how she answers.
+            </P>
             <H3>Memories and all, to another machine (sync)</H3>
             <P>
               <C>/sync export</C> turns memories, name, and personality into a single file encrypted with a passphrase,
