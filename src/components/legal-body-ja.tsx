@@ -1,4 +1,4 @@
-import { H2, H3, Note, P, Ul } from './legal-ui';
+import { A, B, H2, H3, Note, P, Ul } from './legal-ui';
 
 /** 法務文書の本文(日本語・正文)。他言語版は legal-body-*.tsx —— 構成はこのファイルに揃える。 */
 
@@ -12,7 +12,7 @@ export function PrivacyBodyJa() {
 
       <H2 id="not-collected">まず、取っていないもの</H2>
       <P>
-        既定の構成では、次のものは<strong className="text-cream">一切、端末の外に出ません</strong>。
+        既定の構成では、次のものは<B>一切、端末の外に出ません</B>。
         私たちのサーバーに送られることも、保存されることもありません。
       </P>
       <Ul>
@@ -24,7 +24,7 @@ export function PrivacyBodyJa() {
       </Ul>
       <Note>
         利用状況の計測(アナリティクス)、広告、
-        <strong className="text-cream">クラッシュレポートの自動送信も行いません</strong>
+        <B>クラッシュレポートの自動送信も行いません</B>
         。動作ログは端末内にだけ残り、不具合を報告するときにあなたが自分で添えるものです。
       </Note>
 
@@ -34,14 +34,14 @@ export function PrivacyBodyJa() {
       <H3>クラウドの頭脳(任意)</H3>
       <P>
         ChatGPT・Claude・Gemini などを頭脳に選んだ場合、
-        <strong className="text-cream">その提供元にあなたの発言と文脈が送られます</strong>
+        <B>その提供元にあなたの発言と文脈が送られます</B>
         。扱いはその提供元の規約に従います。既定はローカルの頭脳で、この機能はあなたが明示的に選んだときだけ動きます。
       </P>
 
       <H3>記憶の同期(任意)</H3>
       <P>
         複数の端末で同じ子を育てるとき、記憶は
-        <strong className="text-cream">あなたの端末で暗号化されてから</strong>
+        <B>あなたの端末で暗号化されてから</B>
         置き場へ送られます。合言葉はあなたの端末にしかないので、置き場を用意する私たちにも中身は読めません。
       </P>
       <P>
@@ -52,20 +52,20 @@ export function PrivacyBodyJa() {
       <P>
         Pro
         や組織向けのライセンスを使う場合、キーの確認と方針の受け取りのために私たちのサーバーと通信します。このとき扱うのは、ライセンスの識別子、端末名、アプリのバージョン、最後に確認した日時、
-        <strong className="text-cream">接続元の国</strong>です。
-        <strong className="text-cream">会話の中身は含まれません。</strong>
+        <B>接続元の国</B>です。
+        <B>会話の中身は含まれません。</B>
       </P>
       <P>
-        国を記録するのは、<strong className="text-cream">キーが配られていないかを見るため</strong>
+        国を記録するのは、<B>キーが配られていないかを見るため</B>
         です。Pro
         キーは端末の中だけで検証できる仕組みなので、私たちに見えるのは同期の置き場をお使いになったときだけです。残るのは
-        <strong className="text-cream">最近見えた国が5つまでと、最後に確認した日時</strong>
+        <B>最近見えた国が5つまでと、最後に確認した日時</B>
         だけで、移動の履歴にはなりません。
       </P>
       <Note>
-        <strong className="text-cream">IP アドレスは保存しません。</strong>
+        <B>IP アドレスは保存しません。</B>
         国は Cloudflare が通信に付ける情報から読み取るだけで、住所にあたるものは私たちのサーバーに残りません。不正なアクセスの遮断は
-        <strong className="text-cream">Cloudflare の手前の層</strong>
+        <B>Cloudflare の手前の層</B>
         で行っています。
       </Note>
 
@@ -77,10 +77,10 @@ export function PrivacyBodyJa() {
       <H2 id="org">組織でお使いの場合</H2>
       <P>
         組織のライセンスでお使いのとき、管理者は
-        <strong className="text-cream">
+        <B>
           誰が何台使っているか、最後にいつ使ったか、どの国から使ったか
-        </strong>
-        を見られます。<strong className="text-cream">会話の中身は管理者にも見えません。</strong>
+        </B>
+        を見られます。<B>会話の中身は管理者にも見えません。</B>
         画面の内容も、開いているアプリも、入力した文字も渡りません。
       </P>
       <P>
@@ -98,7 +98,7 @@ export function PrivacyBodyJa() {
         </li>
         <li>
           ライセンスを解約しても、
-          <strong className="text-cream">端末の記憶は消えません</strong>。同期も無料の方法で続けられます
+          <B>端末の記憶は消えません</B>。同期も無料の方法で続けられます
         </li>
       </Ul>
 
@@ -114,9 +114,9 @@ export function PrivacyBodyJa() {
 
       <H2 id="contact">お問い合わせ</H2>
       <P>
-        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+        <A href="https://github.com/emerauda/mirika-web/issues">
           GitHub の Issue
-        </a>
+        </A>
         よりご連絡ください。
       </P>
     </>
@@ -137,7 +137,7 @@ export function TermsBodyJa() {
       <Ul>
         <li>ライセンスキーは、購入された方または契約された組織のためのものです</li>
         <li>
-          <strong className="text-cream">キーを第三者に配布・転売しないでください。</strong>
+          <B>キーを第三者に配布・転売しないでください。</B>
           同じキーを複数の方が使うと、記憶の置き場を共有することになり、互いの記憶が混ざります
         </li>
         <li>組織向けライセンスは、契約された席数の範囲でお使いください</li>
@@ -146,9 +146,9 @@ export function TermsBodyJa() {
       <H2 id="content">2. 生成される内容について</H2>
       <P>
         本ソフトウェアは大規模言語モデルを用いて応答を生成します。
-        <strong className="text-cream">
+        <B>
           その内容が正確であること、適切であることを保証できません。
-        </strong>
+        </B>
         重要な判断は、必ずご自身で裏を取ってください。
       </P>
       <Note>
@@ -166,43 +166,43 @@ export function TermsBodyJa() {
       <H2 id="assets">4. 持ち込んだ素材について</H2>
       <P>
         VRM・Live2D モデル、キャラクターカード、音声、楽曲など、あなたが持ち込んだ素材の利用条件は、それぞれの提供元の定めに従ってください。
-        <strong className="text-cream">
+        <B>
           本ソフトウェアで使えることは、その素材を自由に使ってよいことを意味しません。
-        </strong>
+        </B>
         配信などで公開する場合は特にご注意ください。
       </P>
 
       <H2 id="warranty">5. 免責</H2>
       <P>
         本ソフトウェアは現状有姿で提供されます。ご利用によって生じた損害について、私たちは責任を負いかねます。ただし、
-        <strong className="text-cream">
+        <B>
           有料でご契約いただいている範囲については、いただいた対価を上限として対応いたします。
-        </strong>
+        </B>
       </P>
       <P>
         記憶は端末内のファイルに保存されます。
-        <strong className="text-cream">バックアップはご自身でお取りください。</strong>
+        <B>バックアップはご自身でお取りください。</B>
         機器の故障や誤操作による消失について、復元をお約束することはできません。
       </P>
 
       <H2 id="availability">6. サービスの継続</H2>
       <P>
         ライセンスの確認や同期の置き場など、私たちが提供するサーバー機能は、予告なく停止・変更する場合があります。停止する場合は、
-        <strong className="text-cream">
+        <B>
           お使いの記憶を持ち出せる期間を設けたうえで
-        </strong>
+        </B>
         お知らせします。
       </P>
       <P>
         本ソフトウェア自体は、サーバーが止まっても
-        <strong className="text-cream">ローカルの機能はそのまま動きます</strong>
+        <B>ローカルの機能はそのまま動きます</B>
         。ライセンスの確認ができない期間が続いた場合、無料の範囲へ戻りますが、記憶や設定には手を触れません。
       </P>
 
       <H2 id="refund">7. 返金</H2>
       <P>
         ダウンロード販売の性質上、原則として返金には応じかねます。ただし、
-        <strong className="text-cream">本ソフトウェアの不具合により購入時の説明どおりに動作しない場合</strong>
+        <B>本ソフトウェアの不具合により購入時の説明どおりに動作しない場合</B>
         は、ご相談ください。
       </P>
 
@@ -216,9 +216,9 @@ export function TermsBodyJa() {
 
       <H2 id="contact">お問い合わせ</H2>
       <P>
-        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+        <A href="https://github.com/emerauda/mirika-web/issues">
           GitHub の Issue
-        </a>
+        </A>
         よりご連絡ください。
       </P>
     </>

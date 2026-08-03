@@ -1,7 +1,11 @@
 import type { ReactNode } from 'react';
 import { useLang, useT } from '../i18n';
+import { LangSwitch } from './Nav';
 
-/** 法務ページ(プライバシー・規約)の組版部品。本文は legal-body-*.tsx が言語ごとに持つ。 */
+/** 法務ページ(プライバシー・規約)の組版部品。本文は legal-body-*.tsx が言語ごとに持つ。
+ *  使い方ページと共通の部品(P/B/C/A/Note)は prose.tsx にあり、ここから再輸出する。 */
+
+export { A, B, C, Note, P } from './prose';
 
 export function H2({ id, children }: { id: string; children: ReactNode }) {
   return (
@@ -15,20 +19,8 @@ export function H3({ children }: { children: ReactNode }) {
   return <h3 className="font-bold text-cream mt-8 mb-2">{children}</h3>;
 }
 
-export function P({ children }: { children: ReactNode }) {
-  return <p className="text-mist leading-relaxed mb-4">{children}</p>;
-}
-
 export function Ul({ children }: { children: ReactNode }) {
   return <ul className="mb-4 space-y-2 text-mist leading-relaxed list-disc pl-5">{children}</ul>;
-}
-
-export function Note({ children }: { children: ReactNode }) {
-  return (
-    <div className="my-5 rounded-lg border-l-2 border-sakura/50 bg-paper/40 px-4 py-3 text-sm text-mist leading-relaxed">
-      {children}
-    </div>
-  );
 }
 
 /** 最終更新日。内容を変えたときだけ改める(翻訳の追加は内容の変更ではない) */
@@ -39,10 +31,13 @@ export function Shell({ title, children }: { title: string; children: ReactNode 
   const t = useT();
   const updated = lang === 'ko' ? UPDATED.ko : lang === 'en' ? UPDATED.en : lang === 'ja' ? UPDATED.ja : UPDATED.zh;
   return (
-    <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-8 pt-28 pb-24">
-      <a href="/" className="font-mono text-xs text-mist hover:text-sakura transition-colors">
-        ← mirika.dev
-      </a>
+    <main id="main" className="relative z-10 mx-auto max-w-3xl px-5 sm:px-8 pt-28 pb-24">
+      <div className="flex items-center justify-between gap-4">
+        <a href="/" className="font-mono text-xs text-mist hover:text-sakura transition-colors">
+          ← mirika.dev
+        </a>
+        <LangSwitch />
+      </div>
       <h1 className="mt-4 font-mincho text-4xl font-bold">{title}</h1>
       <p className="mt-3 font-mono text-xs text-mist">
         {t('最終更新: ', 'Last updated: ', { 'zh-CN': '最后更新:', 'zh-TW': '最後更新:', ko: '최종 업데이트: ' })}
@@ -58,6 +53,6 @@ export function Shell({ title, children }: { title: string; children: ReactNode 
         </p>
       )}
       <article className="mt-10">{children}</article>
-    </div>
+    </main>
   );
 }

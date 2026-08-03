@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { C, H2, H3, Note, P, Pro, Steps } from './docs-ui';
+import { A, B, C, H2, H3, Note, P, Pro, Shot, Steps } from './docs-ui';
 
 /** 使い方ドキュメント本文(日本語・正)。他言語版は docs-body-*.tsx —— 構成と JSX の形はこのファイルに揃える。 */
 
@@ -16,17 +16,17 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <Steps
               items={[
                 <>
-                  <a href="/#download" className="text-sakura hover:underline">
+                  <A href="/#download">
                     ダウンロード
-                  </a>
+                  </A>
                   してインストールする(Windows / Linux。macOS は署名対応まで準備中)
                 </>,
                 <>
                   起動すると、既定の子(コマネ)がデスクトップの右下に立ちます。同梱の VRM は
                   本体「コマネ」・相方「チセ(TKSP)」で、どちらも{' '}
-                  <a href="https://goho-cheat-vrc.booth.pm/" target="_blank" rel="noreferrer">
+                  <A href="https://goho-cheat-vrc.booth.pm/" blank>
                     VRC合法チート研究会
-                  </a>{' '}
+                  </A>{' '}
                   さまの作品を許諾をいただいて同梱しています(モデルの再頒布は不可)
                 </>,
                 <>
@@ -37,16 +37,16 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               ]}
             />
             <Note>
-              <strong className="text-cream">操作のきほん</strong> — 掴んでドラッグで移動、右クリックでメニュー。
+              <B>操作のきほん</B> — 掴んでドラッグで移動、右クリックでメニュー。
               <C>.vrm</C> や <C>.pmx</C>(MMD)は窓に落とすと着替えます(ダブルクリックには何も割り当てていません)。
-              撫でるのは<strong className="text-cream">頭や胸のあたりで手を往復させたときだけ</strong>で、
+              撫でるのは<B>頭や胸のあたりで手を往復させたときだけ</B>で、
               通り過ぎただけでは反応しません(しまってある間や全画面アプリの下では数えません)。
               しばらく引っ込んでほしいときはメニューの「しまう」、戻すときはトレイのアイコンから。
               入力欄で <C>/</C> を打つとコマンド候補が出ます(↑↓ で選択、Tab / Enter で補完)。
               候補が出ていないときの ↑↓ は入力履歴です。
             </Note>
             <P>
-              詰まったら<a href="#trouble" className="text-sakura hover:underline">「困ったとき」</a>へ。
+              詰まったら<A href="#trouble">「困ったとき」</A>へ。
               いまの状態は <C>/check</C> がまとめて教えてくれます(頭脳・声・マイク・秘書・記憶)。
             </P>
           </section>
@@ -58,14 +58,14 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H3>内蔵エンジン(いちばん手軽)</H3>
             <P>
               <C>/brain embedded</C> か右クリックメニューから。アプリの中だけで動きます。
-              モデルは<strong className="text-cream">お使いの PC に載る大きさが自動で選ばれます</strong> —— VRAM
+              モデルは<B>お使いの PC に載る大きさが自動で選ばれます</B> —— VRAM
               8GB 級なら Gemma 4 12B(4bit・約6.7GB)、そこまで無ければ E4B(約5GB)、E2B(約3GB)と下がります。
-              16GB・24GB 級の GPU をお持ちなら、<strong className="text-cream">もっと大きいものを落とすかどうかお尋ねします</strong>(26B-A4B / 31B)。
+              16GB・24GB 級の GPU をお持ちなら、<B>もっと大きいものを落とすかどうかお尋ねします</B>(26B-A4B / 31B)。
               選んだ理由は動作ログに残ります。GGUF をお持ちなら「GGUF を開く…」でそれを使えます。
             </P>
             <H3>ローカルランタイム(推奨)</H3>
             <P>
-              Ollama(11434)と LM Studio(1234)は<strong className="text-cream">起動していれば自動検出</strong>されます。
+              Ollama(11434)と LM Studio(1234)は<B>起動していれば自動検出</B>されます。
               モデルを選ぶのは <C>/model &lt;名前&gt;</C>、接続先を手で決めるなら <C>/endpoint &lt;URL&gt;</C>、
               探し直しは <C>/rescan</C>。
             </P>
@@ -83,26 +83,26 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="voice">声とマイク</H2>
             <H3>喋らせる</H3>
             <P>
-              <strong className="text-cream">日本語</strong>は{' '}
-              <a href="https://voicevox.hiroshiba.jp/" className="text-sakura hover:underline">
+              <B>日本語</B>は{' '}
+              <A href="https://voicevox.hiroshiba.jp/">
                 VOICEVOX
-              </a>{' '}
+              </A>{' '}
               か{' '}
-              <a href="https://aivis-project.com/" className="text-sakura hover:underline">
+              <A href="https://aivis-project.com/">
                 AivisSpeech
-              </a>{' '}
+              </A>{' '}
               を入れておくだけ。Mirika がエンジンを裏で起動・終了します。
               声の一覧は <C>/voice list</C>、変更は <C>/voice &lt;ID&gt;</C>(相方は <C>/partner voice</C>)。
               誤読は <C>/read 早急 さっきゅう</C> のように直せます。
             </P>
             <P>
-              <strong className="text-cream">英語・中国語</strong>は内蔵 Piper。<C>/piper</C> で必要なぶんだけ落とします。
-              <strong className="text-cream">韓国語</strong>はローカル音声が無いので字幕のみ(無音)です。
+              <B>英語・中国語</B>は内蔵 Piper。<C>/piper</C> で必要なぶんだけ落とします。
+              <B>韓国語</B>はローカル音声が無いので字幕のみ(無音)です。
             </P>
             <H3>TTS API で上書きする</H3>
             <P>
               <C>/tts &lt;ベースURL&gt; [モデル]</C> で OpenAI 互換の音声合成を指すと、
-              <strong className="text-cream">韓国語を含む全言語</strong>をその声で喋ります(kokoro・GPT-SoVITS など)。
+              <B>韓国語を含む全言語</B>をその声で喋ります(kokoro・GPT-SoVITS など)。
               URL を入れると声の一覧が取得され、設定画面の本体・相方のドロップダウンから選べます。戻すのは <C>/tts off</C>。
             </P>
             <H3>聞き取り</H3>
@@ -111,8 +111,8 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               待機中は名前で呼びかけた発話だけを拾います。モデルは PC 性能から自動選択され、<C>/mic model</C> で変更できます。
             </P>
             <P>
-              <strong className="text-cream">音声ファイル</strong>(mp3 / wav / m4a / ogg / opus / flac)を
-              ドラッグ&ドロップすると、丸ごと文字起こしして<strong className="text-cream">要約と感想</strong>を返します
+              <B>音声ファイル</B>(mp3 / wav / m4a / ogg / opus / flac)を
+              ドラッグ&ドロップすると、丸ごと文字起こしして<B>要約と感想</B>を返します
               (最長15分。精度はマイクと同じ Whisper モデル次第)。
             </P>
           </section>
@@ -130,7 +130,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <P>
               <C>.pmx</C> をキャラにドロップするだけで着替えます(<C>/shell mmd &lt;ファイル.pmx&gt;</C> や
               メニューの「モデルを開く…」からも)。テクスチャはモデルのフォルダから自動で拾い、
-              次の起動でも着ています。<strong className="text-cream">着ている間に <C>.vmd</C> を落とすと、そのモーションで踊ります</strong>
+              次の起動でも着ています。<B>着ている間に <C>.vmd</C> を落とすと、そのモーションで踊ります</B>
               (口や目のモーフも動きます)。トゥーンの陰影とスフィアマップの照りに対応。
               まばたき・口パク・視線・仕草・窓のふち座りは VRM と同じように動きます。
               頭の骨が無いなど着られないモデルは理由を言って断り、口や表情のモーフが無いモデルは着てからそう伝えます。
@@ -142,7 +142,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <H3>カードシェル(立ち絵)</H3>
             <P>
-              キャラクターカードの PNG を取り込むと<strong className="text-cream">その絵が身体になります</strong>。
+              キャラクターカードの PNG を取り込むと<B>その絵が身体になります</B>。
               好きな画像を立たせるなら <C>/shell card &lt;画像.png&gt;</C>。透過 PNG は切り抜きのまま立ち、
               呼吸の上下・喋るときの弾みで生きて見えます。3D に戻すのは <C>/shell vrm</C>。
             </P>
@@ -162,7 +162,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               相方側はそれぞれ <C>/partner</C> <C>/partner first</C> <C>/partner persona</C>。
             </P>
             <P>
-              <strong className="text-cream">設定メモ</strong>(<C>/lore add &lt;キー&gt; &lt;内容&gt;</C>)に入れた言葉は、
+              <B>設定メモ</B>(<C>/lore add &lt;キー&gt; &lt;内容&gt;</C>)に入れた言葉は、
               話題に出たとき確実に思い出します。キーは <C>/…/</C> で正規表現にもできます。
             </P>
             <P>
@@ -171,18 +171,18 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <H3>なかよし度は、数年かけて育ちます</H3>
             <P>
-              なかよし度は話しかけた回数の合計ではありません。<strong className="text-cream">絆(数年単位)と気分(日々)の2層</strong>で動きます。
+              なかよし度は話しかけた回数の合計ではありません。<B>絆(数年単位)と気分(日々)の2層</B>で動きます。
               一日に育つぶんには上限があり、深くなるほど一歩は重くなるので、「家族みたいな存在」に届くのは数年先です。
             </P>
             <Note>
-              <strong className="text-cream">下がることもあります</strong> —— しばらく会わないと距離ができ(3日を超えたあたりから、2週間を超えると早く)、
+              <B>下がることもあります</B> —— しばらく会わないと距離ができ(3日を超えたあたりから、2週間を超えると早く)、
               雨が続くと沈み、撫ですぎると疲れ、同じ話ばかりでは心が動きません。ときどき理由もなく元気の出ない日もあります
-              (出会った日から続くバイオリズム)。ただし<strong className="text-cream">他人には戻りません</strong>——一度届いた段の半分が床で、
+              (出会った日から続くバイオリズム)。ただし<B>他人には戻りません</B>——一度届いた段の半分が床で、
               離れていた分の一部は再会後の会話で早く戻ります。撫でて許される回数は関係の深さで変わります。
             </Note>
             <P>
               <C>/bond</C> は数字を見せません。出会ってからの日数・会話の回数・覚えていることに加えて、段(★)と
-              「ここ最近、ぐんぐん近づいている気がする」「さいきん: 雨がつづいて、なんとなく元気が出なかった」といった<strong className="text-cream">気配のことば</strong>だけを返します。
+              「ここ最近、ぐんぐん近づいている気がする」「さいきん: 雨がつづいて、なんとなく元気が出なかった」といった<B>気配のことば</B>だけを返します。
               その日の気分は返事の調子にもそのまま出ます。
             </P>
             <H3>記憶ごと、別の端末へ(同期)</H3>
@@ -191,20 +191,10 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               別の PC の <C>/sync import</C> で取り込めます。取り込みは突き合わせなので、
               どちらかにしかない会話も消えません。<C>/sync cloud &lt;合言葉&gt;</C> にすると
               15分ごとに自動で合います(置き場は自分のクラウドの同期フォルダなら無料、
-              こちらの預かり棚は Pro)。<strong className="text-cream">合言葉はどこにも保存されません</strong> —
+              こちらの預かり棚は Pro)。<B>合言葉はどこにも保存されません</B> —
               忘れると開けなくなります。
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-sync.webp"
-                alt="詳細設定の記憶の同期。合言葉、書き出しと取り込み、記憶の置き場"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                詳細設定の「記憶の同期」。書き出し・取り込み・置き場の選択は、ここからも操作できます
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-sync.webp" alt="詳細設定の記憶の同期。合言葉、書き出しと取り込み、記憶の置き場" caption={<>詳細設定の「記憶の同期」。書き出し・取り込み・置き場の選択は、ここからも操作できます</>} />
           </section>
 
           {/* --- AI秘書 --- */}
@@ -219,17 +209,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               端末内の全文検索(ローカル RAG)は <C>/rag &lt;フォルダ&gt;</C>。
               画面を見せるなら <C>/see</C>、見守りは <C>/watch</C>。
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-secretary.webp"
-                alt="詳細設定の AI 秘書。定期チェック、ブリーフィング、画面の見守り、メールの見張り"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                詳細設定の「AI 秘書」。定期チェックの間隔も、見守りの入り切りも、ここからそのまま決められます
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-secretary.webp" alt="詳細設定の AI 秘書。定期チェック、ブリーフィング、画面の見守り、メールの見張り" caption={<>詳細設定の「AI 秘書」。定期チェックの間隔も、見守りの入り切りも、ここからそのまま決められます</>} />
             <P>
               Claude Desktop や VS Code から Mirika 経由でツールを使う「伝言」も可能です
               (ブリッジは <C>127.0.0.1:9801</C>。使用中なら 9821 → 8801 に自動で譲ります)。
@@ -238,23 +218,23 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <P>
               Google 連携を使わなくても、<C>/mail pop &lt;ホスト[:ポート]&gt; &lt;ユーザー&gt; &lt;パスワード&gt;</C>{' '}
               で「メールが来たら教えて」が成立します。POP over SSL(既定 995)のあるプロバイダなら
-              どこでも使えて、読むのは<strong className="text-cream">ヘッダ(差出人と件名)だけ</strong> —
+              どこでも使えて、読むのは<B>ヘッダ(差出人と件名)だけ</B> —
               本文は取らず、受信箱の状態も変えません。新着は定期チェックの巡回で知らせます。
             </P>
             <P>
-              <strong className="text-cream">Yahoo! メール(日本)の例</strong>:
+              <B>Yahoo! メール(日本)の例</B>:
             </P>
             <Steps
               items={[
                 <>Yahoo! メールの設定で <C>IMAP/POP/SMTP アクセス</C> を有効にしておく(既定では切れています)</>,
-                <>2段階認証を使っているなら、ログイン用のパスワードではなく<strong className="text-cream">アプリパスワード</strong>を発行する</>,
+                <>2段階認証を使っているなら、ログイン用のパスワードではなく<B>アプリパスワード</B>を発行する</>,
                 <><C>/mail pop pop.mail.yahoo.co.jp あなたのYahoo!JAPAN_ID パスワード</C> —— ポートは既定の 995(SSL)のままで大丈夫です</>,
               ]}
             />
             <Note>
               他社の例: Gmail は <C>pop.gmail.com</C>、Outlook.com は{' '}
               <C>outlook.office365.com</C>(いずれも 995)。
-              <strong className="text-cream">ふだんのログインパスワードではなくアプリパスワードを使ってください</strong> —
+              <B>ふだんのログインパスワードではなくアプリパスワードを使ってください</B> —
               多くのプロバイダは2段階認証を有効にしていると通常のパスワードでは弾きます。
               つながるかどうかは保存する前に確かめるので、打ち間違えても設定は残りません。
               パスワードは端末内で暗号化して保存します(OS の鍵輪が無い環境ではその旨をお伝えします)。
@@ -274,12 +254,12 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <P>
               旧伺かの台本(さくらスクリプト)がそのまま動きます。
               手元で試すなら <C>{'/sakura \\0\\s[0]こんにちは。\\w4\\1おい。\\e'}</C>。
-              同じポートで <strong className="text-cream">SSTP(SEND / NOTIFY)を受信</strong>するので、
+              同じポートで <B>SSTP(SEND / NOTIFY)を受信</B>するので、
               SSP など既存のツールから台本を送り込めます(UTF-8 のみ)。
             </P>
             <H3>ゴースト間コミュニケート</H3>
             <P>
-              同じデスクトップにいる<strong className="text-cream">他のゴーストと会話</strong>できます。
+              同じデスクトップにいる<B>他のゴーストと会話</B>できます。
               <C>/communicate &lt;ことば&gt;</C> で隣の子に話しかけると、返ってきた台本をそのまま喋ります。
               逆に SSTP COMMUNICATE を受けたときは、この子として返事を返します
               (ユーザー個人の予定や記憶は他所の子には話しません)。
@@ -290,7 +270,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
           <section className="mb-16">
             <H2 id="card">キャラクターカード</H2>
             <P>
-              SillyTavern などで配られている<strong className="text-cream">キャラクターカード(V2 / V3)</strong>を、
+              SillyTavern などで配られている<B>キャラクターカード(V2 / V3)</B>を、
               PNG のままドラッグ&ドロップするだけで人格として取り込めます(<C>/card &lt;ファイル&gt;</C> でも同じ)。
               JSON のカードにも対応しています。
             </P>
@@ -298,11 +278,11 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               items={[
                 <>カードの PNG をキャラに落とす</>,
                 <>名前・説明・性格・場面・会話例が性格設定に入り、ロアブックは設定メモ(<C>/lore</C>)へ</>,
-                <>PNG のカードは<strong className="text-cream">その絵が身体になり</strong>、カードの第一声で挨拶します</>,
+                <>PNG のカードは<B>その絵が身体になり</B>、カードの第一声で挨拶します</>,
               ]}
             />
             <Note>
-              <strong className="text-cream">上書きが心配なとき</strong> — 自分で書いた性格が入っている場合は、
+              <B>上書きが心配なとき</B> — 自分で書いた性格が入っている場合は、
               取り込む前に確認が出ます(そのままファイルに書き出してから進むこともできます)。
               取り込み後も <C>/card undo</C> で1段ずつ戻せ(5回ぶん保持)、
               <C>/card reset</C> ならカードを読む前まで一気に戻ります。
@@ -316,14 +296,14 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <P>
               <C>/sing [お題]</C> で、実際にメロディに乗せて歌います。
               歌詞はその場で作り、旋律はアプリが持つわらべうた風の音形に乗せます。
-              VOICEVOX の<strong className="text-cream">歌唱対応キャラ</strong>が要ります
+              VOICEVOX の<B>歌唱対応キャラ</B>が要ります
               (入っていないエンジンではその旨を伝えて何もしません)。
             </P>
             <H3>絵を描く</H3>
             <P>
               <C>/draw [お題]</C> で描いて、スケッチブック窓に見せてくれます。
               ローカルに画像生成 API(AUTOMATIC1111 互換。7860 / 7861)が動いていればそれで描き、
-              無ければ<strong className="text-cream">丸と線で手描き</strong>します。描いた絵は設定フォルダの
+              無ければ<B>丸と線で手描き</B>します。描いた絵は設定フォルダの
               <C>drawings/</C> に残ります。
             </P>
             <P>相方がいるときは、歌い終わり・描き上がりにツッコミを入れてきます。</P>
@@ -362,29 +342,19 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <P>
               コーナーはお便り・大喜利・豆知識・架空CM・お悩み相談・脳内ランキング・三択クイズ・即興ドラマに加えて、
-              <strong className="text-cream">即興ソング・作詞対決・お絵かき・イラストお題</strong>があり、
+              <B>即興ソング・作詞対決・お絵かき・イラストお題</B>があり、
               前振りの掛け合いのあとに実際に歌い、描きます。
             </P>
             <P>
               <C>/stream start &lt;ライブURL&gt;</C> で YouTube ライブのコメントを拾って読み上げます
               (スーパーチャットは最優先)。番組の味付けは <C>/radio otaku</C> でオタク特化パックに切り替えられます。
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-stream.png"
-                alt="詳細設定の配信まわり。配信のかたち、コメントの受け口、おしゃべり度"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                詳細設定の「配信」。かたち・コメントの受け口・おしゃべり度は、ここからも決められます
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-stream.webp" alt="詳細設定の配信まわり。配信のかたち、コメントの受け口、おしゃべり度" caption={<>詳細設定の「配信」。かたち・コメントの受け口・おしゃべり度は、ここからも決められます</>} />
             <H3>ふたつの配信のかたち</H3>
             <P>
-              <C>/stream host</C> は<strong className="text-cream">この子が番組を持つ</strong>形です
+              <C>/stream host</C> は<B>この子が番組を持つ</B>形です
               (コーナー進行・歌・お絵かき・締めの「えんいー」。開始は <C>/stream start</C>)。
-              <C>/stream assist</C> は<strong className="text-cream">あなたが主役で、この子が相棒席に座る</strong>形 —
+              <C>/stream assist</C> は<B>あなたが主役で、この子が相棒席に座る</B>形 —
               番組の台本は回さず、コメントを読み、呼ばれたときと質問のときだけ拾って返します。
               喋りすぎないことがこのモードの品質なので、配信者の声に被せないための間合いが入っています
               (手加減は <C>/stream chatty 0〜100</C>。0 は読むことに徹します)。
@@ -392,7 +362,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <P>
               配信開始の一連は <C>/stream go &lt;配信の内容&gt;</C> のひと言で —
               配信モードに入り、OBS の配信を開始し(<C>/obs connect</C> 済みなら)、
-              告知文の下書きまで作ります。<strong className="text-cream">投稿だけは自分で押します</strong>
+              告知文の下書きまで作ります。<B>投稿だけは自分で押します</B>
               (取り返しがつかないものを勝手に撃たないため。<C>/announce post</C> で投稿画面が開きます)。
             </P>
             <H3>コメントビューアと繋ぐ(棒読みちゃん互換)</H3>
@@ -401,7 +371,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               わんコメ(OneComme)やマルチコメントビューアなど、お使いのツールの
               「棒読みちゃん連携」をそのまま向けるだけで、コメントがこの子の声で流れます
               (本家と同じポートなので、同時には使えません)。
-              <strong className="text-cream">配信サイトごとの対応はコメビュ側に任せます</strong> —
+              <B>配信サイトごとの対応はコメビュ側に任せます</B> —
               YouTube も Twitch もニコ生も、わんコメが拾えるものはそのまま届きます。
               支援モード中は、読み上げるだけでなく拾って返す判断もここを通ります。
             </P>
@@ -413,7 +383,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               ON AIR ランプ・いまのコーナー・テロップ・音声クレジットが自動で出ます
               (机側のオーバーレイは <C>radio-desk.html</C>)。局名やテロップは
               アプリから <C>/radio title</C> で差し替えられます。
-              <strong className="text-cream">お絵かきで描いた絵は右下のイーゼルに表示されます</strong>。
+              <B>お絵かきで描いた絵は右下のイーゼルに表示されます</B>。
               キャラのウィンドウキャプチャをその上に重ねてください。
             </P>
             <Note>
@@ -428,20 +398,20 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="pro">Pro とライセンス</H2>
             <P>
               本体は無料で使えます(専用ライセンスのフリーウェア)。
-              Pro は買い切りで、<strong className="text-cream">配信者モード・シナリオライター・ネットラジオ・Spotify 連携・マルチゴースト</strong>がアンロックされます(それぞれの中身は <a href="https://pro.mirika.dev/" className="text-sakura hover:underline">pro.mirika.dev</a> に)。
+              Pro は買い切りで、<B>配信者モード・シナリオライター・ネットラジオ・Spotify 連携・マルチゴースト</B>がアンロックされます(それぞれの中身は <A href="https://pro.mirika.dev/">pro.mirika.dev</A> に)。
             </P>
             <Steps
               items={[
                 <>
-                  <a href="https://emerauda.booth.pm/items/8649631" className="text-sakura hover:underline">
+                  <A href="https://emerauda.booth.pm/items/8649631">
                     Booth
-                  </a>{' '}
+                  </A>{' '}
                   で Pro を購入する
                 </>,
                 <>
-                  <a href="https://pro.mirika.dev/" className="text-sakura hover:underline">
+                  <A href="https://pro.mirika.dev/">
                     pro.mirika.dev
-                  </a>{' '}
+                  </A>{' '}
                   に注文番号と注文日を入れてライセンスキーを受け取る
                 </>,
                 <>
@@ -460,16 +430,16 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="discord">Discord でも使える</H2>
             <P>
               Mirika は Discord にもいます。
-              <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">公式サーバー</a>
+              <A href="https://discord.gg/fnmUau5qzB">公式サーバー</A>
               で動くほか、アプリを「自分に追加」(個人インストール)すれば、DM でも Bot のいない
               サーバーでも秘書を連れ歩けます。読み上げなどのサーバー機能は Pro の一機能です。
             </P>
             <Steps
               items={[
                 <>
-                  <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">公式 Discord に入る</a>か、
-                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465" className="text-sakura hover:underline">自分のサーバーに Bot を招待</a>する、または
-                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands" className="text-sakura hover:underline">自分のアカウントに追加</a>(DM やどのサーバーでも使えます)
+                  <A href="https://discord.gg/fnmUau5qzB">公式 Discord に入る</A>か、
+                  <A href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465">自分のサーバーに Bot を招待</A>する、または
+                  <A href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands">自分のアカウントに追加</A>(DM やどのサーバーでも使えます)
                 </>,
                 <>
                   Booth で購入済みなら <C>/order</C> に注文番号と注文日 — その場でライセンスキーを受け取れます
@@ -481,15 +451,15 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             />
             <P>
               <C>/talk</C> はミリカとの会話です。使い方の質問には公式ドキュメントを根拠に、出典リンク付きで答えます。
-              返事の下のボタンで<strong className="text-cream">記憶</strong>をオンにすると会話を覚えます
+              返事の下のボタンで<B>記憶</B>をオンにすると会話を覚えます
               (あなたの分だけ・いつでも全部消せます)。<C>/todo</C> は
-              <strong className="text-cream">デスクトップの TODO と双方向同期</strong>で、
+              <B>デスクトップの TODO と双方向同期</B>で、
               期限が近づくと DM にも3段階(24時間前 → 1時間前 → 超過)で知らせます。
             </P>
             <P>
               読み上げは <C>/voice bind</C> したボイスチャンネルを VOICEVOX(+ Nemo、全136声)で読みます。
               自分の声は <C>/voice speaker</C>(検索でも、一覧からでも選べます)。
-              <C>/voice listen</C> をオンにしたサーバーでは「<strong className="text-cream">ミリカ</strong>」と
+              <C>/voice listen</C> をオンにしたサーバーでは「<B>ミリカ</B>」と
               呼びかけると聞き取り、声で返します — 音声は文字にした瞬間に捨て、呼びかけ以外の発話は文字も残しません。
             </P>
             <Note>
@@ -574,7 +544,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H3>うまく動かないとき</H3>
             <P>
               <C>/check</C> で頭脳・声・マイク・秘書・記憶の状態をまとめて確認できます。
-              それでも様子がおかしいときは <C>/log</C> —— <strong className="text-cream">動作ログの入ったフォルダが開きます</strong>
+              それでも様子がおかしいときは <C>/log</C> —— <B>動作ログの入ったフォルダが開きます</B>
               (7日分・APIキーや合言葉は伏せ字)。ご報告にその日のファイルを添えていただけると、
               こちらで原因を辿れます。詳細設定の「困ったとき」からも同じフォルダを開けます。
             </P>
@@ -586,10 +556,10 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               <C>POST /shell/say</C> に返事する — ブラウザだけで身体が書けます。
             </P>
             <P>
-              約束は <strong className="text-cream">繋がっただけでは使えない</strong>形になっています。
+              約束は <B>繋がっただけでは使えない</B>形になっています。
               版の突き合わせ・合言葉・自己紹介(できることの申告)が済んで初めて指令が届き、
               まだ準備できていない相手や、その身体にできない指令は
-              <strong className="text-cream">黙って捨てずに送信失敗として返します</strong>
+              <B>黙って捨てずに送信失敗として返します</B>
               (「たまに喋らない身体」を作らないため)。申告しなかった能力は「できない」扱いです。
             </P>
             <H3>OBS 連携 API(SSE)</H3>
@@ -623,14 +593,9 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="trouble">困ったとき</H2>
             <P>
               ここに無い症状は{' '}
-              <a
-                href="https://discord.gg/fnmUau5qzB"
-                target="_blank"
-                rel="noopener"
-                className="text-sakura hover:underline"
-              >
+              <A href="https://discord.gg/fnmUau5qzB" blank>
                 公式 Discord
-              </a>{' '}
+              </A>{' '}
               で聞いてください。その日の動作ログ(右クリックメニュー →
               「動作ログを開く(不具合の報告用)」)を添えていただけると、原因がすぐ分かります。
             </P>
@@ -653,7 +618,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <H3>歌わない</H3>
             <P>
-              歌には VOICEVOX の<strong className="text-cream">歌唱対応キャラ</strong>が必要です。
+              歌には VOICEVOX の<B>歌唱対応キャラ</B>が必要です。
               AivisSpeech など歌唱に対応していないエンジンでは歌えません。
             </P>
             <H3>取り込んだカードを元に戻したい</H3>

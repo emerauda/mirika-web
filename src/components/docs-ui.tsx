@@ -1,6 +1,9 @@
 import type { ReactNode } from 'react';
 
-/** 使い方ドキュメント(全言語共通)の組版部品。本文は docs-body-*.tsx が言語ごとに持つ。 */
+/** 使い方ドキュメント(全言語共通)の組版部品。本文は docs-body-*.tsx が言語ごとに持つ。
+ *  法務ページと共通の部品(P/B/C/A/Note/Shot)は prose.tsx にあり、ここから再輸出する。 */
+
+export { A, B, C, Note, P, Shot } from './prose';
 
 export function H2({ id, children }: { id: string; children: ReactNode }) {
   return (
@@ -12,26 +15,6 @@ export function H2({ id, children }: { id: string; children: ReactNode }) {
 
 export function H3({ children }: { children: ReactNode }) {
   return <h3 className="font-bold text-cream mt-8 mb-2 text-lg">{children}</h3>;
-}
-
-export function P({ children }: { children: ReactNode }) {
-  return <p className="text-mist leading-relaxed mb-4">{children}</p>;
-}
-
-export function C({ children }: { children: ReactNode }) {
-  return (
-    <code className="font-mono text-[0.9em] text-sakura bg-paper/60 px-1.5 py-0.5 rounded">
-      {children}
-    </code>
-  );
-}
-
-export function Note({ children }: { children: ReactNode }) {
-  return (
-    <div className="my-5 rounded-lg border-l-2 border-sakura/50 bg-paper/40 px-4 py-3 text-sm text-mist leading-relaxed">
-      {children}
-    </div>
-  );
 }
 
 export function Pro() {

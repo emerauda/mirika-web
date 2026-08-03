@@ -10,32 +10,38 @@
  *
  * 本文は言語ごとに legal-body-*.tsx が丸ごと持つ(法務文書の逐語 t() 分割は
  * 語順と文責の両面で危うい)。日本語が正文で、他言語には Shell が
- * 「翻訳は参考」の注記を自動で挿す。
+ * 「翻訳は参考」の注記を自動で挿す。本文は言語別チャンク(lazy)。
  */
-import { useLang, useT } from '../i18n';
+import { lazy, Suspense, type ComponentType } from 'react';
+import { pickByLang, useLang, useT, type Lang } from '../i18n';
 import { Shell } from './legal-ui';
-import { PrivacyBodyJa, TermsBodyJa } from './legal-body-ja';
-import { PrivacyBodyEn, TermsBodyEn } from './legal-body-en';
-import { PrivacyBodyZhCn, TermsBodyZhCn } from './legal-body-zh-cn';
-import { PrivacyBodyZhTw, TermsBodyZhTw } from './legal-body-zh-tw';
-import { PrivacyBodyKo, TermsBodyKo } from './legal-body-ko';
+
+const PRIVACY: Record<Lang, ComponentType> = {
+  ja: lazy(() => import('./legal-body-ja').then((m) => ({ default: m.PrivacyBodyJa }))),
+  en: lazy(() => import('./legal-body-en').then((m) => ({ default: m.PrivacyBodyEn }))),
+  'zh-CN': lazy(() => import('./legal-body-zh-cn').then((m) => ({ default: m.PrivacyBodyZhCn }))),
+  'zh-TW': lazy(() => import('./legal-body-zh-tw').then((m) => ({ default: m.PrivacyBodyZhTw }))),
+  ko: lazy(() => import('./legal-body-ko').then((m) => ({ default: m.PrivacyBodyKo }))),
+};
+const TERMS: Record<Lang, ComponentType> = {
+  ja: lazy(() => import('./legal-body-ja').then((m) => ({ default: m.TermsBodyJa }))),
+  en: lazy(() => import('./legal-body-en').then((m) => ({ default: m.TermsBodyEn }))),
+  'zh-CN': lazy(() => import('./legal-body-zh-cn').then((m) => ({ default: m.TermsBodyZhCn }))),
+  'zh-TW': lazy(() => import('./legal-body-zh-tw').then((m) => ({ default: m.TermsBodyZhTw }))),
+  ko: lazy(() => import('./legal-body-ko').then((m) => ({ default: m.TermsBodyKo }))),
+};
+
+const FALLBACK = <div className="min-h-[50vh]" aria-busy="true" />;
 
 export function Privacy() {
   const { lang } = useLang();
   const t = useT();
-  const Body =
-    lang === 'en'
-      ? PrivacyBodyEn
-      : lang === 'zh-CN'
-        ? PrivacyBodyZhCn
-        : lang === 'zh-TW'
-          ? PrivacyBodyZhTw
-          : lang === 'ko'
-            ? PrivacyBodyKo
-            : PrivacyBodyJa;
+  const Body = pickByLang(lang, PRIVACY);
   return (
     <Shell title={t('プライバシーポリシー', 'Privacy Policy', { 'zh-CN': '隐私政策', 'zh-TW': '隱私政策', ko: '개인정보 처리방침' })}>
-      <Body />
+      <Suspense fallback={FALLBACK}>
+        <Body />
+      </Suspense>
     </Shell>
   );
 }
@@ -43,19 +49,12 @@ export function Privacy() {
 export function Terms() {
   const { lang } = useLang();
   const t = useT();
-  const Body =
-    lang === 'en'
-      ? TermsBodyEn
-      : lang === 'zh-CN'
-        ? TermsBodyZhCn
-        : lang === 'zh-TW'
-          ? TermsBodyZhTw
-          : lang === 'ko'
-            ? TermsBodyKo
-            : TermsBodyJa;
+  const Body = pickByLang(lang, TERMS);
   return (
     <Shell title={t('利用規約', 'Terms of Use', { 'zh-CN': '使用条款', 'zh-TW': '使用條款', ko: '이용약관' })}>
-      <Body />
+      <Suspense fallback={FALLBACK}>
+        <Body />
+      </Suspense>
     </Shell>
   );
 }

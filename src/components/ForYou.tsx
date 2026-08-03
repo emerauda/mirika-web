@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react';
 import { Smile, Sparkles, MessageCircle, Ghost, Mail, Music } from 'lucide-react';
-import { Kicker, TitleBar } from './ui';
-import { Reveal, StaggerGroup, StaggerItem, TiltCard } from './primitives';
+import { Section, TitleBar } from './ui';
+import { StaggerGroup, StaggerItem, TiltCard } from './primitives';
 import { useT } from '../i18n';
 
 type Entry = { from: string; Icon: ComponentType<{ className?: string }>; title: string; desc: string };
@@ -71,32 +71,29 @@ export function ForYou() {
     },
   ];
   return (
-    <section id="foryou" className="border-t border-cream/10 scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-6 py-24">
-        <Reveal className="mb-14 text-center">
-          <Kicker index="07" label="For You" />
-          <h2 className="font-mincho font-bold text-3xl md:text-4xl leading-relaxed">
-            {t('あなたの入口は、どこからでも。', 'Come in from any door.', { 'zh-CN': '你的入口,四面八方。', 'zh-TW': '你的入口,四面八方。', ko: '당신의 입구는, 어디서든.' })}
-          </h2>
-        </Reveal>
-
-        <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ENTRIES.map((e) => (
-            <StaggerItem key={e.from}>
-              <TiltCard className="os-window h-full">
-                <TitleBar>
-                  <span>{e.from}</span>
-                </TitleBar>
-                <div className="p-6">
-                  <e.Icon className="w-6 h-6 text-sakura mb-4" />
-                  <h3 className="font-mincho font-bold text-lg mb-2.5">{e.title}</h3>
-                  <p className="text-sub text-sm leading-relaxed">{e.desc}</p>
-                </div>
-              </TiltCard>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
-      </div>
-    </section>
+    <Section
+      id="foryou"
+      index="07"
+      label="For You"
+      title={t('あなたの入口は、どこからでも。', 'Come in from any door.', { 'zh-CN': '你的入口,四面八方。', 'zh-TW': '你的入口,四面八方。', ko: '당신의 입구는, 어디서든.' })}
+      headerClassName="mb-14 text-center"
+    >
+      <StaggerGroup className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {ENTRIES.map((e) => (
+          <StaggerItem key={e.from}>
+            <TiltCard className="os-window h-full">
+              <TitleBar>
+                <span>{e.from}</span>
+              </TitleBar>
+              <div className="p-6">
+                <e.Icon className="w-6 h-6 text-sakura mb-4" />
+                <h3 className="font-mincho font-bold text-lg mb-2.5">{e.title}</h3>
+                <p className="text-sub text-sm leading-relaxed">{e.desc}</p>
+              </div>
+            </TiltCard>
+          </StaggerItem>
+        ))}
+      </StaggerGroup>
+    </Section>
   );
 }

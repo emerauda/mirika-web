@@ -16,14 +16,15 @@ export function Marquee() {
    * CSS アニメーションに任せると、タブを離れたあとや描画が混んだあとに
    * 途中で固まったまま戻らないことがある(実際に止まった)。
    * requestAnimationFrame なら、止まるのは「画面を見ていないあいだ」だけで、
-   * 戻ってくれば必ず動き出す。動きを減らす設定の人には最初から動かさない。
+   * 戻ってくれば必ず動き出す。動きを減らす設定の人には動かさず、
+   * 設定が途中で切り替わればその場で止める/動かす。
    */
   useEffect(() => {
     const el = track.current;
     if (!el) return;
-    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
 
     let raf = 0;
+    let running = false;
     let last = performance.now();
     let x = 0;
 
@@ -38,7 +39,29 @@ export function Marquee() {
       }
       raf = requestAnimationFrame(step);
     };
-    raf = requestAnimationFrame(step);
+    const start = () => {
+      if (running) return;
+      running = true;
+      last = performance.now();
+      raf = requestAnimationFrame(step);
+    };
+    const stop = () => {
+      if (!running) return;
+      running = false;
+      cancelAnimationFrame(raf);
+      // 止めたら初期位置へ(最初から動かしていないときと同じ見た目に)
+      x = 0;
+      el.style.transform = '';
+    };
+
+    // 動きを減らす設定は初回に見るだけでなく、OS 側での切り替えにも追従する
+    const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    const sync = () => {
+      if (mq?.matches) stop();
+      else start();
+    };
+    sync();
+    mq?.addEventListener('change', sync);
 
     // 復帰時に時計を合わせ直す(離れているあいだの経過を持ち込まない)
     const resync = () => {
@@ -48,6 +71,7 @@ export function Marquee() {
     window.addEventListener('pageshow', resync);
     return () => {
       cancelAnimationFrame(raf);
+      mq?.removeEventListener('change', sync);
       document.removeEventListener('visibilitychange', resync);
       window.removeEventListener('pageshow', resync);
     };

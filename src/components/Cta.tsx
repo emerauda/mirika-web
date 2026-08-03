@@ -15,7 +15,7 @@ export function Cta() {
           loading="lazy"
           className="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0b0912] via-[#0b0912]/60 to-[#0b0912]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-void via-void/60 to-void" />
       </div>
       <div className="relative max-w-3xl mx-auto px-6 py-24 text-center">
         <Reveal>
@@ -39,7 +39,7 @@ export function Cta() {
         <Reveal className="flex flex-wrap justify-center gap-4">
           <MagneticLink
             href="#download"
-            className="btn-hard inline-flex items-center gap-2 bg-sakura text-white px-6 py-3.5 font-bold text-sm"
+            className="btn-hard inline-flex items-center gap-2 bg-sakura text-plum px-6 py-3.5 font-bold text-sm"
           >
             <Download className="w-4 h-4" />{' '}
             {t('ダウンロード', 'Download', { 'zh-CN': '下载', 'zh-TW': '下載', ko: '다운로드' })}

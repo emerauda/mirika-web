@@ -1,4 +1,4 @@
-import { H2, H3, Note, P, Ul } from './legal-ui';
+import { A, B, H2, H3, Note, P, Ul } from './legal-ui';
 
 /** 法務文書の本文(韓国語)。正文は legal-body-ja.tsx —— 構成はそのファイルに揃える。 */
 
@@ -13,7 +13,7 @@ export function PrivacyBodyKo() {
       <H2 id="not-collected">먼저, 수집하지 않는 것</H2>
       <P>
         기본 구성에서는 다음 항목이{' '}
-        <strong className="text-cream">일절 기기 밖으로 나가지 않습니다</strong>. 저희 서버로
+        <B>일절 기기 밖으로 나가지 않습니다</B>. 저희 서버로
         전송되는 일도, 저장되는 일도 없습니다.
       </P>
       <Ul>
@@ -25,7 +25,7 @@ export function PrivacyBodyKo() {
       </Ul>
       <Note>
         사용 현황 측정(애널리틱스)도, 광고도,{' '}
-        <strong className="text-cream">크래시 리포트 자동 전송도 하지 않습니다</strong>. 동작
+        <B>크래시 리포트 자동 전송도 하지 않습니다</B>. 동작
         로그는 기기 안에만 남으며, 문제를 신고할 때 여러분이 직접 첨부하는 것입니다.
       </Note>
 
@@ -38,7 +38,7 @@ export function PrivacyBodyKo() {
       <H3>클라우드 두뇌(선택)</H3>
       <P>
         ChatGPT, Claude, Gemini 등을 두뇌로 선택한 경우,{' '}
-        <strong className="text-cream">해당 제공자에게 여러분의 발언과 맥락이 전송됩니다</strong>.
+        <B>해당 제공자에게 여러분의 발언과 맥락이 전송됩니다</B>.
         취급은 해당 제공자의 약관을 따릅니다. 기본값은 로컬 두뇌이며, 이 기능은 여러분이
         명시적으로 선택했을 때만 동작합니다.
       </P>
@@ -46,7 +46,7 @@ export function PrivacyBodyKo() {
       <H3>기억 동기화(선택)</H3>
       <P>
         여러 기기에서 같은 아이를 키울 때, 기억은{' '}
-        <strong className="text-cream">여러분의 기기에서 암호화된 뒤에</strong> 보관처로
+        <B>여러분의 기기에서 암호화된 뒤에</B> 보관처로
         전송됩니다. 암호 문구는 여러분의 기기에만 있으므로, 보관처를 마련하는 저희도 내용을 읽을
         수 없습니다.
       </P>
@@ -59,22 +59,22 @@ export function PrivacyBodyKo() {
       <P>
         Pro나 조직용 라이선스를 사용하는 경우, 키 확인과 정책 수신을 위해 저희 서버와 통신합니다.
         이때 다루는 것은 라이선스 식별자, 기기 이름, 앱 버전, 마지막으로 확인한 일시,{' '}
-        <strong className="text-cream">접속한 국가</strong>입니다.{' '}
-        <strong className="text-cream">대화 내용은 포함되지 않습니다.</strong>
+        <B>접속한 국가</B>입니다.{' '}
+        <B>대화 내용은 포함되지 않습니다.</B>
       </P>
       <P>
         국가를 기록하는 것은{' '}
-        <strong className="text-cream">키가 배포되고 있지는 않은지 보기 위해서</strong>입니다.
+        <B>키가 배포되고 있지는 않은지 보기 위해서</B>입니다.
         Pro 키는 기기 안에서만 검증할 수 있는 구조이므로, 저희에게 보이는 것은 동기화 보관처를
         사용하실 때뿐입니다. 남는 것은{' '}
-        <strong className="text-cream">최근에 보인 국가 최대 5개와 마지막으로 확인한 일시</strong>
+        <B>최근에 보인 국가 최대 5개와 마지막으로 확인한 일시</B>
         뿐이며, 이동 이력이 되지는 않습니다.
       </P>
       <Note>
-        <strong className="text-cream">IP 주소는 저장하지 않습니다.</strong> 국가는 Cloudflare가
+        <B>IP 주소는 저장하지 않습니다.</B> 국가는 Cloudflare가
         통신에 붙이는 정보에서 읽어 낼 뿐이고, 주소에 해당하는 것은 저희 서버에 남지 않습니다.
         무단 접근 차단은{' '}
-        <strong className="text-cream">저희 서버 앞단의 Cloudflare 계층</strong>에서 이루어집니다.
+        <B>저희 서버 앞단의 Cloudflare 계층</B>에서 이루어집니다.
       </Note>
 
       <H3>외부 서비스 연동(선택)</H3>
@@ -86,11 +86,11 @@ export function PrivacyBodyKo() {
       <H2 id="org">조직에서 사용하시는 경우</H2>
       <P>
         조직 라이선스로 사용하실 때, 관리자는{' '}
-        <strong className="text-cream">
+        <B>
           누가 몇 대를 사용하는지, 마지막으로 언제 사용했는지, 어느 국가에서 사용했는지
-        </strong>
+        </B>
         를 볼 수 있습니다.{' '}
-        <strong className="text-cream">대화 내용은 관리자에게도 보이지 않습니다.</strong> 화면
+        <B>대화 내용은 관리자에게도 보이지 않습니다.</B> 화면
         내용도, 열려 있는 앱도, 입력한 글자도 전달되지 않습니다.
       </P>
       <P>
@@ -110,7 +110,7 @@ export function PrivacyBodyKo() {
         </li>
         <li>
           라이선스를 해지해도{' '}
-          <strong className="text-cream">기기 안의 기억은 사라지지 않습니다</strong>. 동기화도
+          <B>기기 안의 기억은 사라지지 않습니다</B>. 동기화도
           무료 방법으로 계속할 수 있습니다
         </li>
       </Ul>
@@ -129,9 +129,9 @@ export function PrivacyBodyKo() {
 
       <H2 id="contact">문의</H2>
       <P>
-        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+        <A href="https://github.com/emerauda/mirika-web/issues">
           GitHub Issue
-        </a>
+        </A>
         를 통해 연락해 주세요.
       </P>
     </>
@@ -154,7 +154,7 @@ export function TermsBodyKo() {
       <Ul>
         <li>라이선스 키는 구매하신 분 또는 계약하신 조직을 위한 것입니다</li>
         <li>
-          <strong className="text-cream">키를 제3자에게 배포·재판매하지 마세요.</strong> 같은 키를
+          <B>키를 제3자에게 배포·재판매하지 마세요.</B> 같은 키를
           여러 사람이 사용하면 기억의 보관처를 공유하게 되어, 서로의 기억이 섞입니다
         </li>
         <li>조직용 라이선스는 계약하신 좌석 수 범위 안에서 사용해 주세요</li>
@@ -163,9 +163,9 @@ export function TermsBodyKo() {
       <H2 id="content">2. 생성되는 내용에 관하여</H2>
       <P>
         본 소프트웨어는 대규모 언어 모델을 사용해 응답을 생성합니다.{' '}
-        <strong className="text-cream">
+        <B>
           그 내용이 정확하다는 것도, 적절하다는 것도 보증할 수 없습니다.
-        </strong>{' '}
+        </B>{' '}
         중요한 판단은 반드시 직접 확인해 주세요.
       </P>
       <Note>
@@ -185,10 +185,10 @@ export function TermsBodyKo() {
       <P>
         VRM·Live2D 모델, 캐릭터 카드, 음성, 악곡 등 여러분이 가져온 소재의 이용 조건은 각각의
         제공자가 정한 바를 따라 주세요.{' '}
-        <strong className="text-cream">
+        <B>
           본 소프트웨어에서 사용할 수 있다는 것이, 그 소재를 자유롭게 사용해도 된다는 뜻은
           아닙니다.
-        </strong>{' '}
+        </B>{' '}
         방송 등으로 공개하는 경우에는 특히 주의해 주세요.
       </P>
 
@@ -196,13 +196,13 @@ export function TermsBodyKo() {
       <P>
         본 소프트웨어는 있는 그대로 제공됩니다. 이용으로 인해 발생한 손해에 대해서는 저희가
         책임을 지기 어렵습니다. 다만{' '}
-        <strong className="text-cream">
+        <B>
           유료로 계약하신 범위에 대해서는, 받은 대가를 상한으로 하여 대응해 드립니다.
-        </strong>
+        </B>
       </P>
       <P>
         기억은 기기 안의 파일에 저장됩니다.{' '}
-        <strong className="text-cream">백업은 직접 해 두시기 바랍니다.</strong> 기기 고장이나
+        <B>백업은 직접 해 두시기 바랍니다.</B> 기기 고장이나
         잘못된 조작으로 인한 소실에 대해 복원을 약속드릴 수는 없습니다.
       </P>
 
@@ -210,23 +210,23 @@ export function TermsBodyKo() {
       <P>
         라이선스 확인이나 동기화 보관처 등 저희가 제공하는 서버 기능은 예고 없이 중지·변경될 수
         있습니다. 중지하는 경우에는{' '}
-        <strong className="text-cream">
+        <B>
           사용 중인 기억을 가지고 나갈 수 있는 기간을 마련한 뒤에
-        </strong>{' '}
+        </B>{' '}
         알려 드립니다.
       </P>
       <P>
         본 소프트웨어 자체는 서버가 멈춰도{' '}
-        <strong className="text-cream">로컬 기능은 그대로 동작합니다</strong>. 라이선스 확인이
+        <B>로컬 기능은 그대로 동작합니다</B>. 라이선스 확인이
         되지 않는 기간이 이어진 경우 무료 범위로 돌아가지만, 기억이나 설정에는 손대지 않습니다.
       </P>
 
       <H2 id="refund">7. 환불</H2>
       <P>
         다운로드 판매의 특성상 원칙적으로 환불에 응하기 어렵습니다. 다만{' '}
-        <strong className="text-cream">
+        <B>
           본 소프트웨어의 결함으로 인해 구매 시의 설명대로 동작하지 않는 경우
-        </strong>
+        </B>
         에는 상담해 주세요.
       </P>
 
@@ -241,9 +241,9 @@ export function TermsBodyKo() {
 
       <H2 id="contact">문의</H2>
       <P>
-        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+        <A href="https://github.com/emerauda/mirika-web/issues">
           GitHub Issue
-        </a>
+        </A>
         를 통해 연락해 주세요.
       </P>
     </>

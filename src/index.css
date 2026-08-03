@@ -3,12 +3,47 @@
 @theme {
   --color-night:#0e0c15; --color-cream:#eae6f2; --color-mist:#9d97ac;
   --color-paper:#181527; --color-ink:#e9e5f2; --color-sub:#9d97ac; --color-sakura:#ff6b8f;
+  /* ブランドの補助色。hex 直書きを散らさない(グラデーションは .brand-gradient に) */
+  --color-sakura-lite:#ff8fab; --color-iris:#c9a2ff; --color-aqua:#8be2f5;
+  --color-void:#0b0912; --color-plum:#1a1420;
   --font-mincho:"Shippori Mincho","Yu Mincho",serif;
   --font-sans:"Noto Sans JP",system-ui,sans-serif;
   --font-mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 
 :root { color-scheme: dark; }
+
+/* キーボード操作の現在地。ガラスパネルやグラデーションの上でも見える色で */
+:focus-visible {
+  outline: 2px solid var(--color-sakura-lite);
+  outline-offset: 2px;
+}
+
+/* スキップリンク(フォーカスが当たったときだけ現れる) */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 16px;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background: var(--color-paper);
+  color: var(--color-cream);
+  border: 1px solid rgba(255, 143, 171, 0.45);
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 16px; }
+
+/* ブランドグラデーション(桜→菖蒲→水)。文字は -text を併用 */
+.brand-gradient {
+  background-image: linear-gradient(to right, var(--color-sakura-lite), var(--color-iris), var(--color-aqua));
+}
+.brand-gradient-text {
+  background-image: linear-gradient(to right, var(--color-sakura-lite), var(--color-iris), var(--color-aqua));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 body {
   font-feature-settings: "palt";
@@ -27,15 +62,6 @@ body {
 /* 見出しのネオングロー */
 .glow-text {
   text-shadow: 0 0 32px rgba(255, 107, 143, 0.28), 0 0 90px rgba(150, 120, 255, 0.18);
-}
-
-/* ホログリッド(パネル内のデスクトップ下地) */
-.grid-paper {
-  background-image:
-    radial-gradient(ellipse 85% 55% at 62% 100%, rgba(255, 107, 143, 0.13), transparent 66%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 100% 100%, 28px 28px, 28px 28px;
 }
 
 /* HUD ガラスパネル(旧: 紙ウィンドウ) */
@@ -120,10 +146,6 @@ body {
 }
 .marquee-track > span { flex-shrink: 0; padding-right: 3rem; }
 
-/* ゴーストのゆらぎ(reduced-motion 時のフォールバック) */
-@keyframes gentle-hover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-.animate-gentle-hover { animation: gentle-hover 6s ease-in-out infinite; }
-
 /* 舞い落ちる花びら(未来の花) */
 .petal {
   position: absolute;
@@ -141,14 +163,9 @@ body {
   100% { transform: translateY(110vh) translateX(7vw) rotate(300deg); opacity: 0; }
 }
 
-/* FAQ(details/summary の名残: マーカー無効化) */
-details > summary { list-style: none; cursor: pointer; }
-summary::-webkit-details-marker { display: none; }
-
 /* 動きを減らす設定への配慮 */
 @media (prefers-reduced-motion: reduce) {
-  .animate-gentle-hover, .petal { animation: none; }
-  .petal { display: none; }
+  .petal { animation: none; display: none; }
   html { scroll-behavior: auto; }
 }
 
