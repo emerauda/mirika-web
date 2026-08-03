@@ -462,7 +462,11 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <Steps
               items={[
-                <>공식 Discord에 참여(또는 앱을 내 계정에 추가)</>,
+                <>
+                  <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">공식 Discord에 참여</a>하거나,{' '}
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465" className="text-sakura hover:underline">내 서버에 봇을 초대</a>하거나,{' '}
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands" className="text-sakura hover:underline">내 계정에 추가</a>(DM에서도 어느 서버에서도 사용 가능)
+                </>,
                 <>
                   Booth에서 구매하셨다면 <C>/order</C>에 주문번호와 주문일을 입력 — 그 자리에서 라이선스 키를 받을 수 있습니다
                 </>,

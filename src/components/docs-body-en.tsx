@@ -467,7 +467,11 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <Steps
               items={[
-                <>Join the official Discord (or add the app to your account)</>,
+                <>
+                  <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">Join the official Discord</a>,{' '}
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465" className="text-sakura hover:underline">invite the bot to your server</a>, or{' '}
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands" className="text-sakura hover:underline">add it to your account</a> (works in DMs and any server)
+                </>,
                 <>
                   Bought on Booth? <C>/order</C> with your order number and date hands you the license key on the spot
                 </>,

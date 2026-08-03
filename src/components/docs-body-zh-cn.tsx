@@ -467,7 +467,11 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             </P>
             <Steps
               items={[
-                <>加入官方 Discord(或将应用添加到自己的账户)</>,
+                <>
+                  <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">加入官方 Discord</a>,或
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465" className="text-sakura hover:underline">把 Bot 邀请到自己的服务器</a>,或
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands" className="text-sakura hover:underline">添加到自己的账户</a>(私信和任何服务器都能用)
+                </>,
                 <>
                   在 Booth 购买过?在 <C>/order</C> 输入订单号和下单日期 — 当场领取许可证密钥
                 </>,
