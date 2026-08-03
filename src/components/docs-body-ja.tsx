@@ -466,7 +466,11 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <Steps
               items={[
-                <>公式 Discord に入る(またはアプリを自分のアカウントに追加する)</>,
+                <>
+                  <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">公式 Discord に入る</a>か、
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465" className="text-sakura hover:underline">自分のサーバーに Bot を招待</a>する、または
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands" className="text-sakura hover:underline">自分のアカウントに追加</a>(DM やどのサーバーでも使えます)
+                </>,
                 <>
                   Booth で購入済みなら <C>/order</C> に注文番号と注文日 — その場でライセンスキーを受け取れます
                 </>,

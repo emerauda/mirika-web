@@ -467,7 +467,11 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
             </P>
             <Steps
               items={[
-                <>加入官方 Discord(或將應用程式加入自己的帳號)</>,
+                <>
+                  <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">加入官方 Discord</a>,或
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465" className="text-sakura hover:underline">把 Bot 邀請到自己的伺服器</a>,或
+                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands" className="text-sakura hover:underline">加入自己的帳號</a>(私訊和任何伺服器都能用)
+                </>,
                 <>
                   在 Booth 購買過?在 <C>/order</C> 輸入訂單編號與下單日期 — 當場領取授權金鑰
                 </>,
