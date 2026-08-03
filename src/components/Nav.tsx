@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   AnimatePresence,
   motion,
@@ -8,7 +8,7 @@ import {
 } from 'motion/react';
 import { Ghost, Menu, X, Crown, Globe } from 'lucide-react';
 import { GitHubMark, NAV_ITEMS } from './ui';
-import { MagneticLink } from './primitives';
+import { EASE, MagneticLink } from './primitives';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { LANGS, useLang, useT, type Lang } from '../i18n';
 
@@ -21,8 +21,9 @@ const LANG_SHORT: Record<Lang, string> = {
   ko: 'KO',
 };
 
-/** 言語の切替。見た目は短い表示、実体は上に重ねた透明の select(開けばフル名の5言語) */
-function LangSwitch({ className }: { className?: string }) {
+/** 言語の切替。見た目は短い表示、実体は上に重ねた透明の select(開けばフル名の5言語)。
+ *  Docs・法務ページのヘッダーからも使う */
+export function LangSwitch({ className }: { className?: string }) {
   const { lang, setLang } = useLang();
   return (
     <label
@@ -47,6 +48,8 @@ function LangSwitch({ className }: { className?: string }) {
 }
 
 const SECTION_IDS = NAV_ITEMS.map((i) => i.id);
+/** デスクトップのヘッダーに出す項目(全言語1行の幅制約があるため絞る) */
+const DESKTOP_ITEMS = NAV_ITEMS.filter((i) => !i.mobileOnly);
 
 export function Nav() {
   const t = useT();
@@ -57,6 +60,21 @@ export function Nav() {
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 12));
   const active = useActiveSection(SECTION_IDS);
 
+  // 開いている間: Esc で閉じる・背景のスクロールを止める(メニュー下で紙面が滑らない)
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
   return (
     <header
       className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
@@ -66,18 +84,26 @@ export function Nav() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2.5 group">
+        <a href="/" className="flex items-center gap-2.5 group">
           <Ghost className="w-5 h-5 text-sakura transition-transform group-hover:-rotate-12" />
-          <span className="font-mincho font-bold text-lg tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-[#ff8fab] via-[#c9a2ff] to-[#8be2f5]">
+          <span className="font-mincho font-bold text-lg tracking-wide brand-gradient-text">
             Mirika.
           </span>
         </a>
 
-        <nav className="hidden xl:flex items-center gap-5 font-mono text-xs text-mist" aria-label="メインナビゲーション">
-          {NAV_ITEMS.map((item) => (
+        <nav
+          className="hidden xl:flex items-center gap-5 font-mono text-xs text-mist"
+          aria-label={t('メインナビゲーション', 'Main navigation', {
+            'zh-CN': '主导航',
+            'zh-TW': '主導覽',
+            ko: '메인 내비게이션',
+          })}
+        >
+          {DESKTOP_ITEMS.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
+              aria-current={active === item.id ? 'true' : undefined}
               className={`relative py-1 whitespace-nowrap transition-colors hover:text-sakura ${active === item.id ? 'text-sakura' : ''}`}
             >
               {item.label}
@@ -107,7 +133,7 @@ export function Nav() {
             href="https://pro.mirika.dev/"
             target="_blank"
             rel="noopener"
-            className="hidden sm:inline-flex btn-hard items-center gap-1.5 bg-gradient-to-r from-[#ff8fab] to-[#c9a2ff] text-[#1a1420] px-4 py-2 font-mono text-xs font-bold"
+            className="hidden sm:inline-flex btn-hard items-center gap-1.5 bg-gradient-to-r from-sakura-lite to-iris text-plum px-4 py-2 font-mono text-xs font-bold"
           >
             <Crown className="w-3.5 h-3.5" /> Pro
           </MagneticLink>
@@ -122,7 +148,11 @@ export function Nav() {
           <button
             onClick={() => setOpen((o) => !o)}
             className="xl:hidden p-2 text-mist hover:text-sakura transition-colors"
-            aria-label="メニューを開く"
+            aria-label={
+              open
+                ? t('メニューを閉じる', 'Close menu', { 'zh-CN': '关闭菜单', 'zh-TW': '關閉選單', ko: '메뉴 닫기' })
+                : t('メニューを開く', 'Open menu', { 'zh-CN': '打开菜单', 'zh-TW': '開啟選單', ko: '메뉴 열기' })
+            }
             aria-expanded={open}
             aria-controls="mobile-menu"
           >
@@ -136,11 +166,15 @@ export function Nav() {
           <motion.nav
             id="mobile-menu"
             className="xl:hidden overflow-hidden border-t border-cream/10 bg-night/98"
-            aria-label="モバイルナビゲーション"
+            aria-label={t('モバイルナビゲーション', 'Mobile navigation', {
+              'zh-CN': '移动端导航',
+              'zh-TW': '行動版導覽',
+              ko: '모바일 내비게이션',
+            })}
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={reduce ? { height: 'auto', opacity: 1 } : { height: 'auto', opacity: 1 }}
             exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.28, ease: EASE }}
           >
             <div className="max-w-6xl mx-auto px-6 py-4 grid grid-cols-2 gap-x-8 gap-y-3 font-mono text-sm text-mist">
               {NAV_ITEMS.map((item) => (
@@ -148,7 +182,8 @@ export function Nav() {
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={() => setOpen(false)}
-                  className="hover:text-sakura transition-colors py-1"
+                  aria-current={active === item.id ? 'true' : undefined}
+                  className={`hover:text-sakura transition-colors py-1 ${active === item.id ? 'text-sakura' : ''}`}
                 >
                   {item.label}
                 </a>

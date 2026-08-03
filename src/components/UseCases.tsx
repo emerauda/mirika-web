@@ -1,7 +1,7 @@
 import { useMemo, useRef, type ReactNode } from 'react';
 import { motion, useInView, useReducedMotion } from 'motion/react';
 import { Terminal, Calendar, Heart, Moon, Check, MessageCircle } from 'lucide-react';
-import { Kicker, TitleBar } from './ui';
+import { Kicker, Section, TitleBar } from './ui';
 import { Reveal } from './primitives';
 import { useTypewriter } from '../hooks/useTypewriter';
 import { useCountUp } from '../hooks/useCountUp';
@@ -71,7 +71,7 @@ function TerminalMock() {
   return (
     <div
       ref={ref}
-      className="bg-[#0b0912] text-slate-300 p-6 font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap min-h-[132px]"
+      className="bg-void text-slate-300 p-6 font-mono text-xs md:text-sm leading-relaxed whitespace-pre-wrap min-h-[132px]"
     >
       {shown.map((tok, i) =>
         tok.c ? (
@@ -112,14 +112,15 @@ function CheckList({ items }: { items: ReactNode[] }) {
 export function UseCases() {
   const t = useT();
   return (
-    <section id="usecases" className="border-t border-cream/10 scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-6 py-24 space-y-20">
-        <Reveal>
-          <Kicker index="03" label="Use Cases" />
-          <h2 className="font-mincho font-bold text-3xl md:text-4xl">
-            {t('仕事も、日常も、そばに。', 'Beside you — at work and in life.', { 'zh-CN': '工作与日常,都在身旁。', 'zh-TW': '工作與日常,都在身旁。', ko: '일도, 일상도, 곁에서.' })}
-          </h2>
-        </Reveal>
+    <Section
+      id="usecases"
+      index="03"
+      label="Use Cases"
+      title={t('仕事も、日常も、そばに。', 'Beside you — at work and in life.', { 'zh-CN': '工作与日常,都在身旁。', 'zh-TW': '工作與日常,都在身旁。', ko: '일도, 일상도, 곁에서.' })}
+      headerClassName="mb-20"
+    >
+      {/* 見出しと各ケースの間隔は移行前の space-y-20 をそのまま踏襲 */}
+      <div className="space-y-20">
 
         {/* Coding Companion */}
         <Reveal className="grid md:grid-cols-2 gap-12 items-center">
@@ -131,9 +132,7 @@ export function UseCases() {
             <TerminalMock />
           </div>
           <div>
-            <p className="font-mono text-xs text-sakura tracking-widest uppercase mb-4 flex items-center gap-2">
-              <Terminal className="w-4 h-4" /> Coding Companion
-            </p>
+            <Kicker icon={Terminal} sakura label="Coding Companion" className="mb-4" />
             <h3 className="font-mincho font-bold text-2xl md:text-3xl mb-5 leading-relaxed">
               {t('孤独な夜のデバッグも、もう一人じゃない。', 'Late-night debugging, no longer alone.', { 'zh-CN': '深夜孤独的调试,不再是一个人。', 'zh-TW': '深夜孤獨的除錯,不再是一個人。', ko: '외로운 밤의 디버깅도, 이제 혼자가 아니야.' })}
             </h3>
@@ -170,7 +169,7 @@ export function UseCases() {
                 <div className="flex items-center gap-3 border-l-4 border-ink/30 bg-ink/5 px-3 py-2">
                   <span className="font-mono text-xs text-sub">13:00</span> Code Review
                 </div>
-                <div className="flex items-center gap-3 border-l-4 border-sakura bg-sakura/10 px-3 py-2 text-[#ff8fab]">
+                <div className="flex items-center gap-3 border-l-4 border-sakura bg-sakura/10 px-3 py-2 text-sakura-lite">
                   <span className="font-mono text-xs">Ghost</span>{' '}
                   {t('「15時の空き、作業に使う?」', '"That free slot at 3 — use it for focus work?"', { 'zh-CN': '「15 点的空档,用来干活吗?」', 'zh-TW': '「15 點的空檔,用來幹活嗎?」', ko: '"15시 빈 시간, 작업에 쓸까?"' })}
                 </div>
@@ -178,9 +177,7 @@ export function UseCases() {
             </div>
           </div>
           <div className="md:order-1">
-            <p className="font-mono text-xs text-sakura tracking-widest uppercase mb-4 flex items-center gap-2">
-              <Calendar className="w-4 h-4" /> Personal Secretary
-            </p>
+            <Kicker icon={Calendar} sakura label="Personal Secretary" className="mb-4" />
             <h3 className="font-mincho font-bold text-2xl md:text-3xl mb-5 leading-relaxed">
               {t('秘書として、あなたの時間を管理する。', 'As a secretary, she keeps your hours.', { 'zh-CN': '作为秘书,替你打理时间。', 'zh-TW': '作為秘書,替你打理時間。', ko: '비서로서, 당신의 시간을 관리한다.' })}
             </h3>
@@ -216,20 +213,18 @@ export function UseCases() {
                 /todo add {t('見積書を送る @明日', 'send the quote @tomorrow', { 'zh-CN': '发报价单 @明天', 'zh-TW': '寄報價單 @明天', ko: '견적서 보내기 @내일' })}
               </p>
               <p>
-                <span className="text-[#ff8fab] font-semibold">Mirika:</span>{' '}
+                <span className="text-sakura-lite font-semibold">Mirika:</span>{' '}
                 {t('あずかった!デスクトップの子にも伝えておくね。', 'Got it! I will tell the one on your desktop too.', { 'zh-CN': '收到!我也会告诉桌面上的那个她。', 'zh-TW': '收到!我也會告訴桌面上的那個她。', ko: '맡았어! 데스크톱의 아이에게도 전해 둘게.' })}
               </p>
-              <p className="text-sub/60">{t('…(翌日、期限1時間前の DM)…', '… (next day, one hour before the deadline) …', { 'zh-CN': '……(次日,截止前 1 小时的私信)……', 'zh-TW': '……(次日,截止前 1 小時的私訊)……', ko: '…(다음 날, 마감 1시간 전의 DM)…' })}</p>
+              <p className="text-sub/80">{t('…(翌日、期限1時間前の DM)…', '… (next day, one hour before the deadline) …', { 'zh-CN': '……(次日,截止前 1 小时的私信)……', 'zh-TW': '……(次日,截止前 1 小時的私訊)……', ko: '…(다음 날, 마감 1시간 전의 DM)…' })}</p>
               <p>
-                <span className="text-[#ff8fab] font-semibold">Mirika:</span> 🚨{' '}
+                <span className="text-sakura-lite font-semibold">Mirika:</span> 🚨{' '}
                 {t('「見積書を送る」、あと1時間だよ!', '"Send the quote" — one hour left!', { 'zh-CN': '「发报价单」,还剩 1 小时!', 'zh-TW': '「寄報價單」,還剩 1 小時!', ko: '"견적서 보내기", 1시간 남았어!' })}
               </p>
             </div>
           </div>
           <div>
-            <p className="font-mono text-xs text-sakura tracking-widest uppercase mb-4 flex items-center gap-2">
-              <MessageCircle className="w-4 h-4" /> Everywhere Companion
-            </p>
+            <Kicker icon={MessageCircle} sakura label="Everywhere Companion" className="mb-4" />
             <h3 className="font-mincho font-bold text-2xl md:text-3xl mb-5 leading-relaxed">
               {t('デスクを離れても、同じ子と続く。', 'Step away from the desk — she follows.', { 'zh-CN': '离开桌面,也是同一个她。', 'zh-TW': '離開桌面,也是同一個她。', ko: '책상을 떠나도, 같은 아이와 이어진다.' })}
             </h3>
@@ -261,36 +256,34 @@ export function UseCases() {
             </TitleBar>
             <div className="p-6 font-mono text-xs leading-loose">
               <p>
-                <span className="text-[#ff8fab] font-semibold">fact</span>{' '}
+                <span className="text-sakura-lite font-semibold">fact</span>{' '}
                 {t('ユーザーは猫を飼っている', 'user has a cat', { 'zh-CN': '用户养了一只猫', 'zh-TW': '用戶養了一隻貓', ko: '사용자는 고양이를 키운다' })}{' '}
-                <span className="text-sub/60">(2026-05-12)</span>
+                <span className="text-sub/80">(2026-05-12)</span>
               </p>
               <p>
-                <span className="text-[#ff8fab] font-semibold">fact</span>{' '}
+                <span className="text-sakura-lite font-semibold">fact</span>{' '}
                 {t('好きな曲: シューゲイザー系', 'likes shoegaze', { 'zh-CN': '喜欢的音乐:盯鞋系', 'zh-TW': '喜歡的音樂:盯鞋系', ko: '좋아하는 곡: 슈게이저 계열' })}{' '}
-                <span className="text-sub/60">(2026-06-02)</span>
+                <span className="text-sub/80">(2026-06-02)</span>
               </p>
               <p>
-                <span className="text-[#ff8fab] font-semibold">anniv</span>{' '}
+                <span className="text-sakura-lite font-semibold">anniv</span>{' '}
                 {t('初起動から', 'day', { 'zh-CN': '首次启动至今', 'zh-TW': '首次啟動至今', ko: '첫 기동부터' })} <AnnivDays />
                 {t('日', '', { 'zh-CN': '天', 'zh-TW': '天', ko: '일' })}{' '}
-                <span className="text-sub/60">{t('← もうすぐ400日!', '← almost 400!', { 'zh-CN': '← 快 400 天了!', 'zh-TW': '← 快 400 天了!', ko: '← 곧 400일!' })}</span>
+                <span className="text-sub/80">{t('← もうすぐ400日!', '← almost 400!', { 'zh-CN': '← 快 400 天了!', 'zh-TW': '← 快 400 天了!', ko: '← 곧 400일!' })}</span>
               </p>
               <p>
-                <span className="text-[#ff8fab] font-semibold">episode</span>{' '}
+                <span className="text-sakura-lite font-semibold">episode</span>{' '}
                 {t('昨日: 締切の相談、少し疲れてた様子', 'yesterday: deadline talk, seemed a bit tired', { 'zh-CN': '昨天:聊了截止日期,看起来有点累', 'zh-TW': '昨天:聊了截止日期,看起來有點累', ko: '어제: 마감 상담, 조금 지쳐 보였음' })}
               </p>
               <p>
-                <span className="text-[#ff8fab] font-semibold">dream</span>{' '}
+                <span className="text-sakura-lite font-semibold">dream</span>{' '}
                 {t('締切が猫になって逃げていく夢(?)', 'a dream where the deadline turned into a cat and ran (?)', { 'zh-CN': '梦见截止日期变成猫跑掉了(?)', 'zh-TW': '夢見截止日期變成貓跑掉了(?)', ko: '마감이 고양이가 되어 도망가는 꿈(?)' })}
               </p>
-              <p className="text-sub/60 border-t border-ink/10 mt-3 pt-3">consolidating today's memories…</p>
+              <p className="text-sub/80 border-t border-ink/10 mt-3 pt-3">consolidating today's memories…</p>
             </div>
           </div>
           <div className="md:order-1">
-            <p className="font-mono text-xs text-sakura tracking-widest uppercase mb-4 flex items-center gap-2">
-              <Heart className="w-4 h-4" /> Everyday Partner
-            </p>
+            <Kicker icon={Heart} sakura label="Everyday Partner" className="mb-4" />
             <h3 className="font-mincho font-bold text-2xl md:text-3xl mb-5 leading-relaxed">
               {t('関係は、数年かけて育つ。', 'A relationship that takes years to grow.', { 'zh-CN': '关系,要花上数年才长成。', 'zh-TW': '關係,要花上數年才長成。', ko: '관계는, 몇 년에 걸쳐 자란다.' })}
             </h3>
@@ -312,6 +305,6 @@ export function UseCases() {
         </Reveal>
 
       </div>
-    </section>
+    </Section>
   );
 }

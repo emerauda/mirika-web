@@ -1,4 +1,4 @@
-import { H2, H3, Note, P, Ul } from './legal-ui';
+import { A, B, H2, H3, Note, P, Ul } from './legal-ui';
 
 /** 法務文書の本文(繁体字中国語)。日本語正文は legal-body-ja.tsx —— 構成はそちらに揃える。 */
 
@@ -11,7 +11,7 @@ export function PrivacyBodyZhTw() {
 
       <H2 id="not-collected">首先,我們不收集的內容</H2>
       <P>
-        在預設組態下,下列內容<strong className="text-cream">一律不會離開你的裝置</strong>
+        在預設組態下,下列內容<B>一律不會離開你的裝置</B>
         。它們不會被傳送到我們的伺服器,也不會被保存在那裡。
       </P>
       <Ul>
@@ -23,7 +23,7 @@ export function PrivacyBodyZhTw() {
       </Ul>
       <Note>
         我們不做使用狀況的統計(分析),不投放廣告,
-        <strong className="text-cream">也不會自動傳送當機報告</strong>
+        <B>也不會自動傳送當機報告</B>
         。運作記錄只保留在裝置內,是你在回報問題時自己附上的內容。
       </Note>
 
@@ -33,14 +33,14 @@ export function PrivacyBodyZhTw() {
       <H3>雲端的頭腦(可選)</H3>
       <P>
         如果選擇 ChatGPT・Claude・Gemini 等作為頭腦,
-        <strong className="text-cream">你的發言和上下文會被傳送給該提供者</strong>
+        <B>你的發言和上下文會被傳送給該提供者</B>
         。相關處理遵循該提供者的條款。預設是本地的頭腦,這項功能只在你明確選擇時才會運作。
       </P>
 
       <H3>記憶的同步(可選)</H3>
       <P>
         在多台裝置上培養同一個孩子時,記憶會
-        <strong className="text-cream">先在你的裝置上加密</strong>
+        <B>先在你的裝置上加密</B>
         ,然後才送往存放處。口令只存在於你的裝置上,所以即使是提供存放處的我們,也讀不到其中的內容。
       </P>
       <P>
@@ -50,19 +50,19 @@ export function PrivacyBodyZhTw() {
       <H3>授權的驗證</H3>
       <P>
         使用 Pro 或組織用的授權時,為了驗證金鑰和接收政策,應用程式會與我們的伺服器通訊。此時涉及的是授權的識別碼、裝置名稱、應用程式版本、最後一次驗證的日期與時間,以及
-        <strong className="text-cream">連線來源的國家</strong>。
-        <strong className="text-cream">其中不包含對話的內容。</strong>
+        <B>連線來源的國家</B>。
+        <B>其中不包含對話的內容。</B>
       </P>
       <P>
-        記錄國家,是<strong className="text-cream">為了查看金鑰有沒有被散布出去</strong>
+        記錄國家,是<B>為了查看金鑰有沒有被散布出去</B>
         。Pro 金鑰採用只需在裝置內就能完成驗證的機制,所以我們能看到的,只有你使用同步存放處的時候。留下的只有
-        <strong className="text-cream">最近出現過的國家(最多 5 個)和最後一次驗證的日期與時間</strong>
+        <B>最近出現過的國家(最多 5 個)和最後一次驗證的日期與時間</B>
         ,不會形成移動的歷史記錄。
       </P>
       <Note>
-        <strong className="text-cream">我們不保存 IP 位址。</strong>
+        <B>我們不保存 IP 位址。</B>
         國家只是從 Cloudflare 附加在通訊上的資訊中讀取,相當於住址的內容不會留在我們的伺服器上。對非法存取的攔截,在
-        <strong className="text-cream">位於我們前面的 Cloudflare 這一層</strong>
+        <B>位於我們前面的 Cloudflare 這一層</B>
         進行。
       </Note>
 
@@ -74,10 +74,10 @@ export function PrivacyBodyZhTw() {
       <H2 id="org">在組織中使用時</H2>
       <P>
         使用組織的授權時,管理員可以看到
-        <strong className="text-cream">
+        <B>
           誰在使用多少台裝置、最後一次是什麼時候使用、從哪個國家使用
-        </strong>
-        。<strong className="text-cream">對話的內容連管理員也看不到。</strong>
+        </B>
+        。<B>對話的內容連管理員也看不到。</B>
         畫面上的內容、開啟的應用程式、輸入的文字,也都不會傳過去。
       </P>
       <P>
@@ -95,7 +95,7 @@ export function PrivacyBodyZhTw() {
         </li>
         <li>
           即使解約授權,
-          <strong className="text-cream">裝置上的記憶也不會消失</strong>。同步也可以用免費的方式繼續
+          <B>裝置上的記憶也不會消失</B>。同步也可以用免費的方式繼續
         </li>
       </Ul>
 
@@ -112,9 +112,9 @@ export function PrivacyBodyZhTw() {
       <H2 id="contact">聯絡我們</H2>
       <P>
         請透過{' '}
-        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+        <A href="https://github.com/emerauda/mirika-web/issues">
           GitHub 的 Issue
-        </a>{' '}
+        </A>{' '}
         與我們聯絡。
       </P>
     </>
@@ -135,7 +135,7 @@ export function TermsBodyZhTw() {
       <Ul>
         <li>授權金鑰是供購買者本人或簽約的組織使用的</li>
         <li>
-          <strong className="text-cream">請不要向第三方散布・轉售金鑰。</strong>
+          <B>請不要向第三方散布・轉售金鑰。</B>
           如果多個人使用同一個金鑰,就會共享記憶的存放處,彼此的記憶會混在一起
         </li>
         <li>組織用的授權,請在簽約的座席數範圍內使用</li>
@@ -144,9 +144,9 @@ export function TermsBodyZhTw() {
       <H2 id="content">2. 關於生成的內容</H2>
       <P>
         本軟體使用大型語言模型生成回應。
-        <strong className="text-cream">
+        <B>
           我們無法保證其內容準確、恰當。
-        </strong>
+        </B>
         重要的判斷,請務必自行查證。
       </P>
       <Note>
@@ -164,43 +164,43 @@ export function TermsBodyZhTw() {
       <H2 id="assets">4. 關於你帶入的素材</H2>
       <P>
         VRM・Live2D 模型、角色卡、語音、樂曲等你帶入的素材,其使用條件請遵循各自提供者的規定。
-        <strong className="text-cream">
+        <B>
           能在本軟體中使用,並不代表可以自由使用該素材。
-        </strong>
+        </B>
         在直播等場合公開時,請格外注意。
       </P>
 
       <H2 id="warranty">5. 免責</H2>
       <P>
         本軟體以現狀原樣提供。對於因使用而產生的損害,我們恕不承擔責任。但是,
-        <strong className="text-cream">
+        <B>
           對於付費簽約的範圍,我們會以你所支付的對價為上限進行處理。
-        </strong>
+        </B>
       </P>
       <P>
         記憶保存在裝置內的檔案中。
-        <strong className="text-cream">請自行做好備份。</strong>
+        <B>請自行做好備份。</B>
         對於因機器故障或操作失誤造成的遺失,我們無法承諾復原。
       </P>
 
       <H2 id="availability">6. 服務的持續</H2>
       <P>
         授權的驗證、同步的存放處等由我們提供的伺服器功能,可能不經預告而停止或變更。要停止時,我們會
-        <strong className="text-cream">
+        <B>
           先預留一段可以取走你的記憶的期間
-        </strong>
+        </B>
         ,再發出通知。
       </P>
       <P>
         本軟體本身,即使伺服器停止,
-        <strong className="text-cream">本地功能也會照常運作</strong>
+        <B>本地功能也會照常運作</B>
         。如果持續一段時間無法完成授權驗證,軟體會回到免費的範圍,但不會觸碰你的記憶與設定。
       </P>
 
       <H2 id="refund">7. 退款</H2>
       <P>
         由於下載販售的性質,原則上恕不退款。但是,
-        <strong className="text-cream">如果因本軟體的瑕疵而無法按照購買時的說明運作</strong>
+        <B>如果因本軟體的瑕疵而無法按照購買時的說明運作</B>
         ,請與我們商量。
       </P>
 
@@ -215,9 +215,9 @@ export function TermsBodyZhTw() {
       <H2 id="contact">聯絡我們</H2>
       <P>
         請透過{' '}
-        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+        <A href="https://github.com/emerauda/mirika-web/issues">
           GitHub 的 Issue
-        </a>{' '}
+        </A>{' '}
         與我們聯絡。
       </P>
     </>

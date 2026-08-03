@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { C, H2, H3, Note, P, Pro, Steps } from './docs-ui';
+import { A, B, C, H2, H3, Note, P, Pro, Shot, Steps } from './docs-ui';
 
 /** 使い方ドキュメント本文(英語)。構成と JSX の形は docs-body-ja.tsx(正)に揃える。 */
 
@@ -16,17 +16,17 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <Steps
               items={[
                 <>
-                  <a href="/#download" className="text-sakura hover:underline">
+                  <A href="/#download">
                     Download
-                  </a>{' '}
+                  </A>{' '}
                   and install it (Windows / Linux; macOS is still in preparation, pending code signing)
                 </>,
                 <>
                   Launch it, and the default girl (Komane) stands at the bottom right of your desktop. The bundled VRMs are
                   the main ghost "Komane" and the partner "Chise (TKSP)", both works by{' '}
-                  <a href="https://goho-cheat-vrc.booth.pm/" target="_blank" rel="noreferrer">
+                  <A href="https://goho-cheat-vrc.booth.pm/" blank>
                     VRC合法チート研究会
-                  </a>{' '}
+                  </A>{' '}
                   bundled with the creator's kind permission (redistributing the models is not allowed)
                 </>,
                 <>
@@ -37,16 +37,16 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               ]}
             />
             <Note>
-              <strong className="text-cream">The basics</strong> — grab and drag to move her, right-click for the menu.
+              <B>The basics</B> — grab and drag to move her, right-click for the menu.
               Drop a <C>.vrm</C> or <C>.pmx</C> (MMD) onto her window and she changes into it (double-click has nothing assigned to it).
-              Petting counts <strong className="text-cream">only when you move your hand back and forth around her head or chest</strong> —
+              Petting counts <B>only when you move your hand back and forth around her head or chest</B> —
               merely passing over her gets no reaction (and it is not counted while she is tucked away or under a fullscreen app).
               When you want her out of the way for a while, use "Tuck her away" in the menu; bring her back from the tray icon.
               Type <C>/</C> in the input box and command suggestions appear (↑↓ to select, Tab / Enter to complete).
               When no suggestions are showing, ↑↓ walks through your input history.
             </Note>
             <P>
-              If you get stuck, head to{' '}<a href="#trouble" className="text-sakura hover:underline">"When something goes wrong"</a>.{' '}
+              If you get stuck, head to{' '}<A href="#trouble">"When something goes wrong"</A>.{' '}
               <C>/check</C> tells you the current state all at once (brain, voice, mic, secretary, memory).
             </P>
           </section>
@@ -58,14 +58,14 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H3>The built-in engine (the easiest)</H3>
             <P>
               <C>/brain embedded</C>, or use the right-click menu. It runs entirely inside the app.{' '}
-              <strong className="text-cream">A model sized to fit your PC is chosen automatically</strong> — an 8 GB VRAM
+              <B>A model sized to fit your PC is chosen automatically</B> — an 8 GB VRAM
               class gets Gemma 4 12B (4-bit, about 6.7 GB); with less, it steps down to E4B (about 5 GB), then E2B (about 3 GB).
-              If you have a 16 GB or 24 GB class GPU, <strong className="text-cream">she asks whether to download something bigger</strong> (26B-A4B / 31B).
+              If you have a 16 GB or 24 GB class GPU, <B>she asks whether to download something bigger</B> (26B-A4B / 31B).
               The reason for the choice is recorded in the activity log. If you already have a GGUF, "Open GGUF…" lets you use it.
             </P>
             <H3>Local runtimes (recommended)</H3>
             <P>
-              Ollama (11434) and LM Studio (1234) are <strong className="text-cream">detected automatically while running</strong>.
+              Ollama (11434) and LM Studio (1234) are <B>detected automatically while running</B>.
               Pick a model with <C>/model &lt;name&gt;</C>, set the endpoint by hand with <C>/endpoint &lt;URL&gt;</C>,
               and search again with <C>/rescan</C>.
             </P>
@@ -83,26 +83,26 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="voice">Voice and microphone</H2>
             <H3>Making her speak</H3>
             <P>
-              For <strong className="text-cream">Japanese</strong>, installing{' '}
-              <a href="https://voicevox.hiroshiba.jp/" className="text-sakura hover:underline">
+              For <B>Japanese</B>, installing{' '}
+              <A href="https://voicevox.hiroshiba.jp/">
                 VOICEVOX
-              </a>{' '}
+              </A>{' '}
               or{' '}
-              <a href="https://aivis-project.com/" className="text-sakura hover:underline">
+              <A href="https://aivis-project.com/">
                 AivisSpeech
-              </a>{' '}
+              </A>{' '}
               is all it takes. Mirika starts and stops the engine behind the scenes.
               List voices with <C>/voice list</C>, switch with <C>/voice &lt;ID&gt;</C> (for the partner, <C>/partner voice</C>).
               Misreadings can be corrected like <C>/read 早急 さっきゅう</C>.
             </P>
             <P>
-              <strong className="text-cream">English and Chinese</strong> use the built-in Piper. <C>/piper</C> downloads just what you need.{' '}
-              <strong className="text-cream">Korean</strong> has no local voice, so it is subtitles only (silent).
+              <B>English and Chinese</B> use the built-in Piper. <C>/piper</C> downloads just what you need.{' '}
+              <B>Korean</B> has no local voice, so it is subtitles only (silent).
             </P>
             <H3>Overriding with a TTS API</H3>
             <P>
               Point <C>/tts &lt;base URL&gt; [model]</C> at an OpenAI-compatible speech synthesis service and she speaks{' '}
-              <strong className="text-cream">every language, Korean included,</strong> with that voice (kokoro, GPT-SoVITS, and so on).
+              <B>every language, Korean included,</B> with that voice (kokoro, GPT-SoVITS, and so on).
               Once a URL is set, the voice list is fetched, and you can pick from the main and partner dropdowns in Settings. <C>/tts off</C> switches back.
             </P>
             <H3>Listening</H3>
@@ -111,8 +111,8 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               While on standby she only picks up utterances that call her by name. The model is chosen automatically from your PC's specs and can be changed with <C>/mic model</C>.
             </P>
             <P>
-              Drag and drop an <strong className="text-cream">audio file</strong> (mp3 / wav / m4a / ogg / opus / flac)
-              and she transcribes the whole thing and returns <strong className="text-cream">a summary and her impressions</strong>{' '}
+              Drag and drop an <B>audio file</B> (mp3 / wav / m4a / ogg / opus / flac)
+              and she transcribes the whole thing and returns <B>a summary and her impressions</B>{' '}
               (up to 15 minutes; accuracy depends on the same Whisper model as the mic).
             </P>
           </section>
@@ -130,7 +130,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               Just drop a <C>.pmx</C> onto the character and she changes into it (also via <C>/shell mmd &lt;file.pmx&gt;</C> or
               "Open model…" in the menu). Textures are picked up automatically from the model's folder,
-              and she is still wearing it on the next launch. <strong className="text-cream">Drop a <C>.vmd</C> while she wears one, and she dances that motion</strong>{' '}
+              and she is still wearing it on the next launch. <B>Drop a <C>.vmd</C> while she wears one, and she dances that motion</B>{' '}
               (mouth and eye morphs move too). Toon shading and sphere-map sheen are supported.
               Blinking, lip sync, gaze, gestures, and sitting on window edges work just as with VRM.
               Models she cannot wear — no head bone, for example — are declined with the reason; models with no mouth or expression morphs she puts on first, then tells you so.
@@ -142,7 +142,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <H3>Card shell (standing art)</H3>
             <P>
-              Import a character card PNG and <strong className="text-cream">that artwork becomes her body</strong>.
+              Import a character card PNG and <B>that artwork becomes her body</B>.
               To stand any image you like, use <C>/shell card &lt;image.png&gt;</C>. A transparent PNG stands as its cutout,
               and the rise and fall of breathing and a little bounce as she talks make it look alive. Return to 3D with <C>/shell vrm</C>.
             </P>
@@ -162,7 +162,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               For the partner it is <C>/partner</C> <C>/partner first</C> <C>/partner persona</C> respectively.
             </P>
             <P>
-              Anything you put into <strong className="text-cream">lore notes</strong> (<C>/lore add &lt;key&gt; &lt;content&gt;</C>)
+              Anything you put into <B>lore notes</B> (<C>/lore add &lt;key&gt; &lt;content&gt;</C>)
               is reliably recalled whenever the topic comes up. A key can also be a regular expression, written as <C>/…/</C>.
             </P>
             <P>
@@ -171,19 +171,19 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <H3>Affection takes years to grow</H3>
             <P>
-              Affection is not a running total of messages. It runs on <strong className="text-cream">two layers — bond (years) and mood (days)</strong>.
+              Affection is not a running total of messages. It runs on <B>two layers — bond (years) and mood (days)</B>.
               Only so much can grow in a single day, and each step gets heavier the closer you are, so "family" is years away.
             </P>
             <Note>
-              <strong className="text-cream">It can go down, too.</strong> Stay away and distance forms (from about three days, faster past two weeks);
+              <B>It can go down, too.</B> Stay away and distance forms (from about three days, faster past two weeks);
               a run of rainy days wears her down, too much petting tires her, and the same story twice moves nothing. Some days she is simply
-              off for no reason (a biorhythm running from the day you met). But <strong className="text-cream">she never returns to a stranger</strong> —
+              off for no reason (a biorhythm running from the day you met). But <B>she never returns to a stranger</B> —
               half of the highest stage you reached is the floor, and part of what was lost comes back faster once you meet again.
               How much petting is welcome depends on how close you already are.
             </Note>
             <P>
               <C>/bond</C> shows no numbers. Beside the days since you met, the message count and what she remembers, it returns the stage (★)
-              and a <strong className="text-cream">feeling</strong>: "we have been growing closer lately", "lately: the rain kept on, and I could not quite find my energy".
+              and a <B>feeling</B>: "we have been growing closer lately", "lately: the rain kept on, and I could not quite find my energy".
               That day's mood also colours how she answers.
             </P>
             <H3>Memories and all, to another machine (sync)</H3>
@@ -192,20 +192,10 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               and <C>/sync import</C> on another PC takes it in. Importing is a merge, so
               conversations that exist on only one side are never lost. Switch to <C>/sync cloud &lt;passphrase&gt;</C> and
               they reconcile automatically every 15 minutes (free if the place is your own cloud drive's sync folder;
-              our hosted shelf is Pro). <strong className="text-cream">The passphrase is never stored anywhere</strong> —
+              our hosted shelf is Pro). <B>The passphrase is never stored anywhere</B> —
               lose it and the file can no longer be opened.
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-sync.webp"
-                alt="Memory sync in the advanced settings: the passphrase, export and import, and where memories are kept"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                "Memory sync" in the advanced settings. Export, import, and choosing where memories are kept can also be done from here
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-sync.webp" alt="Memory sync in the advanced settings: the passphrase, export and import, and where memories are kept" caption={<>"Memory sync" in the advanced settings. Export, import, and choosing where memories are kept can also be done from here</>} />
           </section>
 
           {/* --- AI秘書 --- */}
@@ -220,17 +210,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               full-text search over your machine (local RAG) is <C>/rag &lt;folder&gt;</C>.
               Show her your screen with <C>/see</C>; screen watch is <C>/watch</C>.
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-secretary.webp"
-                alt="The AI secretary in the advanced settings: periodic checks, the briefing, screen watch, mail watch"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                "AI secretary" in the advanced settings. The interval of periodic checks and the screen-watch toggle can be set right here as well
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-secretary.webp" alt="The AI secretary in the advanced settings: periodic checks, the briefing, screen watch, mail watch" caption={<>"AI secretary" in the advanced settings. The interval of periodic checks and the screen-watch toggle can be set right here as well</>} />
             <P>
               Messages are possible too — Claude Desktop or VS Code using tools by way of Mirika
               (the bridge is <C>127.0.0.1:9801</C>; if that is in use, it automatically yields to 9821, then 8801).
@@ -239,23 +219,23 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               Even without the Google integration, <C>/mail pop &lt;host[:port]&gt; &lt;user&gt; &lt;password&gt;</C>{' '}
               gets you "tell me when mail arrives." It works with any provider that offers POP over SSL (default 995),
-              and she reads <strong className="text-cream">only the headers (sender and subject)</strong> —
+              and she reads <B>only the headers (sender and subject)</B> —
               the body is never fetched, and the state of your inbox is never changed. New mail is announced on the periodic-check rounds.
             </P>
             <P>
-              <strong className="text-cream">Example: Yahoo! Mail (Japan)</strong>:
+              <B>Example: Yahoo! Mail (Japan)</B>:
             </P>
             <Steps
               items={[
                 <>In Yahoo! Mail settings, enable <C>IMAP/POP/SMTP access</C> (it is off by default)</>,
-                <>If you use two-step verification, issue an <strong className="text-cream">app password</strong> instead of your login password</>,
+                <>If you use two-step verification, issue an <B>app password</B> instead of your login password</>,
                 <><C>/mail pop pop.mail.yahoo.co.jp your_YahooJAPAN_ID password</C> — the default port 995 (SSL) is fine as it is</>,
               ]}
             />
             <Note>
               Other providers: Gmail is <C>pop.gmail.com</C>, Outlook.com is{' '}
               <C>outlook.office365.com</C> (both 995).{' '}
-              <strong className="text-cream">Use an app password, not your everyday login password</strong> —
+              <B>Use an app password, not your everyday login password</B> —
               most providers reject the normal password once two-step verification is on.
               The connection is tested before anything is saved, so a typo leaves no settings behind.
               Passwords are stored encrypted on your machine (if the OS has no keyring, she tells you so).
@@ -275,12 +255,12 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               Scripts from classic Ukagaka (Sakura Script) run as they are.
               To try one locally: <C>{'/sakura \\0\\s[0]こんにちは。\\w4\\1おい。\\e'}</C>.
-              The same port <strong className="text-cream">receives SSTP (SEND / NOTIFY)</strong>, so
+              The same port <B>receives SSTP (SEND / NOTIFY)</B>, so
               existing tools such as SSP can send scripts in (UTF-8 only).
             </P>
             <H3>Ghost-to-ghost communicate</H3>
             <P>
-              She can <strong className="text-cream">talk with other ghosts</strong> on the same desktop.
+              She can <B>talk with other ghosts</B> on the same desktop.
               Speak to the neighbor with <C>/communicate &lt;words&gt;</C>, and she performs the script that comes back.
               When she receives an SSTP COMMUNICATE in turn, she replies as herself
               (your personal schedule and memories are never told to someone else's ghost).
@@ -291,7 +271,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
           <section className="mb-16">
             <H2 id="card">Character cards</H2>
             <P>
-              <strong className="text-cream">Character cards (V2 / V3)</strong> passed around for SillyTavern and the like
+              <B>Character cards (V2 / V3)</B> passed around for SillyTavern and the like
               can be imported as a persona just by dragging and dropping the PNG as-is (<C>/card &lt;file&gt;</C> does the same).
               JSON cards are supported too.
             </P>
@@ -299,11 +279,11 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               items={[
                 <>Drop the card's PNG onto the character</>,
                 <>Name, description, personality, scenario, and example dialogue go into her personality settings; the lorebook goes to lore notes (<C>/lore</C>)</>,
-                <>With a PNG card, <strong className="text-cream">the artwork becomes her body</strong>, and she greets you with the card's first message</>,
+                <>With a PNG card, <B>the artwork becomes her body</B>, and she greets you with the card's first message</>,
               ]}
             />
             <Note>
-              <strong className="text-cream">Worried about overwriting?</strong> If a personality you wrote yourself is in place,
+              <B>Worried about overwriting?</B> If a personality you wrote yourself is in place,
               you are asked before the import goes ahead (you can also have it exported to a file first, then proceed).
               Even after importing, <C>/card undo</C> steps back one stage at a time (five steps are kept),
               and <C>/card reset</C> goes all the way back to before the card was read.
@@ -317,14 +297,14 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               <C>/sing [topic]</C> makes her really sing, on a melody.
               The lyrics are written on the spot, and the tune rides the app's own nursery-rhyme-like figures.
-              A VOICEVOX <strong className="text-cream">singing-capable character</strong> is required
+              A VOICEVOX <B>singing-capable character</B> is required
               (with an engine that has none, she says so and does nothing).
             </P>
             <H3>Drawing</H3>
             <P>
               <C>/draw [topic]</C> has her draw and show it in the sketchbook window.
               If a local image-generation API (AUTOMATIC1111-compatible; 7860 / 7861) is running, she draws with that;
-              if not, she <strong className="text-cream">draws by hand with circles and lines</strong>. Finished pictures remain in{' '}
+              if not, she <B>draws by hand with circles and lines</B>. Finished pictures remain in{' '}
               <C>drawings/</C> inside the settings folder.
             </P>
             <P>When the partner is around, she chimes in with a quip as the song ends or the picture is finished.</P>
@@ -363,29 +343,19 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <P>
               The segments are listener letters, ogiri comedy prompts, trivia, fictional commercials, an advice corner, in-her-head rankings, three-choice quizzes, and improv drama — plus{' '}
-              <strong className="text-cream">improvised songs, lyric-writing battles, drawing, and illustration prompts</strong>,
+              <B>improvised songs, lyric-writing battles, drawing, and illustration prompts</B>,
               where after the warm-up banter she really sings and really draws.
             </P>
             <P>
               <C>/stream start &lt;live URL&gt;</C> picks up YouTube Live comments and reads them out
               (Super Chats come first). The show's flavoring can be switched to the otaku-focused pack with <C>/radio otaku</C>.
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-stream.png"
-                alt="Streaming options in the advanced settings: the stream shape, the comment inlet, chattiness"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                "Streaming" in the advanced settings. The shape, the comment inlet, and chattiness can be decided from here as well
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-stream.webp" alt="Streaming options in the advanced settings: the stream shape, the comment inlet, chattiness" caption={<>"Streaming" in the advanced settings. The shape, the comment inlet, and chattiness can be decided from here as well</>} />
             <H3>Two shapes of streaming</H3>
             <P>
-              <C>/stream host</C> is the shape where <strong className="text-cream">she runs her own show</strong>{' '}
+              <C>/stream host</C> is the shape where <B>she runs her own show</B>{' '}
               (segment hosting, songs, drawing, and the closing "En-ii"; begin with <C>/stream start</C>).{' '}
-              <C>/stream assist</C> is the shape where <strong className="text-cream">you are the star and she takes the sidekick seat</strong> —
+              <C>/stream assist</C> is the shape where <B>you are the star and she takes the sidekick seat</B> —
               no show script; she reads comments and picks things up only when called or when asked a question.
               Not talking too much is the whole quality of this mode, so pauses are built in to keep her off the streamer's voice
               (tune it with <C>/stream chatty 0〜100</C>; at 0 she sticks strictly to reading).
@@ -393,7 +363,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               The whole going-live sequence is one line, <C>/stream go &lt;what the stream is about&gt;</C> —
               she enters stream mode, starts the OBS stream (if <C>/obs connect</C> is done),
-              and even drafts the announcement. <strong className="text-cream">Posting is the one thing you press yourself</strong>{' '}
+              and even drafts the announcement. <B>Posting is the one thing you press yourself</B>{' '}
               (so nothing irreversible is fired off on its own; <C>/announce post</C> opens the posting screen).
             </P>
             <H3>Connecting a comment viewer (Bouyomi-chan compatible)</H3>
@@ -402,7 +372,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               Point the "Bouyomi-chan integration" of the tool you already use — OneComme, MultiCommentViewer, and the like —
               straight at it, and comments flow out in her voice
               (it is the same port as the original, so the two cannot run at once).{' '}
-              <strong className="text-cream">Per-site support is left to the comment viewer</strong> —
+              <B>Per-site support is left to the comment viewer</B> —
               YouTube, Twitch, Niconico Live: whatever OneComme can pick up arrives as it is.
               In assist mode, the judgment to pick up and reply — not just read aloud — also passes through here.
             </P>
@@ -414,7 +384,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               ON AIR lamp, the current segment, the ticker, and voice credits automatically
               (the desk-side overlay is <C>radio-desk.html</C>). The station name and ticker can be
               swapped from the app with <C>/radio title</C>.{' '}
-              <strong className="text-cream">Pictures she draws are shown on the easel at the bottom right</strong>.
+              <B>Pictures she draws are shown on the easel at the bottom right</B>.
               Layer a window capture of the character on top of it.
             </P>
             <Note>
@@ -429,20 +399,20 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="pro">Pro and licensing</H2>
             <P>
               The app itself is free to use (freeware under its own license).
-              Pro is a one-time purchase that unlocks <strong className="text-cream">streamer mode, the scenario writer, internet radio, Spotify integration, and multi-ghost</strong> (what each includes is at <a href="https://pro.mirika.dev/" className="text-sakura hover:underline">pro.mirika.dev</a>).
+              Pro is a one-time purchase that unlocks <B>streamer mode, the scenario writer, internet radio, Spotify integration, and multi-ghost</B> (what each includes is at <A href="https://pro.mirika.dev/">pro.mirika.dev</A>).
             </P>
             <Steps
               items={[
                 <>
-                  <a href="https://emerauda.booth.pm/items/8649631" className="text-sakura hover:underline">
+                  <A href="https://emerauda.booth.pm/items/8649631">
                     Booth
-                  </a>{' '}
+                  </A>{' '}
                   is where you purchase Pro
                 </>,
                 <>
-                  <a href="https://pro.mirika.dev/" className="text-sakura hover:underline">
+                  <A href="https://pro.mirika.dev/">
                     pro.mirika.dev
-                  </a>{' '}
+                  </A>{' '}
                   takes your order number and order date and hands you the license key
                 </>,
                 <>
@@ -461,16 +431,16 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="discord">Mirika on Discord</H2>
             <P>
               Mirika lives on Discord too. She works in the{' '}
-              <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">official server</a>,
+              <A href="https://discord.gg/fnmUau5qzB">official server</A>,
               and if you install the app to your own account (user install), she follows you into DMs and
               servers that do not even have the bot. Server-side features like reading aloud are part of Pro.
             </P>
             <Steps
               items={[
                 <>
-                  <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">Join the official Discord</a>,{' '}
-                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465" className="text-sakura hover:underline">invite the bot to your server</a>, or{' '}
-                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands" className="text-sakura hover:underline">add it to your account</a> (works in DMs and any server)
+                  <A href="https://discord.gg/fnmUau5qzB">Join the official Discord</A>,{' '}
+                  <A href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465">invite the bot to your server</A>, or{' '}
+                  <A href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands">add it to your account</A> (works in DMs and any server)
                 </>,
                 <>
                   Bought on Booth? <C>/order</C> with your order number and date hands you the license key on the spot
@@ -482,15 +452,15 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             />
             <P>
               <C>/talk</C> is a conversation with Mirika. How-to questions are answered from the official docs
-              with source links. The button under her replies turns on <strong className="text-cream">memory</strong>{' '}
+              with source links. The button under her replies turns on <B>memory</B>{' '}
               (yours only, wipeable anytime). <C>/todo</C> stays in{' '}
-              <strong className="text-cream">two-way sync with the desktop app</strong>, and deadlines ping your
+              <B>two-way sync with the desktop app</B>, and deadlines ping your
               DMs in three stages (24 h → 1 h → overdue).
             </P>
             <P>
               Reading aloud covers the voice channels you <C>/voice bind</C>, spoken through VOICEVOX
               (+ Nemo, 136 voices in total). Pick yours with <C>/voice speaker</C> — search or browse the full list.
-              On servers with <C>/voice listen</C> on, say "<strong className="text-cream">Mirika</strong>" and she
+              On servers with <C>/voice listen</C> on, say "<B>Mirika</B>" and she
               hears you and answers aloud — audio is discarded the instant it becomes text, and utterances without
               her name are dropped entirely.
             </P>
@@ -576,7 +546,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H3>When it is not behaving</H3>
             <P>
               <C>/check</C> reviews the state of brain, voice, mic, secretary, and memory in one go.
-              If things still look off, <C>/log</C> — <strong className="text-cream">it opens the folder holding the activity logs</strong>{' '}
+              If things still look off, <C>/log</C> — <B>it opens the folder holding the activity logs</B>{' '}
               (7 days' worth; API keys and passphrases are masked). Attach that day's file to your report and
               we can trace the cause on our side. The same folder also opens from "When something goes wrong" in the advanced settings.
             </P>
@@ -588,10 +558,10 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               <C>POST /shell/say</C> with the id handed out at the start — a body can be written with nothing but a browser.
             </P>
             <P>
-              The protocol is shaped so that <strong className="text-cream">merely connecting grants nothing</strong>.
+              The protocol is shaped so that <B>merely connecting grants nothing</B>.
               Directives arrive only after the version match, the passphrase, and the introduction (declaring what it can do) are done;
               a peer that is not ready yet, or a directive that body cannot perform, is{' '}
-              <strong className="text-cream">returned as a send failure rather than silently dropped</strong>{' '}
+              <B>returned as a send failure rather than silently dropped</B>{' '}
               (so that no "body that sometimes doesn't speak" gets made). A capability that was not declared counts as "cannot."
             </P>
             <H3>OBS integration API (SSE)</H3>
@@ -625,14 +595,9 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="trouble">When something goes wrong</H2>
             <P>
               For anything not covered here, ask on the{' '}
-              <a
-                href="https://discord.gg/fnmUau5qzB"
-                target="_blank"
-                rel="noopener"
-                className="text-sakura hover:underline"
-              >
+              <A href="https://discord.gg/fnmUau5qzB" blank>
                 official Discord
-              </a>
+              </A>
               . Attaching that day's activity log (right-click menu →
               "Open activity log (for bug reports)") lets us see the cause right away.
             </P>
@@ -655,7 +620,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <H3>She won't sing</H3>
             <P>
-              Singing needs a VOICEVOX <strong className="text-cream">singing-capable character</strong>.
+              Singing needs a VOICEVOX <B>singing-capable character</B>.
               Engines without singing support, such as AivisSpeech, cannot sing.
             </P>
             <H3>Rolling back an imported card</H3>

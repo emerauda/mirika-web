@@ -8,7 +8,8 @@ import {
   type Variants,
 } from 'motion/react';
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+/** サイト共通のイージング(各所で同値を再定義しない) */
+export const EASE = [0.22, 1, 0.36, 1] as const;
 
 /**
  * スクロールで現れる要素の見え始めを決める。
@@ -98,8 +99,6 @@ export function StaggerGroup({
 }: {
   children: ReactNode;
   className?: string;
-  /** 旧: 何割見えたら出すか。いまは 1px でも入れば出すので受け取るだけ */
-  amount?: number;
 }) {
   const reduce = useReducedMotion();
   const { ref, shown } = useAppear();

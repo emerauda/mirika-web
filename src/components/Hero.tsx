@@ -7,7 +7,7 @@ import {
 } from 'motion/react';
 import { Download, ArrowDown, ChevronDown } from 'lucide-react';
 import { TitleBar } from './ui';
-import { MagneticLink } from './primitives';
+import { EASE, MagneticLink } from './primitives';
 import { useLang, useT } from '../i18n';
 
 /** 見出し。圏点の載せ方が言語で変わるので、文字列でなく形ごと切り替える */
@@ -55,8 +55,6 @@ function Headline() {
       );
   }
 }
-
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 const container: Variants = {
   hidden: {},
@@ -142,7 +140,7 @@ export function Hero() {
           <motion.div className="flex flex-wrap gap-4" {...itemProps}>
             <MagneticLink
               href="#download"
-              className="btn-hard inline-flex items-center gap-2 bg-sakura text-white px-6 py-3.5 font-bold text-sm"
+              className="btn-hard inline-flex items-center gap-2 bg-sakura text-plum px-6 py-3.5 font-bold text-sm"
             >
               <Download className="w-4 h-4" />{' '}
               {t('ダウンロード', 'Download', { 'zh-CN': '下载', 'zh-TW': '下載', ko: '다운로드' })}
@@ -228,7 +226,7 @@ export function Hero() {
       {!reduce && (
         <motion.a
           href="#concept"
-          aria-label="下へスクロール"
+          aria-label={t('下へスクロール', 'Scroll down', { 'zh-CN': '向下滚动', 'zh-TW': '向下捲動', ko: '아래로 스크롤' })}
           className="absolute left-1/2 -translate-x-1/2 bottom-4 hidden md:flex flex-col items-center gap-1 text-mist/70 hover:text-sakura transition-colors"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

@@ -131,7 +131,7 @@ export function Stack() {
             <span>brain.ts</span>
             <span className="text-sub tracking-widest">— □ ×</span>
           </TitleBar>
-          <div className="bg-[#0b0912] text-slate-300 p-6 font-mono text-xs md:text-[13px] leading-relaxed overflow-x-auto whitespace-pre">
+          <div className="bg-void text-slate-300 p-6 font-mono text-xs md:text-[13px] leading-relaxed overflow-x-auto whitespace-pre">
             {CODE_LINES.map((line, i) => (
               <div key={i}>
                 {line.length === 0

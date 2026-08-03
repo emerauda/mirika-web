@@ -1,11 +1,9 @@
 import type { ComponentType, ReactNode } from 'react';
 import { motion, useReducedMotion, type Variants } from 'motion/react';
 import { Smile, Brain, Database, Mail, Mic, Feather, Package, RefreshCw, Users, FileText, MessageCircle } from 'lucide-react';
-import { Kicker, TitleBar } from './ui';
-import { Reveal, StaggerGroup, StaggerItem } from './primitives';
-import { useT } from '../i18n';
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { Section, TitleBar } from './ui';
+import { EASE, Reveal, StaggerGroup, StaggerItem } from './primitives';
+import { t5, useT } from '../i18n';
 
 type Feature = { Icon: ComponentType<{ className?: string }>; num: string; title: string; desc: ReactNode };
 
@@ -166,40 +164,39 @@ function FeatureCard({ Icon, num, title, desc, span }: Feature & { span?: string
 type ExtRow = { label: string; desc: string; phase: string; done: boolean };
 
 function buildExtRows(t: ReturnType<typeof useT>): ExtRow[] {
-  const R = (ja: string, en: string, zhCN: string, zhTW: string, ko: string) =>
-    t(ja, en, { 'zh-CN': zhCN, 'zh-TW': zhTW, ko });
+  const T = t5(t);
   return [
-    { label: R('思い出話と忘却', 'Reminiscence & forgetting', '回忆与遗忘', '回憶與遺忘', '추억담과 망각'), desc: R('記憶は沈み、たまに発掘される。「そういえば1年前……」', 'Memories sink, and sometimes resurface: "a year ago today…"', '记忆会沉底,偶尔被挖出:「说来一年前……」', '記憶會沉底,偶爾被挖出:「說來一年前……」', '기억은 가라앉고, 가끔 발굴됩니다. "그러고 보니 1년 전…"'), phase: 'P2', done: true },
-    { label: R('事実と気持ちを分けて残す', 'Facts apart from feelings', '事实与心情分开保存', '事實與心情分開保存', '사실과 감정을 나눠 남김'), desc: R('何をしたかと、そのとき何を感じていたかは別もの。翌日「昨日は疲れてたけど、今日は大丈夫?」と続く', 'What happened and how it felt are different things — next day: "tired yesterday, better now?"', '做了什么与当时的感受是两回事。第二天接着问「昨天挺累的,今天还好吗?」', '做了什麼與當時的感受是兩回事。第二天接著問「昨天挺累的,今天還好嗎?」', '무엇을 했는지와 그때 무엇을 느꼈는지는 별개. 다음 날 "어제 피곤해했는데 오늘은 괜찮아?"로 이어짐'), phase: 'P6', done: true },
-    { label: R('思い出を、仕事と同じ重さで', 'Memories weigh like work', '回忆与工作同等重量', '回憶與工作同等重量', '추억을 일과 같은 무게로'), desc: R('「友達のプロポーズがうまくいった」「絵を見て笑った」——用事ではない出来事こそ、覚えておく', 'The proposal that went well, the picture that made you laugh — the un-businesslike moments are kept too', '「朋友求婚成功了」「看画笑了」——不是正事的事,更要记住', '「朋友求婚成功了」「看畫笑了」——不是正事的事,更要記住', '"친구의 프러포즈가 잘됐다" "그림을 보고 웃었다" — 용건이 아닌 일일수록 기억해 둔다'), phase: 'P6', done: true },
-    { label: R('季節と行事の演出', 'Seasons & occasions', '季节与节日演出', '季節與節日演出', '계절과 행사 연출'), desc: R('桜が舞い、雪が降り、誕生日には紙吹雪', 'Cherry petals, snowfall, and confetti on your birthday', '樱花飞舞、落雪,生日有彩纸', '櫻花飛舞、落雪,生日有彩紙', '벚꽃이 흩날리고, 눈이 내리고, 생일엔 색종이'), phase: 'P2', done: true },
-    { label: R('スクリーン理解', 'Screen understanding', '屏幕理解', '螢幕理解', '스크린 이해'), desc: R('ローカルVLMが画面を見て「エラー出てるよ」。既定オフ・端末外送信なし', 'A local VLM looks at the screen: "there\'s an error." Off by default, nothing leaves the device', '本地 VLM 看屏幕:「报错了哦」。默认关、不外发', '本地 VLM 看螢幕:「報錯了哦」。預設關、不外傳', '로컬 VLM이 화면을 보고 "에러 났어요". 기본 꺼짐·기기 밖 전송 없음'), phase: 'P4', done: true },
-    { label: R('クリップボード反応', 'Clipboard reactions', '剪贴板反应', '剪貼簿反應', '클립보드 반응'), desc: R('エラーをコピーした瞬間「それ、調べようか?」(オプトイン)', 'Copy an error and she offers: "want me to look into that?" (opt-in)', '复制报错的瞬间:「要我查查吗?」(可选)', '複製報錯的瞬間:「要我查查嗎?」(可選)', '에러를 복사한 순간 "그거 알아볼까요?"(옵트인)'), phase: 'P4', done: true },
-    { label: R('ローカルRAG', 'Local RAG', '本地 RAG', '本地 RAG', '로컬 RAG'), desc: R('自分のメモ・文書に詳しくなる。「先週のメモどこだっけ」に端末内で回答', 'She learns your notes and docs, answering "where was last week\'s memo" on-device', '熟悉你的笔记与文档。「上周的备忘在哪」在本机作答', '熟悉你的筆記與文件。「上週的備忘在哪」在本機作答', '내 메모·문서에 밝아집니다. "지난주 메모 어디였지"에 기기 안에서 답함'), phase: 'P4', done: true },
-    { label: R('ブラウザ連携', 'Browser link', '浏览器联动', '瀏覽器連動', '브라우저 연동'), desc: R('拡張機能で見ているページを把握・要約(オプトイン)', 'A browser extension shares and summarises the page you are on (opt-in)', '用扩展了解并总结你在看的页面(可选)', '用擴充功能了解並總結你在看的頁面(可選)', '확장 프로그램으로 보고 있는 페이지를 파악·요약(옵트인)'), phase: 'P4', done: true },
-    { label: R('自発的な興味', 'Curiosity of her own', '自发的兴趣', '自發的興趣', '자발적인 관심'), desc: R('話題を覚えて後日調べ、自分から話を振ってくる', 'She remembers a topic, looks it up later, and brings it back up herself', '记住话题、日后查证,主动来聊', '記住話題、日後查證,主動來聊', '화제를 기억해 나중에 알아보고, 먼저 말을 걸어옴'), phase: 'P4', done: true },
-    { label: R('Live2Dシェル', 'Live2D shell', 'Live2D 外壳', 'Live2D 外殼', 'Live2D 셸'), desc: R('Cubism対応。本体・相方でVRMと混在でき、桃瀬ひより/Mao同梱', 'Cubism support; mixes with VRM across main and partner. Hiyori / Mao bundled', '支持 Cubism。本体与搭档可和 VRM 混搭,附带桃瀬ひより/Mao', '支援 Cubism。本體與搭檔可和 VRM 混搭,附帶桃瀨日和/Mao', 'Cubism 대응. 본체·파트너에서 VRM과 혼재 가능, 히요리/Mao 동봉'), phase: 'P5', done: true },
-    { label: R('OBS配信モード', 'OBS streaming mode', 'OBS 直播模式', 'OBS 直播模式', 'OBS 방송 모드'), desc: R('グリーンバック表示でゴーストをそのまま配信画面へ(Pro)', 'Green-screen mode puts the ghost straight into your stream (Pro)', '绿幕显示,把幽灵直接放进直播画面(Pro)', '綠幕顯示,把幽靈直接放進直播畫面(Pro)', '그린 스크린 표시로 고스트를 그대로 방송 화면에(Pro)'), phase: 'P5', done: true },
-    { label: R('配信を手伝う', 'Assist your stream', '帮你的直播', '幫你的直播', '방송을 도움'), desc: R('あなたが主役の配信で、コメントを読み、呼ばれたときだけ返す相棒に(Pro)', 'On your stream she reads comments and speaks only when called (Pro)', '你当主角的直播里,她读评论、被点名才接话(Pro)', '你當主角的直播裡,她讀評論、被點名才接話(Pro)', '당신이 주역인 방송에서 댓글을 읽고, 불릴 때만 답하는 파트너(Pro)'), phase: 'P7', done: true },
-    { label: R('コメントビューア連携', 'Comment viewer link', '评论查看器联动', '評論檢視器連動', '댓글 뷰어 연동'), desc: R('わんコメ等の「棒読みちゃん連携」を向けるだけ。配信サイトは問わない(Pro)', 'Point OneComme\'s Bouyomi output at her — any streaming site (Pro)', '把 OneComme 等的「棒読みちゃん」输出指向她即可,平台不限(Pro)', '把 OneComme 等的「棒読みちゃん」輸出指向她即可,平台不限(Pro)', 'OneComme 등의 "보우요미" 연동을 향하게만 하면 됨. 플랫폼 불문(Pro)'), phase: 'P7', done: true },
-    { label: R('OBS の遠隔操作', 'OBS remote control', 'OBS 远程操作', 'OBS 遠端操作', 'OBS 원격 조작'), desc: R('「配信の準備して」で配信を開始し、告知文の下書きまで(投稿はご自分で・Pro)', '"Get the stream ready" starts OBS and drafts the announcement (you post it yourself; Pro)', '一句「准备直播」就开播,还起草预告(发布由你;Pro)', '一句「準備直播」就開播,還起草預告(發布由你;Pro)', '"방송 준비해 줘"로 방송을 시작하고 공지 초안까지(게시는 직접·Pro)'), phase: 'P7', done: true },
-    { label: R('メールの見張り(POP)', 'Mail watch (POP)', '盯邮件(POP)', '盯郵件(POP)', '메일 감시(POP)'), desc: R('Google 連携なしでも新着に気づく。読むのは差出人と件名だけ', 'New-mail alerts without Google — she reads only sender and subject', '不接 Google 也能发现新邮件。只读发件人和主题', '不接 Google 也能發現新郵件。只讀寄件人和主旨', 'Google 연동 없이도 새 메일을 알아챔. 읽는 건 보낸이와 제목뿐'), phase: 'P4', done: true },
-    { label: R('外からの知らせ', 'Outside notices', '来自外部的通知', '來自外部的通知', '외부에서 온 알림'), desc: R('自作スクリプトや他のアプリの通知を、この子の口から', 'Your scripts\' and other apps\' notifications, spoken by her', '自写脚本或其他应用的通知,由她说出口', '自寫腳本或其他應用的通知,由她說出口', '자작 스크립트나 다른 앱의 알림을, 이 아이의 입으로'), phase: 'P4', done: true },
-    { label: R('別の画面に住む', 'Living on another screen', '住进别的屏幕', '住進別的螢幕', '다른 화면에 살기'), desc: R('余ったタブレットをこの子の身体に(合言葉つきで受け入れ)', 'A spare tablet becomes her body (passphrase-gated)', '闲置平板成为她的身体(需口令接入)', '閒置平板成為她的身體(需口令接入)', '남는 태블릿을 이 아이의 몸으로(암호 필요)'), phase: 'P7', done: false },
-    { label: R('動作ログ', 'Runtime logs', '运行日志', '運行日誌', '동작 로그'), desc: R('不具合の報告に添えられる記録。秘密は伏せ字・7日分', 'Attachable records for bug reports; secrets masked, 7 days kept', '可随缺陷报告附上的记录。秘密打码、留 7 天', '可隨缺陷報告附上的記錄。秘密打碼、留 7 天', '버그 신고에 첨부할 수 있는 기록. 비밀은 마스킹·7일분'), phase: 'P5', done: true },
-    { label: R('デバイス間同期', 'Cross-device sync', '设备间同步', '裝置間同步', '기기 간 동기화'), desc: R('記憶も名前・性格もE2E暗号化で同期——どのマシンにも同じ子がいる(無料。置き場を預かるぶんが Pro)', 'Memory, name and persona sync E2E-encrypted — the same ghost on every machine (free; hosted storage is Pro)', '记忆、名字、性格 E2E 加密同步——每台机器都是同一个她(免费;托管存放处为 Pro)', '記憶、名字、性格 E2E 加密同步——每台機器都是同一個她(免費;託管存放處為 Pro)', '기억도 이름·성격도 E2E 암호화로 동기화 — 어느 머신에도 같은 아이(무료. 보관을 맡기는 몫이 Pro)'), phase: 'P6', done: true },
-    { label: R('人格回帰テスト', 'Persona regression test', '人格回归测试', '人格回歸測試', '인격 회귀 테스트'), desc: R('ゴールデン対話集で「この子らしさ」をCI検証(mirika-test。SDK zip に同梱)', 'Golden dialogues verify "her-ness" in CI (mirika-test, in the SDK zip)', '用黄金对话集在 CI 里校验「她的样子」(mirika-test,SDK zip 内)', '用黃金對話集在 CI 裡校驗「她的樣子」(mirika-test,SDK zip 內)', '골든 대화집으로 "이 아이다움"을 CI 검증(mirika-test. SDK zip 동봉)'), phase: 'P6', done: true },
-    { label: R('クラシックシェル', 'Classic shells', '经典外壳', '經典外殼', '클래식 셸'), desc: R('旧伺かのサーフェスPNGシェルも、見た目ごとそのまま動く', 'Old Ukagaka surface-PNG shells run exactly as they looked', '旧伺か的 surface PNG 外壳,原样运作', '舊伺か的 surface PNG 外殼,原樣運作', '옛 우카가카의 서피스 PNG 셸도 그 모습 그대로 움직임'), phase: 'P6', done: true },
-    { label: R('MMDシェル', 'MMD shell', 'MMD 外壳', 'MMD 外殼', 'MMD 셸'), desc: R('PMX がそのまま身体に(本体・相方とも)。VMD を落とすと踊り、トゥーンと照りも出る', 'PMX becomes her body (main and partner). Drop a VMD and she dances, toon shading and sheen included', 'PMX 直接成为身体(本体、搭档均可)。丢入 VMD 就跳舞,还有卡通着色与光泽', 'PMX 直接成為身體(本體、搭檔均可)。丟入 VMD 就跳舞,還有卡通著色與光澤', 'PMX가 그대로 몸으로(본체·파트너 모두). VMD를 떨어뜨리면 춤추고, 툰과 광택도 나옴'), phase: 'P7', done: true },
-    { label: R('歌とお絵かき', 'Singing & drawing', '唱歌与画画', '唱歌與畫畫', '노래와 그림'), desc: R('歌唱合成で誕生日に歌い、ローカル画像生成で絵を見せてくれる', 'Song synthesis for your birthday, local image generation for little drawings', '用歌唱合成在生日唱歌,用本地图像生成给你看画', '用歌唱合成在生日唱歌,用本地圖像生成給你看畫', '가창 합성으로 생일에 노래하고, 로컬 이미지 생성으로 그림을 보여 줌'), phase: 'P7', done: true },
-    { label: R('デスクトップ操作', 'Desktop control', '桌面操作', '桌面操作', '데스크톱 조작'), desc: R('提案→確認→実行の提案型に限定して、0.8 で慎重に導入', 'Propose → confirm → act only; arriving carefully in 0.8', '仅限「提议→确认→执行」,0.8 谨慎引入', '僅限「提議→確認→執行」,0.8 謹慎引入', '제안→확인→실행의 제안형에 한정, 0.8에서 신중히 도입'), phase: 'P7', done: false },
-    { label: R('Discord のミリカ', 'Mirika on Discord', 'Discord 上的她', 'Discord 上的她', 'Discord의 미리카'), desc: R('公式サーバーでも、自分のサーバーでも(Pro)、個人インストールなら DM でも。/verify ひとつで会話も TODO もひらく', 'The official server, your own server (Pro), or even DMs with a user install — one /verify opens talk and TODO', '官方服务器、自己的服务器(Pro),个人安装的话连私信也行。一句 /verify 打开对话与 TODO', '官方伺服器、自己的伺服器(Pro),個人安裝的話連私訊也行。一句 /verify 打開對話與 TODO', '공식 서버에서도, 내 서버에서도(Pro), 개인 설치라면 DM에서도. /verify 하나로 대화도 TODO도 열림'), phase: 'P7', done: true },
-    { label: R('TODO の双方向同期', 'Two-way TODO sync', 'TODO 双向同步', 'TODO 雙向同步', 'TODO 양방향 동기화'), desc: R('デスクトップと Discord で同じタスク帳。期限は DM に3段階(24時間前→1時間前→超過)', 'One task list across desktop and Discord; deadlines ping your DMs in three stages (24 h → 1 h → overdue)', '桌面与 Discord 共用一份任务本。截止分三档提醒到私信(24 小时前→1 小时前→已超期)', '桌面與 Discord 共用一份任務本。截止分三階段提醒到私訊(24 小時前→1 小時前→已逾期)', '데스크톱과 Discord가 같은 태스크 장부. 마감은 DM으로 3단계(24시간 전→1시간 전→초과)'), phase: 'P7', done: true },
-    { label: R('ボイスチャンネル読み上げ', 'Voice-channel reading', '语音频道朗读', '語音頻道朗讀', '음성 채널 낭독'), desc: R('VOICEVOX+Nemo の全136声。声は各自で選べ、入退室も知らせる(Pro)', '136 VOICEVOX + Nemo voices; everyone picks their own, and arrivals are announced (Pro)', 'VOICEVOX+Nemo 全 136 声。各自挑选声音,进出也会播报(Pro)', 'VOICEVOX+Nemo 全 136 聲。各自挑選聲音,進出也會播報(Pro)', 'VOICEVOX+Nemo 전 136 보이스. 각자 목소리를 고르고, 입퇴장도 알림(Pro)'), phase: 'P7', done: true },
-    { label: R('呼びかけて話す', 'Call her and talk', '喊一声就聊', '喊一聲就聊', '불러서 대화'), desc: R('ボイスチャンネルで「ミリカ」と呼ぶと聞き取って声で返す。音声は文字にした瞬間に捨てる(Pro)', 'Say "Mirika" in a voice channel and she answers aloud — audio is discarded the moment it becomes text (Pro)', '在语音频道喊「Mirika」就会听到并用声音回答。音频在转成文字的那一刻即被丢弃(Pro)', '在語音頻道喊「Mirika」就會聽到並用聲音回答。音訊在轉成文字的那一刻即被丟棄(Pro)', '음성 채널에서 "미리카"라고 부르면 듣고 목소리로 답합니다. 음성은 텍스트가 되는 순간 폐기(Pro)'), phase: 'P7', done: true },
-    { label: R('なかよし度の力学', 'How the bond works', '好感度的力学', '好感度的力學', '친밀도의 역학'), desc: R('絆(数年)と気分(日々)の2層。会わなければ距離ができ、雨や気まぐれで沈み、撫ですぎれば疲れる', 'Two layers — bond (years) and mood (days). Distance forms when you stay away; rain and passing moods pull it down; too much petting tires her', '羁绊(数年)与心情(每日)双层。不见面就疏远,雨天与没来由的心情会让它下沉,抚摸过头会疲惫', '羈絆(數年)與心情(每日)雙層。不見面就疏遠,雨天與沒來由的心情會讓它下沉,撫摸過頭會疲憊', '유대(몇 년)와 기분(나날)의 2층. 만나지 않으면 거리가 생기고, 비나 변덕으로 가라앉고, 너무 쓰다듬으면 지침'), phase: 'P7', done: true },
-    { label: R('ドキュメントに答える', 'Answers from the manual', '照着文档回答', '照著文件回答', '문서에서 답하기'), desc: R('使い方の質問には、公式ドキュメントを根拠に出典リンクつきで答える(Discord)', 'How-to questions are answered from the official docs, with source links (Discord)', '用法问题以官方文档为依据、附来源链接作答(Discord)', '用法問題以官方文件為依據、附來源連結作答(Discord)', '사용법 질문에는 공식 문서를 근거로 출처 링크와 함께 답함(Discord)'), phase: 'P7', done: true },
-    { label: R('組織で使う', 'For organizations', '组织使用', '組織使用', '조직에서 사용'), desc: R('管理者が席と方針をまとめて決められる。結ぶのはライセンスと方針だけで、会話は端末から出ない', 'Admins set seats and policy centrally; only license and policy connect — conversations never leave the device', '管理员统一决定席位与方针。只连接许可与方针,对话不出设备', '管理員統一決定席位與方針。只連接授權與方針,對話不出裝置', '관리자가 좌석과 방침을 한꺼번에 정함. 연결은 라이선스와 방침뿐, 대화는 기기에서 안 나감'), phase: 'P8', done: true },
+    { label: T('思い出話と忘却', 'Reminiscence & forgetting', '回忆与遗忘', '回憶與遺忘', '추억담과 망각'), desc: T('記憶は沈み、たまに発掘される。「そういえば1年前……」', 'Memories sink, and sometimes resurface: "a year ago today…"', '记忆会沉底,偶尔被挖出:「说来一年前……」', '記憶會沉底,偶爾被挖出:「說來一年前……」', '기억은 가라앉고, 가끔 발굴됩니다. "그러고 보니 1년 전…"'), phase: 'P2', done: true },
+    { label: T('事実と気持ちを分けて残す', 'Facts apart from feelings', '事实与心情分开保存', '事實與心情分開保存', '사실과 감정을 나눠 남김'), desc: T('何をしたかと、そのとき何を感じていたかは別もの。翌日「昨日は疲れてたけど、今日は大丈夫?」と続く', 'What happened and how it felt are different things — next day: "tired yesterday, better now?"', '做了什么与当时的感受是两回事。第二天接着问「昨天挺累的,今天还好吗?」', '做了什麼與當時的感受是兩回事。第二天接著問「昨天挺累的,今天還好嗎?」', '무엇을 했는지와 그때 무엇을 느꼈는지는 별개. 다음 날 "어제 피곤해했는데 오늘은 괜찮아?"로 이어짐'), phase: 'P6', done: true },
+    { label: T('思い出を、仕事と同じ重さで', 'Memories weigh like work', '回忆与工作同等重量', '回憶與工作同等重量', '추억을 일과 같은 무게로'), desc: T('「友達のプロポーズがうまくいった」「絵を見て笑った」——用事ではない出来事こそ、覚えておく', 'The proposal that went well, the picture that made you laugh — the un-businesslike moments are kept too', '「朋友求婚成功了」「看画笑了」——不是正事的事,更要记住', '「朋友求婚成功了」「看畫笑了」——不是正事的事,更要記住', '"친구의 프러포즈가 잘됐다" "그림을 보고 웃었다" — 용건이 아닌 일일수록 기억해 둔다'), phase: 'P6', done: true },
+    { label: T('季節と行事の演出', 'Seasons & occasions', '季节与节日演出', '季節與節日演出', '계절과 행사 연출'), desc: T('桜が舞い、雪が降り、誕生日には紙吹雪', 'Cherry petals, snowfall, and confetti on your birthday', '樱花飞舞、落雪,生日有彩纸', '櫻花飛舞、落雪,生日有彩紙', '벚꽃이 흩날리고, 눈이 내리고, 생일엔 색종이'), phase: 'P2', done: true },
+    { label: T('スクリーン理解', 'Screen understanding', '屏幕理解', '螢幕理解', '스크린 이해'), desc: T('ローカルVLMが画面を見て「エラー出てるよ」。既定オフ・端末外送信なし', 'A local VLM looks at the screen: "there\'s an error." Off by default, nothing leaves the device', '本地 VLM 看屏幕:「报错了哦」。默认关、不外发', '本地 VLM 看螢幕:「報錯了哦」。預設關、不外傳', '로컬 VLM이 화면을 보고 "에러 났어요". 기본 꺼짐·기기 밖 전송 없음'), phase: 'P4', done: true },
+    { label: T('クリップボード反応', 'Clipboard reactions', '剪贴板反应', '剪貼簿反應', '클립보드 반응'), desc: T('エラーをコピーした瞬間「それ、調べようか?」(オプトイン)', 'Copy an error and she offers: "want me to look into that?" (opt-in)', '复制报错的瞬间:「要我查查吗?」(可选)', '複製報錯的瞬間:「要我查查嗎?」(可選)', '에러를 복사한 순간 "그거 알아볼까요?"(옵트인)'), phase: 'P4', done: true },
+    { label: T('ローカルRAG', 'Local RAG', '本地 RAG', '本地 RAG', '로컬 RAG'), desc: T('自分のメモ・文書に詳しくなる。「先週のメモどこだっけ」に端末内で回答', 'She learns your notes and docs, answering "where was last week\'s memo" on-device', '熟悉你的笔记与文档。「上周的备忘在哪」在本机作答', '熟悉你的筆記與文件。「上週的備忘在哪」在本機作答', '내 메모·문서에 밝아집니다. "지난주 메모 어디였지"에 기기 안에서 답함'), phase: 'P4', done: true },
+    { label: T('ブラウザ連携', 'Browser link', '浏览器联动', '瀏覽器連動', '브라우저 연동'), desc: T('拡張機能で見ているページを把握・要約(オプトイン)', 'A browser extension shares and summarises the page you are on (opt-in)', '用扩展了解并总结你在看的页面(可选)', '用擴充功能了解並總結你在看的頁面(可選)', '확장 프로그램으로 보고 있는 페이지를 파악·요약(옵트인)'), phase: 'P4', done: true },
+    { label: T('自発的な興味', 'Curiosity of her own', '自发的兴趣', '自發的興趣', '자발적인 관심'), desc: T('話題を覚えて後日調べ、自分から話を振ってくる', 'She remembers a topic, looks it up later, and brings it back up herself', '记住话题、日后查证,主动来聊', '記住話題、日後查證,主動來聊', '화제를 기억해 나중에 알아보고, 먼저 말을 걸어옴'), phase: 'P4', done: true },
+    { label: T('Live2Dシェル', 'Live2D shell', 'Live2D 外壳', 'Live2D 外殼', 'Live2D 셸'), desc: T('Cubism対応。本体・相方でVRMと混在でき、桃瀬ひより/Mao同梱', 'Cubism support; mixes with VRM across main and partner. Hiyori / Mao bundled', '支持 Cubism。本体与搭档可和 VRM 混搭,附带桃瀬ひより/Mao', '支援 Cubism。本體與搭檔可和 VRM 混搭,附帶桃瀨日和/Mao', 'Cubism 대응. 본체·파트너에서 VRM과 혼재 가능, 히요리/Mao 동봉'), phase: 'P5', done: true },
+    { label: T('OBS配信モード', 'OBS streaming mode', 'OBS 直播模式', 'OBS 直播模式', 'OBS 방송 모드'), desc: T('グリーンバック表示でゴーストをそのまま配信画面へ(Pro)', 'Green-screen mode puts the ghost straight into your stream (Pro)', '绿幕显示,把幽灵直接放进直播画面(Pro)', '綠幕顯示,把幽靈直接放進直播畫面(Pro)', '그린 스크린 표시로 고스트를 그대로 방송 화면에(Pro)'), phase: 'P5', done: true },
+    { label: T('配信を手伝う', 'Assist your stream', '帮你的直播', '幫你的直播', '방송을 도움'), desc: T('あなたが主役の配信で、コメントを読み、呼ばれたときだけ返す相棒に(Pro)', 'On your stream she reads comments and speaks only when called (Pro)', '你当主角的直播里,她读评论、被点名才接话(Pro)', '你當主角的直播裡,她讀評論、被點名才接話(Pro)', '당신이 주역인 방송에서 댓글을 읽고, 불릴 때만 답하는 파트너(Pro)'), phase: 'P7', done: true },
+    { label: T('コメントビューア連携', 'Comment viewer link', '评论查看器联动', '評論檢視器連動', '댓글 뷰어 연동'), desc: T('わんコメ等の「棒読みちゃん連携」を向けるだけ。配信サイトは問わない(Pro)', 'Point OneComme\'s Bouyomi output at her — any streaming site (Pro)', '把 OneComme 等的「棒読みちゃん」输出指向她即可,平台不限(Pro)', '把 OneComme 等的「棒読みちゃん」輸出指向她即可,平台不限(Pro)', 'OneComme 등의 "보우요미" 연동을 향하게만 하면 됨. 플랫폼 불문(Pro)'), phase: 'P7', done: true },
+    { label: T('OBS の遠隔操作', 'OBS remote control', 'OBS 远程操作', 'OBS 遠端操作', 'OBS 원격 조작'), desc: T('「配信の準備して」で配信を開始し、告知文の下書きまで(投稿はご自分で・Pro)', '"Get the stream ready" starts OBS and drafts the announcement (you post it yourself; Pro)', '一句「准备直播」就开播,还起草预告(发布由你;Pro)', '一句「準備直播」就開播,還起草預告(發布由你;Pro)', '"방송 준비해 줘"로 방송을 시작하고 공지 초안까지(게시는 직접·Pro)'), phase: 'P7', done: true },
+    { label: T('メールの見張り(POP)', 'Mail watch (POP)', '盯邮件(POP)', '盯郵件(POP)', '메일 감시(POP)'), desc: T('Google 連携なしでも新着に気づく。読むのは差出人と件名だけ', 'New-mail alerts without Google — she reads only sender and subject', '不接 Google 也能发现新邮件。只读发件人和主题', '不接 Google 也能發現新郵件。只讀寄件人和主旨', 'Google 연동 없이도 새 메일을 알아챔. 읽는 건 보낸이와 제목뿐'), phase: 'P4', done: true },
+    { label: T('外からの知らせ', 'Outside notices', '来自外部的通知', '來自外部的通知', '외부에서 온 알림'), desc: T('自作スクリプトや他のアプリの通知を、この子の口から', 'Your scripts\' and other apps\' notifications, spoken by her', '自写脚本或其他应用的通知,由她说出口', '自寫腳本或其他應用的通知,由她說出口', '자작 스크립트나 다른 앱의 알림을, 이 아이의 입으로'), phase: 'P4', done: true },
+    { label: T('別の画面に住む', 'Living on another screen', '住进别的屏幕', '住進別的螢幕', '다른 화면에 살기'), desc: T('余ったタブレットをこの子の身体に(合言葉つきで受け入れ)', 'A spare tablet becomes her body (passphrase-gated)', '闲置平板成为她的身体(需口令接入)', '閒置平板成為她的身體(需口令接入)', '남는 태블릿을 이 아이의 몸으로(암호 필요)'), phase: 'P7', done: false },
+    { label: T('動作ログ', 'Runtime logs', '运行日志', '運行日誌', '동작 로그'), desc: T('不具合の報告に添えられる記録。秘密は伏せ字・7日分', 'Attachable records for bug reports; secrets masked, 7 days kept', '可随缺陷报告附上的记录。秘密打码、留 7 天', '可隨缺陷報告附上的記錄。秘密打碼、留 7 天', '버그 신고에 첨부할 수 있는 기록. 비밀은 마스킹·7일분'), phase: 'P5', done: true },
+    { label: T('デバイス間同期', 'Cross-device sync', '设备间同步', '裝置間同步', '기기 간 동기화'), desc: T('記憶も名前・性格もE2E暗号化で同期——どのマシンにも同じ子がいる(無料。置き場を預かるぶんが Pro)', 'Memory, name and persona sync E2E-encrypted — the same ghost on every machine (free; hosted storage is Pro)', '记忆、名字、性格 E2E 加密同步——每台机器都是同一个她(免费;托管存放处为 Pro)', '記憶、名字、性格 E2E 加密同步——每台機器都是同一個她(免費;託管存放處為 Pro)', '기억도 이름·성격도 E2E 암호화로 동기화 — 어느 머신에도 같은 아이(무료. 보관을 맡기는 몫이 Pro)'), phase: 'P6', done: true },
+    { label: T('人格回帰テスト', 'Persona regression test', '人格回归测试', '人格回歸測試', '인격 회귀 테스트'), desc: T('ゴールデン対話集で「この子らしさ」をCI検証(mirika-test。SDK zip に同梱)', 'Golden dialogues verify "her-ness" in CI (mirika-test, in the SDK zip)', '用黄金对话集在 CI 里校验「她的样子」(mirika-test,SDK zip 内)', '用黃金對話集在 CI 裡校驗「她的樣子」(mirika-test,SDK zip 內)', '골든 대화집으로 "이 아이다움"을 CI 검증(mirika-test. SDK zip 동봉)'), phase: 'P6', done: true },
+    { label: T('クラシックシェル', 'Classic shells', '经典外壳', '經典外殼', '클래식 셸'), desc: T('旧伺かのサーフェスPNGシェルも、見た目ごとそのまま動く', 'Old Ukagaka surface-PNG shells run exactly as they looked', '旧伺か的 surface PNG 外壳,原样运作', '舊伺か的 surface PNG 外殼,原樣運作', '옛 우카가카의 서피스 PNG 셸도 그 모습 그대로 움직임'), phase: 'P6', done: true },
+    { label: T('MMDシェル', 'MMD shell', 'MMD 外壳', 'MMD 外殼', 'MMD 셸'), desc: T('PMX がそのまま身体に(本体・相方とも)。VMD を落とすと踊り、トゥーンと照りも出る', 'PMX becomes her body (main and partner). Drop a VMD and she dances, toon shading and sheen included', 'PMX 直接成为身体(本体、搭档均可)。丢入 VMD 就跳舞,还有卡通着色与光泽', 'PMX 直接成為身體(本體、搭檔均可)。丟入 VMD 就跳舞,還有卡通著色與光澤', 'PMX가 그대로 몸으로(본체·파트너 모두). VMD를 떨어뜨리면 춤추고, 툰과 광택도 나옴'), phase: 'P7', done: true },
+    { label: T('歌とお絵かき', 'Singing & drawing', '唱歌与画画', '唱歌與畫畫', '노래와 그림'), desc: T('歌唱合成で誕生日に歌い、ローカル画像生成で絵を見せてくれる', 'Song synthesis for your birthday, local image generation for little drawings', '用歌唱合成在生日唱歌,用本地图像生成给你看画', '用歌唱合成在生日唱歌,用本地圖像生成給你看畫', '가창 합성으로 생일에 노래하고, 로컬 이미지 생성으로 그림을 보여 줌'), phase: 'P7', done: true },
+    { label: T('デスクトップ操作', 'Desktop control', '桌面操作', '桌面操作', '데스크톱 조작'), desc: T('提案→確認→実行の提案型に限定して、0.8 で慎重に導入', 'Propose → confirm → act only; arriving carefully in 0.8', '仅限「提议→确认→执行」,0.8 谨慎引入', '僅限「提議→確認→執行」,0.8 謹慎引入', '제안→확인→실행의 제안형에 한정, 0.8에서 신중히 도입'), phase: 'P7', done: false },
+    { label: T('Discord のミリカ', 'Mirika on Discord', 'Discord 上的她', 'Discord 上的她', 'Discord의 미리카'), desc: T('公式サーバーでも、自分のサーバーでも(Pro)、個人インストールなら DM でも。/verify ひとつで会話も TODO もひらく', 'The official server, your own server (Pro), or even DMs with a user install — one /verify opens talk and TODO', '官方服务器、自己的服务器(Pro),个人安装的话连私信也行。一句 /verify 打开对话与 TODO', '官方伺服器、自己的伺服器(Pro),個人安裝的話連私訊也行。一句 /verify 打開對話與 TODO', '공식 서버에서도, 내 서버에서도(Pro), 개인 설치라면 DM에서도. /verify 하나로 대화도 TODO도 열림'), phase: 'P7', done: true },
+    { label: T('TODO の双方向同期', 'Two-way TODO sync', 'TODO 双向同步', 'TODO 雙向同步', 'TODO 양방향 동기화'), desc: T('デスクトップと Discord で同じタスク帳。期限は DM に3段階(24時間前→1時間前→超過)', 'One task list across desktop and Discord; deadlines ping your DMs in three stages (24 h → 1 h → overdue)', '桌面与 Discord 共用一份任务本。截止分三档提醒到私信(24 小时前→1 小时前→已超期)', '桌面與 Discord 共用一份任務本。截止分三階段提醒到私訊(24 小時前→1 小時前→已逾期)', '데스크톱과 Discord가 같은 태스크 장부. 마감은 DM으로 3단계(24시간 전→1시간 전→초과)'), phase: 'P7', done: true },
+    { label: T('ボイスチャンネル読み上げ', 'Voice-channel reading', '语音频道朗读', '語音頻道朗讀', '음성 채널 낭독'), desc: T('VOICEVOX+Nemo の全136声。声は各自で選べ、入退室も知らせる(Pro)', '136 VOICEVOX + Nemo voices; everyone picks their own, and arrivals are announced (Pro)', 'VOICEVOX+Nemo 全 136 声。各自挑选声音,进出也会播报(Pro)', 'VOICEVOX+Nemo 全 136 聲。各自挑選聲音,進出也會播報(Pro)', 'VOICEVOX+Nemo 전 136 보이스. 각자 목소리를 고르고, 입퇴장도 알림(Pro)'), phase: 'P7', done: true },
+    { label: T('呼びかけて話す', 'Call her and talk', '喊一声就聊', '喊一聲就聊', '불러서 대화'), desc: T('ボイスチャンネルで「ミリカ」と呼ぶと聞き取って声で返す。音声は文字にした瞬間に捨てる(Pro)', 'Say "Mirika" in a voice channel and she answers aloud — audio is discarded the moment it becomes text (Pro)', '在语音频道喊「Mirika」就会听到并用声音回答。音频在转成文字的那一刻即被丢弃(Pro)', '在語音頻道喊「Mirika」就會聽到並用聲音回答。音訊在轉成文字的那一刻即被丟棄(Pro)', '음성 채널에서 "미리카"라고 부르면 듣고 목소리로 답합니다. 음성은 텍스트가 되는 순간 폐기(Pro)'), phase: 'P7', done: true },
+    { label: T('なかよし度の力学', 'How the bond works', '好感度的力学', '好感度的力學', '친밀도의 역학'), desc: T('絆(数年)と気分(日々)の2層。会わなければ距離ができ、雨や気まぐれで沈み、撫ですぎれば疲れる', 'Two layers — bond (years) and mood (days). Distance forms when you stay away; rain and passing moods pull it down; too much petting tires her', '羁绊(数年)与心情(每日)双层。不见面就疏远,雨天与没来由的心情会让它下沉,抚摸过头会疲惫', '羈絆(數年)與心情(每日)雙層。不見面就疏遠,雨天與沒來由的心情會讓它下沉,撫摸過頭會疲憊', '유대(몇 년)와 기분(나날)의 2층. 만나지 않으면 거리가 생기고, 비나 변덕으로 가라앉고, 너무 쓰다듬으면 지침'), phase: 'P7', done: true },
+    { label: T('ドキュメントに答える', 'Answers from the manual', '照着文档回答', '照著文件回答', '문서에서 답하기'), desc: T('使い方の質問には、公式ドキュメントを根拠に出典リンクつきで答える(Discord)', 'How-to questions are answered from the official docs, with source links (Discord)', '用法问题以官方文档为依据、附来源链接作答(Discord)', '用法問題以官方文件為依據、附來源連結作答(Discord)', '사용법 질문에는 공식 문서를 근거로 출처 링크와 함께 답함(Discord)'), phase: 'P7', done: true },
+    { label: T('組織で使う', 'For organizations', '组织使用', '組織使用', '조직에서 사용'), desc: T('管理者が席と方針をまとめて決められる。結ぶのはライセンスと方針だけで、会話は端末から出ない', 'Admins set seats and policy centrally; only license and policy connect — conversations never leave the device', '管理员统一决定席位与方针。只连接许可与方针,对话不出设备', '管理員統一決定席位與方針。只連接授權與方針,對話不出裝置', '관리자가 좌석과 방침을 한꺼번에 정함. 연결은 라이선스와 방침뿐, 대화는 기기에서 안 나감'), phase: 'P8', done: true },
   ];
 }
 
@@ -208,94 +205,95 @@ export function Features() {
   const FEATURES = buildFeatures(t);
   const EXT_ROWS = buildExtRows(t);
   return (
-    <section id="features" className="border-t border-cream/10 bg-black/20 scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-6 py-24">
-        <Reveal className="mb-14">
-          <Kicker index="02" label="Features" />
-          <h2 className="font-mincho font-bold text-3xl md:text-4xl">
-            {t('「生きている」を、つくる。', 'Building "alive."', { 'zh-CN': '把「活着」做出来。', 'zh-TW': '把「活著」做出來。', ko: '"살아 있음"을, 만든다.' })}
-          </h2>
-        </Reveal>
+    <Section
+      id="features"
+      index="02"
+      label="Features"
+      tone="dark"
+      title={t('「生きている」を、つくる。', 'Building "alive."', { 'zh-CN': '把「活着」做出来。', 'zh-TW': '把「活著」做出來。', ko: '"살아 있음"을, 만든다.' })}
+    >
+      {/* 実際の画面。説明より先に、何が机の上に来るのかを見せる */}
+      <Reveal className="mb-16 grid lg:grid-cols-[1.35fr_1fr] gap-6 items-start">
+        <figure className="os-window overflow-hidden">
+          <TitleBar>
+            <span>
+              {t('desktop — 本体と相方の掛け合い', 'desktop — the two of them mid-banter', { 'zh-CN': 'desktop — 本体与搭档的对谈', 'zh-TW': 'desktop — 本體與搭檔的對談', ko: 'desktop — 본체와 파트너의 주고받기' })}
+            </span>
+            <span className="text-sub tracking-widest">— □ ×</span>
+          </TitleBar>
+          <img
+            src="/shots/duo-talk.webp"
+            alt={t('デスクトップで掛け合う二人。吹き出しに返事の選択肢が並ぶ', 'Two ghosts bantering on the desktop, reply choices in the balloon', { 'zh-CN': '桌面上对谈的两人,气泡里排着回复选项', 'zh-TW': '桌面上對談的兩人,氣泡裡排著回覆選項', ko: '데스크톱에서 주고받는 두 사람, 말풍선에 답변 선택지' })}
+            width={1473}
+            height={1247}
+            className="block w-full h-auto bg-void"
+            loading="lazy"
+          />
+          <figcaption className="px-5 py-3 text-xs text-sub border-t border-cream/10">
+            {t('二人が実際に掛け合っている画面。返事は選択肢からも選べます(伺かの流儀)。背景は透過で、窓の縁に座り、掴んで動かせます', 'A real screen of the two mid-banter. Replies can be picked from choices (the Ukagaka way). The background is transparent; she sits on window edges and can be dragged around.', { 'zh-CN': '两人实际对谈的画面。回复也能从选项里选(伺か的做派)。背景透明,能坐在窗沿、能拖着走', 'zh-TW': '兩人實際對談的畫面。回覆也能從選項裡選(伺か的做派)。背景透明,能坐在窗沿、能拖著走', ko: '두 사람이 실제로 주고받는 화면. 답변은 선택지에서도 고를 수 있습니다(우카가카 방식). 배경은 투명하고, 창 가장자리에 앉으며, 잡아서 옮길 수 있습니다' })}
+          </figcaption>
+        </figure>
+        <figure className="os-window overflow-hidden">
+          <TitleBar>
+            <span>{t('settings — 詳細設定', 'settings — advanced settings', { 'zh-CN': 'settings — 详细设置', 'zh-TW': 'settings — 詳細設定', ko: 'settings — 상세 설정' })}</span>
+            <span className="text-sub tracking-widest">— □ ×</span>
+          </TitleBar>
+          <img
+            src="/shots/settings.webp"
+            alt={t('詳細設定の画面。頭脳・表示とふるまい・声の設定', 'Advanced settings: brain, appearance & behavior, voice', { 'zh-CN': '详细设置画面:头脑、显示与行为、声音', 'zh-TW': '詳細設定畫面:頭腦、顯示與行為、聲音', ko: '상세 설정 화면: 두뇌·표시와 행동·목소리' })}
+            width={1087}
+            height={1268}
+            className="block w-full h-auto bg-void"
+            loading="lazy"
+          />
+          <figcaption className="px-5 py-3 text-xs text-sub border-t border-cream/10">
+            {t('コマンドを覚えなくても、ひととおりここで決められます', 'No commands to memorise — everything can be set here', { 'zh-CN': '不用背命令,基本都能在这里设置', 'zh-TW': '不用背指令,基本都能在這裡設定', ko: '커맨드를 외우지 않아도, 웬만한 건 여기서 정할 수 있습니다' })}
+          </figcaption>
+        </figure>
+      </Reveal>
 
-        {/* 実際の画面。説明より先に、何が机の上に来るのかを見せる */}
-        <Reveal className="mb-16 grid lg:grid-cols-[1.35fr_1fr] gap-6 items-start">
-          <figure className="os-window overflow-hidden">
-            <TitleBar>
-              <span>
-                {t('desktop — 本体と相方の掛け合い', 'desktop — the two of them mid-banter', { 'zh-CN': 'desktop — 本体与搭档的对谈', 'zh-TW': 'desktop — 本體與搭檔的對談', ko: 'desktop — 본체와 파트너의 주고받기' })}
+      <StaggerGroup className="grid md:grid-cols-3 border-t-2 border-l-2 border-white/10 shadow-[0_0_48px_rgba(255,107,143,0.08)]">
+        {FEATURES.map((f, i) => (
+          <FeatureCard
+            key={f.num}
+            {...f}
+            span={i === FEATURES.length - 1 ? lastSpan(FEATURES.length) : ''}
+          />
+        ))}
+      </StaggerGroup>
+
+      {/* 拡張機能一覧 */}
+      <div className="mt-16">
+        <Reveal>
+          <h3 className="font-mincho font-bold text-xl md:text-2xl mb-2">
+            {t('さらに、', 'And then, ', { 'zh-CN': '然后,', 'zh-TW': '然後,', ko: '그리고, ' })}
+            <span className="text-sakura">{t('その先へ。', 'beyond.', { 'zh-CN': '走向更远。', 'zh-TW': '走向更遠。', ko: '그 너머로.' })}</span>
+          </h3>
+          <p className="text-mist text-sm leading-relaxed mb-8">
+            <span className="text-sakura font-semibold">✓</span>{' '}
+            {t('は実装済み、', 'means shipped, ', { 'zh-CN': '为已实现,', 'zh-TW': '為已實現,', ko: '는 구현 완료, ' })}
+            <span className="text-mist/80">{t('予定', 'planned', { 'zh-CN': '计划中', 'zh-TW': '計畫中', ko: '예정' })}</span>{' '}
+            {t('はこれから。上段が実装済みの拡張機能です(P = Phase)。', 'is upcoming. (P = phase.)', { 'zh-CN': '为待做。(P = Phase)', 'zh-TW': '為待做。(P = Phase)', ko: '은 앞으로. (P = Phase)' })}
+          </p>
+        </Reveal>
+        <StaggerGroup className="grid md:grid-cols-2 gap-x-12 border-t border-cream/10">
+          {EXT_ROWS.map((row) => (
+            <StaggerItem
+              key={row.label}
+              className="flex items-baseline gap-4 py-3.5 border-b border-cream/10"
+            >
+              <span className={`font-mono text-xs w-32 shrink-0 ${row.done ? 'text-sakura' : 'text-mist/70'}`}>
+                {row.label}
               </span>
-              <span className="text-sub tracking-widest">— □ ×</span>
-            </TitleBar>
-            <img
-              src="/shots/duo-talk.webp"
-              alt={t('デスクトップで掛け合う二人。吹き出しに返事の選択肢が並ぶ', 'Two ghosts bantering on the desktop, reply choices in the balloon', { 'zh-CN': '桌面上对谈的两人,气泡里排着回复选项', 'zh-TW': '桌面上對談的兩人,氣泡裡排著回覆選項', ko: '데스크톱에서 주고받는 두 사람, 말풍선에 답변 선택지' })}
-              className="block w-full h-auto bg-[#0b0912]"
-              loading="lazy"
-            />
-            <figcaption className="px-5 py-3 text-xs text-sub border-t border-cream/10">
-              {t('二人が実際に掛け合っている画面。返事は選択肢からも選べます(伺かの流儀)。背景は透過で、窓の縁に座り、掴んで動かせます', 'A real screen of the two mid-banter. Replies can be picked from choices (the Ukagaka way). The background is transparent; she sits on window edges and can be dragged around.', { 'zh-CN': '两人实际对谈的画面。回复也能从选项里选(伺か的做派)。背景透明,能坐在窗沿、能拖着走', 'zh-TW': '兩人實際對談的畫面。回覆也能從選項裡選(伺か的做派)。背景透明,能坐在窗沿、能拖著走', ko: '두 사람이 실제로 주고받는 화면. 답변은 선택지에서도 고를 수 있습니다(우카가카 방식). 배경은 투명하고, 창 가장자리에 앉으며, 잡아서 옮길 수 있습니다' })}
-            </figcaption>
-          </figure>
-          <figure className="os-window overflow-hidden">
-            <TitleBar>
-              <span>{t('settings — 詳細設定', 'settings — advanced settings', { 'zh-CN': 'settings — 详细设置', 'zh-TW': 'settings — 詳細設定', ko: 'settings — 상세 설정' })}</span>
-              <span className="text-sub tracking-widest">— □ ×</span>
-            </TitleBar>
-            <img
-              src="/shots/settings.png"
-              alt={t('詳細設定の画面。頭脳・表示とふるまい・声の設定', 'Advanced settings: brain, appearance & behavior, voice', { 'zh-CN': '详细设置画面:头脑、显示与行为、声音', 'zh-TW': '詳細設定畫面:頭腦、顯示與行為、聲音', ko: '상세 설정 화면: 두뇌·표시와 행동·목소리' })}
-              className="block w-full h-auto bg-[#0b0912]"
-              loading="lazy"
-            />
-            <figcaption className="px-5 py-3 text-xs text-sub border-t border-cream/10">
-              {t('コマンドを覚えなくても、ひととおりここで決められます', 'No commands to memorise — everything can be set here', { 'zh-CN': '不用背命令,基本都能在这里设置', 'zh-TW': '不用背指令,基本都能在這裡設定', ko: '커맨드를 외우지 않아도, 웬만한 건 여기서 정할 수 있습니다' })}
-            </figcaption>
-          </figure>
-        </Reveal>
-
-        <StaggerGroup className="grid md:grid-cols-3 border-t-2 border-l-2 border-white/10 shadow-[0_0_48px_rgba(255,107,143,0.08)]">
-          {FEATURES.map((f, i) => (
-            <FeatureCard
-              key={f.num}
-              {...f}
-              span={i === FEATURES.length - 1 ? lastSpan(FEATURES.length) : ''}
-            />
+              <span className={`text-sm flex-1 ${row.done ? 'text-mist' : 'text-mist/80'}`}>{row.desc}</span>
+              <span className="font-mono text-[10px] shrink-0 whitespace-nowrap">
+                {row.done ? <span className="text-sakura">✓</span> : <span className="text-mist/80">{t('予定', 'planned', { 'zh-CN': '计划', 'zh-TW': '計畫', ko: '예정' })}</span>}{' '}
+                <span className="text-mist/80">{row.phase}</span>
+              </span>
+            </StaggerItem>
           ))}
         </StaggerGroup>
-
-        {/* 拡張機能一覧 */}
-        <div className="mt-16">
-          <Reveal>
-            <h3 className="font-mincho font-bold text-xl md:text-2xl mb-2">
-              {t('さらに、', 'And then, ', { 'zh-CN': '然后,', 'zh-TW': '然後,', ko: '그리고, ' })}
-              <span className="text-sakura">{t('その先へ。', 'beyond.', { 'zh-CN': '走向更远。', 'zh-TW': '走向更遠。', ko: '그 너머로.' })}</span>
-            </h3>
-            <p className="text-mist text-sm leading-relaxed mb-8">
-              <span className="text-sakura font-semibold">✓</span>{' '}
-              {t('は実装済み、', 'means shipped, ', { 'zh-CN': '为已实现,', 'zh-TW': '為已實現,', ko: '는 구현 완료, ' })}
-              <span className="text-mist/50">{t('予定', 'planned', { 'zh-CN': '计划中', 'zh-TW': '計畫中', ko: '예정' })}</span>{' '}
-              {t('はこれから。上段が実装済みの拡張機能です(P = Phase)。', 'is upcoming. (P = phase.)', { 'zh-CN': '为待做。(P = Phase)', 'zh-TW': '為待做。(P = Phase)', ko: '은 앞으로. (P = Phase)' })}
-            </p>
-          </Reveal>
-          <StaggerGroup className="grid md:grid-cols-2 gap-x-12 border-t border-cream/10" amount={0.05}>
-            {EXT_ROWS.map((row) => (
-              <StaggerItem
-                key={row.label}
-                className="flex items-baseline gap-4 py-3.5 border-b border-cream/10"
-              >
-                <span className={`font-mono text-xs w-32 shrink-0 ${row.done ? 'text-sakura' : 'text-mist/70'}`}>
-                  {row.label}
-                </span>
-                <span className={`text-sm flex-1 ${row.done ? 'text-mist' : 'text-mist/60'}`}>{row.desc}</span>
-                <span className="font-mono text-[10px] shrink-0 whitespace-nowrap">
-                  {row.done ? <span className="text-sakura">✓</span> : <span className="text-mist/40">{t('予定', 'planned', { 'zh-CN': '计划', 'zh-TW': '計畫', ko: '예정' })}</span>}{' '}
-                  <span className="text-mist/50">{row.phase}</span>
-                </span>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-        </div>
       </div>
-    </section>
+    </Section>
   );
 }

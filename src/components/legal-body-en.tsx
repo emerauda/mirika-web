@@ -1,4 +1,4 @@
-import { H2, H3, Note, P, Ul } from './legal-ui';
+import { A, B, H2, H3, Note, P, Ul } from './legal-ui';
 
 /** 法務文書の本文(英語)。正文は legal-body-ja.tsx —— 構成はそのファイルに揃える。 */
 
@@ -13,7 +13,7 @@ export function PrivacyBodyEn() {
       <H2 id="not-collected">First, what we do not collect</H2>
       <P>
         In the default configuration, the following{' '}
-        <strong className="text-cream">never leave your machine at all</strong>. They are never
+        <B>never leave your machine at all</B>. They are never
         sent to our servers, and never stored there.
       </P>
       <Ul>
@@ -28,7 +28,7 @@ export function PrivacyBodyEn() {
       </Ul>
       <Note>
         We do not measure usage (analytics), we show no ads, and{' '}
-        <strong className="text-cream">we do not send crash reports automatically either</strong>.
+        <B>we do not send crash reports automatically either</B>.
         Activity logs remain only on your machine — they are something you attach yourself when
         you report a problem.
       </Note>
@@ -42,9 +42,9 @@ export function PrivacyBodyEn() {
       <H3>A cloud brain (optional)</H3>
       <P>
         If you pick ChatGPT, Claude, Gemini, or another such service as the brain,{' '}
-        <strong className="text-cream">
+        <B>
           what you say, along with its context, is sent to that provider
-        </strong>
+        </B>
         . How it is handled follows that provider's terms. The default is a local brain, and this
         feature runs only when you explicitly choose it.
       </P>
@@ -52,7 +52,7 @@ export function PrivacyBodyEn() {
       <H3>Memory sync (optional)</H3>
       <P>
         When you raise the same girl on more than one machine, memory is{' '}
-        <strong className="text-cream">encrypted on your machine first</strong> and then sent to
+        <B>encrypted on your machine first</B> and then sent to
         the storage home. The passphrase exists only on your machine, so even we, who prepare the
         storage home, cannot read what is inside.
       </P>
@@ -67,26 +67,26 @@ export function PrivacyBodyEn() {
         When you use a Pro or organization license, the app talks to our servers to verify the
         key and receive policies. What is handled here is the license identifier, the machine
         name, the app version, the time of the last check, and{' '}
-        <strong className="text-cream">the country the connection came from</strong>.{' '}
-        <strong className="text-cream">
+        <B>the country the connection came from</B>.{' '}
+        <B>
           The contents of your conversations are not included.
-        </strong>
+        </B>
       </P>
       <P>
         The country is recorded{' '}
-        <strong className="text-cream">to see whether a key is being passed around</strong>. Pro
+        <B>to see whether a key is being passed around</B>. Pro
         keys are built to be verified entirely inside your machine, so the only time we see
         anything is when you use the sync storage home. What remains is only{' '}
-        <strong className="text-cream">
+        <B>
           up to 5 recently seen countries and the time of the last check
-        </strong>
+        </B>
         , and it does not become a history of your movements.
       </P>
       <Note>
-        <strong className="text-cream">We do not store IP addresses.</strong> The country is only
+        <B>We do not store IP addresses.</B> The country is only
         read from information Cloudflare attaches to the connection, and nothing that amounts to
         an address remains on our servers. Unauthorized access is blocked at{' '}
-        <strong className="text-cream">the Cloudflare layer in front of our servers</strong>.
+        <B>the Cloudflare layer in front of our servers</B>.
       </Note>
 
       <H3>Connecting external services (optional)</H3>
@@ -99,13 +99,13 @@ export function PrivacyBodyEn() {
       <H2 id="org">If you use Mirika in an organization</H2>
       <P>
         When you use Mirika under an organization license, the administrator can see{' '}
-        <strong className="text-cream">
+        <B>
           who is using how many machines, when they last used it, and from which country
-        </strong>
+        </B>
         .{' '}
-        <strong className="text-cream">
+        <B>
           Even the administrator cannot see the contents of your conversations.
-        </strong>{' '}
+        </B>{' '}
         What is on your screen, the apps you have open, and what you type are not passed on
         either.
       </P>
@@ -127,7 +127,7 @@ export function PrivacyBodyEn() {
         </li>
         <li>
           Even if you cancel your license,{' '}
-          <strong className="text-cream">the memory on your machine is not erased</strong>. Sync
+          <B>the memory on your machine is not erased</B>. Sync
           can also continue through the free methods
         </li>
       </Ul>
@@ -148,9 +148,9 @@ export function PrivacyBodyEn() {
       <H2 id="contact">Contact</H2>
       <P>
         Please reach us through{' '}
-        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+        <A href="https://github.com/emerauda/mirika-web/issues">
           GitHub Issues
-        </a>
+        </A>
         .
       </P>
     </>
@@ -176,9 +176,9 @@ export function TermsBodyEn() {
           contract
         </li>
         <li>
-          <strong className="text-cream">
+          <B>
             Do not distribute or resell your key to third parties.
-          </strong>{' '}
+          </B>{' '}
           If several people use the same key, they end up sharing the memory storage home, and
           each other's memories get mixed together
         </li>
@@ -188,9 +188,9 @@ export function TermsBodyEn() {
       <H2 id="content">2. About generated content</H2>
       <P>
         The Software generates its responses with large language models.{' '}
-        <strong className="text-cream">
+        <B>
           We cannot guarantee that those responses are accurate or appropriate.
-        </strong>{' '}
+        </B>{' '}
         For decisions that matter, always check the facts yourself.
       </P>
       <Note>
@@ -210,9 +210,9 @@ export function TermsBodyEn() {
       <P>
         For VRM and Live2D models, character cards, voices, music, and any other materials you
         bring in, follow the conditions set by each one's provider.{' '}
-        <strong className="text-cream">
+        <B>
           That a material works in the Software does not mean you are free to use it.
-        </strong>{' '}
+        </B>{' '}
         Please take particular care when you make things public, such as in a stream.
       </P>
 
@@ -220,14 +220,14 @@ export function TermsBodyEn() {
       <P>
         The Software is provided as is. We cannot accept liability for damages arising from your
         use of it. However,{' '}
-        <strong className="text-cream">
+        <B>
           for the scope covered by a paid contract, we will take responsibility up to the amount
           you have paid us.
-        </strong>
+        </B>
       </P>
       <P>
         Memory is saved to a file on your machine.{' '}
-        <strong className="text-cream">Please keep backups yourself.</strong> We cannot promise to
+        <B>Please keep backups yourself.</B> We cannot promise to
         restore what is lost to hardware failure or accidental operation.
       </P>
 
@@ -235,14 +235,14 @@ export function TermsBodyEn() {
       <P>
         Server features we provide, such as license checks and the sync storage home, may be
         suspended or changed without notice. If we shut one down, we will announce it{' '}
-        <strong className="text-cream">
+        <B>
           with a period set aside for you to take your memory out
-        </strong>
+        </B>
         .
       </P>
       <P>
         As for the Software itself, even if the servers stop,{' '}
-        <strong className="text-cream">the local features keep working as they are</strong>. If
+        <B>the local features keep working as they are</B>. If
         the license goes unverified for an extended period, it returns to the free tier, but your
         memory and settings are left untouched.
       </P>
@@ -251,9 +251,9 @@ export function TermsBodyEn() {
       <P>
         Because of the nature of download sales, we are unable to offer refunds as a rule.
         However,{' '}
-        <strong className="text-cream">
+        <B>
           if a defect in the Software keeps it from working as described at the time of purchase
-        </strong>
+        </B>
         , please talk to us.
       </P>
 
@@ -269,9 +269,9 @@ export function TermsBodyEn() {
       <H2 id="contact">Contact</H2>
       <P>
         Please reach us through{' '}
-        <a href="https://github.com/emerauda/mirika-web/issues" className="text-sakura hover:underline">
+        <A href="https://github.com/emerauda/mirika-web/issues">
           GitHub Issues
-        </a>
+        </A>
         .
       </P>
     </>

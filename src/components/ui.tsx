@@ -1,4 +1,5 @@
-import type { ReactNode } from 'react';
+import type { ComponentType, ReactNode } from 'react';
+import { Reveal } from './primitives';
 
 /* OS ウィンドウのタイトルバー */
 export function TitleBar({
@@ -11,20 +12,71 @@ export function TitleBar({
   return <div className={`os-titlebar ${center ? 'justify-center' : ''}`}>{children}</div>;
 }
 
-/* セクション見出しの上に付く「01 Concept」表記 */
+/* セクション見出しの上に付く「01 Concept」表記。
+   icon 付き・桜色(UseCases の小見出し)もこの1部品で賄う */
 export function Kicker({
   index,
   label,
+  icon: Icon,
+  sakura = false,
   className,
 }: {
-  index: string;
-  label: string;
+  index?: string;
+  label: ReactNode;
+  icon?: ComponentType<{ className?: string }>;
+  sakura?: boolean;
   className?: string;
 }) {
   return (
-    <p className={`font-mono text-xs text-mist tracking-widest uppercase mb-3 ${className ?? ''}`}>
-      <span className="text-sakura">{index}</span> {label}
+    <p
+      className={`font-mono text-xs tracking-widest uppercase ${sakura ? 'text-sakura' : 'text-mist'} ${
+        Icon ? 'flex items-center gap-2' : ''
+      } ${className ?? 'mb-3'}`}
+    >
+      {Icon ? <Icon className="w-4 h-4" aria-hidden="true" /> : null}
+      {index ? <span className="text-sakura">{index}</span> : null}
+      {index ? <> {label}</> : label}
     </p>
+  );
+}
+
+/* トップページのセクション骨格。枠(境界線・トーン)・版面(max-w-6xl)・
+   見出し(Kicker + h2)を1箇所に。scroll-mt-20 の付け漏れをここで防ぐ */
+export function Section({
+  id,
+  index,
+  label,
+  title,
+  lead,
+  tone = 'plain',
+  headerClassName,
+  children,
+}: {
+  id: string;
+  index?: string;
+  label?: string;
+  title?: ReactNode;
+  lead?: ReactNode;
+  tone?: 'plain' | 'dark';
+  headerClassName?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section
+      id={id}
+      className={`border-t border-cream/10 scroll-mt-20 ${tone === 'dark' ? 'bg-black/20' : ''}`}
+    >
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        {title != null && (
+          <Reveal className={headerClassName ?? 'mb-14'}>
+            {label ? <Kicker index={index} label={label} /> : null}
+            <h2 className="font-mincho font-bold text-3xl md:text-4xl leading-relaxed">{title}</h2>
+            {lead}
+          </Reveal>
+        )}
+        {children}
+      </div>
+    </section>
   );
 }
 
@@ -55,15 +107,18 @@ export function XMark({ className }: { className?: string }) {
   );
 }
 
-/* ナビゲーション項目(id はスクロール監視にも使う) */
-export const NAV_ITEMS = [
+/* ナビゲーション項目(id はスクロール監視にも使う)。
+   mobileOnly: デスクトップのヘッダーは全言語1行が上限(実測で溢れた経緯あり)なので、
+   優先度の低い項目はモバイルメニューだけに出す */
+export const NAV_ITEMS: ReadonlyArray<{ id: string; label: string; mobileOnly?: boolean }> = [
   { id: 'concept', label: 'Concept' },
   { id: 'features', label: 'Features' },
   { id: 'usecases', label: 'Use Cases' },
   { id: 'architecture', label: 'Ghost/Shell/Brain' },
   { id: 'tech', label: 'Stack' },
   { id: 'roadmap', label: 'Roadmap' },
+  { id: 'foryou', label: 'For You', mobileOnly: true },
   { id: 'vision', label: 'Vision' },
   { id: 'faq', label: 'FAQ' },
   { id: 'download', label: 'Download' },
-] as const;
+];

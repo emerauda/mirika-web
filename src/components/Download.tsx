@@ -61,18 +61,47 @@ export function Download() {
   const detected = PLATFORMS.find((p) => p.key === os);
 
   useEffect(() => {
+    // GitHub API は未認証だと IP あたり 60回/時。共有 IP(社内 NAT・モバイル回線)では
+    // すぐ尽きて全 OS が「準備中」に見えてしまうので、取得結果を1時間だけ持ち回す。
+    // 制限に当たったときも、古いキャッシュがあればそれで賄う(無いときだけ諦める)
+    const CACHE_KEY = 'mirika.releases';
+    const CACHE_MS = 60 * 60_000;
+    const apply = (latest: Release | null, list: Release[]) => {
+      const st = latest && !latest.draft ? latest : null;
+      const live = Array.isArray(list) ? list.filter((r) => !r.draft) : [];
+      const pre = live.find((r) => r.prerelease) ?? null;
+      setStable(st);
+      setBeta(pre && (!st || newerBase(pre.tag_name, st.tag_name)) ? pre : null);
+    };
+    const readCache = (): { at: number; latest: Release | null; list: Release[] } | null => {
+      try {
+        const raw = sessionStorage.getItem(CACHE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch {
+        return null;
+      }
+    };
+    const cached = readCache();
+    if (cached && Date.now() - cached.at < CACHE_MS) {
+      apply(cached.latest, cached.list);
+      return;
+    }
     const headers = { Accept: 'application/vnd.github+json' };
     const ask = (url: string) =>
       fetch(url, { headers }).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
     Promise.all([ask(LATEST), ask(LIST).catch(() => [])])
       .then(([latest, list]: [Release, Release[]]) => {
-        const st = latest && !latest.draft ? latest : null;
-        const live = Array.isArray(list) ? list.filter((r) => !r.draft) : [];
-        const pre = live.find((r) => r.prerelease) ?? null;
-        setStable(st);
-        setBeta(pre && (!st || newerBase(pre.tag_name, st.tag_name)) ? pre : null);
+        try {
+          sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), latest, list }));
+        } catch {
+          /* プライベートモード等は都度取得のまま */
+        }
+        apply(latest, list);
       })
-      .catch(() => setFailed(true));
+      .catch(() => {
+        if (cached) apply(cached.latest, cached.list);
+        else setFailed(true);
+      });
   }, []);
 
   const version = stable?.tag_name ?? '';
@@ -84,7 +113,7 @@ export function Download() {
   const sdk = zipAsset('sdk');
 
   return (
-    <section id="download" className="border-t border-cream/10 bg-black/20">
+    <section id="download" className="border-t border-cream/10 bg-black/20 scroll-mt-20">
       <div className="max-w-5xl mx-auto px-6 py-24">
         <Reveal>
           <Kicker index="—" label="Download" />
@@ -130,7 +159,7 @@ export function Download() {
                       <MagneticLink
                         href={asset.browser_download_url}
                         className={`btn-hard inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm ${
-                          primary ? 'bg-sakura text-white' : 'bg-paper text-ink'
+                          primary ? 'bg-sakura text-plum' : 'bg-paper text-ink'
                         }`}
                       >
                         <DownloadIcon className="w-4 h-4" />{' '}
@@ -234,7 +263,7 @@ export function Download() {
             href="https://pro.mirika.dev/"
             target="_blank"
             rel="noopener"
-            className="btn-hard inline-flex items-center gap-2 bg-gradient-to-r from-[#ff8fab] to-[#c9a2ff] text-[#1a1420] px-5 py-3 font-bold text-sm"
+            className="btn-hard inline-flex items-center gap-2 bg-gradient-to-r from-sakura-lite to-iris text-plum px-5 py-3 font-bold text-sm"
           >
             <Crown className="w-4 h-4" />{' '}
             {t('Pro を見る', 'See Pro', { 'zh-CN': '查看 Pro', 'zh-TW': '查看 Pro', ko: 'Pro 보기' })}
@@ -285,8 +314,8 @@ export function Download() {
           <Reveal>
             <div className="mt-10 rounded-xl border border-cream/10 bg-night/40 p-5">
               <div className="flex flex-wrap items-center gap-2 mb-3">
-                <FlaskConical className="w-4 h-4 text-[#8be2f5]" />
-                <span className="font-mono text-xs font-bold text-[#8be2f5] tracking-wide">
+                <FlaskConical className="w-4 h-4 text-aqua" />
+                <span className="font-mono text-xs font-bold text-aqua tracking-wide">
                   {t('先行版 / BETA', 'PREVIEW / BETA', { 'zh-CN': '先行版 / BETA', 'zh-TW': '先行版 / BETA', ko: '프리뷰 / BETA' })}
                 </span>
                 <span className="font-mono text-xs text-sakura">{beta.tag_name}</span>

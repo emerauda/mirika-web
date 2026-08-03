@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { C, H2, H3, Note, P, Pro, Steps } from './docs-ui';
+import { A, B, C, H2, H3, Note, P, Pro, Shot, Steps } from './docs-ui';
 
 /** 使い方ドキュメント本文(簡体字中国語)。原文・構造の正は docs-body-ja.tsx —— 構成と JSX の形はそちらに揃える。 */
 
@@ -16,17 +16,17 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <Steps
               items={[
                 <>
-                  <a href="/#download" className="text-sakura hover:underline">
+                  <A href="/#download">
                     下载
-                  </a>
+                  </A>
                   并安装(Windows / Linux。macOS 版在签名支持就绪之前仍在准备中)
                 </>,
                 <>
                   启动后,默认的孩子(Komane)会站到桌面右下角。随附的 VRM 为
                   本体「Komane」与搭档「Chise (TKSP)」,两者均为{' '}
-                  <a href="https://goho-cheat-vrc.booth.pm/" target="_blank" rel="noreferrer">
+                  <A href="https://goho-cheat-vrc.booth.pm/" blank>
                     VRC合法チート研究会
-                  </a>{' '}
+                  </A>{' '}
                   的作品,承蒙许可随附于应用(模型不可再分发)
                 </>,
                 <>
@@ -37,16 +37,16 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               ]}
             />
             <Note>
-              <strong className="text-cream">基本操作</strong> — 按住拖动即可移动,右键点击打开菜单。
+              <B>基本操作</B> — 按住拖动即可移动,右键点击打开菜单。
               把 <C>.vrm</C> 或 <C>.pmx</C>(MMD)丢进窗口就会换装(双击没有分配任何操作)。
-              抚摸<strong className="text-cream">只在头部或胸口附近让手来回移动时</strong>才会成立,
+              抚摸<B>只在头部或胸口附近让手来回移动时</B>才会成立,
               只是路过并不会有反应(被收起的期间、或压在全屏应用之下时不会计数)。
               想让她暂时退下,用菜单的「收起」;要请回来,点托盘图标。
               在输入栏键入 <C>/</C> 会出现命令候选(↑↓ 选择,Tab / Enter 补全)。
               没有候选时的 ↑↓ 是输入历史。
             </Note>
             <P>
-              卡住的时候,请看<a href="#trouble" className="text-sakura hover:underline">「遇到麻烦时」</a>。
+              卡住的时候,请看<A href="#trouble">「遇到麻烦时」</A>。
               当前状态可用 <C>/check</C> 一并查看(头脑・声音・麦克风・秘书・记忆)。
             </P>
           </section>
@@ -58,14 +58,14 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H3>内置引擎(最省事)</H3>
             <P>
               用 <C>/brain embedded</C> 或右键菜单开启。只在应用内部运行。
-              模型会<strong className="text-cream">按你的 PC 装得下的大小自动选择</strong> —— VRAM
+              模型会<B>按你的 PC 装得下的大小自动选择</B> —— VRAM
               8GB 级选 Gemma 4 12B(4bit・约 6.7GB),不够则依次降到 E4B(约 5GB)、E2B(约 3GB)。
-              如果你有 16GB・24GB 级的 GPU,<strong className="text-cream">会先问你要不要下载更大的模型</strong>(26B-A4B / 31B)。
+              如果你有 16GB・24GB 级的 GPU,<B>会先问你要不要下载更大的模型</B>(26B-A4B / 31B)。
               选择的理由会留在运行日志里。手头有 GGUF 的话,可用「打开 GGUF…」直接使用。
             </P>
             <H3>本地运行时(推荐)</H3>
             <P>
-              Ollama(11434)和 LM Studio(1234)<strong className="text-cream">只要在运行就会被自动检测</strong>。
+              Ollama(11434)和 LM Studio(1234)<B>只要在运行就会被自动检测</B>。
               选择模型用 <C>/model &lt;名字&gt;</C>,手动指定连接地址用 <C>/endpoint &lt;URL&gt;</C>,
               重新扫描用 <C>/rescan</C>。
             </P>
@@ -83,26 +83,26 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H2 id="voice">声音与麦克风</H2>
             <H3>让她说话</H3>
             <P>
-              <strong className="text-cream">日语</strong>只需装好{' '}
-              <a href="https://voicevox.hiroshiba.jp/" className="text-sakura hover:underline">
+              <B>日语</B>只需装好{' '}
+              <A href="https://voicevox.hiroshiba.jp/">
                 VOICEVOX
-              </a>{' '}
+              </A>{' '}
               或{' '}
-              <a href="https://aivis-project.com/" className="text-sakura hover:underline">
+              <A href="https://aivis-project.com/">
                 AivisSpeech
-              </a>{' '}
+              </A>{' '}
               即可。Mirika 会在后台替你启动・结束引擎。
               声音列表用 <C>/voice list</C>,更换用 <C>/voice &lt;ID&gt;</C>(搭档用 <C>/partner voice</C>)。
               读错的词可以像 <C>/read 早急 さっきゅう</C> 这样教她改正。
             </P>
             <P>
-              <strong className="text-cream">英语・中文</strong>使用内置 Piper。用 <C>/piper</C> 只下载需要的部分。
-              <strong className="text-cream">韩语</strong>没有本地语音,因此只显示字幕(无声)。
+              <B>英语・中文</B>使用内置 Piper。用 <C>/piper</C> 只下载需要的部分。
+              <B>韩语</B>没有本地语音,因此只显示字幕(无声)。
             </P>
             <H3>用 TTS API 覆盖</H3>
             <P>
               用 <C>/tts &lt;基础URL&gt; [模型]</C> 指向 OpenAI 兼容的语音合成后,
-              <strong className="text-cream">包括韩语在内的所有语言</strong>都会用那个声音说话(kokoro・GPT-SoVITS 等)。
+              <B>包括韩语在内的所有语言</B>都会用那个声音说话(kokoro・GPT-SoVITS 等)。
               填入 URL 后会获取声音列表,可在设置界面的本体・搭档下拉菜单中选择。恢复用 <C>/tts off</C>。
             </P>
             <H3>听你说话</H3>
@@ -111,8 +111,8 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               待机中只会拾取叫了名字的发言。模型按 PC 性能自动选择,可用 <C>/mic model</C> 更换。
             </P>
             <P>
-              把<strong className="text-cream">音频文件</strong>(mp3 / wav / m4a / ogg / opus / flac)
-              拖放过来,就会整段转写文字,并送上<strong className="text-cream">摘要和感想</strong>
+              把<B>音频文件</B>(mp3 / wav / m4a / ogg / opus / flac)
+              拖放过来,就会整段转写文字,并送上<B>摘要和感想</B>
               (最长 15 分钟。精度取决于与麦克风相同的 Whisper 模型)。
             </P>
           </section>
@@ -130,7 +130,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <P>
               只要把 <C>.pmx</C> 丢到角色身上就会换装(也可通过 <C>/shell mmd &lt;文件.pmx&gt;</C> 或
               菜单的「打开模型…」)。纹理会从模型所在的文件夹自动拾取,
-              下次启动时也仍穿在身上。<strong className="text-cream">穿着期间丢入 <C>.vmd</C>,就会随那段动作起舞</strong>
+              下次启动时也仍穿在身上。<B>穿着期间丢入 <C>.vmd</C>,就会随那段动作起舞</B>
               (嘴和眼睛的变形也会动)。支持卡通渲染的阴影与球面贴图的光泽。
               眨眼・对口型・视线・小动作・窗沿闲坐都和 VRM 一样有效。
               没有头部骨骼等穿不上的模型,会说明理由婉拒;没有嘴部或表情变形的模型,穿上后会如实相告。
@@ -142,7 +142,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             </P>
             <H3>卡片外壳(立绘)</H3>
             <P>
-              导入角色卡的 PNG 后,<strong className="text-cream">那张画就会成为身体</strong>。
+              导入角色卡的 PNG 后,<B>那张画就会成为身体</B>。
               想让喜欢的图片站起来,用 <C>/shell card &lt;图片.png&gt;</C>。透明 PNG 会按裁切原样站立,
               凭呼吸的起伏・说话时的弹跳而显得鲜活。回到 3D 用 <C>/shell vrm</C>。
             </P>
@@ -162,7 +162,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               搭档一侧分别是 <C>/partner</C> <C>/partner first</C> <C>/partner persona</C>。
             </P>
             <P>
-              写进<strong className="text-cream">设定备忘</strong>(<C>/lore add &lt;键&gt; &lt;内容&gt;</C>)的内容,
+              写进<B>设定备忘</B>(<C>/lore add &lt;键&gt; &lt;内容&gt;</C>)的内容,
               在话题触及时一定会被想起。键也可以用 <C>/…/</C> 写成正则表达式。
             </P>
             <P>
@@ -171,18 +171,18 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             </P>
             <H3>好感度要花上数年才长成</H3>
             <P>
-              好感度不是说话次数的累计,而是<strong className="text-cream">羁绊(数年)与心情(每日)双层</strong>运作的。
+              好感度不是说话次数的累计,而是<B>羁绊(数年)与心情(每日)双层</B>运作的。
               一天能长的量有上限,越亲近每一步越重,所以要到「家人一般的存在」是数年之后的事。
             </P>
             <Note>
-              <strong className="text-cream">也会下降。</strong>久不见面就会生疏(约三天起,超过两周更快);雨天连着会低落,
+              <B>也会下降。</B>久不见面就会生疏(约三天起,超过两周更快);雨天连着会低落,
               抚摸过头会疲惫,老说同样的话则毫无波澜。有时也会没来由地提不起劲(从相遇那天延续的生理节律)。
-              但<strong className="text-cream">不会退回陌生人</strong>——曾抵达阶段的一半是地板,离开期间失去的一部分会在重逢后的对话中更快回来。
+              但<B>不会退回陌生人</B>——曾抵达阶段的一半是地板,离开期间失去的一部分会在重逢后的对话中更快回来。
               能接受多少抚摸,取决于关系已有多深。
             </Note>
             <P>
               <C>/bond</C> 不显示数字。除了相识天数、对话次数、记住的事情之外,只返回阶段(★)与
-              「最近好像越来越近了」「最近:雨一直下,总提不起劲」这样的<strong className="text-cream">气息</strong>。当天的心情也会直接体现在回话的语气里。
+              「最近好像越来越近了」「最近:雨一直下,总提不起劲」这样的<B>气息</B>。当天的心情也会直接体现在回话的语气里。
             </P>
             <H3>连同记忆,搬去另一台设备(同步)</H3>
             <P>
@@ -190,20 +190,10 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               在另一台 PC 上用 <C>/sync import</C> 导入。导入是相互比对合并,
               只存在于其中一边的对话也不会消失。设为 <C>/sync cloud &lt;口令&gt;</C> 后,
               每 15 分钟自动对齐一次(存放处若用你自己云盘的同步文件夹则免费,
-              寄放在我们这边的保管架则属于 Pro)。<strong className="text-cream">口令不会保存在任何地方</strong> —
+              寄放在我们这边的保管架则属于 Pro)。<B>口令不会保存在任何地方</B> —
               忘记就再也打不开了。
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-sync.webp"
-                alt="详细设置中的记忆同步。口令、导出与导入、记忆的存放处"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                详细设置的「记忆同步」。导出・导入・存放处的选择,也都能在这里操作
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-sync.webp" alt="详细设置中的记忆同步。口令、导出与导入、记忆的存放处" caption={<>详细设置的「记忆同步」。导出・导入・存放处的选择,也都能在这里操作</>} />
           </section>
 
           {/* --- AI秘書 --- */}
@@ -218,17 +208,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               设备内的全文检索(本地 RAG)用 <C>/rag &lt;文件夹&gt;</C>。
               想给她看屏幕用 <C>/see</C>,持续守望用 <C>/watch</C>。
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-secretary.webp"
-                alt="详细设置中的 AI 秘书。定期检查、简报、屏幕守望、邮件监视"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                详细设置的「AI 秘书」。定期检查的间隔也好,守望的开与关也好,都能在这里直接决定
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-secretary.webp" alt="详细设置中的 AI 秘书。定期检查、简报、屏幕守望、邮件监视" caption={<>详细设置的「AI 秘书」。定期检查的间隔也好,守望的开与关也好,都能在这里直接决定</>} />
             <P>
               也支持从 Claude Desktop 或 VS Code 经由 Mirika 使用工具的「传话」
               (桥接为 <C>127.0.0.1:9801</C>。被占用时会自动让位到 9821 → 8801)。
@@ -237,23 +217,23 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <P>
               即使不使用 Google 集成,通过 <C>/mail pop &lt;主机[:端口]&gt; &lt;用户&gt; &lt;密码&gt;</C>{' '}
               也能实现「来邮件了就告诉我」。只要服务商提供 POP over SSL(默认 995)
-              就都能用,读取的<strong className="text-cream">只有邮件头(发件人和主题)</strong> —
+              就都能用,读取的<B>只有邮件头(发件人和主题)</B> —
               不取正文,也不改变收件箱的状态。新邮件会在定期检查的巡回中告诉你。
             </P>
             <P>
-              <strong className="text-cream">Yahoo! 邮箱(日本)的示例</strong>:
+              <B>Yahoo! 邮箱(日本)的示例</B>:
             </P>
             <Steps
               items={[
                 <>先在 Yahoo! 邮箱的设置里启用 <C>IMAP/POP/SMTP アクセス</C>(默认是关闭的)</>,
-                <>如果在用两步验证,请签发<strong className="text-cream">应用密码</strong>,而不是用登录密码</>,
+                <>如果在用两步验证,请签发<B>应用密码</B>,而不是用登录密码</>,
                 <><C>/mail pop pop.mail.yahoo.co.jp 你的YahooJAPAN_ID 密码</C> —— 端口保持默认的 995(SSL)就可以</>,
               ]}
             />
             <Note>
               其他服务商的例子:Gmail 是 <C>pop.gmail.com</C>,Outlook.com 是{' '}
               <C>outlook.office365.com</C>(都是 995)。
-              <strong className="text-cream">请使用应用密码,而不是平时的登录密码</strong> —
+              <B>请使用应用密码,而不是平时的登录密码</B> —
               许多服务商在开启两步验证后会拒绝普通密码。
               保存之前会先确认能否连通,所以就算打错了也不会留下设置。
               密码会在设备内加密保存(在没有 OS 钥匙串的环境下会如实告知)。
@@ -273,12 +253,12 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <P>
               旧伺か的台本(Sakura Script)可以原样运行。
               想在手边试试,用 <C>{'/sakura \\0\\s[0]こんにちは。\\w4\\1おい。\\e'}</C>。
-              同一端口还会<strong className="text-cream">接收 SSTP(SEND / NOTIFY)</strong>,
+              同一端口还会<B>接收 SSTP(SEND / NOTIFY)</B>,
               因此可以从 SSP 等现有工具把台本发进来(仅限 UTF-8)。
             </P>
             <H3>幽灵间交流</H3>
             <P>
-              她可以<strong className="text-cream">与同一桌面上的其他幽灵交谈</strong>。
+              她可以<B>与同一桌面上的其他幽灵交谈</B>。
               用 <C>/communicate &lt;话语&gt;</C> 向旁边的孩子搭话,她会把返回的台本原样说出来。
               反过来收到 SSTP COMMUNICATE 时,会以这个孩子的身份回话
               (用户个人的日程和记忆不会讲给别家的孩子)。
@@ -289,7 +269,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
           <section className="mb-16">
             <H2 id="card">角色卡</H2>
             <P>
-              SillyTavern 等处分发的<strong className="text-cream">角色卡(V2 / V3)</strong>,
+              SillyTavern 等处分发的<B>角色卡(V2 / V3)</B>,
               只需 PNG 原样拖放即可作为人格导入(用 <C>/card &lt;文件&gt;</C> 也一样)。
               也支持 JSON 格式的卡片。
             </P>
@@ -297,11 +277,11 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               items={[
                 <>把卡片的 PNG 丢到角色身上</>,
                 <>名字・说明・性格・场景・对话示例会进入性格设定,世界书则进入设定备忘(<C>/lore</C>)</>,
-                <>PNG 卡片会<strong className="text-cream">让那张画成为身体</strong>,并用卡片的第一句话向你问好</>,
+                <>PNG 卡片会<B>让那张画成为身体</B>,并用卡片的第一句话向你问好</>,
               ]}
             />
             <Note>
-              <strong className="text-cream">担心被覆盖时</strong> — 如果已有你亲手写下的性格,
+              <B>担心被覆盖时</B> — 如果已有你亲手写下的性格,
               导入前会先向你确认(也可以先原样导出到文件再继续)。
               导入之后也能用 <C>/card undo</C> 一步步回退(保留 5 次),
               <C>/card reset</C> 则一口气回到读取卡片之前。
@@ -315,14 +295,14 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <P>
               用 <C>/sing [题目]</C>,她会真的合着旋律唱出来。
               歌词当场创作,旋律则搭在应用自带的童谣风音形上。
-              需要 VOICEVOX 的<strong className="text-cream">支持歌唱的角色</strong>
+              需要 VOICEVOX 的<B>支持歌唱的角色</B>
               (引擎不支持时,她会如实相告并且什么也不做)。
             </P>
             <H3>画画</H3>
             <P>
               用 <C>/draw [题目]</C> 画好后,她会在写生簿窗口里展示给你。
               本地若运行着图像生成 API(AUTOMATIC1111 兼容。7860 / 7861)就用它来画,
-              没有的话就<strong className="text-cream">用圆圈和线条手绘</strong>。画好的画会留在设置文件夹的
+              没有的话就<B>用圆圈和线条手绘</B>。画好的画会留在设置文件夹的
               <C>drawings/</C> 里。
             </P>
             <P>搭档在场时,会在唱完・画完的时候来吐槽一番。</P>
@@ -361,29 +341,19 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             </P>
             <P>
               栏目除了听众来信・大喜利・冷知识・架空广告・烦恼咨询・脑内排行榜・三选一竞猜・即兴广播剧之外,
-              还有<strong className="text-cream">即兴歌曲・作词对决・画画・插画题目</strong>,
+              还有<B>即兴歌曲・作词对决・画画・插画题目</B>,
               在铺垫的对谈之后真的开唱、真的动笔。
             </P>
             <P>
               用 <C>/stream start &lt;直播URL&gt;</C> 可以拾取并朗读 YouTube 直播的评论
               (超级留言最优先)。节目的调味可用 <C>/radio otaku</C> 切换到御宅特化包。
             </P>
-            <figure className="my-6 rounded-lg overflow-hidden border border-cream/10">
-              <img
-                src="/shots/settings-stream.png"
-                alt="详细设置中的直播相关。直播的形态、评论接收口、话痨度"
-                className="block w-full h-auto"
-                loading="lazy"
-              />
-              <figcaption className="px-4 py-2.5 text-xs text-sub bg-paper/40">
-                详细设置的「直播」。形态・评论接收口・话痨度,也都能在这里决定
-              </figcaption>
-            </figure>
+            <Shot src="/shots/settings-stream.webp" alt="详细设置中的直播相关。直播的形态、评论接收口、话痨度" caption={<>详细设置的「直播」。形态・评论接收口・话痨度,也都能在这里决定</>} />
             <H3>两种直播形态</H3>
             <P>
-              <C>/stream host</C> 是<strong className="text-cream">由这孩子主持节目</strong>的形态
+              <C>/stream host</C> 是<B>由这孩子主持节目</B>的形态
               (栏目推进・唱歌・画画・收尾的「えんいー(En-ii)」。开始用 <C>/stream start</C>)。
-              <C>/stream assist</C> 则是<strong className="text-cream">你当主角,这孩子坐在搭档席</strong>的形态 —
+              <C>/stream assist</C> 则是<B>你当主角,这孩子坐在搭档席</B>的形态 —
               不推进节目台本,只读评论,在被点名和被提问时才接话回应。
               不抢话正是这个模式的品质所在,因此内置了避免盖住主播声音的间隔
               (分寸用 <C>/stream chatty 0〜100</C> 调节。0 则专心只读评论)。
@@ -391,7 +361,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <P>
               开播的一整套流程,一句 <C>/stream go &lt;直播内容&gt;</C> 就够了 —
               进入直播模式,开启 OBS 推流(前提是已 <C>/obs connect</C>),
-              连宣传文案的草稿都会写好。<strong className="text-cream">只有发布要由你亲手来按</strong>
+              连宣传文案的草稿都会写好。<B>只有发布要由你亲手来按</B>
               (为的是不擅自发出无法挽回的东西。<C>/announce post</C> 会打开发布界面)。
             </P>
             <H3>连接评论查看器(棒読みちゃん兼容)</H3>
@@ -400,7 +370,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               OneComme(わんコメ)、マルチコメントビューア等,只要把你所用工具的
               「棒読みちゃん联动」直接指过来,评论就会以这孩子的声音流出
               (与本家端口相同,因此无法同时使用)。
-              <strong className="text-cream">各直播网站的对接交给评论查看器一侧</strong> —
+              <B>各直播网站的对接交给评论查看器一侧</B> —
               YouTube 也好、Twitch 也好、niconico 直播也好,只要 OneComme 能拾取,就会原样送达。
               协助模式中,不只是朗读,拾取并回应的判断也经由这里。
             </P>
@@ -412,7 +382,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               ON AIR 灯・当前栏目・字幕条・语音鸣谢
               (桌面侧的叠加层是 <C>radio-desk.html</C>)。台名和字幕条可
               在应用里用 <C>/radio title</C> 替换。
-              <strong className="text-cream">画画画出的作品会显示在右下角的画架上</strong>。
+              <B>画画画出的作品会显示在右下角的画架上</B>。
               请把角色的窗口捕捉叠放在它上面。
             </P>
             <Note>
@@ -427,22 +397,22 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H2 id="pro">Pro 与许可证</H2>
             <P>
               本体免费使用(采用专用许可证的免费软件)。
-              Pro 为买断制,解锁<strong className="text-cream">主播模式・剧本作家・网络电台・Spotify 联动・多重幽灵</strong>(各自的详情见 <a href="https://pro.mirika.dev/" className="text-sakura hover:underline">pro.mirika.dev</a>)。
+              Pro 为买断制,解锁<B>主播模式・剧本作家・网络电台・Spotify 联动・多重幽灵</B>(各自的详情见 <A href="https://pro.mirika.dev/">pro.mirika.dev</A>)。
             </P>
             <Steps
               items={[
                 <>
                   在{' '}
-                  <a href="https://emerauda.booth.pm/items/8649631" className="text-sakura hover:underline">
+                  <A href="https://emerauda.booth.pm/items/8649631">
                     Booth
-                  </a>{' '}
+                  </A>{' '}
                   购买 Pro
                 </>,
                 <>
                   在{' '}
-                  <a href="https://pro.mirika.dev/" className="text-sakura hover:underline">
+                  <A href="https://pro.mirika.dev/">
                     pro.mirika.dev
-                  </a>{' '}
+                  </A>{' '}
                   填入订单号和下单日期,领取许可证密钥
                 </>,
                 <>
@@ -461,16 +431,16 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H2 id="discord">在 Discord 上也能使用</H2>
             <P>
               Mirika 也在 Discord 上。她不仅在
-              <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">官方服务器</a>
+              <A href="https://discord.gg/fnmUau5qzB">官方服务器</A>
               工作,如果把应用"添加到我的账户"(个人安装),在私信里、甚至没有机器人的服务器里,
               也能带着秘书随行。朗读等服务器功能属于 Pro。
             </P>
             <Steps
               items={[
                 <>
-                  <a href="https://discord.gg/fnmUau5qzB" className="text-sakura hover:underline">加入官方 Discord</a>,或
-                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465" className="text-sakura hover:underline">把 Bot 邀请到自己的服务器</a>,或
-                  <a href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands" className="text-sakura hover:underline">添加到自己的账户</a>(私信和任何服务器都能用)
+                  <A href="https://discord.gg/fnmUau5qzB">加入官方 Discord</A>,或
+                  <A href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&scope=bot+applications.commands&permissions=281836025662465">把 Bot 邀请到自己的服务器</A>,或
+                  <A href="https://discord.com/oauth2/authorize?client_id=1533170549940027493&integration_type=1&scope=applications.commands">添加到自己的账户</A>(私信和任何服务器都能用)
                 </>,
                 <>
                   在 Booth 购买过?在 <C>/order</C> 输入订单号和下单日期 — 当场领取许可证密钥
@@ -482,15 +452,15 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             />
             <P>
               <C>/talk</C> 是与 Mirika 的对话。关于用法的提问,她会以官方文档为依据、附来源链接作答。
-              用回复下方的按钮打开<strong className="text-cream">记忆</strong>后,她会记住对话
+              用回复下方的按钮打开<B>记忆</B>后,她会记住对话
               (只属于你,随时可全部删除)。<C>/todo</C> 与
-              <strong className="text-cream">桌面版 TODO 双向同步</strong>,临近期限时也会在私信里
+              <B>桌面版 TODO 双向同步</B>,临近期限时也会在私信里
               分三档提醒(24 小时前 → 1 小时前 → 已超期)。
             </P>
             <P>
               朗读会用 VOICEVOX(+ Nemo,共 136 种声音)读出 <C>/voice bind</C> 绑定的语音频道。
               自己的声音用 <C>/voice speaker</C> 挑选(可搜索,也可从完整列表里浏览)。
-              在开启 <C>/voice listen</C> 的服务器里,喊一声"<strong className="text-cream">Mirika</strong>",
+              在开启 <C>/voice listen</C> 的服务器里,喊一声"<B>Mirika</B>",
               她会听到并用声音回答 — 音频在转成文字的那一刻即被丢弃,没有呼唤她的发言连文字也不保留。
             </P>
             <Note>
@@ -574,7 +544,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H3>运行不顺时</H3>
             <P>
               用 <C>/check</C> 可一并确认头脑・声音・麦克风・秘书・记忆的状态。
-              仍然不对劲时用 <C>/log</C> —— <strong className="text-cream">会打开装有运行日志的文件夹</strong>
+              仍然不对劲时用 <C>/log</C> —— <B>会打开装有运行日志的文件夹</B>
               (7 天份・API 密钥和口令均已打码)。反馈时随附当天的文件,
               我们就能循迹查明原因。从详细设置的「遇到麻烦时」也能打开同一个文件夹。
             </P>
@@ -586,10 +556,10 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               <C>POST /shell/say</C> 回话 — 只靠浏览器就能写出一副身体。
             </P>
             <P>
-              协议被设计成<strong className="text-cream">仅仅连上还不能使用</strong>的形式。
+              协议被设计成<B>仅仅连上还不能使用</B>的形式。
               版本比对・口令・自我介绍(申报能做什么)都完成后,指令才会送达;
               尚未就绪的对象、或那副身体做不到的指令,
-              <strong className="text-cream">不会被默默丢弃,而是作为发送失败返回</strong>
+              <B>不会被默默丢弃,而是作为发送失败返回</B>
               (为了不造出「偶尔不说话的身体」)。没有申报的能力一律按「做不到」处理。
             </P>
             <H3>OBS 联动 API(SSE)</H3>
@@ -623,14 +593,9 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H2 id="trouble">遇到麻烦时</H2>
             <P>
               这里没有列出的症状,请到{' '}
-              <a
-                href="https://discord.gg/fnmUau5qzB"
-                target="_blank"
-                rel="noopener"
-                className="text-sakura hover:underline"
-              >
+              <A href="https://discord.gg/fnmUau5qzB" blank>
                 官方 Discord
-              </a>{' '}
+              </A>{' '}
               提问。若能随附当天的运行日志(右键菜单 →
               「打开运行日志(用于反馈问题)」),就能很快查明原因。
             </P>
@@ -653,7 +618,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             </P>
             <H3>不唱歌</H3>
             <P>
-              唱歌需要 VOICEVOX 的<strong className="text-cream">支持歌唱的角色</strong>。
+              唱歌需要 VOICEVOX 的<B>支持歌唱的角色</B>。
               AivisSpeech 等不支持歌唱的引擎无法唱歌。
             </P>
             <H3>想把导入的卡片恢复原状</H3>

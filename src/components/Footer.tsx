@@ -18,13 +18,13 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-14 text-center space-y-7">
         <div className="flex items-center justify-center gap-2.5">
           <Ghost className="w-5 h-5 text-sakura" />
-          <span className="font-mincho font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-[#ff8fab] via-[#c9a2ff] to-[#8be2f5]">
+          <span className="font-mincho font-bold text-lg brand-gradient-text">
             Mirika.
           </span>
         </div>
         <nav
           className="flex flex-wrap justify-center gap-x-6 gap-y-2 font-mono text-xs text-mist"
-          aria-label="フッターナビゲーション"
+          aria-label={t('フッターナビゲーション', 'Footer navigation', { 'zh-CN': '页脚导航', 'zh-TW': '頁尾導覽', ko: '푸터 내비게이션' })}
         >
           {FOOTER_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="hover:text-sakura transition-colors">
@@ -77,7 +77,7 @@ export function Footer() {
             <XMark className="w-5 h-5" />
           </a>
         </div>
-        <p className="font-mono text-[10px] text-mist/60">\0\s[0]また来てね。\w8\1\s[10]……待ってるぞ。\e</p>
+        <p className="font-mono text-[10px] text-mist/80">\0\s[0]また来てね。\w8\1\s[10]……待ってるぞ。\e</p>
       </div>
     </footer>
   );

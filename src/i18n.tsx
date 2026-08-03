@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from 'react';
 
 /**
  * サイトの多言語対応(アプリ本体と同じ5言語・同じ書き方)。
@@ -69,21 +69,36 @@ export function useLang() {
 
 type Extra = Partial<Record<'zh-CN' | 'zh-TW' | 'ko', string>>;
 
-/** 現在の言語で文言を返すフック。書き方はアプリの t() と同じ */
+/** 現在の言語で文言を返すフック。書き方はアプリの t() と同じ。
+ *  参照は言語が変わるまで安定(useMemo の依存に使える) */
 export function useT() {
   const { lang } = useLang();
-  return (ja: string, en: string, extra?: Extra): string => {
-    switch (lang) {
-      case 'ja':
-        return ja;
-      case 'en':
-        return en;
-      case 'zh-CN':
-        return extra?.['zh-CN'] ?? en;
-      case 'zh-TW':
-        return extra?.['zh-TW'] ?? extra?.['zh-CN'] ?? en;
-      case 'ko':
-        return extra?.ko ?? en;
-    }
-  };
+  return useCallback(
+    (ja: string, en: string, extra?: Extra): string => {
+      switch (lang) {
+        case 'ja':
+          return ja;
+        case 'en':
+          return en;
+        case 'zh-CN':
+          return extra?.['zh-CN'] ?? en;
+        case 'zh-TW':
+          return extra?.['zh-TW'] ?? extra?.['zh-CN'] ?? en;
+        case 'ko':
+          return extra?.ko ?? en;
+      }
+    },
+    [lang],
+  );
+}
+
+/** t() の5引数形。各所で `const T = (ja,en,cn,tw,ko) => …` と定義していたのを一本化 */
+export function t5(t: ReturnType<typeof useT>) {
+  return (ja: string, en: string, zhCN: string, zhTW: string, ko: string) =>
+    t(ja, en, { 'zh-CN': zhCN, 'zh-TW': zhTW, ko });
+}
+
+/** 言語別に丸ごと持つもの(Docs/Legal の本文コンポーネント等)の選択 */
+export function pickByLang<T>(lang: Lang, map: Record<Lang, T>): T {
+  return map[lang];
 }

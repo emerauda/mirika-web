@@ -1,4 +1,4 @@
-import type { useT } from '../i18n';
+import { t5, type useT } from '../i18n';
 
 /**
  * スラッシュコマンド全件。アプリ本体の SLASH_COMMANDS(apps/desktop/src/main/index.ts)
@@ -13,8 +13,7 @@ export type Cmd = { name: string; arg: string; help: string };
 export function buildCommandGroups(
   t: ReturnType<typeof useT>,
 ): Array<{ group: string; items: Cmd[] }> {
-  const T = (ja: string, en: string, zhCN: string, zhTW: string, ko: string) =>
-    t(ja, en, { 'zh-CN': zhCN, 'zh-TW': zhTW, ko });
+  const T = t5(t);
   return [
     {
       group: T("頭脳", "Brain", "头脑", "頭腦", "두뇌"),

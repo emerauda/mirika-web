@@ -1,12 +1,12 @@
 import { useState, type ReactNode } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { Kicker, TitleBar } from './ui';
-import { Reveal } from './primitives';
+import { EASE, Reveal } from './primitives';
 import { useT } from '../i18n';
 
 type Item = { q: string; a: ReactNode };
 
-function FaqItem({ q, a }: Item) {
+function FaqItem({ q, a, panelId }: Item & { panelId: string }) {
   const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
   return (
@@ -15,6 +15,7 @@ function FaqItem({ q, a }: Item) {
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
+        aria-controls={panelId}
         className="w-full flex items-center justify-between gap-4 px-6 py-5 font-medium text-left hover:bg-ink/5 transition-colors"
       >
         <span>{q}</span>
@@ -31,11 +32,12 @@ function FaqItem({ q, a }: Item) {
         {open && (
           <motion.div
             key="content"
+            id={panelId}
             className="overflow-hidden"
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: EASE }}
           >
             <p className="px-6 pb-5 text-sub text-sm leading-relaxed">{a}</p>
           </motion.div>
@@ -256,8 +258,8 @@ export function Faq() {
             <span className="text-sub tracking-widest">— □ ×</span>
           </TitleBar>
           <div className="divide-y divide-ink/10">
-            {ITEMS.map((it) => (
-              <FaqItem key={it.q} q={it.q} a={it.a} />
+            {ITEMS.map((it, i) => (
+              <FaqItem key={it.q} q={it.q} a={it.a} panelId={`faq-panel-${i}`} />
             ))}
           </div>
         </Reveal>

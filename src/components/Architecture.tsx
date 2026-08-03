@@ -70,8 +70,22 @@ export function Architecture() {
   const t = useT();
   const CARDS = buildCards(t);
   return (
-    <section id="architecture" className="border-t border-cream/10 bg-black/20 scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-6 py-24">
+    <section id="architecture" className="relative border-t border-cream/10 bg-black/20 scroll-mt-20 overflow-hidden">
+      {/* 夜の開発机(KV)。文字が主役なので、絵は暗幕の向こうに薄く敷く(Cta と同じ流儀)。
+          Section は背景レイヤーを持てないので、この節だけ手書きの骨格のまま */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <img
+          src="/kv/dev-night.webp"
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          width={1600}
+          height={900}
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-void via-void/60 to-void" />
+      </div>
+      <div className="relative max-w-6xl mx-auto px-6 py-24">
         <Reveal className="mb-14">
           <Kicker index="04" label="Architecture" />
           <h2 className="font-mincho font-bold text-3xl md:text-4xl leading-relaxed">
