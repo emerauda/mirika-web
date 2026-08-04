@@ -162,7 +162,7 @@ export function Download() {
                   <div className="font-mono text-xs text-mist">{platformNote(pf.note)}</div>
                   <div className="mt-auto pt-2">
                     {showAsset ? (
-                      <>
+                      <div className="flex flex-col items-start gap-2.5">
                         <MagneticLink
                           href={asset.browser_download_url}
                           className={`btn-hard inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm ${
@@ -170,21 +170,24 @@ export function Download() {
                           }`}
                         >
                           <DownloadIcon className="w-4 h-4" />{' '}
-                          {t('ダウンロード', 'Download', { 'zh-CN': '下载', 'zh-TW': '下載', ko: '다운로드' })}
+                          {pf.key === 'win' && stableCuda
+                            ? t('通常版', 'Standard', { 'zh-CN': '普通版', 'zh-TW': '普通版', ko: '일반판' })
+                            : t('ダウンロード', 'Download', { 'zh-CN': '下载', 'zh-TW': '下載', ko: '다운로드' })}
                         </MagneticLink>
                         {pf.key === 'win' && stableCuda ? (
-                          <a
+                          <MagneticLink
                             href={stableCuda.browser_download_url}
-                            className="mt-2.5 block font-mono text-[11px] text-aqua hover:underline"
+                            className="btn-hard inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm bg-aqua text-plum"
                           >
-                            {t('NVIDIA GPU の方は CUDA 同梱版 →', 'On an NVIDIA GPU? CUDA edition →', {
-                              'zh-CN': 'NVIDIA 显卡用户请选 CUDA 内置版 →',
-                              'zh-TW': 'NVIDIA 顯卡使用者請選 CUDA 內建版 →',
-                              ko: 'NVIDIA GPU 사용자는 CUDA 동봉판 →',
+                            <DownloadIcon className="w-4 h-4" />{' '}
+                            {t('CUDA 同梱版(NVIDIA)', 'CUDA edition (NVIDIA)', {
+                              'zh-CN': 'CUDA 内置版(NVIDIA)',
+                              'zh-TW': 'CUDA 內建版(NVIDIA)',
+                              ko: 'CUDA 동봉판(NVIDIA)',
                             })}
-                          </a>
+                          </MagneticLink>
                         ) : null}
-                      </>
+                      </div>
                     ) : (
                       <span className="font-mono text-xs text-mist/70">
                         {pf.comingSoon ? 'Coming soon' : t('準備中', 'Preparing', { 'zh-CN': '准备中', 'zh-TW': '準備中', ko: '준비 중' })}
@@ -356,7 +359,10 @@ export function Download() {
                       href={asset.browser_download_url}
                       className="inline-flex items-center gap-1.5 rounded-lg border border-cream/15 px-3.5 py-2 font-mono text-xs text-mist hover:text-cream hover:border-cream/30 transition-colors"
                     >
-                      <pf.Icon className="w-3.5 h-3.5" /> {pf.label}
+                      <pf.Icon className="w-3.5 h-3.5" />{' '}
+                      {pf.key === 'win' && betaCuda
+                        ? t('Windows 通常版', 'Windows standard', { 'zh-CN': 'Windows 普通版', 'zh-TW': 'Windows 普通版', ko: 'Windows 일반판' })
+                        : pf.label}
                     </a>
                   ) : null;
                 })}
