@@ -730,11 +730,11 @@ export function buildCommandGroups(
         {
           name: "write",
           arg: T(
-            "on|off|plot <題材>|plot 1-3|plot more|outline|<依頼>|next|fix <直し>|open|folder|status|note|brief|list",
-            "on|off|plot <subject>|plot 1-3|plot more|outline|<request>|next|fix <changes>|open|folder|status|note|brief|list",
-            "on|off|plot <题材>|plot 1-3|plot more|outline|<请求>|next|fix <修改>|open|folder|status|note|brief|list",
-            "on|off|plot <題材>|plot 1-3|plot more|outline|<請求>|next|fix <修改>|open|folder|status|note|brief|list",
-            "on|off|plot <소재>|plot 1-3|plot more|outline|<의뢰>|next|fix <수정>|open|folder|status|note|brief|list",
+            "on|off|plot <題材>|plot 1-3|plot more|outline|<依頼>|next|fix <直し>|new|plan|open|folder|status|note|brief|list",
+            "on|off|plot <subject>|plot 1-3|plot more|outline|<request>|next|fix <changes>|new|plan|open|folder|status|note|brief|list",
+            "on|off|plot <题材>|plot 1-3|plot more|outline|<请求>|next|fix <修改>|new|plan|open|folder|status|note|brief|list",
+            "on|off|plot <題材>|plot 1-3|plot more|outline|<請求>|next|fix <修改>|new|plan|open|folder|status|note|brief|list",
+            "on|off|plot <소재>|plot 1-3|plot more|outline|<의뢰>|next|fix <수정>|new|plan|open|folder|status|note|brief|list",
           ),
           help: T(
             "シナリオライター(Pro)。台本や脚本を Markdown に書き出す(使い方は pro.mirika.dev)",
