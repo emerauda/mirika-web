@@ -204,12 +204,12 @@ export function Faq() {
         ko: '무겁지 않나요? 용량은 얼마나 차지하나요?',
       }),
       a: t(
-        'インストーラは約440MB(Windows)。常駐中のメモリは数百MB程度で、何もしていないときは描画を落として休みます(既定。フルで回すこともできます)。内蔵エンジンを使う場合だけ、初回に一度モデルを落とします(3〜7GB・お使いの PC に載る大きさ)。落としたものは端末に残るので次からは待ちません。Ollama・LM Studio・クラウドを使うなら、この取得は不要です。',
-        'The installer is about 440 MB (Windows). Resident memory sits in the hundreds of MB, and she throttles rendering while idle (by default; full rate is available). Only the built-in engine downloads a model once (3–7 GB, sized to your PC); it stays on disk so there is no second wait. With Ollama, LM Studio or a cloud brain, no download is needed.',
+        'インストーラは通常版が約420MB、CUDA 同梱版(NVIDIA 向け)が約630MB(Windows)。常駐中のメモリは数百MB程度で、何もしていないときは描画を落として休みます(既定。フルで回すこともできます)。内蔵エンジンを使う場合だけ、初回に一度モデルを落とします(3〜7GB・お使いの PC に載る大きさ)。落としたものは端末に残るので次からは待ちません。Ollama・LM Studio・クラウドを使うなら、この取得は不要です。',
+        'The installer is about 420 MB for the standard edition and about 630 MB for the CUDA-bundled edition (Windows). Resident memory sits in the hundreds of MB, and she throttles rendering while idle (by default; full rate is available). Only the built-in engine downloads a model once (3–7 GB, sized to your PC); it stays on disk so there is no second wait. With Ollama, LM Studio or a cloud brain, no download is needed.',
         {
-          'zh-CN': '安装包约 440MB(Windows)。常驻内存几百 MB 左右,空闲时会降低渲染休息(默认;也可全速)。只有内置引擎会在首次下载一次模型(3〜7GB,按你的电脑选大小);下载后留在本地,下次不用等。用 Ollama、LM Studio 或云端就不需要这次下载。',
-          'zh-TW': '安裝包約 440MB(Windows)。常駐記憶體幾百 MB 左右,閒置時會降低渲染休息(預設;也可全速)。只有內建引擎會在首次下載一次模型(3〜7GB,按你的電腦選大小);下載後留在本地,下次不用等。用 Ollama、LM Studio 或雲端就不需要這次下載。',
-          ko: '설치 파일은 약 440MB(Windows). 상주 메모리는 수백 MB 정도이며, 아무것도 하지 않을 때는 렌더링을 낮춰 쉽니다(기본값. 풀로 돌릴 수도 있음). 내장 엔진을 쓸 때만 처음 한 번 모델을 내려받습니다(3〜7GB·PC에 맞는 크기). 받은 것은 남으므로 다음부터는 기다리지 않습니다. Ollama·LM Studio·클라우드를 쓰면 이 다운로드는 필요 없습니다.',
+          'zh-CN': '安装包普通版约 420MB,CUDA 内置版(NVIDIA 用)约 630MB(Windows)。常驻内存几百 MB 左右,空闲时会降低渲染休息(默认;也可全速)。只有内置引擎会在首次下载一次模型(3〜7GB,按你的电脑选大小);下载后留在本地,下次不用等。用 Ollama、LM Studio 或云端就不需要这次下载。',
+          'zh-TW': '安裝包普通版約 420MB,CUDA 內建版(NVIDIA 用)約 630MB(Windows)。常駐記憶體幾百 MB 左右,閒置時會降低渲染休息(預設;也可全速)。只有內建引擎會在首次下載一次模型(3〜7GB,按你的電腦選大小);下載後留在本地,下次不用等。用 Ollama、LM Studio 或雲端就不需要這次下載。',
+          ko: '설치 파일은 일반판 약 420MB, CUDA 동봉판(NVIDIA용) 약 630MB(Windows). 상주 메모리는 수백 MB 정도이며, 아무것도 하지 않을 때는 렌더링을 낮춰 쉽니다(기본값. 풀로 돌릴 수도 있음). 내장 엔진을 쓸 때만 처음 한 번 모델을 내려받습니다(3〜7GB·PC에 맞는 크기). 받은 것은 남으므로 다음부터는 기다리지 않습니다. Ollama·LM Studio·클라우드를 쓰면 이 다운로드는 필요 없습니다.',
         },
       ),
     },

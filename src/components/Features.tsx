@@ -23,10 +23,10 @@ function buildFeatures(t: ReturnType<typeof useT>): Feature[] {
       Icon: Brain,
       num: '02',
       title: 'Local-First LLM',
-      desc: t('頭脳はあなたのPCで動くローカルLLM。同梱エンジンならゼロ設定で、モデルはその PC に載る大きさが自動で選ばれる。Ollama・LM Studio があれば自動検出して繋がる。API費ゼロで24時間常駐、オフラインでも死なない。ここぞの相談だけクラウドAIへ——ハイブリッド構成。', 'The brain is a local LLM on your own PC. The bundled engine needs zero setup and picks a model sized for the machine; Ollama and LM Studio are auto-detected. Zero API cost, resident around the clock, alive even offline. Route only the big questions to a cloud AI — a hybrid setup.', {
-        'zh-CN': '头脑是运行在你电脑上的本地 LLM。内置引擎零配置,自动选择适合这台机器的模型;Ollama、LM Studio 会被自动检测。API 费用为零、24 小时常驻、离线也不死。只把关键问题交给云端 AI——混合架构。',
-        'zh-TW': '頭腦是運行在你電腦上的本地 LLM。內建引擎零設定,自動選擇適合這台機器的模型;Ollama、LM Studio 會被自動偵測。API 費用為零、24 小時常駐、離線也不死。只把關鍵問題交給雲端 AI——混合架構。',
-        ko: '두뇌는 당신의 PC에서 도는 로컬 LLM. 내장 엔진은 제로 설정으로, 그 PC에 실리는 크기의 모델이 자동 선택됩니다. Ollama·LM Studio가 있으면 자동 감지해 연결. API 비용 0으로 24시간 상주하고 오프라인에서도 죽지 않습니다. 결정적인 상담만 클라우드 AI로 — 하이브리드 구성.',
+      desc: t('頭脳はあなたのPCで動くローカルLLM。同梱エンジンならゼロ設定で、モデルはその PC に載る大きさが自動で選ばれる。Ollama・LM Studio があれば自動検出して繋がる。API費ゼロで24時間常駐、オフラインでも死なない。ここぞの相談だけクラウドAIへ——Claude Code・Antigravity・Codex のサブスク CLI なら API キーも不要。ハイブリッド構成。', 'The brain is a local LLM on your own PC. The bundled engine needs zero setup and picks a model sized for the machine; Ollama and LM Studio are auto-detected. Zero API cost, resident around the clock, alive even offline. Route only the big questions to a cloud AI — with the Claude Code, Antigravity or Codex CLI a subscription is enough, no API key. A hybrid setup.', {
+        'zh-CN': '头脑是运行在你电脑上的本地 LLM。内置引擎零配置,自动选择适合这台机器的模型;Ollama、LM Studio 会被自动检测。API 费用为零、24 小时常驻、离线也不死。只把关键问题交给云端 AI——用 Claude Code・Antigravity・Codex 的订阅 CLI 连 API 密钥都不用。混合架构。',
+        'zh-TW': '頭腦是運行在你電腦上的本地 LLM。內建引擎零設定,自動選擇適合這台機器的模型;Ollama、LM Studio 會被自動偵測。API 費用為零、24 小時常駐、離線也不死。只把關鍵問題交給雲端 AI——用 Claude Code・Antigravity・Codex 的訂閱 CLI 連 API 金鑰都不用。混合架構。',
+        ko: '두뇌는 당신의 PC에서 도는 로컬 LLM. 내장 엔진은 제로 설정으로, 그 PC에 실리는 크기의 모델이 자동 선택됩니다. Ollama·LM Studio가 있으면 자동 감지해 연결. API 비용 0으로 24시간 상주하고 오프라인에서도 죽지 않습니다. 결정적인 상담만 클라우드 AI로 — Claude Code·Antigravity·Codex 의 구독 CLI라면 API 키도 불필요. 하이브리드 구성.',
       }),
     },
     {
