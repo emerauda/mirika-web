@@ -37,13 +37,13 @@ export function buildCommandGroups(
         },
         {
           name: "brain cuda",
-          arg: "[off]",
+          arg: "[on|off]",
           help: T(
-            "CUDA 版バイナリを後入れ(NVIDIA 上級者向け・530MBくらい。ふつうは不要)",
-            "Add the CUDA binaries afterwards (for advanced NVIDIA users; ~530MB, not needed for most)",
-            "追加安装 CUDA 版二进制(面向 NVIDIA 进阶用户,约 530MB。一般无需安装)",
-            "追加安裝 CUDA 版二進位(面向 NVIDIA 進階使用者,約 530MB。一般無需安裝)",
-            "CUDA 바이너리를 나중에 추가(NVIDIA 고급 사용자용, 약 530MB. 보통은 불필요)",
+            "CUDA 版バイナリの現状と後入れ(CUDA 同梱版なら最初から入っている。後入れは NVIDIA 上級者向け・530MBくらい)",
+            "Show or add the CUDA binaries (already included in the CUDA edition; adding is for advanced NVIDIA users, ~530MB)",
+            "查看或追加安装 CUDA 版二进制(CUDA 内置版已自带。追加安装面向 NVIDIA 进阶用户,约 530MB)",
+            "查看或追加安裝 CUDA 版二進位(CUDA 內建版已自帶。追加安裝面向 NVIDIA 進階使用者,約 530MB)",
+            "CUDA 바이너리 상태 확인과 추가(CUDA 동봉판에는 처음부터 포함. 추가는 NVIDIA 고급 사용자용, 약 530MB)",
           ),
         },
         {

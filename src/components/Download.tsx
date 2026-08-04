@@ -17,7 +17,8 @@ type Asset = { name: string; browser_download_url: string };
 type Release = { tag_name: string; prerelease: boolean; draft: boolean; assets: Asset[] };
 
 const PLATFORMS = [
-  { key: 'win', label: 'Windows', Icon: Monitor, note: 'installer', match: (n: string) => n.endsWith('.exe'), comingSoon: false },
+  // Windows は2種類(通常版 / CUDA 同梱版)。主ボタンは通常版に固定し、CUDA 版は別導線で示す
+  { key: 'win', label: 'Windows', Icon: Monitor, note: 'installer', match: (n: string) => n.endsWith('.exe') && !n.includes('-cuda'), comingSoon: false },
   // macOS は署名/公証が済むまで配布を保留(未署名 dmg は Gatekeeper が「壊れています」と表示するため)
   { key: 'mac', label: 'macOS', Icon: Command, note: 'signing', match: (n: string) => n.endsWith('.dmg'), comingSoon: true },
   { key: 'linux', label: 'Linux', Icon: HardDrive, note: 'appimage', match: (n: string) => n.endsWith('.AppImage'), comingSoon: false },
@@ -33,6 +34,9 @@ function detectOS(): 'win' | 'mac' | 'linux' {
 
 const assetIn = (rel: Release | null, match: (n: string) => boolean) =>
   rel?.assets.find((a) => match(a.name));
+
+/** NVIDIA 向けの CUDA 同梱版インストーラ(Windows のみ・無いリリースもある) */
+const cudaIn = (rel: Release | null) => rel?.assets.find((a) => a.name.endsWith('-cuda.exe'));
 
 // "v0.6.2-beta.0" の基底(0.6.2)が "v0.6.1" より新しいか。同じ版の rc は正式化で用済み
 function newerBase(preTag: string, stableTag: string): boolean {
@@ -105,6 +109,8 @@ export function Download() {
   }, []);
 
   const version = stable?.tag_name ?? '';
+  const stableCuda = cudaIn(stable);
+  const betaCuda = cudaIn(beta);
   // リリースには zip が3種ある(chrome-extension / obs-overlays / sdk)。名前で選ぶ
   const zipAsset = (part: string) =>
     stable?.assets.find((a) => a.name.toLowerCase().includes(part) && a.name.toLowerCase().endsWith('.zip'));
@@ -156,15 +162,29 @@ export function Download() {
                   <div className="font-mono text-xs text-mist">{platformNote(pf.note)}</div>
                   <div className="mt-auto pt-2">
                     {showAsset ? (
-                      <MagneticLink
-                        href={asset.browser_download_url}
-                        className={`btn-hard inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm ${
-                          primary ? 'bg-sakura text-plum' : 'bg-paper text-ink'
-                        }`}
-                      >
-                        <DownloadIcon className="w-4 h-4" />{' '}
-                        {t('ダウンロード', 'Download', { 'zh-CN': '下载', 'zh-TW': '下載', ko: '다운로드' })}
-                      </MagneticLink>
+                      <>
+                        <MagneticLink
+                          href={asset.browser_download_url}
+                          className={`btn-hard inline-flex items-center gap-2 px-5 py-2.5 font-bold text-sm ${
+                            primary ? 'bg-sakura text-plum' : 'bg-paper text-ink'
+                          }`}
+                        >
+                          <DownloadIcon className="w-4 h-4" />{' '}
+                          {t('ダウンロード', 'Download', { 'zh-CN': '下载', 'zh-TW': '下載', ko: '다운로드' })}
+                        </MagneticLink>
+                        {pf.key === 'win' && stableCuda ? (
+                          <a
+                            href={stableCuda.browser_download_url}
+                            className="mt-2.5 block font-mono text-[11px] text-aqua hover:underline"
+                          >
+                            {t('NVIDIA GPU の方は CUDA 同梱版 →', 'On an NVIDIA GPU? CUDA edition →', {
+                              'zh-CN': 'NVIDIA 显卡用户请选 CUDA 内置版 →',
+                              'zh-TW': 'NVIDIA 顯卡使用者請選 CUDA 內建版 →',
+                              ko: 'NVIDIA GPU 사용자는 CUDA 동봉판 →',
+                            })}
+                          </a>
+                        ) : null}
+                      </>
                     ) : (
                       <span className="font-mono text-xs text-mist/70">
                         {pf.comingSoon ? 'Coming soon' : t('準備中', 'Preparing', { 'zh-CN': '准备中', 'zh-TW': '準備中', ko: '준비 중' })}
@@ -340,6 +360,19 @@ export function Download() {
                     </a>
                   ) : null;
                 })}
+                {betaCuda ? (
+                  <a
+                    href={betaCuda.browser_download_url}
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-aqua/25 px-3.5 py-2 font-mono text-xs text-aqua hover:border-aqua/50 transition-colors"
+                  >
+                    <Monitor className="w-3.5 h-3.5" />{' '}
+                    {t('Windows CUDA 同梱版(NVIDIA)', 'Windows CUDA edition (NVIDIA)', {
+                      'zh-CN': 'Windows CUDA 内置版(NVIDIA)',
+                      'zh-TW': 'Windows CUDA 內建版(NVIDIA)',
+                      ko: 'Windows CUDA 동봉판(NVIDIA)',
+                    })}
+                  </a>
+                ) : null}
               </div>
             </div>
           </Reveal>
