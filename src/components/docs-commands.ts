@@ -21,18 +21,18 @@ export function buildCommandGroups(
         {
           name: "brain",
           arg: T(
-            "embedded|external|local|model|chatgpt|claude|gemini|grok [APIキー]",
-            "embedded|external|local|model|chatgpt|claude|gemini|grok [API key]",
-            "embedded|external|local|model|chatgpt|claude|gemini|grok [API 密钥]",
-            "embedded|external|local|model|chatgpt|claude|gemini|grok [API 金鑰]",
-            "embedded|external|local|model|chatgpt|claude|gemini|grok [API 키]",
+            "embedded|external|local|model|chatgpt|claude|gemini|grok|antigravity|codex [APIキー]",
+            "embedded|external|local|model|chatgpt|claude|gemini|grok|antigravity|codex [API key]",
+            "embedded|external|local|model|chatgpt|claude|gemini|grok|antigravity|codex [API 密钥]",
+            "embedded|external|local|model|chatgpt|claude|gemini|grok|antigravity|codex [API 金鑰]",
+            "embedded|external|local|model|chatgpt|claude|gemini|grok|antigravity|codex [API 키]",
           ),
           help: T(
-            "頭脳の切替(ローカル/クラウド。/brain claude はサブスクでも可)",
-            "Switch brains (local/cloud; /brain claude also works with a subscription)",
-            "切换头脑(本地/云端。/brain claude 用订阅也可)",
-            "切換頭腦(本地/雲端。/brain claude 用訂閱也可)",
-            "두뇌 전환(로컬/클라우드. /brain claude 는 구독으로도 가능)",
+            "頭脳の切替(ローカル/クラウド。claude/antigravity/codex は各 CLI のサブスクで使える)",
+            "Switch brains (local/cloud; claude/antigravity/codex work through each CLI's subscription)",
+            "切换头脑(本地/云端。claude/antigravity/codex 可通过各自 CLI 的订阅使用)",
+            "切換頭腦(本地/雲端。claude/antigravity/codex 可透過各自 CLI 的訂閱使用)",
+            "두뇌 전환(로컬/클라우드. claude/antigravity/codex 는 각 CLI 구독으로 사용 가능)",
           ),
         },
         {
