@@ -36,6 +36,23 @@ export function buildCommandGroups(
           ),
         },
         {
+          name: "brain gpu",
+          arg: T(
+            "[auto|max|off|<層数>]",
+            "[auto|max|off|<layers>]",
+            "[auto|max|off|<层数>]",
+            "[auto|max|off|<層數>]",
+            "[auto|max|off|<층수>]",
+          ),
+          help: T(
+            "内蔵エンジンの GPU への載せ方(自動で GPU が使われないときは max)",
+            "How the built-in engine loads onto the GPU (try max when the GPU sits unused)",
+            "内置引擎装载到 GPU 的方式(自动不用 GPU 时试试 max)",
+            "內建引擎載入 GPU 的方式(自動不用 GPU 時試試 max)",
+            "내장 엔진을 GPU에 싣는 방식(자동인데 GPU를 안 쓰면 max)",
+          ),
+        },
+        {
           name: "brain model",
           arg: "[auto|e2b|e4b|12b|26b|31b]",
           help: T(
