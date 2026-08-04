@@ -71,7 +71,7 @@ export function Download() {
     // 控えは localStorage(タブをまたいで生きる)に1時間 —— 全経路が死んだときも
     // 古い控えがあればそれを出す(無いときだけ諦める)
     const CACHE_KEY = 'mirika.releases.v2';
-    const CACHE_MS = 60 * 60_000;
+    const CACHE_MS = 5 * 60_000;
     const apply = (latest: Release | null, list: Release[]) => {
       const st = latest && !latest.draft ? latest : null;
       const live = Array.isArray(list) ? list.filter((r) => !r.draft) : [];
@@ -88,8 +88,11 @@ export function Download() {
       }
     };
     const cached = readCache();
+    // 控えがあれば即描画(古くても白紙よりよい)。ただし**必ず裏で取り直して差し替える**
+    // —— 「新しい正式版を出したのに1時間前の表示のまま」が実際に起きた。
+    // ネットへ行かないのは、控えがごく新しい(5分以内)ときだけ
+    if (cached) apply(cached.latest, cached.list);
     if (cached && Date.now() - cached.at < CACHE_MS) {
-      apply(cached.latest, cached.list);
       return;
     }
     type Payload = { latest: Release | null; list: Release[] };
