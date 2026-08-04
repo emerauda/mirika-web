@@ -39,11 +39,11 @@ export function buildCommandGroups(
           name: "brain cuda",
           arg: "[off]",
           help: T(
-            "CUDA 版バイナリを後入れ(NVIDIA を最速で使う。530MBくらい)",
-            "Add the CUDA binaries afterwards (fastest path for NVIDIA; about 530MB)",
-            "追加安装 CUDA 版二进制(让 NVIDIA 跑最快。约 530MB)",
-            "追加安裝 CUDA 版二進位(讓 NVIDIA 跑最快。約 530MB)",
-            "CUDA 바이너리를 나중에 추가(NVIDIA 최속. 약 530MB)",
+            "CUDA 版バイナリを後入れ(NVIDIA 上級者向け・530MBくらい。ふつうは不要)",
+            "Add the CUDA binaries afterwards (for advanced NVIDIA users; ~530MB, not needed for most)",
+            "追加安装 CUDA 版二进制(面向 NVIDIA 进阶用户,约 530MB。一般无需安装)",
+            "追加安裝 CUDA 版二進位(面向 NVIDIA 進階使用者,約 530MB。一般無需安裝)",
+            "CUDA 바이너리를 나중에 추가(NVIDIA 고급 사용자용, 약 530MB. 보통은 불필요)",
           ),
         },
         {
