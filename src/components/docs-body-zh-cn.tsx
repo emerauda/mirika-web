@@ -72,7 +72,9 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H3>云端(可选・自愿开启)</H3>
             <P>
               像 <C>/brain chatgpt &lt;API密钥&gt;</C> 这样一条命令即可。Claude・Gemini・Grok 也是同样的形式。
-              Claude 即使没有 API 密钥,也能用 <C>/brain claude</C> 走 Claude Code CLI 的订阅认证。
+              <B>订阅制 CLI 有 3 条线</B> — <C>/brain claude</C>(Claude Code)、<C>/brain antigravity</C>(agy)、
+              <C>/brain codex</C>:装好 CLI 并登录后,无需 API 密钥即可直接作为头脑使用
+              (<B>就算 CLI 装在 WSL 里也会自动找到</B>)。
               平时保持本地,只想让这一个问题交给云端思考时,用 <C>/cloud &lt;问题&gt;</C>。
             </P>
             <Note>API 密钥会通过 OS 的安全存储加密保存(<C>enc:</C> 格式)。</Note>
@@ -245,6 +247,40 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               <C>{'{"token","title","text"}'}</C> 送达通知。
               送到的通知与秘书的通知一样,会挑她得空的时机经由人格转达(每分钟最多 3 条)。
             </P>
+          </section>
+
+          {/* --- シナリオライター --- */}
+          <section className="mb-16">
+            <H2 id="writer">剧本写作模式(Pro)</H2>
+            <P>
+              让她投入写台本、剧本的工作模式。用 <C>/write on</C> 或右键菜单进入。
+              模式期间气泡会变宽如纸面,对话用的人格和情绪标签不会混进稿件。
+            </P>
+            <Steps
+              items={[
+                <>
+                  递上规格或企划文件(拖放或 📎)。<B>它就是指示书。</B>
+                  若自带骨架或章节大纲,可跳过提案直接开写
+                </>,
+                <>
+                  <C>/write plot &lt;题材&gt;</C> 给出方向不同的 3 案 → 按钮采纳 → 章节大纲。
+                  <B>企划(情节与大纲)也会写入 <C>scenarios/企画メモ.md</C></B>,随时可用按钮打开
+                </>,
+                <>
+                  用按钮选择<B>“一口气写完正文”</B>或<B>“只写第 1 章”</B>。
+                  续写(<C>/write next</C>)会<B>先读上一稿的结尾</B>再接,
+                  修改(<C>/write fix</C>)会看过正文后整篇重写
+                </>,
+                <>
+                  稿件以 Markdown 存放在 <C>scenarios/</C>,按钮即可打开。
+                  想重新开始就用 <C>/write new</C>(旧企划会归档)
+                </>,
+              ]}
+            />
+            <Note>
+              当前阶段和下一步由 <C>/write status</C> 告诉你。
+              菜单与阶段联动,暂时不能按的项目会变灰。
+            </Note>
           </section>
 
           {/* --- 伺か互換 --- */}

@@ -72,7 +72,9 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             <H3>클라우드(임의·옵트인)</H3>
             <P>
               <C>/brain chatgpt &lt;API 키&gt;</C>처럼 명령어 하나로. Claude·Gemini·Grok도 같은 형식입니다.
-              Claude는 API 키 없이도 <C>/brain claude</C>로 Claude Code CLI의 구독 인증을 쓸 수 있습니다.
+              <B>구독 CLI는 3계통</B> — <C>/brain claude</C>(Claude Code)·<C>/brain antigravity</C>(agy)·
+              <C>/brain codex</C>는 CLI를 설치해 로그인해 두면 API 키 없이 그대로 두뇌가 됩니다
+              (<B>WSL 안에 있는 CLI도 자동으로 찾습니다</B>).
               평소에는 로컬 그대로 두고, 이 한 가지 질문만 클라우드에서 생각해 주길 바랄 때는 <C>/cloud &lt;질문&gt;</C>.
             </P>
             <Note>API 키는 OS의 세이프 스토리지로 암호화해 저장됩니다(<C>enc:</C> 형식).</Note>
@@ -245,6 +247,40 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
               <C>{'{"token","title","text"}'}</C> 형태로 알림을 보낼 수 있습니다.
               도착한 알림은 비서의 알림과 마찬가지로, 한가한 타이밍에 인격을 거쳐 전합니다(1분에 3건까지).
             </P>
+          </section>
+
+          {/* --- シナリオライター --- */}
+          <section className="mb-16">
+            <H2 id="writer">시나리오 라이터(Pro)</H2>
+            <P>
+              대본·각본을 쓰게 하는 작업 모드입니다. <C>/write on</C> 또는 우클릭 메뉴로 들어갑니다.
+              모드 중에는 말풍선이 지면처럼 넓어지고, 대화용 인격이나 감정 태그가 원고에 섞이지 않습니다.
+            </P>
+            <Steps
+              items={[
+                <>
+                  사양·기획 파일을 건넵니다(드롭 또는 📎). <B>그것이 지시서가 됩니다.</B>
+                  뼈대나 챕터 구성까지 쓴 자작 기획이라면, 안 내기를 건너뛰고 바로 쓸 수 있습니다
+                </>,
+                <>
+                  <C>/write plot &lt;소재&gt;</C>로 서로 다른 3안 → 버튼으로 채택 → 챕터 구성.
+                  <B>기획(플롯과 챕터 구성)은 <C>scenarios/企画メモ.md</C>에도 기록되어</B> 버튼으로 언제든 열 수 있습니다
+                </>,
+                <>
+                  <B>“통으로 본편 쓰기”</B>와 <B>“1장만 쓰기”</B>를 버튼으로 선택.
+                  이어쓰기(<C>/write next</C>)는 <B>직전 원고의 끝을 읽고 나서</B> 잇고,
+                  고치기(<C>/write fix</C>)는 본문을 본 뒤 통으로 다시 씁니다
+                </>,
+                <>
+                  원고는 Markdown으로 <C>scenarios/</C>에 남고 버튼으로 열립니다.
+                  새로 시작할 때는 <C>/write new</C>(이전 기획은 보관됩니다)
+                </>,
+              ]}
+            />
+            <Note>
+              지금 단계와 다음 한 수는 <C>/write status</C>가 알려 줍니다.
+              메뉴는 단계 연동이라, 아직 누를 수 없는 항목은 회색이 됩니다.
+            </Note>
           </section>
 
           {/* --- 伺か互換 --- */}

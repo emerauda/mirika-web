@@ -72,7 +72,9 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
             <H3>雲端(可選・自行啟用)</H3>
             <P>
               像 <C>/brain chatgpt &lt;API金鑰&gt;</C> 這樣一條指令即可。Claude・Gemini・Grok 也是同樣的形式。
-              Claude 就算沒有 API 金鑰,也能用 <C>/brain claude</C> 使用 Claude Code CLI 的訂閱認證。
+              <B>訂閱制 CLI 有 3 條線</B> — <C>/brain claude</C>(Claude Code)、<C>/brain antigravity</C>(agy)、
+              <C>/brain codex</C>:裝好 CLI 並登入後,無需 API 金鑰即可直接作為頭腦使用
+              (<B>就算 CLI 裝在 WSL 裡也會自動找到</B>)。
               平常維持本地,只想讓這一個問題交給雲端思考時,用 <C>/cloud &lt;問題&gt;</C>。
             </P>
             <Note>API 金鑰會以 OS 的安全儲存區加密保存(<C>enc:</C> 形式)。</Note>
@@ -245,6 +247,40 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
               <C>{'{"token","title","text"}'}</C> 送來通知。
               收到的通知與秘書的通知一樣,會挑她有空的時機、帶著人格轉達(每分鐘最多 3 件)。
             </P>
+          </section>
+
+          {/* --- シナリオライター --- */}
+          <section className="mb-16">
+            <H2 id="writer">劇本寫作模式(Pro)</H2>
+            <P>
+              讓她投入寫台本、劇本的工作模式。用 <C>/write on</C> 或右鍵選單進入。
+              模式期間氣泡會變寬如紙面,對話用的人格和情緒標籤不會混進稿件。
+            </P>
+            <Steps
+              items={[
+                <>
+                  遞上規格或企劃檔案(拖放或 📎)。<B>它就是指示書。</B>
+                  若自帶骨架或章節大綱,可跳過提案直接開寫
+                </>,
+                <>
+                  <C>/write plot &lt;題材&gt;</C> 給出方向不同的 3 案 → 按鈕採納 → 章節大綱。
+                  <B>企劃(情節與大綱)也會寫入 <C>scenarios/企画メモ.md</C></B>,隨時可用按鈕開啟
+                </>,
+                <>
+                  用按鈕選擇<B>「一口氣寫完正文」</B>或<B>「只寫第 1 章」</B>。
+                  續寫(<C>/write next</C>)會<B>先讀上一稿的結尾</B>再接,
+                  修改(<C>/write fix</C>)會看過正文後整篇重寫
+                </>,
+                <>
+                  稿件以 Markdown 存放在 <C>scenarios/</C>,按鈕即可開啟。
+                  想重新開始就用 <C>/write new</C>(舊企劃會封存)
+                </>,
+              ]}
+            />
+            <Note>
+              目前階段和下一步由 <C>/write status</C> 告訴你。
+              選單與階段連動,暫時不能按的項目會變灰。
+            </Note>
           </section>
 
           {/* --- 伺か互換 --- */}

@@ -19,7 +19,10 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
                   <A href="/#download">
                     Download
                   </A>{' '}
-                  and install it (Windows / Linux; macOS is still in preparation, pending code signing)
+                  and install it (Windows / Linux; macOS is still in preparation, pending code signing).
+                  Windows comes in two editions — <B>pick the CUDA-bundled one (-cuda.exe) if you have an NVIDIA
+                  GPU</B> (the standard edition also fetches CUDA automatically on first boot when NVIDIA is
+                  detected)
                 </>,
                 <>
                   Launch it, and the default girl (Komane) stands at the bottom right of your desktop. The bundled VRMs are
@@ -62,6 +65,8 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               class gets Gemma 4 12B (4-bit, about 6.7 GB); with less, it steps down to E4B (about 5 GB), then E2B (about 3 GB).
               If you have a 16 GB or 24 GB class GPU, <B>she asks whether to download something bigger</B> (26B-A4B / 31B).
               The reason for the choice is recorded in the activity log. If you already have a GGUF, "Open GGUF…" lets you use it.
+              The current backend (CUDA / Vulkan / CPU) and the GPU usage are visible and adjustable
+              in the right-click built-in engine menu.
             </P>
             <H3>Local runtimes (recommended)</H3>
             <P>
@@ -72,7 +77,9 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H3>Cloud (optional, opt-in)</H3>
             <P>
               A single command, like <C>/brain chatgpt &lt;API key&gt;</C>. Claude, Gemini, and Grok take the same form.
-              For Claude, even without an API key, <C>/brain claude</C> can use the Claude Code CLI's subscription sign-in.
+              <B>Three subscription CLIs</B> work with no API key at all — <C>/brain claude</C> (Claude Code),
+              <C>/brain antigravity</C> (agy) and <C>/brain codex</C>: install the CLI, log in, and it becomes the
+              brain as-is (<B>CLIs living inside WSL are found automatically</B>).
               To stay local as usual but have just this one question thought through in the cloud, use <C>/cloud &lt;question&gt;</C>.
             </P>
             <Note>API keys are encrypted with the OS safe storage before being saved (the <C>enc:</C> format).</Note>
@@ -247,6 +254,42 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               <C>{'{"token","title","text"}'}</C>.
               Like the secretary's notices, they are passed along through her persona at a quiet moment (up to 3 per minute).
             </P>
+          </section>
+
+          {/* --- シナリオライター --- */}
+          <section className="mb-16">
+            <H2 id="writer">Scenario writer (Pro)</H2>
+            <P>
+              A work mode for scripts and screenplays. Enter with <C>/write on</C> or the right-click menu.
+              While it is on, the balloon widens into a page, and the conversational persona and emotion tags
+              never leak into the manuscript.
+            </P>
+            <Steps
+              items={[
+                <>
+                  Hand over a spec or plan file (drop or 📎). <B>It becomes the brief.</B> If your own plan
+                  already has a skeleton or an outline, she writes from it directly — no pitching stage needed
+                </>,
+                <>
+                  <C>/write plot &lt;subject&gt;</C> offers three deliberately different options → adopt with a
+                  button → outline. <B>The plan (plot + outline) is also written to <C>scenarios/企画メモ.md</C></B>
+                  and opens any time with its button
+                </>,
+                <>
+                  Choose <B>“write it straight through”</B> or <B>“just chapter one”</B> as buttons.
+                  Continuing (<C>/write next</C>) <B>reads the tail of the previous manuscript first</B>;
+                  fixing (<C>/write fix</C>) reads the text before rewriting it whole
+                </>,
+                <>
+                  Manuscripts stay as Markdown under <C>scenarios/</C> and open with a button.
+                  Start fresh with <C>/write new</C> (the old plan is archived)
+                </>,
+              ]}
+            />
+            <Note>
+              <C>/write status</C> tells you the current stage and offers the next step as buttons.
+              The menu is stage-aware: items you cannot use yet are greyed out.
+            </Note>
           </section>
 
           {/* --- 伺か互換 --- */}

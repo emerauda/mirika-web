@@ -19,7 +19,9 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
                   <A href="/#download">
                     ダウンロード
                   </A>
-                  してインストールする(Windows / Linux。macOS は署名対応まで準備中)
+                  してインストールする(Windows / Linux。macOS は署名対応まで準備中)。
+                  Windows は2種類あり、<B>NVIDIA の GPU なら CUDA 同梱版</B>(-cuda.exe)がおすすめです
+                  (通常版でも NVIDIA を見つけると初回起動時に CUDA を自動で後入れします)
                 </>,
                 <>
                   起動すると、既定の子(コマネ)がデスクトップの右下に立ちます。同梱の VRM は
@@ -62,6 +64,8 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               8GB 級なら Gemma 4 12B(4bit・約6.7GB)、そこまで無ければ E4B(約5GB)、E2B(約3GB)と下がります。
               16GB・24GB 級の GPU をお持ちなら、<B>もっと大きいものを落とすかどうかお尋ねします</B>(26B-A4B / 31B)。
               選んだ理由は動作ログに残ります。GGUF をお持ちなら「GGUF を開く…」でそれを使えます。
+              いまのバックエンド(CUDA / Vulkan / CPU)と GPU の使い方は、右クリック →
+              内蔵エンジンのメニューで確認・変更できます。
             </P>
             <H3>ローカルランタイム(推奨)</H3>
             <P>
@@ -72,7 +76,9 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H3>クラウド(任意・オプトイン)</H3>
             <P>
               <C>/brain chatgpt &lt;APIキー&gt;</C> のように1コマンドで。Claude・Gemini・Grok も同じ形です。
-              Claude は API キー無しでも <C>/brain claude</C> で Claude Code CLI のサブスク認証が使えます。
+              <B>サブスクリプションの CLI は3系統</B> —— <C>/brain claude</C>(Claude Code)・
+              <C>/brain antigravity</C>(agy)・<C>/brain codex</C> は、CLI を入れてログインしていれば
+              API キー不要でそのまま頭脳になります(<B>CLI が WSL の中にあっても自動で見つけます</B>)。
               ふだんはローカルのまま、この1問だけクラウドで考えてほしいときは <C>/cloud &lt;質問&gt;</C>。
             </P>
             <Note>API キーは OS のセーフストレージで暗号化して保存されます(<C>enc:</C> 形式)。</Note>
@@ -246,6 +252,41 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               <C>{'{"token","title","text"}'}</C> で知らせを届けられます。
               届いた知らせは秘書の知らせと同じく、手すきのタイミングで人格ごしに伝えます(1分に3件まで)。
             </P>
+          </section>
+
+          {/* --- シナリオライター --- */}
+          <section className="mb-16">
+            <H2 id="writer">シナリオライター(Pro)</H2>
+            <P>
+              台本・脚本を書かせる仕事モードです。<C>/write on</C> か右クリックメニューから。
+              モード中はバルーンが紙面寄りに広がり、会話用の人格や感情タグは原稿に混ざりません。
+            </P>
+            <Steps
+              items={[
+                <>
+                  仕様や企画のファイルを渡す(ドロップか 📎)。<B>それが指示書になります</B>。
+                  骨格や章立てまで書いた自作の企画なら、案出しを飛ばして最初から書けます
+                </>,
+                <>
+                  <C>/write plot &lt;題材&gt;</C> で互いに違う3案 → ボタンで採用 → 章立て。
+                  <B>企画(プロットと章立て)は <C>scenarios/企画メモ.md</C> にも書き出され</B>、
+                  「企画メモを開く」ボタンでいつでも開けます
+                </>,
+                <>
+                  「<B>通しで本編を書く</B>」か「<B>1章だけ書く</B>」をボタンで選ぶ。
+                  続き(<C>/write next</C>)は<B>直前原稿の終わりを読んでから</B>繋げ、
+                  直し(<C>/write fix</C>)は本文を見てから通しで書き直します
+                </>,
+                <>
+                  原稿は Markdown で <C>scenarios/</C> に残り、「原稿を開く」ボタンで開けます。
+                  新しく始めるときは <C>/write new</C>(前の企画はアーカイブされます)
+                </>,
+              ]}
+            />
+            <Note>
+              いまの段階と次の一手は <C>/write status</C> が教えてくれます。
+              メニューは段階連動で、いま押せない項目は灰色になります。
+            </Note>
           </section>
 
           {/* --- 伺か互換 --- */}
