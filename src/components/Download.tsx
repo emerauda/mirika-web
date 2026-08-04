@@ -65,10 +65,12 @@ export function Download() {
   const detected = PLATFORMS.find((p) => p.key === os);
 
   useEffect(() => {
-    // GitHub API は未認証だと IP あたり 60回/時。共有 IP(社内 NAT・モバイル回線)では
-    // すぐ尽きて全 OS が「準備中」に見えてしまうので、取得結果を1時間だけ持ち回す。
-    // 制限に当たったときも、古いキャッシュがあればそれで賄う(無いときだけ諦める)
-    const CACHE_KEY = 'mirika.releases';
+    // 取得はサイト自身のプロキシ(/api/releases、エッジ5分キャッシュ)経由が第一。
+    // GitHub API 直叩きは未認証だと IP あたり 60回/時で、正式版が「準備中」に見える
+    // 事故が実際に起きた。プロキシが使えない環境(ローカル開発など)だけ直叩きに落ちる。
+    // 控えは localStorage(タブをまたいで生きる)に1時間 —— 全経路が死んだときも
+    // 古い控えがあればそれを出す(無いときだけ諦める)
+    const CACHE_KEY = 'mirika.releases.v2';
     const CACHE_MS = 60 * 60_000;
     const apply = (latest: Release | null, list: Release[]) => {
       const st = latest && !latest.draft ? latest : null;
@@ -79,7 +81,7 @@ export function Download() {
     };
     const readCache = (): { at: number; latest: Release | null; list: Release[] } | null => {
       try {
-        const raw = sessionStorage.getItem(CACHE_KEY);
+        const raw = localStorage.getItem(CACHE_KEY);
         return raw ? JSON.parse(raw) : null;
       } catch {
         return null;
@@ -90,17 +92,27 @@ export function Download() {
       apply(cached.latest, cached.list);
       return;
     }
+    type Payload = { latest: Release | null; list: Release[] };
+    // 自前プロキシ。開発サーバーでは SPA フォールバックが HTML を返すので、
+    // JSON でなければ reject → 直叩きへ(r.json() が投げる)
+    const viaProxy = (): Promise<Payload> =>
+      fetch('/api/releases').then((r) => (r.ok ? (r.json() as Promise<Payload>) : Promise.reject(r.status)));
     const headers = { Accept: 'application/vnd.github+json' };
     const ask = (url: string) =>
       fetch(url, { headers }).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
-    Promise.all([ask(LATEST), ask(LIST).catch(() => [])])
-      .then(([latest, list]: [Release, Release[]]) => {
+    const direct = (): Promise<Payload> =>
+      Promise.all([ask(LATEST), ask(LIST).catch(() => [])]).then(
+        ([latest, list]: [Release, Release[]]) => ({ latest, list }),
+      );
+    viaProxy()
+      .catch(() => direct())
+      .then(({ latest, list }) => {
         try {
-          sessionStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), latest, list }));
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), latest, list }));
         } catch {
           /* プライベートモード等は都度取得のまま */
         }
-        apply(latest, list);
+        apply(latest, Array.isArray(list) ? list : []);
       })
       .catch(() => {
         if (cached) apply(cached.latest, cached.list);
