@@ -317,6 +317,15 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               Commands: <C>/classic</C> (list), <C>/classic &lt;name&gt;</C> (wake),
               <C>/classic sleep</C> (say goodbye and rest).
+              <B>Switching never needs a re-import</B> — the ghosts you've welcomed are listed
+              in the right-click menu under "Shell (body)".
+            </P>
+            <P>
+              <B>Choices (◇) appear as buttons and name prompts are answered from the chat bar.</B>
+              Script call-backs (<C>{'\\![embed,…]'}</C> / <C>{'\\![raise,…]'}</C>) are executed too,
+              so stories and procedures actually move forward. <B>Their memories are never wiped</B> —
+              the ghost saves through its own dictionary on exit, and re-importing the distribution
+              keeps what it remembers.
             </P>
             <H3>Switching a ghost to AI (one-way)</H3>
             <P>
