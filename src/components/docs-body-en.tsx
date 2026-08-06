@@ -332,8 +332,9 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               <C>/classic ai &lt;name&gt;</C> is a <B>one-way ceremony that moves the ghost to
               the AI brain</B>. It asks for confirmation, and once done, re-importing the
               .nar does not revert it (dictionary files are kept, just unused — the
-              author's work is never destroyed). Same face and gestures; only the words
-              become AI.
+              author's work is never destroyed). Same face and gestures — and still its own voice:
+              speech style and first-person pronouns are <B>distilled from the dictionary
+              and carried across</B>. Confirmation is a button click.
             </P>
             <H3>Ghost-to-ghost communicate</H3>
             <P>
