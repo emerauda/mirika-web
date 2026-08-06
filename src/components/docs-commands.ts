@@ -446,6 +446,23 @@ export function buildCommandGroups(
           ),
         },
         {
+          name: "classic",
+          arg: T(
+            "[名前]|ai <名前>|sleep",
+            "[name]|ai <name>|sleep",
+            "[名字]|ai <名字>|sleep",
+            "[名字]|ai <名字>|sleep",
+            "[이름]|ai <이름>|sleep",
+          ),
+          help: T(
+            "伺かのゴースト(完全互換で起こす/不可逆でAIへ乗り換え)",
+            "Ukagaka ghosts (wake in full-compat, or switch to AI one-way)",
+            "伪春菜幽灵(完全兼容唤醒/不可逆切换到AI)",
+            "偽春菜幽靈(完全相容喚醒/不可逆切換到AI)",
+            "우카가카 고스트(완전 호환으로 깨우기/비가역 AI 전환)",
+          ),
+        },
+        {
           name: "effects",
           arg: "on|off",
           help: T(
