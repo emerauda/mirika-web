@@ -290,7 +290,17 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
               舊伺か的腳本(Sakura Script)可以原樣運作。
               想在手邊試試,就用 <C>{'/sakura \\0\\s[0]こんにちは。\\w4\\1おい。\\e'}</C>。
               同一個連接埠也會<B>接收 SSTP(SEND / NOTIFY)</B>,
-              因此能從 SSP 等既有工具把腳本送進來(僅限 UTF-8)。
+              因此能從 SSP 等既有工具把腳本送進來(編碼跟隨對方 — Shift_JIS 時代的工具也能直接用)。
+            </P>
+            <H3>幽靈完全相容(真正的 SHIORI 在說話)</H3>
+            <P>
+              <B>把 .nar 拖到角色身上</B>,整套幽靈(身體與辭書)就會入住。
+              完全相容模式下<B>同捆的 SHIORI(里里·YAYA·自製 DLL 一視同仁)照原樣運作</B>:
+              問候、自言自語、戳一戳的反應、聊天欄的搭話,都由本人的辭書回答。這段期間 Mirika 的 AI 一言不發。
+              真實 DLL 的執行目前<B>僅限 Windows</B>(macOS/Linux 只能穿上身體)。
+              指令:<C>/classic</C>(清單)·<C>/classic &lt;名字&gt;</C>(喚醒)·<C>/classic sleep</C>(道別後休眠)。
+              <C>/classic ai &lt;名字&gt;</C> 是<B>切換到 AI 大腦的不可逆儀式</B> —
+              有兩步確認,執行後即使重新匯入 .nar 也不會復原(辭書檔案不刪除,只是不再使用)。
             </P>
             <H3>幽靈間交流</H3>
             <P>

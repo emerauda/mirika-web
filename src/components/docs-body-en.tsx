@@ -299,7 +299,32 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               Scripts from classic Ukagaka (Sakura Script) run as they are.
               To try one locally: <C>{'/sakura \\0\\s[0]こんにちは。\\w4\\1おい。\\e'}</C>.
               The same port <B>receives SSTP (SEND / NOTIFY)</B>, so
-              existing tools such as SSP can send scripts in (UTF-8 only).
+              existing tools such as SSP can send scripts in (the encoding follows the
+              sender — Shift_JIS-era tools work as they are).
+            </P>
+            <H3>Full ghost compatibility (the real SHIORI speaks)</H3>
+            <P>
+              <B>Drop a .nar on her</B> and the whole ghost (body and dictionary) moves in.
+              In full-compat mode <B>the bundled SHIORI runs as-is</B> — Satori, YAYA, aosora
+              or a homebrew DLL, whatever <C>descript.txt</C> names gets loaded without
+              looking at its kind. The greeting (OnBoot), idle talk (OnAiTalk), poke
+              reactions and chat-box messages (OnCommunicate) are all answered
+              <B> from the ghost's own dictionary</B>. While a ghost is awake, Mirika's AI
+              says nothing — she doesn't impersonate someone else's character.
+              Old 32-bit DLLs run too, in a dedicated host process. Running the real DLL
+              is <B>Windows-only for now</B> (macOS/Linux can wear the body).
+            </P>
+            <P>
+              Commands: <C>/classic</C> (list), <C>/classic &lt;name&gt;</C> (wake),
+              <C>/classic sleep</C> (say goodbye and rest).
+            </P>
+            <H3>Switching a ghost to AI (one-way)</H3>
+            <P>
+              <C>/classic ai &lt;name&gt;</C> is a <B>one-way ceremony that moves the ghost to
+              the AI brain</B>. It asks for confirmation, and once done, re-importing the
+              .nar does not revert it (dictionary files are kept, just unused — the
+              author's work is never destroyed). Same face and gestures; only the words
+              become AI.
             </P>
             <H3>Ghost-to-ghost communicate</H3>
             <P>
