@@ -299,6 +299,10 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               问候、自言自语、戳一戳的反应、聊天栏的搭话,都由本人的辞书回答。此间 Mirika 的 AI 一言不发。
               真实 DLL 的运行目前<B>仅限 Windows</B>(macOS/Linux 只能穿上身体)。
               命令:<C>/classic</C>(列表)·<C>/classic &lt;名字&gt;</C>(唤醒)·<C>/classic sleep</C>(道别后休眠)。
+              <B>切换无需重新导入 .nar</B>(右键菜单『外壳(身体)』中会列出)。
+              <B>选项(◇)以按钮呈现,名字输入在聊天栏回答。</B>
+              脚本的回调(embed / raise)也会执行,故事与手续因此真正推进,
+              <B>它的记忆不会被清除</B>(退出时由它自己的辞书保存,重新导入发布包也会保留)。
               <C>/classic ai &lt;名字&gt;</C> 是<B>切换到 AI 大脑的不可逆仪式</B> —
               有两步确认,执行后即使重新导入 .nar 也不会复原(辞书文件不删除,只是不再使用)。
             </P>
