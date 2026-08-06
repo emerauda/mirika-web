@@ -305,6 +305,8 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
               <B>它的記憶不會被清除</B>(退出時由它自己的辭書儲存,重新匯入發佈包也會保留)。
               <C>/classic ai &lt;名字&gt;</C> 是<B>切換到 AI 大腦的不可逆儀式</B> —
               有兩步確認,執行後即使重新匯入 .nar 也不會復原(辭書檔案不刪除,只是不再使用)。
+            
+              還會<B>從辭書裡蒸餾出說話腔調與自稱並繼承</B>,切換後口吻仍是它自己。確認為按鈕點擊。
             </P>
             <H3>幽靈間交流</H3>
             <P>
