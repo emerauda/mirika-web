@@ -590,7 +590,7 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
             <P>
               與 SSTP 相同的連接埠也接收 HTTP。作為 <C>MCP 橋接</C> 公開給 Claude Desktop・VS Code・
               Claude CLI 之後,就能從外部使用傳話(speak)與任務。瀏覽器擴充功能則以
-              <C>POST /browser</C> 分享正在瀏覽的頁面。兩者都綁定 127.0.0.1 並附帶
+              <C>POST /browser</C>(擴充從發佈頁取得 <C>mirika-chrome-extension.zip</C>,解壓後在 <C>chrome://extensions</C> 開發者模式「載入未封裝項目」 — 隨附 README 有步驟與隱私說明) 分享正在瀏覽的頁面。兩者都綁定 127.0.0.1 並附帶
               Host/Origin 檢查,無法從瀏覽中網站的 JavaScript 呼叫。
             </P>
 

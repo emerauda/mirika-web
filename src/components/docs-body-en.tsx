@@ -619,7 +619,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               The same port as SSTP accepts HTTP too. Expose it as the <C>MCP bridge</C> to Claude Desktop, VS Code, and the
               Claude CLI, and they can use messages (speak) and tasks from outside. The browser extension shares
-              the page you are looking at via <C>POST /browser</C>. Both are bound to 127.0.0.1 with
+              the page you are looking at via <C>POST /browser</C> (get <C>mirika-chrome-extension.zip</C> from a release, unzip, and load it unpacked from <C>chrome://extensions</C> in developer mode — the bundled README covers setup and privacy). Both are bound to 127.0.0.1 with
               Host/Origin checks, so JavaScript on the sites you browse cannot hit them.
             </P>
 

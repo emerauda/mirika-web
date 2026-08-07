@@ -613,7 +613,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <P>
               SSTP と同じポートで HTTP も受けます。<C>MCP ブリッジ</C>として Claude Desktop・VS Code・
               Claude CLI に公開すれば、外から伝言(speak)とタスクを使えます。ブラウザ拡張は
-              <C>POST /browser</C> で見ているページを共有します。どちらも 127.0.0.1 バインド+
+              <C>POST /browser</C> で見ているページを共有します(拡張はリリースの <C>mirika-chrome-extension.zip</C> を展開し、<C>chrome://extensions</C> のデベロッパーモードから「パッケージ化されていない拡張機能を読み込む」。同梱 README に手順とプライバシーの説明があります)。どちらも 127.0.0.1 バインド+
               Host/Origin 検査つきで、閲覧中のサイトの JavaScript からは叩けません。
             </P>
 
