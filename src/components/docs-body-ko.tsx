@@ -207,9 +207,10 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
               프리셋 이름만으로 연결됩니다(첫 회에는 브라우저에서 Google 동의 화면이 열립니다).
             </P>
             <P>
-              태스크는 <C>/todo</C>, 정기 체크와 "오늘의 브리핑"은 <C>/brief</C>,
+              태스크는 <C>/todo</C>, 정기 체크와 "오늘의 브리핑"은 <C>/secretary brief</C>,
               기기 안의 전문 검색(로컬 RAG)은 <C>/rag &lt;폴더&gt;</C>.
-              화면을 보여 주는 것은 <C>/see</C>, 지켜보기는 <C>/watch</C>.
+              화면을 보여 주는 것은 <C>/screen</C>, 지켜보기는 <C>/screen watch on</C>.
+              화면 자동 캡처는 <B>기기 안의 두뇌일 때만</B> 전달합니다 — 클라우드 API나 CLI 두뇌에 보여 주려면 <C>/screen cloud on</C>의 명시적 허가가 필요합니다(기본은 꺼짐 = 화면은 기기 밖으로 나가지 않습니다).
             </P>
             <Shot src="/shots/settings-secretary.webp" alt="상세 설정의 AI 비서. 정기 체크, 브리핑, 화면 지켜보기, 메일 감시" caption={<>상세 설정의 "AI 비서". 정기 체크의 간격도, 지켜보기의 켜고 끄기도 여기에서 그대로 정할 수 있습니다</>} />
             <P>
@@ -373,7 +374,7 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <P>
               목록은 <C>/ghost list</C>, 같은 아이를 다시 부르려면 <C>/ghost &lt;이름&gt;</C>.
-              포트(SSTP·에셋 제공)는 자동으로 서로 양보하고, 서는 위치도 겹치지 않게 비켜서 놓입니다.
+              포트(SSTP·에셋 제공)는 자동으로 서로 양보하고(동시에 세울 수 있는 것은 3대까지), 서는 위치도 겹치지 않게 비켜서 놓입니다.
             </P>
             <Note>
               지금 서 있는 이 아이와 <C>/ghost list</C>는 Free입니다. 두 번째 이후를 세우는 것이 Pro 기능이 됩니다.
@@ -431,7 +432,7 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
               ON AIR 램프·지금의 코너·텔롭·음성 크레딧이 자동으로 나옵니다
               (책상 쪽의 오버레이는 <C>radio-desk.html</C>). 방송국 이름이나 텔롭은
               앱에서 <C>/radio title</C>로 바꿔 넣을 수
-              있습니다. <B>그림 그리기로 그린 그림은 오른쪽 아래의 이젤에 표시됩니다</B>.
+              있습니다. <B>그림 그리기로 그린 그림은 책상 오버레이(radio-desk)의 중앙에 표시됩니다</B>.
               캐릭터의 창 캡처를 그 위에 겹쳐 주세요.
             </P>
             <Note>
@@ -505,7 +506,7 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
               DM으로도 3단계(24시간 전 → 1시간 전 → 초과)로 알립니다.
             </P>
             <P>
-              낭독은 <C>/voice bind</C>한 음성 채널을 VOICEVOX(+ Nemo, 총 136 보이스)로 읽습니다.
+              낭독은 <C>/voice bind</C>한 음성 채널을 VOICEVOX로 읽습니다(보이스는 연결한 엔진에서 자동으로 가져오며, 엔진을 겹치면 Nemo 포함 136 보이스까지).
               내 목소리는 <C>/voice speaker</C>에서(검색으로도, 목록에서도) 고를 수 있습니다.
               <C>/voice listen</C>을 켠 서버에서는 "<B>미리카</B>"라고 부르면
               듣고 목소리로 답합니다 — 음성은 텍스트가 되는 순간 폐기되며, 부르지 않은 발화는 텍스트도 남기지 않습니다.

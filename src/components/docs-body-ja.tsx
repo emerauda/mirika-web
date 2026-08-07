@@ -197,7 +197,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               別の PC の <C>/sync import</C> で取り込めます。取り込みは突き合わせなので、
               どちらかにしかない会話も消えません。<C>/sync cloud &lt;合言葉&gt;</C> にすると
               15分ごとに自動で合います(置き場は自分のクラウドの同期フォルダなら無料、
-              こちらの預かり棚は Pro)。<B>合言葉はどこにも保存されません</B> —
+              こちらの預かり棚は Pro。組織の端末キーでも使え、棚は 256MB・端末5台まで)。<B>合言葉はどこにも保存されません</B> —
               忘れると開けなくなります。
             </P>
             <Shot src="/shots/settings-sync.webp" alt="詳細設定の記憶の同期。合言葉、書き出しと取り込み、記憶の置き場" caption={<>詳細設定の「記憶の同期」。書き出し・取り込み・置き場の選択は、ここからも操作できます</>} />
@@ -211,9 +211,11 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               <C>/mcp add gmail</C> のようにプリセット名だけで繋がります(初回はブラウザで Google の同意画面)。
             </P>
             <P>
-              タスクは <C>/todo</C>、定期チェックと「きょうのブリーフィング」は <C>/brief</C>、
+              タスクは <C>/todo</C>、定期チェックと「きょうのブリーフィング」は <C>/secretary brief</C>、
               端末内の全文検索(ローカル RAG)は <C>/rag &lt;フォルダ&gt;</C>。
-              画面を見せるなら <C>/see</C>、見守りは <C>/watch</C>。
+              画面を見せるなら <C>/screen</C>、見守りは <C>/screen watch on</C>。
+              画面の自動キャプチャは<B>端末内の頭脳のときだけ</B>渡します —
+              クラウド API や CLI の頭脳に見せるには <C>/screen cloud on</C> の明示許可が要ります(既定はオフ=画面は端末から出ません)。
             </P>
             <Shot src="/shots/settings-secretary.webp" alt="詳細設定の AI 秘書。定期チェック、ブリーフィング、画面の見守り、メールの見張り" caption={<>詳細設定の「AI 秘書」。定期チェックの間隔も、見守りの入り切りも、ここからそのまま決められます</>} />
             <P>
@@ -395,7 +397,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <P>
               一覧は <C>/ghost list</C>、同じ子をまた呼ぶなら <C>/ghost &lt;名前&gt;</C>。
-              ポート(SSTP・アセット配信)は自動で譲り合い、立ち位置も重ならないようずらして置かれます。
+              ポート(SSTP・アセット配信)は自動で譲り合い(同時に立てられるのは3体まで)、立ち位置も重ならないようずらして置かれます。
             </P>
             <Note>
               いま立っているこの子と <C>/ghost list</C> は Free です。2体目以降を立てるのが Pro 機能になります。
@@ -456,7 +458,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               ON AIR ランプ・いまのコーナー・テロップ・音声クレジットが自動で出ます
               (机側のオーバーレイは <C>radio-desk.html</C>)。局名やテロップは
               アプリから <C>/radio title</C> で差し替えられます。
-              <B>お絵かきで描いた絵は右下のイーゼルに表示されます</B>。
+              <B>お絵かきで描いた絵は机オーバーレイ(radio-desk)の中央に表示されます</B>。
               キャラのウィンドウキャプチャをその上に重ねてください。
             </P>
             <Note>
@@ -530,7 +532,8 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               期限が近づくと DM にも3段階(24時間前 → 1時間前 → 超過)で知らせます。
             </P>
             <P>
-              読み上げは <C>/voice bind</C> したボイスチャンネルを VOICEVOX(+ Nemo、全136声)で読みます。
+              読み上げは <C>/voice bind</C> したボイスチャンネルを VOICEVOX で読みます
+              (声は繋いだエンジンから自動で拾います。複数エンジンを束ねれば Nemo 込み136声まで)。
               自分の声は <C>/voice speaker</C>(検索でも、一覧からでも選べます)。
               <C>/voice listen</C> をオンにしたサーバーでは「<B>ミリカ</B>」と
               呼びかけると聞き取り、声で返します — 音声は文字にした瞬間に捨て、呼びかけ以外の発話は文字も残しません。

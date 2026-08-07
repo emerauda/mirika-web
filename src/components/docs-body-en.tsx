@@ -199,7 +199,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               and <C>/sync import</C> on another PC takes it in. Importing is a merge, so
               conversations that exist on only one side are never lost. Switch to <C>/sync cloud &lt;passphrase&gt;</C> and
               they reconcile automatically every 15 minutes (free if the place is your own cloud drive's sync folder;
-              our hosted shelf is Pro). <B>The passphrase is never stored anywhere</B> —
+              our hosted shelf is Pro — an org device key works too; a shelf holds 256MB across up to 5 devices). <B>The passphrase is never stored anywhere</B> —
               lose it and the file can no longer be opened.
             </P>
             <Shot src="/shots/settings-sync.webp" alt="Memory sync in the advanced settings: the passphrase, export and import, and where memories are kept" caption={<>"Memory sync" in the advanced settings. Export, import, and choosing where memories are kept can also be done from here</>} />
@@ -213,9 +213,11 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               with just a preset name, like <C>/mcp add gmail</C> (the first time opens Google's consent screen in your browser).
             </P>
             <P>
-              Tasks are <C>/todo</C>, periodic checks and the morning briefing are <C>/brief</C>,
+              Tasks are <C>/todo</C>, periodic checks and the morning briefing are <C>/secretary brief</C>,
               full-text search over your machine (local RAG) is <C>/rag &lt;folder&gt;</C>.
-              Show her your screen with <C>/see</C>; screen watch is <C>/watch</C>.
+              Show her your screen with <C>/screen</C>; screen watch is <C>/screen watch on</C>.
+              Auto screen captures are <B>handed only to on-device brains</B> — showing them to a
+              cloud API or CLI brain needs an explicit <C>/screen cloud on</C> (off by default: your screen never leaves the machine).
             </P>
             <Shot src="/shots/settings-secretary.webp" alt="The AI secretary in the advanced settings: periodic checks, the briefing, screen watch, mail watch" caption={<>"AI secretary" in the advanced settings. The interval of periodic checks and the screen-watch toggle can be set right here as well</>} />
             <P>
@@ -401,7 +403,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <P>
               List them with <C>/ghost list</C>; to call the same girl again, <C>/ghost &lt;name&gt;</C>.
-              Ports (SSTP, asset serving) are yielded automatically, and standing positions are offset so they do not overlap.
+              Ports (SSTP, asset serving) are yielded automatically (up to 3 ghosts at once), and standing positions are offset so they do not overlap.
             </P>
             <Note>
               The girl already standing and <C>/ghost list</C> are Free. Standing up a second ghost and beyond is the Pro feature.
@@ -462,7 +464,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               ON AIR lamp, the current segment, the ticker, and voice credits automatically
               (the desk-side overlay is <C>radio-desk.html</C>). The station name and ticker can be
               swapped from the app with <C>/radio title</C>.{' '}
-              <B>Pictures she draws are shown on the easel at the bottom right</B>.
+              <B>Pictures she draws are shown in the middle of the desk overlay (radio-desk)</B>.
               Layer a window capture of the character on top of it.
             </P>
             <Note>
@@ -537,7 +539,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             </P>
             <P>
               Reading aloud covers the voice channels you <C>/voice bind</C>, spoken through VOICEVOX
-              (+ Nemo, 136 voices in total). Pick yours with <C>/voice speaker</C> — search or browse the full list.
+              (voices come straight from the engines you connect; up to 136 with Nemo added). Pick yours with <C>/voice speaker</C> — search or browse the full list.
               On servers with <C>/voice listen</C> on, say "<B>Mirika</B>" and she
               hears you and answers aloud — audio is discarded the instant it becomes text, and utterances without
               her name are dropped entirely.
