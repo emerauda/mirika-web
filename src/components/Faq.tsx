@@ -123,7 +123,7 @@ export function Faq() {
           <strong>{t('スマートホーム', 'smart home', { 'zh-CN': '智能家居', 'zh-TW': '智慧家庭', ko: '스마트홈' })}</strong>、
           <strong>{t('Discord 連携', 'the Discord link', { 'zh-CN': 'Discord 联动', 'zh-TW': 'Discord 連動', ko: 'Discord 연동' })}</strong>
           {t('(自分のサーバーに呼ぶ・読み上げ・音声会話)', ' (invite her to your server, reading aloud, voice chat)', { 'zh-CN': '(叫到自己的服务器・朗读・语音对话)', 'zh-TW': '(叫到自己的伺服器・朗讀・語音對話)', ko: '(내 서버로 부르기·낭독·음성 대화)' })}
-          {t('、画面の常時見守り、そして', ', always-on screen watch, and ', { 'zh-CN': ',常时屏幕看护,以及', 'zh-TW': ',常時螢幕看護,以及', ko: ', 상시 화면 지켜보기, 그리고 ' })}
+          {t('、そして', ', and ', { 'zh-CN': ',以及', 'zh-TW': ',以及', ko: ', 그리고 ' })}
           <strong>
             {t('記憶の置き場をこちらで預かる', 'a hosted home for memory sync', { 'zh-CN': '由我们托管的记忆存放处', 'zh-TW': '由我們託管的記憶存放處', ko: '기억 보관소를 맡아 두는 것' })}
           </strong>

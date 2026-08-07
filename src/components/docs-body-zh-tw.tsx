@@ -206,9 +206,10 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
               <C>/mcp add gmail</C> 這樣輸入預設集名稱即可連上(第一次會在瀏覽器開啟 Google 的同意畫面)。
             </P>
             <P>
-              任務用 <C>/todo</C>,定期檢查與「今日簡報」用 <C>/brief</C>,
+              任務用 <C>/todo</C>,定期檢查與「今日簡報」用 <C>/secretary brief</C>,
               裝置內的全文檢索(本地 RAG)用 <C>/rag &lt;資料夾&gt;</C>。
-              想給她看畫面用 <C>/see</C>,持續看顧用 <C>/watch</C>。
+              想給她看畫面用 <C>/screen</C>,持續看顧用 <C>/screen watch on</C>。
+              畫面自動截圖<B>只交給裝置內的大腦</B> — 要給雲端 API 或 CLI 大腦看,需要 <C>/screen cloud on</C> 的明確許可(預設關閉 = 畫面不會離開裝置)。
             </P>
             <Shot src="/shots/settings-secretary.webp" alt="詳細設定的 AI 秘書。定期檢查、簡報、畫面看顧、郵件監看" caption={<>詳細設定的「AI 秘書」。定期檢查的間隔、看顧的開關,都能直接在這裡決定</>} />
             <P>
@@ -373,7 +374,7 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
             </P>
             <P>
               一覽用 <C>/ghost list</C>,要再叫出同一個孩子用 <C>/ghost &lt;名字&gt;</C>。
-              連接埠(SSTP・資源配送)會自動互相禮讓,站位也會錯開,避免重疊。
+              連接埠(SSTP・資源配送)會自動互相禮讓(同時最多 3 隻),站位也會錯開,避免重疊。
             </P>
             <Note>
               現在站著的這個孩子與 <C>/ghost list</C> 屬於 Free。立起第二個以後的孩子才是 Pro 功能。
@@ -434,7 +435,7 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
               ON AIR 燈・目前單元・字幕條・語音來源標示
               (桌面側的疊加層是 <C>radio-desk.html</C>)。電台名與字幕條
               可從應用程式用 <C>/radio title</C> 更換。
-              <B>畫畫單元畫出的圖會顯示在右下的畫架上</B>。
+              <B>畫畫單元畫出的圖會顯示在桌面疊加層(radio-desk)的中央</B>。
               請把角色的視窗擷取疊在其上。
             </P>
             <Note>
@@ -510,7 +511,7 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
               分三階段提醒(24 小時前 → 1 小時前 → 已逾期)。
             </P>
             <P>
-              朗讀會用 VOICEVOX(+ Nemo,共 136 種聲音)讀出 <C>/voice bind</C> 綁定的語音頻道。
+              朗讀會用 VOICEVOX 讀出(聲音直接來自你接入的引擎;疊加 Nemo 可達 136 種) <C>/voice bind</C> 綁定的語音頻道。
               自己的聲音用 <C>/voice speaker</C> 挑選(可搜尋,也可從完整清單瀏覽)。
               在開啟 <C>/voice listen</C> 的伺服器裡,喊一聲「<B>Mirika</B>」,
               她會聽到並用聲音回答 — 音訊在轉成文字的那一刻即被丟棄,沒有呼喚她的發言連文字也不保留。
