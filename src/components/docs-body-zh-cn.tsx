@@ -590,7 +590,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <P>
               与 SSTP 相同的端口也接收 HTTP。作为 <C>MCP 桥接</C> 公开给 Claude Desktop・VS Code・
               Claude CLI,就能从外部使用传话(speak)和任务。浏览器扩展通过
-              <C>POST /browser</C> 分享正在浏览的页面。两者都绑定 127.0.0.1 并
+              <C>POST /browser</C>(扩展从发布页获取 <C>mirika-chrome-extension.zip</C>,解压后在 <C>chrome://extensions</C> 开发者模式里「加载已解压的扩展程序」 — 随附 README 有步骤与隐私说明) 分享正在浏览的页面。两者都绑定 127.0.0.1 并
               附带 Host/Origin 检查,浏览中网站的 JavaScript 无法调用。
             </P>
 

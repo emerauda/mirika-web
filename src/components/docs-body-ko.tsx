@@ -586,7 +586,7 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             <P>
               SSTP와 같은 포트로 HTTP도 받습니다. <C>MCP 브리지</C>로서 Claude Desktop·VS Code·Claude CLI에
               공개하면, 밖에서 전언(speak)과 태스크를 쓸 수 있습니다. 브라우저
-              확장은 <C>POST /browser</C>로 보고 있는 페이지를 공유합니다. 어느 쪽도 127.0.0.1 바인드+Host/Origin
+              확장은 <C>POST /browser</C>(확장은 릴리스의 <C>mirika-chrome-extension.zip</C>을 풀고 <C>chrome://extensions</C>의 개발자 모드에서 '압축해제된 확장 프로그램 로드'로 설치 — 동봉 README에 절차와 프라이버시 설명이 있습니다)로 보고 있는 페이지를 공유합니다. 어느 쪽도 127.0.0.1 바인드+Host/Origin
               검사가 있어, 열람 중인 사이트의 JavaScript에서는 두드릴 수 없습니다.
             </P>
 
