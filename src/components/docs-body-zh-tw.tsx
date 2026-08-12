@@ -298,7 +298,7 @@ export function DocsBodyZhTw({ commands, commandCount }: { commands: ReactNode; 
               <B>把 .nar 拖到角色身上</B>,整套幽靈(身體與辭書)就會入住。
               完全相容模式下<B>同捆的 SHIORI(里里·YAYA·自製 DLL 一視同仁)照原樣運作</B>:
               問候、自言自語、戳一戳的反應、聊天欄的搭話,都由本人的辭書回答。這段期間 Mirika 的 AI 一言不發。
-              真實 DLL 的執行目前<B>僅限 Windows</B>(macOS/Linux 只能穿上身體)。
+              真實 DLL 的執行目前<B>僅限 Windows</B>,但<B>里里(satori)的幽靈在 macOS / Linux 上也能用自己的辭書說話</B>(內建辭書解讀實作;Windows 仍優先使用真實 DLL)。YAYA・華和梨・自製 DLL 在這些系統上只能穿上身體。
               指令:<C>/classic</C>(清單)·<C>/classic &lt;名字&gt;</C>(喚醒)·<C>/classic sleep</C>(道別後休眠)。
               <B>切換無需重新匯入 .nar</B>(右鍵選單『外殼(身體)』中會列出)。
               <B>選項(◇)以按鈕呈現,名字輸入在聊天欄回答。</B>

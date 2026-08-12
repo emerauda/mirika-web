@@ -314,7 +314,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               <B> from the ghost's own dictionary</B>. While a ghost is awake, Mirika's AI
               says nothing — she doesn't impersonate someone else's character.
               Old 32-bit DLLs run too, in a dedicated host process. Running the real DLL
-              is <B>Windows-only for now</B> (macOS/Linux can wear the body).
+              is <B>Windows-only for now</B>, but <B>Satori ghosts speak from their own dictionaries on macOS and Linux too</B> (a dictionary reader ships with the app; Windows still prefers the real DLL). YAYA, Kawari and homebrew DLLs can only wear the body there.
             </P>
             <P>
               Commands: <C>/classic</C> (list), <C>/classic &lt;name&gt;</C> (wake),

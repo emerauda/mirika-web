@@ -298,7 +298,7 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
               <B>.nar를 캐릭터에 떨어뜨리기만 하면</B> 고스트 일체(몸과 사전)를 맞이합니다.
               완전 호환 모드에서는 <B>동봉된 SHIORI(사토리·YAYA·자작 DLL 구분 없이)가 그대로 동작</B>하여,
               인사·혼잣말·반응·채팅창의 말 걸기까지 본인의 사전이 답합니다. 그동안 미리카의 AI는 한마디도 하지 않습니다.
-              실제 DLL 실행은 현재 <B>Windows 전용</B>(macOS/Linux는 몸만 착용 가능).
+              실제 DLL 실행은 현재 <B>Windows 전용</B>이지만, <B>사토리(satori) 고스트는 macOS / Linux에서도 자기 사전으로 말합니다</B>(사전을 읽는 구현을 내장; Windows에서는 실제 DLL이 우선). YAYA·카와리·자작 DLL은 그 환경에서는 몸만 착용됩니다.
               명령: <C>/classic</C>(목록)·<C>/classic &lt;이름&gt;</C>(깨우기)·<C>/classic sleep</C>(작별 인사 후 재우기).
               <B>전환에 .nar 재설치는 필요 없습니다</B>(우클릭 메뉴 '셸(신체)'에 목록이 나옵니다).
               <B>선택지(◇)는 버튼으로 나오고 이름 입력은 채팅창에서 답합니다.</B>

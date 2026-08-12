@@ -310,7 +310,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               チャット欄からの話しかけ(OnCommunicate)まで<B>本人の辞書が答えます</B>。
               その間、ミリカの AI は一言も喋りません(よその子を騙らないため)。
               32bit の古い DLL も専用ホストで動きます。実 DLL の実行は現在
-              <B> Windows のみ</B>(macOS/Linux は身体だけ着られます)。
+              <B> Windows のみ</B>ですが、<B>里々(satori)のゴーストは macOS / Linux でも本人の辞書で喋ります</B>(辞書を読む実装を積んでいます。Windows では実 DLL が優先)。YAYA・華和梨・独自 DLL はその環境では身体だけになります。
             </P>
             <P>
               操作は <C>/classic</C>(一覧)・<C>/classic &lt;名前&gt;</C>(起こす)・
