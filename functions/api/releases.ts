@@ -14,7 +14,12 @@ const REPO = "emerauda/mirika-releases";
 const LIST = `https://api.github.com/repos/${REPO}/releases?per_page=30`;
 /** 転んだときに出す控えの置き場(通常キャッシュより長生き) */
 const STALE_URL = "https://mirika.dev/api/releases?stale=1";
-const STALE_MAX_AGE = 24 * 60 * 60;
+/**
+ * 控えの寿命。**上流は断続的に断ってくる** —— 未認証の GitHub API は
+ * IP あたり 60回/時 で、エッジの出口 IP は他の利用者と分け合うので、
+ * 枯れては戻るのを繰り返す。1日では足りない日があるので1週間持たせる
+ */
+const STALE_MAX_AGE = 7 * 24 * 60 * 60;
 
 interface GhAsset {
   name?: string;
@@ -61,15 +66,29 @@ export const onRequestGet = async (context: {
   const staleKey = new Request(STALE_URL);
   const cache = (caches as unknown as { default: Cache }).default;
   const hit = await cache.match(cacheKey);
-  if (hit) return hit;
+  if (hit) {
+    const body = await hit.text();
+    return new Response(body, {
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "public, max-age=60, s-maxage=300",
+        "x-mirika-source": "cache",
+      },
+    });
+  }
 
   const headers = {
     Accept: "application/vnd.github+json",
     // GitHub API は User-Agent 必須
     "User-Agent": "mirika.dev-site",
   };
-  // **往復は1本だけ。** latest は一覧から選ぶ(pickLatest)
-  const listRes = await fetch(LIST, { headers }).catch(() => null);
+  // **往復は1本だけ。** latest は一覧から選ぶ(pickLatest)。
+  // 一度きりの失敗(瞬断・上流の揺れ)で控えに落とさないよう、短い間をおいて1回だけ試し直す
+  let listRes = await fetch(LIST, { headers }).catch(() => null);
+  if (!listRes?.ok && listRes?.status !== 403) {
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    listRes = await fetch(LIST, { headers }).catch(() => null);
+  }
   if (!listRes?.ok) {
     // **転んでも白紙にしない。** 一日ぶんの控えがあれば、古くてもそれを出す ——
     // ここで 502 を返すと、全員がブラウザから GitHub を直接叩きに行き、
@@ -82,6 +101,7 @@ export const onRequestGet = async (context: {
           "content-type": "application/json; charset=utf-8",
           "cache-control": "public, max-age=60, s-maxage=120",
           "x-mirika-stale": "1",
+          "x-mirika-source": "stale",
         },
       });
     }
@@ -101,6 +121,7 @@ export const onRequestGet = async (context: {
       "content-type": "application/json; charset=utf-8",
       // ブラウザ1分・エッジ5分。リリース直後でも5分で反映される
       "cache-control": "public, max-age=60, s-maxage=300",
+      "x-mirika-source": "github",
     },
   });
   context.waitUntil(cache.put(cacheKey, response.clone()));
