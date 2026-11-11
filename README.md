@@ -28,8 +28,13 @@ has not reached a stable release yet carries a small version mark (`<Since v="0.
 
 After each app release, the app repository's `scripts/site-commands-check.mjs` compares its command
 table with `docs-commands.ts` and reports commands or arguments missing here. The Discord bot
-answers how-to questions from these docs, so its index is refreshed after a docs change
-(`scripts/index-docs.mjs` in the bot repository).
+answers how-to questions from these docs, so its index is refreshed after a docs change — in the bot
+repository, `node scripts/index-docs.mjs`, then `node scripts/docs-recall-check.mjs` to see that
+how-to questions really find their section.
+
+Both tools *run* `docs-commands.ts` as a module, and the bot's indexer also calls `DocsBodyJa` from
+`docs-body-ja.tsx` and walks the tree it returns. Keep those two files free of hooks and
+browser-only code, and keep an `id` on every `<H2>`.
 
 ## Deploy
 

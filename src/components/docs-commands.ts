@@ -13,6 +13,11 @@ import { t5, type useT } from '../i18n';
  * 5言語対応。arg は <>/[] のプレースホルダだけ訳し、ユーザーがそのまま打ち込む
  * トークン(on|off・list 等)と | の構造は原文のまま残す。
  * since は「その版から入った」印 —— 正式版がまだ届いていない間は、先行版の機能。
+ *
+ * このファイルを外から「実行して」読む道具が2つある: 本体の scripts/site-commands-check.mjs
+ * (突き合わせ)と、Discord の Bot の scripts/index-docs.mjs(/talk の索引づくり)。どちらも
+ * 1行目の import を差し替えて、このファイルをそのまま動かす —— 1行目の形と、
+ * buildCommandGroups が返す形({ group, items })を変えるときは、その2つも合わせる。
  */
 export type Cmd = { name: string; arg: string; help: string; since?: string };
 

@@ -1,7 +1,14 @@
 import type { ReactNode } from 'react';
 import { A, B, C, H2, H3, Note, P, Pro, Shot, Since, Steps } from './docs-ui';
 
-/** 使い方ドキュメント本文(日本語・正)。他言語版は docs-body-*.tsx —— 構成と JSX の形はこのファイルに揃える。 */
+/**
+ * 使い方ドキュメント本文(日本語・正)。他言語版は docs-body-*.tsx —— 構成と JSX の形はこのファイルに揃える。
+ *
+ * Discord の Bot(mirika-bot の scripts/index-docs.mjs)が、この DocsBodyJa を実際に呼んで
+ * 章(H2)→ 節(H3)→ 段落に分け、/talk が答えの根拠に引く索引にする。だからここは、
+ * フックも状態も持たない素の組版のままにしておく(部品は ./docs-ui から)。
+ * 章には id を付ける(出典 URL の #… になる)。
+ */
 
 export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; commandCount: number }) {
   return (
