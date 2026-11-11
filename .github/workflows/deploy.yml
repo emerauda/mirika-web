@@ -12,18 +12,27 @@ jobs:
       contents: read
       deployments: write
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # v5 系は Node 24 ランナー対応(v4 の deprecation 警告を消す)
+      - uses: actions/checkout@v5
+      # **pnpm で揃える。** 以前は手元が pnpm・ここが npm で、lock を2つ持っていた。
+      # 片方だけ更新されると npm ci が止まり、デプロイが静かに止まる(mirika-pro で実際に起きた)。
+      # pnpm のバージョンは package.json の packageManager を使う(二重指定するとエラー)
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
         with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       # vite build は transpile だけで型を見ない。strict の網はここで張る
-      - run: npm run typecheck
-      - run: npm run build
+      - run: pnpm typecheck
+      # ダウンロード欄の裏口(functions/api/releases.ts)。転ぶと正式版が「準備中」に見える
+      - run: pnpm test
+      - run: pnpm build
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # mirika-bot・mirika-pro と同じ版に揃える(黙って古い既定の版が入らないように)
+          wranglerVersion: "4.160.1"
           command: pages deploy dist --project-name=mirika --branch=main

@@ -2,18 +2,34 @@
 
 The official website for **Mirika** — a local-first AI desktop ghost — served at **[mirika.dev](https://mirika.dev/)**.
 
-Built with React 19 + Vite + TypeScript + Tailwind CSS 4 + Framer Motion.
+Built with React 19 + Vite + TypeScript + Tailwind CSS 4 + Motion.
 
 > This repository holds the public website only. The Mirika desktop app itself is proprietary and lives in a separate private repository.
 
 ## Develop
 
 ```bash
-npm install
-npm run dev      # local dev server
-npm run build    # production build to dist/
-npm run preview  # preview the production build
+pnpm install
+pnpm dev         # local dev server
+pnpm typecheck   # vite build does not type-check; this does
+pnpm test        # the Pages Function behind the download list
+pnpm build       # production build to dist/
+pnpm preview     # preview the production build
 ```
+
+The package manager is pnpm (pinned in `package.json`); there is one lockfile, `pnpm-lock.yaml`.
+
+## Keeping the docs true
+
+The usage docs (`src/components/docs-body-*.tsx`, five languages) and the command list
+(`src/components/docs-commands.ts`) describe the newest build, previews included. A feature that
+has not reached a stable release yet carries a small version mark (`<Since v="0.6.9" />`, or
+`since` on a command).
+
+After each app release, the app repository's `scripts/site-commands-check.mjs` compares its command
+table with `docs-commands.ts` and reports commands or arguments missing here. The Discord bot
+answers how-to questions from these docs, so its index is refreshed after a docs change
+(`scripts/index-docs.mjs` in the bot repository).
 
 ## Deploy
 

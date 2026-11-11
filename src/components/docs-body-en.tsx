@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { A, B, C, H2, H3, Note, P, Pro, Shot, Steps } from './docs-ui';
+import { A, B, C, H2, H3, Note, P, Pro, Shot, Since, Steps } from './docs-ui';
 
 /** 使い方ドキュメント本文(英語)。構成と JSX の形は docs-body-ja.tsx(正)に揃える。 */
 
@@ -82,7 +82,22 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               brain as-is (<B>CLIs living inside WSL are found automatically</B>).
               To stay local as usual but have just this one question thought through in the cloud, use <C>/cloud &lt;question&gt;</C>.
             </P>
-            <Note>API keys are encrypted with the OS safe storage before being saved (the <C>enc:</C> format).</Note>
+            <Note>
+              API keys are encrypted with the OS safe storage before being saved (the <C>enc:</C> format).
+              On a machine without a keyring they cannot be encrypted, so she tells you they are being kept in plain text,
+              both when you hand a key over and again at startup.
+            </Note>
+            <H3>
+              Which brain is answering right now
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              <C>/status</C> shows not only the brain's name but also <B>where it runs</B> (this PC, another PC on your LAN, or the cloud).
+              An LM Studio running on a different PC is no longer called "this PC," and automatic screen captures are not sent there.
+              Every reply in the chat log (<C>/log</C>) also carries a tag saying which brain produced it.
+              Models downloaded for the built-in engine are <B>checked against the publisher's SHA-256</B> afterwards
+              (on a mismatch the file is deleted and she stops; fetching it again is left to you).
+            </P>
           </section>
 
           {/* --- 声 --- */}
@@ -193,6 +208,18 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               and a <B>feeling</B>: "we have been growing closer lately", "lately: the rain kept on, and I could not quite find my energy".
               That day's mood also colours how she answers.
             </P>
+            <H3>
+              Memory snapshots and recovery
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              The overnight tidy-up is also the step that forgets old things, so right before it runs
+              a <B>snapshot of the memory is taken automatically</B> and the newest seven are kept.
+              Use <C>/memory snapshots</C> to list them and <C>/memory restore</C> to bring one back
+              (the current memory is snapshotted first, then swapped in, and the app restarts).
+              If the memory file turns out to be damaged at startup, it is not silently thrown away: it is set aside,
+              she starts with an empty memory, and asks whether to restore from the latest snapshot.
+            </P>
             <H3>Memories and all, to another machine (sync)</H3>
             <P>
               <C>/sync export</C> turns memories, name, and personality into a single file encrypted with a passphrase,
@@ -211,6 +238,16 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               Connect over MCP and she becomes a secretary who speaks through her persona. Gmail, Calendar, and Drive connect
               with just a preset name, like <C>/mcp add gmail</C> (the first time opens Google's consent screen in your browser).
+            </P>
+            <P>
+              <B>Anything that reaches outside is confirmed before it runs</B>
+              <Since v="0.6.9" /> — tools that send, delete, create, or change something
+              (sending an email, writing a file) stop and show you the target and the content in the balloon.
+              Press "Run it" or type <C>/ok</C> (just saying "yes" works too) to go ahead,
+              or press "Cancel" or type <C>/no</C> to drop it. Starting a different topic also drops it, and the request expires after 10 minutes.
+              For a tool you would rather not be asked about every time, "Always allow" (<C>/ok always</C>) marks it as trusted,
+              and <C>/mcp trust</C> lists the trusted tools and lets you take that back.
+              Read-only tools and the built-in ones (tasks and the like) keep running without a prompt, as before.
             </P>
             <P>
               Tasks are <C>/todo</C>, periodic checks and the morning briefing are <C>/secretary brief</C>,
@@ -479,7 +516,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="pro">Pro and licensing</H2>
             <P>
               The app itself is free to use (freeware under its own license).
-              Pro is a one-time purchase that unlocks <B>streamer mode, the scenario writer, internet radio, Spotify integration, and multi-ghost</B> (what each includes is at <A href="https://pro.mirika.dev/">pro.mirika.dev</A>).
+              Pro is a one-time purchase that unlocks <B>streamer mode, the scenario writer, internet radio, Spotify integration, multi-ghost, smart home, the Discord server features, and a hosted home for memory sync</B> (what each includes is at <A href="https://pro.mirika.dev/">pro.mirika.dev</A>).
             </P>
             <Steps
               items={[
@@ -543,6 +580,14 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
               On servers with <C>/voice listen</C> on, say "<B>Mirika</B>" and she
               hears you and answers aloud — audio is discarded the instant it becomes text, and utterances without
               her name are dropped entirely.
+            </P>
+            <P>
+              Reading aloud can be tuned per person. Speed, pitch, intonation, and volume are set with <C>/voice tune</C>;
+              teach her how to read a word with <C>/voice dictionary</C> (spelling → reading); and if you would rather not have
+              your own messages read, use <C>/voice mute</C>. Your current setup is shown in one place by <C>/voice status</C>.
+              Server admins decide whether stickers and emoji are read (<C>/voice stickers</C>),
+              whether posts from people who are not in the voice channel are read too (<C>/voice absent</C>),
+              and which voice Mirika herself uses (<C>/voice mirika</C>).
             </P>
             <Note>
               One key opens up to three servers. Personal data (TODO, memory, voice preference) is kept per
@@ -626,7 +671,7 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <H3>When it is not behaving</H3>
             <P>
               <C>/check</C> reviews the state of brain, voice, mic, secretary, and memory in one go.
-              If things still look off, <C>/log</C> — <B>it opens the folder holding the activity logs</B>{' '}
+              If things still look off, <C>/log file</C> — <B>it opens the folder holding the activity logs</B>{' '}
               (7 days' worth; API keys and passphrases are masked). Attach that day's file to your report and
               we can trace the cause on our side. The same folder also opens from "When something goes wrong" in the advanced settings.
             </P>
@@ -702,6 +747,16 @@ export function DocsBodyEn({ commands, commandCount }: { commands: ReactNode; co
             <P>
               Singing needs a VOICEVOX <B>singing-capable character</B>.
               Engines without singing support, such as AivisSpeech, cannot sing.
+            </P>
+            <H3>
+              Told that the memory was damaged
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              When the memory file cannot be read at startup, the damaged file is set aside in the settings folder
+              as <C>memory-broken-…</C> and she starts with an empty memory.
+              Press "Restore latest snapshot" in the balloon, or run <C>/memory restore</C>, to go back to the snapshot taken before the last tidy-up.
+              The damaged file is kept, so you can attach it to a report.
             </P>
             <H3>Rolling back an imported card</H3>
             <P>

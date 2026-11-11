@@ -1,14 +1,20 @@
 import { t5, type useT } from '../i18n';
 
 /**
- * スラッシュコマンド全件。アプリ本体の SLASH_COMMANDS(apps/desktop/src/main/index.ts)
- * から書き起こしたもので、/help に出るものと同じ並び・同じ説明。
+ * スラッシュコマンド全件。アプリ本体の SLASH_COMMANDS
+ * (apps/desktop/src/main/commands-table.ts)と**同じコマンドが、漏れなく**並ぶ。
+ * 並びはこのページの読み順(頭脳 → キャラ → …)で、アプリの /help とは違う。
  *
- * 5言語対応。ja はアプリの原文を一字一句そのまま置く(本体と突き合わせて同期を
- * 確認するため、勝手に整えない)。arg は <>/[] のプレースホルダだけ訳し、
- * ユーザーがそのまま打ち込むトークン(on|off・list 等)と | の構造は原文のまま残す。
+ * 説明は基本、アプリの原文(ja)をそのまま置く。ただしアプリの一行では足りない
+ * ところ(Pro の範囲・同期の間隔・CUDA 同梱版など)は、ここで言葉を足している ——
+ * 足したぶんは「事実として正しいこと」だけ。コマンドの有無と引数は、本体の
+ * scripts/site-commands-check.mjs が突き合わせる(足りない・余っている・引数の違いを出す)。
+ *
+ * 5言語対応。arg は <>/[] のプレースホルダだけ訳し、ユーザーがそのまま打ち込む
+ * トークン(on|off・list 等)と | の構造は原文のまま残す。
+ * since は「その版から入った」印 —— 正式版がまだ届いていない間は、先行版の機能。
  */
-export type Cmd = { name: string; arg: string; help: string };
+export type Cmd = { name: string; arg: string; help: string; since?: string };
 
 export function buildCommandGroups(
   t: ReturnType<typeof useT>,
@@ -551,11 +557,11 @@ export function buildCommandGroups(
         {
           name: "home",
           arg: T(
-            "remo <トークン>|switchbot <トークン> <シークレット>|list|off",
-            "remo <token>|switchbot <token> <secret>|list|off",
-            "remo <令牌>|switchbot <令牌> <密钥>|list|off",
-            "remo <權杖>|switchbot <權杖> <密鑰>|list|off",
-            "remo <토큰>|switchbot <토큰> <시크릿>|list|off",
+            "[remo <トークン>|switchbot <トークン> <シークレット>|list|off]",
+            "[remo <token>|switchbot <token> <secret>|list|off]",
+            "[remo <令牌>|switchbot <令牌> <密钥>|list|off]",
+            "[remo <權杖>|switchbot <權杖> <密鑰>|list|off]",
+            "[remo <토큰>|switchbot <토큰> <시크릿>|list|off]",
           ),
           help: T(
             "家電の操作(Nature Remo / SwitchBot に直接つなぐ。Pro)",
@@ -568,18 +574,42 @@ export function buildCommandGroups(
         {
           name: "mcp",
           arg: T(
-            "add <名前> <コマンド…|URL [トークン]>|remove <名前>|tools",
-            "add <name> <command…|URL [token]>|remove <name>|tools",
-            "add <名字> <命令…|URL [令牌]>|remove <名字>|tools",
-            "add <名字> <命令…|URL [權杖]>|remove <名字>|tools",
-            "add <이름> <명령…|URL [토큰]>|remove <이름>|tools",
+            "add <名前> <コマンド…|URL [トークン]>|remove <名前>|tools|trust [<ツール> on|off]",
+            "add <name> <command…|URL [token]>|remove <name>|tools|trust [<tool> on|off]",
+            "add <名字> <命令…|URL [令牌]>|remove <名字>|tools|trust [<工具> on|off]",
+            "add <名字> <命令…|URL [權杖]>|remove <名字>|tools|trust [<工具> on|off]",
+            "add <이름> <명령…|URL [토큰]>|remove <이름>|tools|trust [<도구> on|off]",
           ),
           help: T(
-            "MCPサーバー接続(gmail / calendar / drive はGoogle純正プリセット。URL でリモートにも繋がる=Pro)",
-            "Connect MCP servers (gmail / calendar / drive are official Google presets; a URL reaches remote servers = Pro)",
-            "连接 MCP 服务器(gmail / calendar / drive 是 Google 官方预设。填 URL 还能连远程=Pro)",
-            "連接 MCP 伺服器(gmail / calendar / drive 是 Google 官方預設。填 URL 還能連遠端=Pro)",
-            "MCP 서버 연결(gmail / calendar / drive 는 Google 정품 프리셋. URL로 원격에도 연결=Pro)",
+            "MCPサーバー接続(gmail / calendar / drive はGoogle純正プリセット。URL でリモートにも繋がる=Pro)。trust は確認なしにしたツールの一覧と解除(0.6.9+)",
+            "Connect MCP servers (gmail / calendar / drive are official Google presets; a URL reaches remote servers = Pro). trust lists and revokes the tools you let run without asking (0.6.9+)",
+            "连接 MCP 服务器(gmail / calendar / drive 是 Google 官方预设。填 URL 还能连远程=Pro)。trust 可查看并取消已设为免确认的工具(0.6.9+)",
+            "連接 MCP 伺服器(gmail / calendar / drive 是 Google 官方預設。填 URL 還能連遠端=Pro)。trust 可查看並取消已設為免確認的工具(0.6.9+)",
+            "MCP 서버 연결(gmail / calendar / drive 는 Google 정품 프리셋. URL로 원격에도 연결=Pro). trust 는 확인 없이 쓰기로 한 도구의 목록과 해제(0.6.9+)",
+          ),
+        },
+        {
+          name: "ok",
+          arg: "",
+          since: "0.6.9",
+          help: T(
+            "確認待ちのツール操作(送信・削除・変更など)を実行する(「うん」でも可)。always で以後そのツールは確認なし",
+            "Run the tool action that is waiting for your OK (send, delete, change…; just saying \"yes\" works too). always skips the question for that tool from now on",
+            "执行正在等待确认的工具操作(发送、删除、更改等;直接回答 ok / yes 也可以)。加 always 则此后该工具不再询问",
+            "執行正在等待確認的工具操作(傳送、刪除、變更等;直接回答 ok / yes 也可以)。加 always 則此後該工具不再詢問",
+            "확인을 기다리는 도구 작업(전송·삭제·변경 등)을 실행(ok / yes 라고 답해도 됨). always 를 붙이면 이후 그 도구는 확인 없이 실행",
+          ),
+        },
+        {
+          name: "no",
+          arg: "",
+          since: "0.6.9",
+          help: T(
+            "確認待ちのツール操作をやめる(「やめて」でも可)",
+            "Cancel the tool action that is waiting for your OK (just saying \"no\" or \"stop\" works too)",
+            "取消正在等待确认的工具操作(直接回答 no / stop 也可以)",
+            "取消正在等待確認的工具操作(直接回答 no / stop 也可以)",
+            "확인을 기다리는 도구 작업을 취소(no / stop 이라고 답해도 됨)",
           ),
         },
         {
@@ -730,18 +760,18 @@ export function buildCommandGroups(
         {
           name: "announce",
           arg: T(
-            "<配信の内容>|post|tags <タグ…>",
-            "<stream details>|post|tags <tags…>",
-            "<直播内容>|post|tags <标签…>",
-            "<直播內容>|post|tags <標籤…>",
-            "<방송 내용>|post|tags <태그…>",
+            "<配信の内容>|post|tags <タグ…>|x <@アカウント>",
+            "<stream details>|post|tags <tags…>|x <@account>",
+            "<直播内容>|post|tags <标签…>|x <@账号>",
+            "<直播內容>|post|tags <標籤…>|x <@帳號>",
+            "<방송 내용>|post|tags <태그…>|x <@계정>",
           ),
           help: T(
-            "告知文をこの子に書かせて投稿画面を開く",
-            "Have them draft the announcement and open the posting screen",
-            "让这孩子写好宣传文案并打开发布画面",
-            "讓這孩子寫好宣傳文案並打開發布畫面",
-            "공지 글을 이 아이에게 쓰게 하고 게시 화면 열기",
+            "告知文をこの子に書かせて、投稿画面を開く。x で X のアカウントを教えると、配信中のお願いでも名前を出す",
+            "Have them draft the announcement and open the posting screen. Tell them your X account with x, and they will name it when asking viewers for a follow during the stream",
+            "让这孩子写好宣传文案并打开发布画面。用 x 告诉她 X 账号后,直播中拜托观众时也会报出账号名",
+            "讓這孩子寫好宣傳文案並打開發布畫面。用 x 告訴她 X 帳號後,直播中拜託觀眾時也會報出帳號名",
+            "공지 글을 이 아이에게 쓰게 하고 게시 화면 열기. x 로 X 계정을 알려 주면 방송 중 부탁할 때도 계정 이름을 말함",
           ),
         },
         {
@@ -782,11 +812,11 @@ export function buildCommandGroups(
             "connect <URL> <비밀번호>|start|stop|off",
           ),
           help: T(
-            "OBS の遠隔操作(配信の開始・停止)",
-            "Remote-control OBS (start and stop the stream)",
-            "远程操控 OBS(开始、停止直播)",
-            "遠端操控 OBS(開始、停止直播)",
-            "OBS 원격 조작(방송 시작, 정지)",
+            "OBS の遠隔操作(配信の開始・停止。obs-websocket)",
+            "Remote-control OBS (start and stop the stream; over obs-websocket)",
+            "远程操控 OBS(开始、停止直播。经 obs-websocket)",
+            "遠端操控 OBS(開始、停止直播。經 obs-websocket)",
+            "OBS 원격 조작(방송 시작, 정지. obs-websocket)",
           ),
         },
         {
@@ -923,6 +953,24 @@ export function buildCommandGroups(
           ),
         },
         {
+          name: "memory",
+          arg: T(
+            "snapshots|restore [番号]",
+            "snapshots|restore [number]",
+            "snapshots|restore [编号]",
+            "snapshots|restore [編號]",
+            "snapshots|restore [번호]",
+          ),
+          since: "0.6.9",
+          help: T(
+            "記憶の控え(整理の前に自動で7世代)を見る・戻す(戻すと再起動)",
+            "List or restore memory snapshots (seven are kept automatically, taken before each tidy-up; restoring restarts the app)",
+            "查看或恢复记忆的备份(每次整理前自动留存,共保留 7 份;恢复后会重启)",
+            "查看或還原記憶的備份(每次整理前自動留存,共保留 7 份;還原後會重新啟動)",
+            "기억의 백업(정리 전에 자동으로 7세대) 보기·되돌리기(되돌리면 재시작)",
+          ),
+        },
+        {
           name: "hud",
           arg: "on|off",
           help: T(
@@ -959,11 +1007,11 @@ export function buildCommandGroups(
           name: "sakura",
           arg: T("<スクリプト>", "<script>", "<脚本>", "<腳本>", "<스크립트>"),
           help: T(
-            "さくらスクリプト再生(\\\\0\\\\1話者・\\\\s[n]表情・\\\\e。SSTPでも受信)",
-            "Play Sakura Script (\\\\0\\\\1 speakers, \\\\s[n] expressions, \\\\e; also received over SSTP)",
-            "播放 Sakura Script(\\\\0\\\\1 说话者、\\\\s[n] 表情、\\\\e。也能经 SSTP 接收)",
-            "播放 Sakura Script(\\\\0\\\\1 說話者、\\\\s[n] 表情、\\\\e。也能經 SSTP 接收)",
-            "사쿠라 스크립트 재생(\\\\0\\\\1 화자, \\\\s[n] 표정, \\\\e. SSTP로도 수신)",
+            "さくらスクリプト再生(\\0\\1話者・\\s[n]表情・\\e。SSTPでも受信)",
+            "Play Sakura Script (\\0\\1 speakers, \\s[n] expressions, \\e; also received over SSTP)",
+            "播放 Sakura Script(\\0\\1 说话者、\\s[n] 表情、\\e。也能经 SSTP 接收)",
+            "播放 Sakura Script(\\0\\1 說話者、\\s[n] 表情、\\e。也能經 SSTP 接收)",
+            "사쿠라 스크립트 재생(\\0\\1 화자, \\s[n] 표정, \\e. SSTP로도 수신)",
           ),
         },
         {

@@ -25,6 +25,18 @@ export function Pro() {
   );
 }
 
+/**
+ * 「この版から入った」の印。ドキュメントはいちばん新しい版(先行版を含む)に合わせて書くので、
+ * 正式版にまだ届いていない機能には、どの版からかを添える
+ */
+export function Since({ v }: { v: string }) {
+  return (
+    <span className="ml-2 align-middle whitespace-nowrap font-mono text-[10px] tracking-wide text-mist border border-cream/20 rounded px-1.5 py-0.5">
+      {v}+
+    </span>
+  );
+}
+
 export function Steps({ items }: { items: ReactNode[] }) {
   return (
     <ol className="mb-4 space-y-2">

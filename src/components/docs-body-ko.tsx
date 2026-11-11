@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { A, B, C, H2, H3, Note, P, Pro, Shot, Steps } from './docs-ui';
+import { A, B, C, H2, H3, Note, P, Pro, Shot, Since, Steps } from './docs-ui';
 
 /** 使い方ドキュメント本文(韓国語)。構成と JSX の形は docs-body-ja.tsx に揃える。 */
 
@@ -77,7 +77,21 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
               (<B>WSL 안에 있는 CLI도 자동으로 찾습니다</B>).
               평소에는 로컬 그대로 두고, 이 한 가지 질문만 클라우드에서 생각해 주길 바랄 때는 <C>/cloud &lt;질문&gt;</C>.
             </P>
-            <Note>API 키는 OS의 세이프 스토리지로 암호화해 저장됩니다(<C>enc:</C> 형식).</Note>
+            <Note>
+              API 키는 OS의 세이프 스토리지로 암호화해 저장됩니다(<C>enc:</C> 형식).
+              키링이 없는 기기에서는 암호화할 수 없으므로, 평문으로 둔다는 사실을 키를 받을 때와 시작할 때 알려 드립니다.
+            </Note>
+            <H3>
+              지금 어느 두뇌로 말하고 있는지
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              <C>/status</C>는 두뇌의 이름과 함께 <B>위치</B>(이 PC / LAN 안의 다른 PC / 클라우드)를 보여 줍니다.
+              다른 PC에서 돌리는 LM Studio를 "이 PC"라고 하지 않으며, 화면 자동 캡처도 그쪽으로는 넘기지 않습니다.
+              대화 로그(<C>/log</C>)의 답변 하나하나에도 어느 두뇌가 만들었는지 이름표가 붙습니다.
+              내장 엔진의 모델은 내려받은 뒤 <B>배포처의 SHA-256과 대조</B>합니다
+              (맞지 않으면 파일을 지우고 멈추며, 다시 받을지는 직접 정합니다).
+            </P>
           </section>
 
           {/* --- 声 --- */}
@@ -187,6 +201,17 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
               "요즘 부쩍 가까워지고 있는 것 같아", "요즘: 비가 계속돼서 왠지 기운이 나지 않았어" 같은 <B>기색의 말</B>만 돌려줍니다.
               그날의 기분은 대답의 어조에도 그대로 나타납니다.
             </P>
+            <H3>
+              기억의 백업과 복구
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              밤사이의 정리는 오래된 것을 잊는 작업이기도 합니다. 그래서 정리 직전에 <B>기억의 백업을 자동으로 떠 두고</B>,
+              최신 7세대를 남깁니다. <C>/memory snapshots</C>로 목록을 보고 <C>/memory restore</C>로 되돌릴 수 있습니다
+              (지금의 기억도 먼저 백업한 뒤 바꿔 넣고 재시작합니다).
+              시작할 때 기억 파일이 깨져 있으면 조용히 버리지 않고 옆으로 치워 둔 뒤 빈 기억으로 시작하며,
+              "최신 백업에서 되돌릴지"를 묻습니다.
+            </P>
             <H3>기억째로 다른 기기에(동기화)</H3>
             <P>
               <C>/sync export</C>로 기억도 이름·성격도 암호 문구로 암호화한 1개의 파일이 되고,
@@ -205,6 +230,15 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             <P>
               MCP로 연결하면 인격을 거친 비서가 됩니다. Gmail·캘린더·Drive는 <C>/mcp add gmail</C>처럼
               프리셋 이름만으로 연결됩니다(첫 회에는 브라우저에서 Google 동의 화면이 열립니다).
+            </P>
+            <P>
+              <B>밖에 영향을 주는 작업은 실행 전에 확인합니다</B>
+              <Since v="0.6.9" /> —— 메일 전송이나 파일 쓰기처럼 전송·삭제·생성·변경에 해당하는 도구는
+              대상과 내용을 말풍선에 보여 주고 멈춥니다. "Run it"을 누르거나 <C>/ok</C>(ok / yes 라고 답해도 됨)로 실행하고,
+              "Cancel"을 누르거나 <C>/no</C>로 취소합니다. 다른 이야기를 시작해도 취소되며, 10분이 지나면 만료됩니다.
+              매번 확인하지 않아도 되는 도구는 "Always allow"(<C>/ok always</C>)로 신뢰할 수 있고,
+              목록과 해제는 <C>/mcp trust</C>에서 합니다.
+              읽기만 하는 도구와 내장 도구(태스크 등)는 지금까지처럼 확인 없이 동작합니다.
             </P>
             <P>
               태스크는 <C>/todo</C>, 정기 체크와 "오늘의 브리핑"은 <C>/secretary brief</C>,
@@ -447,7 +481,7 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="pro">Pro와 라이선스</H2>
             <P>
               본체는 무료로 쓸 수 있습니다(전용 라이선스의 프리웨어).
-              Pro는 한 번 구매하는 방식으로, <B>스트리머 모드·시나리오 라이터·인터넷 라디오·Spotify 연동·멀티 고스트</B>가 잠금 해제됩니다(각각의 내용은 <A href="https://pro.mirika.dev/">pro.mirika.dev</A>에).
+              Pro는 한 번 구매하는 방식으로, <B>스트리머 모드·시나리오 라이터·인터넷 라디오·Spotify 연동·멀티 고스트·스마트홈·Discord 서버 기능·저희가 맡아 두는 기억 보관함</B>이 잠금 해제됩니다(각각의 내용은 <A href="https://pro.mirika.dev/">pro.mirika.dev</A>에).
             </P>
             <Steps
               items={[
@@ -510,6 +544,14 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
               내 목소리는 <C>/voice speaker</C>에서(검색으로도, 목록에서도) 고를 수 있습니다.
               <C>/voice listen</C>을 켠 서버에서는 "<B>미리카</B>"라고 부르면
               듣고 목소리로 답합니다 — 음성은 텍스트가 되는 순간 폐기되며, 부르지 않은 발화는 텍스트도 남기지 않습니다.
+            </P>
+            <P>
+              읽어 주기는 사람마다 조정할 수 있습니다. 속도·높이·억양·음량은 <C>/voice tune</C>,
+              읽는 법은 <C>/voice dictionary</C>로 등록(표기 → 읽기)하고, 내 발언을 읽지 않게 하려면 <C>/voice mute</C>를 씁니다.
+              지금의 설정은 <C>/voice status</C>에서 한 번에 볼 수 있습니다.
+              서버 관리자는 스티커와 이모지를 읽을지(<C>/voice stickers</C>),
+              음성 채널에 없는 사람의 글도 읽을지(<C>/voice absent</C>),
+              미리카 자신의 목소리(<C>/voice mirika</C>)를 정할 수 있습니다.
             </P>
             <Note>
               키 하나로 최대 3개 서버를 열 수 있습니다. 개인 데이터(TODO·기억·목소리 설정)는 키 유래의
@@ -593,7 +635,7 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             <H3>잘 움직이지 않을 때</H3>
             <P>
               <C>/check</C>로 두뇌·목소리·마이크·비서·기억의 상태를 한꺼번에 확인할 수 있습니다.
-              그래도 상태가 이상할 때는 <C>/log</C> —— <B>동작 로그가 든 폴더가 열립니다</B>
+              그래도 상태가 이상할 때는 <C>/log file</C> —— <B>동작 로그가 든 폴더가 열립니다</B>
               (7일분·API 키와 암호 문구는 가림 처리). 신고에 그날의 파일을 첨부해 주시면,
               이쪽에서 원인을 따라갈 수 있습니다. 상세 설정의 "문제가 생겼을 때"에서도 같은 폴더를 열 수 있습니다.
             </P>
@@ -668,6 +710,15 @@ export function DocsBodyKo({ commands, commandCount }: { commands: ReactNode; co
             <P>
               노래에는 VOICEVOX의 <B>가창 대응 캐릭터</B>가 필요합니다.
               AivisSpeech 등 가창에 대응하지 않는 엔진에서는 노래할 수 없습니다.
+            </P>
+            <H3>
+              기억이 깨져 있었다는 안내가 나왔다
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              시작할 때 기억 파일을 읽지 못하면, 깨진 파일은 설정 폴더에 <C>memory-broken-…</C>라는 이름으로 치워 두고
+              빈 기억으로 시작합니다. 말풍선의 "Restore latest snapshot"을 누르거나 <C>/memory restore</C>를 실행하면
+              정리 전의 백업으로 되돌릴 수 있습니다. 깨진 파일은 남겨 두므로 제보에 첨부하실 수 있습니다.
             </P>
             <H3>불러온 카드를 원래대로 되돌리고 싶다</H3>
             <P>

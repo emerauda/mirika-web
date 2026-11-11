@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { A, B, C, H2, H3, Note, P, Pro, Shot, Steps } from './docs-ui';
+import { A, B, C, H2, H3, Note, P, Pro, Shot, Since, Steps } from './docs-ui';
 
 /** 使い方ドキュメント本文(日本語・正)。他言語版は docs-body-*.tsx —— 構成と JSX の形はこのファイルに揃える。 */
 
@@ -81,7 +81,21 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               API キー不要でそのまま頭脳になります(<B>CLI が WSL の中にあっても自動で見つけます</B>)。
               ふだんはローカルのまま、この1問だけクラウドで考えてほしいときは <C>/cloud &lt;質問&gt;</C>。
             </P>
-            <Note>API キーは OS のセーフストレージで暗号化して保存されます(<C>enc:</C> 形式)。</Note>
+            <Note>
+              API キーは OS のセーフストレージで暗号化して保存されます(<C>enc:</C> 形式)。
+              鍵輪の無い端末では暗号化できないので、平文で置くことを受け取ったときと起動時にお伝えします。
+            </Note>
+            <H3>
+              いま、どの頭脳で話しているか
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              <C>/status</C> は頭脳の名前に加えて<B>場所</B>(この PC / LAN 内の別の PC / クラウド)を示します。
+              別の PC で動かしている LM Studio を「この PC」とは言いませんし、画面の自動キャプチャもそこへは渡しません。
+              会話ログ(<C>/log</C>)の返事ひとつひとつにも、どの頭脳が作ったかの名札が付きます。
+              内蔵エンジンのモデルは、ダウンロードのあと<B>配布元の SHA-256 と照合</B>します
+              (合わなければファイルを消して止まり、取り直しはあなたの操作で)。
+            </P>
           </section>
 
           {/* --- 声 --- */}
@@ -191,6 +205,17 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               「ここ最近、ぐんぐん近づいている気がする」「さいきん: 雨がつづいて、なんとなく元気が出なかった」といった<B>気配のことば</B>だけを返します。
               その日の気分は返事の調子にもそのまま出ます。
             </P>
+            <H3>
+              記憶の控えと復旧
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              夜の整理は、古いことを忘れる操作でもあります。なので整理の直前に<B>記憶の控えを自動で取り</B>、
+              新しい7世代を残します。<C>/memory snapshots</C> で一覧、<C>/memory restore</C> で戻せます
+              (いまの記憶も控えてから差し替えて、再起動します)。
+              起動時に記憶のファイルが壊れていた場合は、黙って捨てずに脇へ避けて空の記憶で立ち上がり、
+              「最新の控えから戻す」かどうかをお尋ねします。
+            </P>
             <H3>記憶ごと、別の端末へ(同期)</H3>
             <P>
               <C>/sync export</C> で記憶も名前・性格も、合言葉で暗号化した1ファイルになり、
@@ -209,6 +234,15 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <P>
               MCP でつなぐと、人格を通した秘書になります。Gmail・カレンダー・Drive は
               <C>/mcp add gmail</C> のようにプリセット名だけで繋がります(初回はブラウザで Google の同意画面)。
+            </P>
+            <P>
+              <B>外に影響する操作は、実行の前に確かめます</B>
+              <Since v="0.6.9" /> —— メールの送信やファイルの書き込みなど、送信・削除・作成・変更にあたるツールは、
+              対象と内容を吹き出しで見せて止まります。「実行する」か <C>/ok</C>(「うん」でも)で実行、
+              「やめる」か <C>/no</C>(「やめて」でも)で取り下げ。別の話を始めても取り下げになり、10分で失効します。
+              毎回確かめなくていいツールは「今後は確認なし」(<C>/ok always</C>)で信頼でき、
+              <C>/mcp trust</C> で一覧と解除ができます。
+              読むだけのツールと内蔵のツール(タスクなど)は、今までどおり確認なしで動きます。
             </P>
             <P>
               タスクは <C>/todo</C>、定期チェックと「きょうのブリーフィング」は <C>/secretary brief</C>、
@@ -473,7 +507,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H2 id="pro">Pro とライセンス</H2>
             <P>
               本体は無料で使えます(専用ライセンスのフリーウェア)。
-              Pro は買い切りで、<B>配信者モード・シナリオライター・ネットラジオ・Spotify 連携・マルチゴースト</B>がアンロックされます(それぞれの中身は <A href="https://pro.mirika.dev/">pro.mirika.dev</A> に)。
+              Pro は買い切りで、<B>配信者モード・シナリオライター・ネットラジオ・Spotify 連携・マルチゴースト・スマートホーム・Discord のサーバー機能・記憶の預かり棚</B>がアンロックされます(それぞれの中身は <A href="https://pro.mirika.dev/">pro.mirika.dev</A> に)。
             </P>
             <Steps
               items={[
@@ -537,6 +571,14 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
               自分の声は <C>/voice speaker</C>(検索でも、一覧からでも選べます)。
               <C>/voice listen</C> をオンにしたサーバーでは「<B>ミリカ</B>」と
               呼びかけると聞き取り、声で返します — 音声は文字にした瞬間に捨て、呼びかけ以外の発話は文字も残しません。
+            </P>
+            <P>
+              読み上げは人ごとに整えられます。速さ・高さ・抑揚・音量は <C>/voice tune</C>、
+              読み方は <C>/voice dictionary</C> で登録(表記 → 読み)、自分の発言を読まれたくなければ <C>/voice mute</C>。
+              いまの設定は <C>/voice status</C> がまとめて見せます。
+              サーバー管理者は、スタンプと絵文字を読むか(<C>/voice stickers</C>)、
+              ボイスチャンネルに居ない人の投稿も読むか(<C>/voice absent</C>)、
+              ミリカ自身の声(<C>/voice mirika</C>)を決められます。
             </P>
             <Note>
               サーバーの解放は1キー3サーバーまで。個人のデータ(TODO・記憶・声の好み)はキー由来の
@@ -620,7 +662,7 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <H3>うまく動かないとき</H3>
             <P>
               <C>/check</C> で頭脳・声・マイク・秘書・記憶の状態をまとめて確認できます。
-              それでも様子がおかしいときは <C>/log</C> —— <B>動作ログの入ったフォルダが開きます</B>
+              それでも様子がおかしいときは <C>/log file</C> —— <B>動作ログの入ったフォルダが開きます</B>
               (7日分・APIキーや合言葉は伏せ字)。ご報告にその日のファイルを添えていただけると、
               こちらで原因を辿れます。詳細設定の「困ったとき」からも同じフォルダを開けます。
             </P>
@@ -696,6 +738,16 @@ export function DocsBodyJa({ commands, commandCount }: { commands: ReactNode; co
             <P>
               歌には VOICEVOX の<B>歌唱対応キャラ</B>が必要です。
               AivisSpeech など歌唱に対応していないエンジンでは歌えません。
+            </P>
+            <H3>
+              記憶が壊れていたと言われた
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              起動時に記憶のファイルが読めなかったときは、壊れたファイルを設定フォルダに
+              <C>memory-broken-…</C> として避け、空の記憶で立ち上がります。
+              吹き出しの「最新の控えから戻す」か <C>/memory restore</C> で、整理前の控えから戻せます。
+              壊れたファイルは残してあるので、ご報告に添えていただけます。
             </P>
             <H3>取り込んだカードを元に戻したい</H3>
             <P>

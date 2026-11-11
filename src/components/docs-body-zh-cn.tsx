@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { A, B, C, H2, H3, Note, P, Pro, Shot, Steps } from './docs-ui';
+import { A, B, C, H2, H3, Note, P, Pro, Shot, Since, Steps } from './docs-ui';
 
 /** 使い方ドキュメント本文(簡体字中国語)。原文・構造の正は docs-body-ja.tsx —— 構成と JSX の形はそちらに揃える。 */
 
@@ -77,7 +77,21 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               (<B>就算 CLI 装在 WSL 里也会自动找到</B>)。
               平时保持本地,只想让这一个问题交给云端思考时,用 <C>/cloud &lt;问题&gt;</C>。
             </P>
-            <Note>API 密钥会通过 OS 的安全存储加密保存(<C>enc:</C> 格式)。</Note>
+            <Note>
+              API 密钥会通过 OS 的安全存储加密保存(<C>enc:</C> 格式)。
+              没有钥匙串的设备无法加密,此时会在收到密钥时和启动时告知「以明文保存」。
+            </Note>
+            <H3>
+              现在是哪个头脑在回答
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              <C>/status</C> 除了头脑的名字,还会显示<B>它在哪里</B>(这台电脑 / 局域网内的另一台电脑 / 云端)。
+              在另一台电脑上运行的 LM Studio 不会再被称作「这台电脑」,自动截取的画面也不会发到那边。
+              会话日志(<C>/log</C>)里的每一条回复,也都带有「由哪个头脑生成」的标签。
+              内置引擎的模型在下载后会<B>与发布方的 SHA-256 核对</B>
+              (不一致就删除文件并停下,是否重新下载由你决定)。
+            </P>
           </section>
 
           {/* --- 声 --- */}
@@ -186,6 +200,17 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               <C>/bond</C> 不显示数字。除了相识天数、对话次数、记住的事情之外,只返回阶段(★)与
               「最近好像越来越近了」「最近:雨一直下,总提不起劲」这样的<B>气息</B>。当天的心情也会直接体现在回话的语气里。
             </P>
+            <H3>
+              记忆的备份与恢复
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              夜里的整理,同时也是「忘掉旧事」的操作。所以在整理之前会<B>自动留一份记忆的备份</B>,
+              保留最新的 7 份。用 <C>/memory snapshots</C> 查看,用 <C>/memory restore</C> 恢复
+              (会先把当前的记忆也备份好,再替换并重启)。
+              如果启动时发现记忆文件已损坏,不会悄悄丢弃,而是把它挪到一旁、以空白记忆启动,
+              并询问是否「从最新的备份恢复」。
+            </P>
             <H3>连同记忆,搬去另一台设备(同步)</H3>
             <P>
               用 <C>/sync export</C>,记忆连同名字・性格会变成一个以口令加密的文件,
@@ -204,6 +229,15 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <P>
               通过 MCP 连接后,她就成了经由人格传达的秘书。Gmail・日历・Drive 只需像
               <C>/mcp add gmail</C> 这样报出预设名即可连接(首次会在浏览器打开 Google 的同意画面)。
+            </P>
+            <P>
+              <B>会影响到外部的操作,执行前先确认</B>
+              <Since v="0.6.9" /> —— 发邮件、写文件这类属于发送・删除・新建・更改的工具,
+              会在气泡里展示对象和内容,然后停下来。点「Run it」或输入 <C>/ok</C>(直接回答 ok / yes 也可以)即执行,
+              点「Cancel」或输入 <C>/no</C> 则取消。换了别的话题同样视为取消,10 分钟后自动失效。
+              不想每次都确认的工具,可以用「Always allow」(<C>/ok always</C>)设为信任,
+              <C>/mcp trust</C> 可以查看和解除。
+              只读的工具和内置工具(任务等)和以前一样,不经确认直接运行。
             </P>
             <P>
               任务用 <C>/todo</C>,定期检查和「今日简报」用 <C>/secretary brief</C>,
@@ -450,7 +484,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H2 id="pro">Pro 与许可证</H2>
             <P>
               本体免费使用(采用专用许可证的免费软件)。
-              Pro 为买断制,解锁<B>主播模式・剧本作家・网络电台・Spotify 联动・多重幽灵</B>(各自的详情见 <A href="https://pro.mirika.dev/">pro.mirika.dev</A>)。
+              Pro 为买断制,解锁<B>主播模式・剧本作家・网络电台・Spotify 联动・多重幽灵・智能家居・Discord 的服务器功能・由我们托管的记忆存放处</B>(各自的详情见 <A href="https://pro.mirika.dev/">pro.mirika.dev</A>)。
             </P>
             <Steps
               items={[
@@ -515,6 +549,14 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
               自己的声音用 <C>/voice speaker</C> 挑选(可搜索,也可从完整列表里浏览)。
               在开启 <C>/voice listen</C> 的服务器里,喊一声"<B>Mirika</B>",
               她会听到并用声音回答 — 音频在转成文字的那一刻即被丢弃,没有呼唤她的发言连文字也不保留。
+            </P>
+            <P>
+              朗读可以按人调整。语速・音高・抑扬・音量用 <C>/voice tune</C>,
+              读法用 <C>/voice dictionary</C> 登记(写法 → 读法),不想让自己的发言被读出来就用 <C>/voice mute</C>。
+              当前的设置可以用 <C>/voice status</C> 一次看全。
+              服务器管理员可以决定是否朗读贴纸和表情(<C>/voice stickers</C>)、
+              是否连不在语音频道里的人的发言也读(<C>/voice absent</C>),
+              以及 Mirika 自己的声音(<C>/voice mirika</C>)。
             </P>
             <Note>
               一把密钥最多开通三个服务器。个人数据(TODO・记忆・声音偏好)按密钥派生的单向指纹分开保存,
@@ -597,7 +639,7 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <H3>运行不顺时</H3>
             <P>
               用 <C>/check</C> 可一并确认头脑・声音・麦克风・秘书・记忆的状态。
-              仍然不对劲时用 <C>/log</C> —— <B>会打开装有运行日志的文件夹</B>
+              仍然不对劲时用 <C>/log file</C> —— <B>会打开装有运行日志的文件夹</B>
               (7 天份・API 密钥和口令均已打码)。反馈时随附当天的文件,
               我们就能循迹查明原因。从详细设置的「遇到麻烦时」也能打开同一个文件夹。
             </P>
@@ -673,6 +715,15 @@ export function DocsBodyZhCn({ commands, commandCount }: { commands: ReactNode; 
             <P>
               唱歌需要 VOICEVOX 的<B>支持歌唱的角色</B>。
               AivisSpeech 等不支持歌唱的引擎无法唱歌。
+            </P>
+            <H3>
+              被告知记忆已损坏
+              <Since v="0.6.9" />
+            </H3>
+            <P>
+              启动时读不出记忆文件的话,损坏的文件会以 <C>memory-broken-…</C> 的名字挪到设置文件夹里,
+              并以空白记忆启动。点气泡里的「Restore latest snapshot」或输入 <C>/memory restore</C>,
+              就能回到整理前的备份。损坏的文件会保留下来,可以随报告一起发给我们。
             </P>
             <H3>想把导入的卡片恢复原状</H3>
             <P>

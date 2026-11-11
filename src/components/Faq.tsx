@@ -73,12 +73,12 @@ export function Faq() {
         ko: '옛날에 만들었던/쓰던 고스트는 그대로 움직이나요?',
       }),
       a: t(
-        'それを最優先に設計しています。さくらスクリプトは書き直しゼロで動き、サーフェスPNGシェルは /shell classic <フォルダ> で見た目ごと取り込めます——本体と相方がコンビで立ち、surfaces.txt の定義どおりに瞬き、声に合わせて口が動きます(透明が .pna や「左上の色」で表された古い作りも読みます)。辞書の取り込みは引き続き対応予定です。SillyTavern などのキャラクターカード(V2/V3)は、いまドラッグ&ドロップだけで取り込めます。',
-        'That is the first design goal. Sakura Script runs with zero rewrites, and surface-PNG shells import whole with /shell classic <folder> — the pair stands together, blinks per surfaces.txt, and lip-syncs to the voice (old transparency via .pna or the top-left color is read too). Dictionary import is still planned. Character cards (SillyTavern V2/V3) already import by drag & drop.',
+        'それを最優先に設計しています。さくらスクリプトは書き直しゼロで動き、サーフェスPNGシェルは /shell classic <フォルダ> で見た目ごと取り込めます——本体と相方がコンビで立ち、surfaces.txt の定義どおりに瞬き、声に合わせて口が動きます(透明が .pna や「左上の色」で表された古い作りも読みます)。辞書も動きます——ゴースト一式(.nar)を落とせば同梱の SHIORI がそのまま走り、本人の辞書で喋ります(実 DLL の実行は Windows。里々のゴーストは macOS / Linux でも本人の辞書で喋ります)。SillyTavern などのキャラクターカード(V2/V3)は、いまドラッグ&ドロップだけで取り込めます。',
+        'That is the first design goal. Sakura Script runs with zero rewrites, and surface-PNG shells import whole with /shell classic <folder> — the pair stands together, blinks per surfaces.txt, and lip-syncs to the voice (old transparency via .pna or the top-left color is read too). Dictionaries run too — drop a whole ghost (.nar) and its bundled SHIORI runs as-is, so she speaks from her own dictionary (real DLLs run on Windows; Satori ghosts speak from their own dictionaries on macOS and Linux too). Character cards (SillyTavern V2/V3) already import by drag & drop.',
         {
-          'zh-CN': '这是最优先的设计目标。Sakura Script 零改写即可运行,surface PNG 外壳用 /shell classic <文件夹> 连同外观一起导入——本体和搭档成对站立,按 surfaces.txt 的定义眨眼,随声音对口型(.pna 或「左上角颜色」表示透明的老做法也能读)。词典导入仍在计划中。SillyTavern 等角色卡(V2/V3)现在拖入即可导入。',
-          'zh-TW': '這是最優先的設計目標。Sakura Script 零改寫即可運行,surface PNG 外殼用 /shell classic <資料夾> 連同外觀一起匯入——本體和搭檔成對站立,按 surfaces.txt 的定義眨眼,隨聲音對口型(.pna 或「左上角顏色」表示透明的老做法也能讀)。詞典匯入仍在計畫中。SillyTavern 等角色卡(V2/V3)現在拖入即可匯入。',
-          ko: '그것이 최우선 설계 목표입니다. 사쿠라 스크립트는 고쳐 쓰기 없이 움직이고, 서피스 PNG 셸은 /shell classic <폴더>로 겉모습째 가져옵니다 — 본체와 파트너가 콤비로 서고, surfaces.txt 정의대로 눈을 깜빡이며, 목소리에 맞춰 입이 움직입니다(.pna나 "왼쪽 위 색"으로 투명을 나타내던 옛 방식도 읽습니다). 사전 가져오기는 계속 대응 예정입니다. SillyTavern 등의 캐릭터 카드(V2/V3)는 지금도 드래그&드롭만으로 가져옵니다.',
+          'zh-CN': '这是最优先的设计目标。Sakura Script 零改写即可运行,surface PNG 外壳用 /shell classic <文件夹> 连同外观一起导入——本体和搭档成对站立,按 surfaces.txt 的定义眨眼,随声音对口型(.pna 或「左上角颜色」表示透明的老做法也能读)。辞书也能运行——把整套幽灵(.nar)拖进来,自带的 SHIORI 就会原样运行,用它自己的辞书说话(真实 DLL 的运行限 Windows;里里的幽灵在 macOS / Linux 上也能用自己的辞书说话)。SillyTavern 等角色卡(V2/V3)现在拖入即可导入。',
+          'zh-TW': '這是最優先的設計目標。Sakura Script 零改寫即可運行,surface PNG 外殼用 /shell classic <資料夾> 連同外觀一起匯入——本體和搭檔成對站立,按 surfaces.txt 的定義眨眼,隨聲音對口型(.pna 或「左上角顏色」表示透明的老做法也能讀)。辭書也能運行——把整套幽靈(.nar)拖進來,自帶的 SHIORI 就會原樣執行,用它自己的辭書說話(真實 DLL 的執行限 Windows;里里的幽靈在 macOS / Linux 上也能用自己的辭書說話)。SillyTavern 等角色卡(V2/V3)現在拖入即可匯入。',
+          ko: '그것이 최우선 설계 목표입니다. 사쿠라 스크립트는 고쳐 쓰기 없이 움직이고, 서피스 PNG 셸은 /shell classic <폴더>로 겉모습째 가져옵니다 — 본체와 파트너가 콤비로 서고, surfaces.txt 정의대로 눈을 깜빡이며, 목소리에 맞춰 입이 움직입니다(.pna나 "왼쪽 위 색"으로 투명을 나타내던 옛 방식도 읽습니다). 사전도 움직입니다 — 고스트 일체(.nar)를 떨어뜨리면 동봉된 SHIORI가 그대로 돌아, 자기 사전으로 말합니다(실제 DLL 실행은 Windows. 사토리 고스트는 macOS / Linux에서도 자기 사전으로 말합니다). SillyTavern 등의 캐릭터 카드(V2/V3)는 지금도 드래그&드롭만으로 가져옵니다.',
         },
       ),
     },

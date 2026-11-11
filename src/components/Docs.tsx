@@ -3,7 +3,7 @@ import { Search } from 'lucide-react';
 import { buildCommandGroups } from './docs-commands';
 import { Reveal } from './primitives';
 import { pickByLang, t5, useLang, useT, type Lang } from '../i18n';
-import { C } from './docs-ui';
+import { C, Since } from './docs-ui';
 import { LangSwitch } from './Nav';
 import { useActiveSection } from '../hooks/useActiveSection';
 
@@ -152,6 +152,7 @@ export function Docs() {
                       <td className="py-2 pr-4 font-mono text-cream w-[46%] break-words">
                         <span className="whitespace-nowrap">/{cmd.name}</span>
                         {cmd.arg ? <span className="text-mist/80"> {cmd.arg}</span> : null}
+                        {cmd.since ? <Since v={cmd.since} /> : null}
                       </td>
                       <td className="py-2 text-mist">{cmd.help}</td>
                     </tr>
